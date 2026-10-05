@@ -1,0 +1,6 @@
+#ifndef _FIGHTERCOLORPALETTE_H
+#define _FIGHTERCOLORPALETTE_H
+
+const short TOTAL_COLORPARETTE_NUM = 4;
+
+#endif

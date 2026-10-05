@@ -1,0 +1,13 @@
+﻿cl : コマンド ライン  warning D9035: オプション 'Gm' の使用は現在推奨されていません。今後のバージョンからは削除されます。
+  EpxIntegrate.cpp
+  EpxConstraintSolver.cpp
+C:\GamePhysicsSdk\easy_physics\pipeline\EpxConstraintSolver.cpp(270,26): warning C4244: '初期化中': 'double' から 'EasyPhysics::EpxFloat' への変換です。データが失われる可能性があります。
+  EpxCollisionDetection.cpp
+  EpxBroadphase.cpp
+  EpxConvexMesh.cpp
+  EpxContact.cpp
+  EpxConvexConvexContact.cpp
+C:\GamePhysicsSdk\easy_physics\collision\EpxConvexConvexContact.cpp(178,31): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  EpxClosestFunction.cpp
+  コードを生成中...
+  easy_physics.vcxproj -> C:\GamePhysicsSdk\easy_physics\project\Debug\easy_physics.lib

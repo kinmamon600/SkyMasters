@@ -1,0 +1,11 @@
+﻿  EpxClosestFunction.cpp
+  EpxConvexConvexContact.cpp
+C:\GamePhysicsSdk\easy_physics\collision\EpxConvexConvexContact.cpp(178,31): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+  EpxContact.cpp
+  EpxConvexMesh.cpp
+  EpxBroadphase.cpp
+  EpxCollisionDetection.cpp
+  EpxConstraintSolver.cpp
+C:\GamePhysicsSdk\easy_physics\pipeline\EpxConstraintSolver.cpp(270,26): warning C4244: '初期化中': 'double' から 'EasyPhysics::EpxFloat' への変換です。データが失われる可能性があります。
+  EpxIntegrate.cpp
+  easy_physics.vcxproj -> C:\GamePhysicsSdk\sample\x64\Release\easy_physics.lib

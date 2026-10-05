@@ -1,0 +1,59 @@
+﻿cl : コマンド ライン  warning D9035: オプション 'Gm' の使用は現在推奨されていません。今後のバージョンからは削除されます。
+  pfx_util_common.cpp
+  pfx_mesh_creator.cpp
+  pfx_mass.cpp
+  pfx_debug_render.cpp
+  pfx_update_rigid_states_single.cpp
+  pfx_joint_constraint_func.cpp
+  pfx_constraint_solver_single.cpp
+  pfx_refresh_contacts_single.cpp
+  pfx_ray_cast.cpp
+  pfx_island_generation.cpp
+  pfx_intersect_ray_func.cpp
+  pfx_detect_collision_func.cpp
+  pfx_collision_detection_single.cpp
+  pfx_batched_ray_cast_single.cpp
+  pfx_broadphase_single.cpp
+  pfx_sort.cpp
+  pfx_joint_universal.cpp
+  pfx_joint_swing_twist.cpp
+  pfx_joint_slider.cpp
+  pfx_joint_hinge.cpp
+  コードを生成中...
+  コンパイル中...
+  pfx_joint_fix.cpp
+  pfx_joint_ball.cpp
+  pfx_contact_constraint.cpp
+  pfx_simplex_solver.cpp
+  pfx_shape.cpp
+  pfx_intersect_ray_sphere.cpp
+  pfx_intersect_ray_large_tri_mesh.cpp
+  pfx_intersect_ray_cylinder.cpp
+  pfx_intersect_ray_convex.cpp
+  pfx_intersect_ray_capsule.cpp
+  pfx_intersect_ray_box.cpp
+  pfx_gjk_support_func.cpp
+  pfx_gjk_solver.cpp
+  pfx_contact_tri_mesh_sphere.cpp
+  pfx_contact_tri_mesh_cylinder.cpp
+  pfx_contact_tri_mesh_convex.cpp
+  pfx_contact_tri_mesh_capsule.cpp
+  pfx_contact_tri_mesh_box.cpp
+  pfx_contact_sphere_sphere.cpp
+C:\Users\k2007\DxProject\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\src\base_level\collision\pfx_contact_tri_mesh_box.cpp(46,20): warning C4244: '初期化中': 'double' から 'sce::PhysicsEffects::PfxFloat' への変換です。データが失われる可能性があります。
+  pfx_contact_manifold.cpp
+  コードを生成中...
+  コンパイル中...
+  pfx_contact_large_tri_mesh.cpp
+  pfx_contact_capsule_sphere.cpp
+  pfx_contact_capsule_capsule.cpp
+  pfx_contact_cache.cpp
+  pfx_contact_box_sphere.cpp
+  pfx_contact_box_capsule.cpp
+  pfx_contact_box_box.cpp
+  pfx_collidable.cpp
+  pfx_update_broadphase_proxy.cpp
+  コードを生成中...
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1564,5): warning MSB8012: TargetPath(C:\Users\k2007\DxProject\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\project\Win64 Debug\physics_effects_lib.oss.lib) が Library の OutputFile プロパティ値 (C:\Users\k2007\DxProject\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\lib\Win64 Debug\libScePhysicsEffectsD.lib) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Lib.OutputFile) で指定されている値と一致することを確認してください。
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1566,5): warning MSB8012: TargetName(physics_effects_lib.oss) が Library の OutputFile プロパティ値 (libScePhysicsEffectsD) と一致しません。このため、プロジェクトが正常にビルドされない可能性があります。この問題を解決するには、$(OutDir)、$(TargetName)、および $(TargetExt) の各プロパティ値が、%(Lib.OutputFile) で指定されている値と一致することを確認してください。
+  physics_effects_lib.oss.vcxproj -> C:\Users\k2007\DxProject\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\project\Win64 Debug\physics_effects_lib.oss.lib

@@ -1,0 +1,8 @@
+C:\GamePhysicsSdk\easy_physics\collision\EpxClosestFunction.cpp;C:\GamePhysicsSdk\easy_physics\project\Debug\EpxClosestFunction.obj
+C:\GamePhysicsSdk\easy_physics\collision\EpxConvexConvexContact.cpp;C:\GamePhysicsSdk\easy_physics\project\Debug\EpxConvexConvexContact.obj
+C:\GamePhysicsSdk\easy_physics\elements\EpxContact.cpp;C:\GamePhysicsSdk\easy_physics\project\Debug\EpxContact.obj
+C:\GamePhysicsSdk\easy_physics\elements\EpxConvexMesh.cpp;C:\GamePhysicsSdk\easy_physics\project\Debug\EpxConvexMesh.obj
+C:\GamePhysicsSdk\easy_physics\pipeline\EpxBroadphase.cpp;C:\GamePhysicsSdk\easy_physics\project\Debug\EpxBroadphase.obj
+C:\GamePhysicsSdk\easy_physics\pipeline\EpxCollisionDetection.cpp;C:\GamePhysicsSdk\easy_physics\project\Debug\EpxCollisionDetection.obj
+C:\GamePhysicsSdk\easy_physics\pipeline\EpxConstraintSolver.cpp;C:\GamePhysicsSdk\easy_physics\project\Debug\EpxConstraintSolver.obj
+C:\GamePhysicsSdk\easy_physics\pipeline\EpxIntegrate.cpp;C:\GamePhysicsSdk\easy_physics\project\Debug\EpxIntegrate.obj

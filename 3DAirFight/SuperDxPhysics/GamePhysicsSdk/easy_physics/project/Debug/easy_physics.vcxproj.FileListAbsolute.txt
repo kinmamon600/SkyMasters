@@ -1,0 +1,2 @@
+C:\Users\k2007\Projects\DxlibProjects\GamePhysicsSdk\easy_physics\project\Debug\easy_physics.lib
+C:\GamePhysicsSdk\easy_physics\project\Debug\easy_physics.lib
