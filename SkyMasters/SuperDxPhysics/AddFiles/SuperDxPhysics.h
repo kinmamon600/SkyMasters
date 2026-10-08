@@ -173,6 +173,10 @@ namespace SDP {
 	// 物理オブジェクト用メッシュデータのレンダリング
 	// 物理演算・当たり判定は無し 単に確認等のための表示
 	void RenderSDPMesh(const VECTOR& pos, MeshDatas* datas, const COLOR_U8& color);
+
+	int RayCast(const VECTOR& start, const VECTOR& direction);
+
+	void DrawRay(const VECTOR& start, const VECTOR& direction, int objectId);
 }
 
 #endif

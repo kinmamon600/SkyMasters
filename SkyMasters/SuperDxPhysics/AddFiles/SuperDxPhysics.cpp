@@ -51,6 +51,11 @@ short g_convexMeshesID[CONVEX_MESH_MAX];
 int g_vertexBufferHandles[PHYSICS_OBJECT_MAX];
 int g_indexBufferHandles[PHYSICS_OBJECT_MAX];
 
+//Rayの色
+const unsigned int RED = GetColor(255, 0, 0);
+const unsigned int GREEN = GetColor(0, 255, 0);
+
+
 // 初期化関数
 bool SDP::PhysicsInit(const VECTOR& size)
 {
@@ -1204,4 +1209,59 @@ void SDP::RenderSDPMesh(const VECTOR& pos, MeshDatas* datas, const COLOR_U8& col
 	}
 
 	DrawPolygonIndexed3D(&vertex[0], vtx_cnt, idx_data, idx_cnt / 3, DX_NONE_GRAPH, FALSE);
+}
+
+// Rayを飛ばす
+int SDP::RayCast(const VECTOR& start, const VECTOR& direction)
+{
+	PfxRayInput ray;
+	PfxRayOutput out;
+
+	ray.reset();
+
+	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
+
+	// Rayの判定対象
+	ray.m_contactFilterSelf = 0xffffffff;
+	ray.m_contactFilterTarget = 0xffffffff;
+
+	// DXLib座標 → PhysicsEffects座標
+	PfxVector3 pfx_pos(start.x,start.y,-start.z);
+	PfxVector3 pfx_dir(direction.x,direction.y,-direction.z);
+
+	ray.m_startPosition = pfx_pos;
+	ray.m_direction = pfx_dir;
+
+	ray.m_facetMode = SCE_PFX_RAY_FACET_MODE_FRONT_ONLY;
+
+	// Rayを飛ばす
+	rb_world->castSingleRay(ray, out);
+
+	// 当たらなかった
+	if (!out.m_contactFlag) {return ID_NULL;}
+
+	// 当たった物体のIDを返す
+	return out.m_objectId;
+}
+
+// Rayを表示
+void SDP::DrawRay(const VECTOR& start, const VECTOR& direction,int objectId)
+{
+	if (objectId != ID_NULL)
+	{
+		DrawLine3D(
+			start,
+			SDP::GetPosition(objectId),
+			RED);
+	}
+	else
+	{
+		DrawLine3D(
+			start,
+			VGet(
+				start.x + direction.x,
+				start.y + direction.y,
+				start.z + direction.z),
+			RED);
+	}
 }
