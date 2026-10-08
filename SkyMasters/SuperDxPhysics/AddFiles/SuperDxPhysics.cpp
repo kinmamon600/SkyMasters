@@ -1262,6 +1262,6 @@ void SDP::DrawRay(const VECTOR& start, const VECTOR& direction,int objectId)
 				start.x + direction.x,
 				start.y + direction.y,
 				start.z + direction.z),
-			RED);
+			GREEN);
 	}
 }
