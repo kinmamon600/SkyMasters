@@ -138,6 +138,7 @@
     <ClCompile Include="..\SuperDxPhysics\AddFiles\pfx_rigidbody_world.cpp" />
     <ClCompile Include="..\SuperDxPhysics\AddFiles\physics_func.cpp" />
     <ClCompile Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.cpp" />
+    <ClCompile Include="Script\Component\Component.cpp" />
     <ClCompile Include="Script\Game\Game.cpp" />
     <ClCompile Include="Script\Game\Main.cpp" />
     <ClCompile Include="Script\Scene\SceneManager.cpp" />
@@ -149,6 +150,8 @@
     <ClInclude Include="..\SuperDxPhysics\AddFiles\pfx_rigidbody_world_implementation.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\physics_func.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.h" />
+    <ClInclude Include="Script\Component\Component.h" />
+    <ClInclude Include="Script\GameObject\GameObject.h" />
     <ClInclude Include="Script\Game\Game.h" />
     <ClInclude Include="Script\Scene\SceneManager.h" />
     <ClInclude Include="Script\Scene\SceneBase.h" />

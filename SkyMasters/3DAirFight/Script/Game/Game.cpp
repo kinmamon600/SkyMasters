@@ -8,7 +8,6 @@ Game::~Game()
     sceneManager = nullptr;
 }
 
-
 // ƒQ[ƒ€‚Ì‰Šú‰»
 void Game::Initialize()
 {

@@ -13,7 +13,7 @@ public:
 	// コンストラクタ
 	SceneBase() {};
 
-	// デストラクタ
+	// 仮想デストラクタ
 	virtual ~SceneBase() = default;
 
 	// シーンの初期化
