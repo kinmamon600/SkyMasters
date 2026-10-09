@@ -1,6 +1,9 @@
 // ライブラリ・ヘッダ
 #include "SceneManager.h"
 
+#include<chrono>
+#include<cmath>
+
 // 各シーンクラスのヘッダ
 
 
@@ -8,11 +11,11 @@
 SceneManager::~SceneManager()
 {
 	// シーンを解放
-	if (currentScene != nullptr)
+	if (p_currentScene != nullptr)
 	{
 		//delete currentScene;
 		//currentScene = nullptr;
-		currentScene.reset();
+		p_currentScene.reset();
 	}
 }
 
@@ -63,7 +66,7 @@ void SceneManager::Initialize()
 {
 	// シーンを生成・初期化
 	CreateScene();
-	currentScene->Initialize();
+	p_currentScene->Initialize();
 	currentStep = SceneStep::Update;
 
 }
@@ -71,10 +74,10 @@ void SceneManager::Initialize()
 // 現在シーンの更新
 void SceneManager::Execute()
 {
-	currentScene->Execute();
+	p_currentScene->Execute();
 
 	// シーン遷移のリクエストがあればシーン終了
-	if (currentScene->IsSceneChangeRequested())
+	if (p_currentScene->IsSceneChangeRequested())
 	{
 		currentStep = SceneStep::Terminate;
 	}
@@ -85,10 +88,10 @@ void SceneManager::Terminate()
 {
 	// 現在シーンの終了
 	SDP::ResetPhysicsWorld();
-	SceneType nextSceneType = currentScene->Terminate();
+	SceneType nextSceneType = p_currentScene->Terminate();
 	//delete currentScene;
 	//currentScene = nullptr;
-	currentScene.reset();
+	p_currentScene.reset();
 
 	// 次のシーンを設定
 	currentSceneType = nextSceneType;
@@ -98,15 +101,56 @@ void SceneManager::Terminate()
 // 現在シーンの読み込み
 void SceneManager::Load()
 {
-	// シーンがまだなければ生成
-	if (currentScene == nullptr)
+	// 非同期処理をまだ開始していない場合
+	if (!isLoadStarted)
 	{
-		CreateScene();
+		SceneBase* scene = p_currentScene.get();
+
+		loadTask = std::async(std::launch::async, [scene]()
+		{
+			//scene->PrepareLoadData();
+		});
+
+		isLoadStarted = true;
 	}
 
-	// 読み込みが完了したら初期化へ進む
-	if (currentScene->Load())
+	// 非同期処理が終わったか確認
+	if (loadTask.valid() && loadTask.wait_for(std::chrono::seconds(0)) == std::future_status::ready)
 	{
+
+		loadTask.get();
+
+		isLoadStarted = false;
 		currentStep = SceneStep::Initialize;
 	}
+}
+
+// ローディングクルクルの表示
+void SceneManager::DrawLoading()
+{
+	const int centerX = 640;
+	const int centerY = 360;
+	const int radius = 30;
+	const int dotCount = 8;
+
+	for (int i = 0; i < dotCount; i++)
+	{
+		// １個ずつ円周上の配置
+		double angle = (loadingAngle + i * 360 / dotCount) * 3.14159265 / 180.0;
+
+		int x = centerX + static_cast<int>(std::cos(angle) * radius);
+		int y = centerY + static_cast<int>(std::sin(angle) * radius);
+
+		// 後ろの円ほど薄い色
+		int brightness = 80 + i * 22;
+		if (brightness > 255)
+		{
+			brightness = 255;
+		}
+
+		// 次のフレームで回転させる
+		DrawCircle(x, y, 5, GetColor(brightness, brightness, brightness), TRUE);
+	}
+
+	loadingAngle = (loadingAngle + 6) % 360;
 }

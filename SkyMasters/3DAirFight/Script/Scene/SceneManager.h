@@ -7,6 +7,7 @@
 #include "SceneBase.h"
 
 #include <memory>
+#include <future>
 
 /// <summary>
 /// シーンを管理する
@@ -14,7 +15,7 @@
 class SceneManager {
 public:
 	// コンストラクタ
-	SceneManager() : currentScene(nullptr) , currentSceneType(SceneType::TitleScene) , currentStep(SceneStep::Initialize) {}
+	SceneManager() : p_currentScene(nullptr), currentSceneType(SceneType::TitleScene), currentStep(SceneStep::Load) {}
 
 	// デストラクタ
 	~SceneManager();
@@ -22,9 +23,10 @@ public:
 	// シーンの更新
 	void Update();
 
+
 private:
 	// 現在のシーン
-	std::unique_ptr<SceneBase> currentScene;
+	std::unique_ptr<SceneBase> p_currentScene;
 
 	// 現在のシーンタイプ
 	SceneType currentSceneType;
@@ -47,7 +49,15 @@ private:
 	// 現在シーンの読み込み
 	void Load();
 
-	bool isLoadStarted = false;
+	void DrawLoading();
+
+	// 非同期処理の管理
+	std::future<void>loadTask;		// 非同期処理完了を確認
+	bool isLoadStarted = false;		// 非同期処理を開始したか記録
+	void PrepareLoadData();
+
+	// ロードアニメーションの管理
+	int loadingAngle = 0;
 };
 
 #endif

@@ -39,6 +39,7 @@ protected:
 private:
 	// ƒV[ƒ“‘JˆÚ‚·‚é‚©
 	bool sceneChangeRequested = false;
+
 };
 
 #endif

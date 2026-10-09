@@ -139,8 +139,8 @@
     <ClCompile Include="..\SuperDxPhysics\AddFiles\physics_func.cpp" />
     <ClCompile Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.cpp" />
     <ClCompile Include="Script\Game\Game.cpp" />
-    <ClCompile Include="Script\Game\main.cpp" />
-    <ClCompile Include="Script\Scene\MainScene.cpp" />
+    <ClCompile Include="Script\Game\Main.cpp" />
+    <ClCompile Include="Script\Scene\SceneManager.cpp" />
     <ClCompile Include="Script\Scene\SceneBase.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,7 +150,7 @@
     <ClInclude Include="..\SuperDxPhysics\AddFiles\physics_func.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.h" />
     <ClInclude Include="Script\Game\Game.h" />
-    <ClInclude Include="Script\Scene\MainScene.h" />
+    <ClInclude Include="Script\Scene\SceneManager.h" />
     <ClInclude Include="Script\Scene\SceneBase.h" />
     <ClInclude Include="Script\Scene\SceneDefine.h" />
   </ItemGroup>
