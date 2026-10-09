@@ -3,8 +3,8 @@
 
 /*
 * SuperDxPhysics
-* Ver 1.0.0
-* 
+* Ver 1.1.0
+*
 * 注意:ここでの「物理オブジェクト」とは、描画されるものを指します。
 */
 
@@ -48,7 +48,8 @@ namespace SDP {
 		MeshDatas() : vtxCnt(0), idxCnt(0), vtxData(0), idxData(0) {}
 
 		MeshDatas(unsigned int vtx_cnt, unsigned int idx_cnt, float* vtx_data, unsigned short* idx_data)
-			: vtxCnt(vtx_cnt), idxCnt(idx_cnt), vtxData(vtx_data), idxData(idx_data) { }
+			: vtxCnt(vtx_cnt), idxCnt(idx_cnt), vtxData(vtx_data), idxData(idx_data) {
+		}
 
 		// デストラクタ
 		~MeshDatas() noexcept {}
@@ -160,7 +161,7 @@ namespace SDP {
 
 	// 物理オブジェクトの反発係数取得
 	float GetRestitution(unsigned int id);
-	
+
 	// 物理オブジェクトの接触判定
 	bool IsContact(unsigned int id_a, unsigned int id_b);
 
@@ -170,13 +171,13 @@ namespace SDP {
 	// 物理オブジェクトの非接触解除
 	void ReleaseNonContactPair(unsigned int obj1_id, unsigned int obj2_id);
 
-	// 物理オブジェクト用メッシュデータのレンダリング
-	// 物理演算・当たり判定は無し 単に確認等のための表示
-	void RenderSDPMesh(const VECTOR& pos, MeshDatas* datas, const COLOR_U8& color);
-
+	// レイを放つ
+	// directionは長さも持つ
 	int RayCast(const VECTOR& start, const VECTOR& direction);
 
-	void DrawRay(const VECTOR& start, const VECTOR& direction, int objectId);
+	// レイを描画する
+	// 第三引数に上記の RayCast() を設定するとよい
+	void DrawRay(const VECTOR& start, const VECTOR& direction, int object_id);
 }
 
 #endif
