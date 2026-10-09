@@ -1,22 +1,23 @@
 // ライブラリ・ヘッダ
-#include "MainScene.h"
+#include "SceneManager.h"
 
 // 各シーンクラスのヘッダ
 
 
 // デストラクタ
-MainScene::~MainScene()
+SceneManager::~SceneManager()
 {
 	// シーンを解放
 	if (currentScene != nullptr)
 	{
-		delete currentScene;
-		currentScene = nullptr;
+		//delete currentScene;
+		//currentScene = nullptr;
+		currentScene.reset();
 	}
 }
 
 // シーンの更新
-void MainScene::Update()
+void SceneManager::Update()
 {
 	switch (currentStep)
 	{
@@ -24,7 +25,7 @@ void MainScene::Update()
 		Initialize();
 		break;
 
-	case SceneStep::Execute:
+	case SceneStep::Update:
 		Execute();
 		break;
 
@@ -39,7 +40,7 @@ void MainScene::Update()
 }
 
 // シーンの生成
-void MainScene::CreateScene()
+void SceneManager::CreateScene()
 {
 	switch (currentSceneType)
 	{
@@ -58,16 +59,17 @@ void MainScene::CreateScene()
 }
 
 // 現在シーンの初期化
-void MainScene::Initialize()
+void SceneManager::Initialize()
 {
 	// シーンを生成・初期化
 	CreateScene();
 	currentScene->Initialize();
-	currentStep = SceneStep::Execute;
+	currentStep = SceneStep::Update;
+
 }
 
 // 現在シーンの更新
-void MainScene::Execute()
+void SceneManager::Execute()
 {
 	currentScene->Execute();
 
@@ -79,13 +81,14 @@ void MainScene::Execute()
 }
 
 // 現在シーンの終了
-void MainScene::Terminate()
+void SceneManager::Terminate()
 {
 	// 現在シーンの終了
 	SDP::ResetPhysicsWorld();
 	SceneType nextSceneType = currentScene->Terminate();
-	delete currentScene;
-	currentScene = nullptr;
+	//delete currentScene;
+	//currentScene = nullptr;
+	currentScene.reset();
 
 	// 次のシーンを設定
 	currentSceneType = nextSceneType;
@@ -93,7 +96,17 @@ void MainScene::Terminate()
 }
 
 // 現在シーンの読み込み
-void MainScene::Load()
+void SceneManager::Load()
 {
+	// シーンがまだなければ生成
+	if (currentScene == nullptr)
+	{
+		CreateScene();
+	}
 
+	// 読み込みが完了したら初期化へ進む
+	if (currentScene->Load())
+	{
+		currentStep = SceneStep::Initialize;
+	}
 }

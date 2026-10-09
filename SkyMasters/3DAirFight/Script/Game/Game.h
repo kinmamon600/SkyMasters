@@ -2,13 +2,13 @@
 #define _GAME_H
 
 // ライブラリ・ヘッダ
-#include "Scene/MainScene.h"
+#include "Scene/SceneManager.h"
 
 class Game
 {
 public:
     // コンストラクタ
-    Game() : mainScene(nullptr) {}
+    Game() : sceneManager(nullptr) {}
 
     // デストラクタ
     ~Game();
@@ -19,9 +19,11 @@ public:
     // ゲームの更新
     void Update();
 
+    void Load();
+
 private:
     // シーン管理クラス
-    MainScene* mainScene;
+    SceneManager* sceneManager;
 };
 
 #endif

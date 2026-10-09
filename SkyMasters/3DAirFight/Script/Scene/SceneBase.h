@@ -22,6 +22,9 @@ public:
 	// シーンの処理実行
 	virtual void Execute() = 0;
 
+	// シーンのロード
+	virtual bool Load() = 0;
+
 	// シーンの終了
 	// 戻り値として次のシーンを返す
 	virtual SceneType Terminate() = 0;

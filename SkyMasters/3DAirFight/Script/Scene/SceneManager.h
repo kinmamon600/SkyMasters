@@ -6,23 +6,25 @@
 #include "SceneDefine.h"
 #include "SceneBase.h"
 
+#include <memory>
+
 /// <summary>
 /// シーンを管理する
 /// </summary>
-class MainScene {
+class SceneManager {
 public:
 	// コンストラクタ
-	MainScene() : currentScene(nullptr) , currentSceneType(SceneType::TitleScene) , currentStep(SceneStep::Initialize) {}
+	SceneManager() : currentScene(nullptr) , currentSceneType(SceneType::TitleScene) , currentStep(SceneStep::Initialize) {}
 
 	// デストラクタ
-	~MainScene();
+	~SceneManager();
 	
 	// シーンの更新
 	void Update();
 
 private:
 	// 現在のシーン
-	SceneBase* currentScene;
+	std::unique_ptr<SceneBase> currentScene;
 
 	// 現在のシーンタイプ
 	SceneType currentSceneType;
@@ -44,6 +46,8 @@ private:
 
 	// 現在シーンの読み込み
 	void Load();
+
+	bool isLoadStarted = false;
 };
 
 #endif

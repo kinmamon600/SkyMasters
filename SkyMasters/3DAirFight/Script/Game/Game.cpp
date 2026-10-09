@@ -4,19 +4,20 @@
 // デストラクタ
 Game::~Game()
 {
-    delete mainScene;
-    mainScene = nullptr;
+    delete sceneManager;
+    sceneManager = nullptr;
 }
+
 
 // ゲームの初期化
 void Game::Initialize()
 {
-    mainScene = new MainScene();
+    sceneManager = new SceneManager();
 }
 
 // ゲームの更新
 void Game::Update()
 {
     // シーンの更新
-    mainScene->Update();
+    sceneManager->Update();
 }

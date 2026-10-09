@@ -11,7 +11,7 @@ enum class SceneType
 enum class SceneStep
 {
     Initialize,
-    Execute,
+    Update,
     Terminate,
     Load,
 };
