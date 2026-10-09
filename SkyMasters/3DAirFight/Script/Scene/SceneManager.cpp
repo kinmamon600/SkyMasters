@@ -108,7 +108,7 @@ void SceneManager::Load()
 
 		loadTask = std::async(std::launch::async, [scene]()
 		{
-			//scene->PrepareLoadData();
+			scene->Load();
 		});
 
 		isLoadStarted = true;
@@ -117,11 +117,15 @@ void SceneManager::Load()
 	// 非同期処理が終わったか確認
 	if (loadTask.valid() && loadTask.wait_for(std::chrono::seconds(0)) == std::future_status::ready)
 	{
-
+		// 非同期処理の終了を受け取る
 		loadTask.get();
 
 		isLoadStarted = false;
 		currentStep = SceneStep::Initialize;
+	}
+	else
+	{
+		DrawLoading();
 	}
 }
 

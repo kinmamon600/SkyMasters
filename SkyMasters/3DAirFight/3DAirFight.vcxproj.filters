@@ -30,10 +30,10 @@
     <ClCompile Include="Script\Game\Game.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Game\main.cpp">
+    <ClCompile Include="Script\Game\Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Scene\MainScene.cpp">
+    <ClCompile Include="Script\Scene\SceneManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Script\Scene\SceneBase.cpp">
@@ -56,7 +56,7 @@
     <ClInclude Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.h">
       <Filter>SDP</Filter>
     </ClInclude>
-    <ClInclude Include="Script\Scene\MainScene.h">
+    <ClInclude Include="Script\Scene\SceneManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Script\Scene\SceneBase.h">

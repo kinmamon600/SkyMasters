@@ -38,6 +38,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	Game* game = new Game();
 	game->Initialize();
 
+	SceneManager* sm = new SceneManager();
+
 	// メインループ
 	while (ProcessMessage() != -1 && CheckHitKey(KEY_INPUT_ESCAPE) != 1)
 	{
@@ -46,6 +48,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		// ゲームの更新
 		game->Update();
+
+		sm->DrawLoading();
 
 		ScreenFlip();	// ダブルバッファで画面表示
 		WaitTimer(16);	// 一定時間待つ
