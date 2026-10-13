@@ -149,6 +149,8 @@
     <ClInclude Include="..\SuperDxPhysics\AddFiles\pfx_rigidbody_world_implementation.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\physics_func.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="GameOnject.h" />
     <ClInclude Include="Script\Game\Game.h" />
     <ClInclude Include="Script\Scene\SceneManager.h" />
     <ClInclude Include="Script\Scene\SceneBase.h" />
