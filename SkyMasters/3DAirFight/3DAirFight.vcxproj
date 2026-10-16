@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -138,10 +138,14 @@
     <ClCompile Include="..\SuperDxPhysics\AddFiles\pfx_rigidbody_world.cpp" />
     <ClCompile Include="..\SuperDxPhysics\AddFiles\physics_func.cpp" />
     <ClCompile Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.cpp" />
+    <ClCompile Include="Script\Actor\Actor.cpp" />
+    <ClCompile Include="Script\Component\SkyBoxRenderer.cpp" />
     <ClCompile Include="Script\Game\Game.cpp" />
     <ClCompile Include="Script\Game\Main.cpp" />
+    <ClCompile Include="Script\Math\Math.cpp" />
     <ClCompile Include="Script\Scene\SceneManager.cpp" />
     <ClCompile Include="Script\Scene\SceneBase.cpp" />
+    <ClCompile Include="Script\Component\Component.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SuperDxPhysics\AddFiles\pfx_high_level_include.h" />
@@ -149,12 +153,15 @@
     <ClInclude Include="..\SuperDxPhysics\AddFiles\pfx_rigidbody_world_implementation.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\physics_func.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.h" />
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="GameOnject.h" />
+    <ClInclude Include="Script\Component\Component.h" />
+    <ClInclude Include="Script\Actor\Actor.h" />
+    <ClInclude Include="Script\Math\Math.h" />
     <ClInclude Include="Script\Game\Game.h" />
+    <ClInclude Include="Script\Component\SkyboxRenderer.h" />
     <ClInclude Include="Script\Scene\SceneManager.h" />
     <ClInclude Include="Script\Scene\SceneBase.h" />
     <ClInclude Include="Script\Scene\SceneDefine.h" />
+    <ClInclude Include="Script\Component\Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

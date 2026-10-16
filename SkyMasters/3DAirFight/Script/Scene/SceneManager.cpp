@@ -1,5 +1,6 @@
 // ライブラリ・ヘッダ
 #include "SceneManager.h"
+#include "GameScene.h"
 
 #include<chrono>
 #include<cmath>
@@ -51,6 +52,7 @@ void SceneManager::CreateScene()
 		break;
 
 	case SceneType::GameScene:
+		p_currentScene = std::make_unique<GameScene>();
 		break;
 
 	case SceneType::Exit:
@@ -64,8 +66,6 @@ void SceneManager::CreateScene()
 // 現在シーンの初期化
 void SceneManager::Initialize()
 {
-	// シーンを生成・初期化
-	CreateScene();
 	p_currentScene->Initialize();
 	currentStep = SceneStep::Update;
 
@@ -95,33 +95,52 @@ void SceneManager::Terminate()
 
 	// 次のシーンを設定
 	currentSceneType = nextSceneType;
-	currentStep = SceneStep::Initialize;
+	currentStep = SceneStep::Load;
 }
 
 // 現在シーンの読み込み
 void SceneManager::Load()
 {
-	// 非同期処理をまだ開始していない場合
+	if (p_currentScene == nullptr) 
+	{
+		CreateScene();
+
+		if (p_currentScene == nullptr)
+		{
+			return;
+		}
+	}
+
+	// 非同期処理開始
 	if (!isLoadStarted)
 	{
 		SceneBase* scene = p_currentScene.get();
 
 		loadTask = std::async(std::launch::async, [scene]()
 		{
-			scene->Load();
+			return scene->Load();
 		});
 
 		isLoadStarted = true;
 	}
 
-	// 非同期処理が終わったか確認
+	// 非同期処理完了の確認
 	if (loadTask.valid() && loadTask.wait_for(std::chrono::seconds(0)) == std::future_status::ready)
 	{
 		// 非同期処理の終了を受け取る
-		loadTask.get();
-
+		bool loadSucceeded = loadTask.get();
 		isLoadStarted = false;
-		currentStep = SceneStep::Initialize;
+
+		if (loadSucceeded)
+		{
+			// 読み込み成功時のみ初期化
+			currentStep = SceneStep::Initialize;
+		}
+		else
+		{
+			p_currentScene.reset();
+			currentSceneType = SceneType::Exit;
+		}
 	}
 	else
 	{
@@ -129,7 +148,7 @@ void SceneManager::Load()
 	}
 }
 
-// ローディングクルクルの表示
+// Loadingクルクルの表示
 void SceneManager::DrawLoading()
 {
 	const int centerX = 640;

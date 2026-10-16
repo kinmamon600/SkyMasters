@@ -8,13 +8,6 @@ Game::~Game()
     sceneManager = nullptr;
 }
 
-
-// ゲームの初期化
-void Game::Initialize()
-{
-    sceneManager = new SceneManager();
-}
-
 // ゲームの更新
 void Game::Update()
 {

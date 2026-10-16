@@ -16,6 +16,8 @@ public:
     void Update();
     // ゲームのロード
     void Load();
+    // 描画
+    void Draw();
 
     void AddActor(class Actor* actor);
     void RemoveActor(class Actor* actor);
@@ -24,9 +26,9 @@ private:
     SceneManager* sceneManager;
 
     // 存在するActorの動的配列
-    std::vector<class Actor*>mActors;
+    std::vector<class Actor*> mActors;
     // 保留中のActorの動的配列
-    std::vector<class Actor*>mPendingActors;
+    std::vector<class Actor*> mPendingActors;
 
     // Actorを追加しようとしているか
     bool mUpdatingActors;

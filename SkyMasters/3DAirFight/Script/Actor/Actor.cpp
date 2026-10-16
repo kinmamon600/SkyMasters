@@ -5,9 +5,6 @@
 
 Actor::Actor(Game* game)
 	:mState(EActive)
-	, mPosition(Vector2::Zero)
-	, mScale(1.0f)
-	, mRotation(0.0f)
 	, mGame(game)
 {
 	mGame->AddActor(this);
@@ -23,31 +20,31 @@ Actor::~Actor()
 	}
 }
 
-void Actor::Update(float deltaTime)
+void Actor::Update()
 {
 	if (mState == EActive)
 	{
-		UpdateComponents(deltaTime);
-		UpdateActor(deltaTime);
+		UpdateComponents();
+		UpdateActor();
 	}
 }
 
-void Actor::UpdateComponents(float deltaTime)
+void Actor::UpdateComponents()
 {
 	for (auto comp : mComponents)
 	{
-		comp->Update(deltaTime);
+		comp->Update();
 	}
 }
 
-void Actor::UpdateActor(float deltaTime)
+void Actor::UpdateActor()
 {
 }
 
 void Actor::AddComponent(Component* component)
 {
-	// Find the insertion point in the sorted vector
-	// (The first element with a order higher than me)
+	//ソート済みベクター内で挿入位置を見つける
+	//（自分より順序が高い最初の要素）
 	int myOrder = component->GetUpdateOrder();
 	auto iter = mComponents.begin();
 	for (;
@@ -60,7 +57,7 @@ void Actor::AddComponent(Component* component)
 		}
 	}
 
-	// Inserts element before position of iterator
+	// イテレーターの位置の前に要素を挿入する
 	mComponents.insert(iter, component);
 }
 
