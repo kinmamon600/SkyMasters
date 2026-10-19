@@ -12,7 +12,7 @@ public:
     void Initialize() override;
     void Execute() override;
     SceneType Terminate() override;
-    void Draw() override;
+    //void Draw() override;
 
 private:
     std::unique_ptr<Actor> skyboxObject;

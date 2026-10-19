@@ -26,7 +26,7 @@ public:
 	virtual bool Load() = 0;
 
 	// 描画
-	virtual void Draw() = 0;
+	//virtual void Draw() = 0;
 
 	// シーンの終了
 	// 戻り値として次のシーンを返す

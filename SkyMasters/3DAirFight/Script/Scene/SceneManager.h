@@ -50,7 +50,6 @@ private:
 	// 現在シーンの読み込み
 	void Load();
 
-
 	// 非同期処理の管理
 	std::future<bool>loadTask;		// 非同期処理完了を確認
 	bool isLoadStarted = false;		// 非同期処理を開始したか記録
