@@ -1,12 +1,11 @@
 // ライブラリ・ヘッダ
 #include "SceneManager.h"
-#include "GameScene.h"
 
 #include<chrono>
 #include<cmath>
 
 // 各シーンクラスのヘッダ
-
+#include "GameScene.h"
 
 // デストラクタ
 SceneManager::~SceneManager()
@@ -29,7 +28,7 @@ void SceneManager::Update()
 		Initialize();
 		break;
 
-	case SceneStep::Update:
+	case SceneStep::Execute:
 		Execute();
 		break;
 
@@ -52,7 +51,7 @@ void SceneManager::CreateScene()
 		break;
 
 	case SceneType::GameScene:
-		p_currentScene = std::make_unique<GameScene>();
+		p_currentScene = std::make_unique<GameScene>(this);
 		break;
 
 	case SceneType::Exit:
@@ -67,7 +66,7 @@ void SceneManager::CreateScene()
 void SceneManager::Initialize()
 {
 	p_currentScene->Initialize();
-	currentStep = SceneStep::Update;
+	currentStep = SceneStep::Execute;
 
 }
 

@@ -1,6 +1,5 @@
 #include "UIRenderer.h"
 
-void UIRenderer::Draw(float deltaTime)
-{
+//void UIRenderer::Draw(){}
 
-}
+UIRenderer::~UIRenderer() {}

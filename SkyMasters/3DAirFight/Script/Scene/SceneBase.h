@@ -4,6 +4,11 @@
 // ライブラリ・ヘッダ
 #include "SceneDefine.h"
 
+#include <memory>
+
+// 前方宣言
+class SceneManager;
+
 /// <summary>
 /// 全シーン共通の基底クラス
 /// </summary>
@@ -11,7 +16,7 @@ class SceneBase
 {
 public:
 	// コンストラクタ
-	SceneBase() {};
+	SceneBase(SceneManager* sceneManager) : p_sceneManager(sceneManager) {};
 
 	// デストラクタ
 	virtual ~SceneBase() = default;
@@ -25,9 +30,6 @@ public:
 	// シーンのロード
 	virtual bool Load() = 0;
 
-	// 描画
-	//virtual void Draw() = 0;
-
 	// シーンの終了
 	// 戻り値として次のシーンを返す
 	virtual SceneType Terminate() = 0;
@@ -38,6 +40,8 @@ public:
 protected:
 	// シーンの切り替えリクエスト
 	void RequestSceneChange();
+
+	SceneManager* p_sceneManager;
 
 private:
 	// シーン遷移するか

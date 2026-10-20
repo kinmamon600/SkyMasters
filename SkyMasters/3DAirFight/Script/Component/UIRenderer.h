@@ -6,7 +6,13 @@
 class UIRenderer : public Component
 {
 public:
-    void Draw(float deltaTime) override;
+    UIRenderer(Actor* owner)
+        :Component(owner)
+    {
+
+    }
+    ~UIRenderer();
+    //void Draw() override;
 
 private:
 

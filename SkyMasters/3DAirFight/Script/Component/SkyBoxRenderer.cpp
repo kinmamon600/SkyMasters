@@ -1,5 +1,4 @@
 #include "SkyboxRenderer.h"
-#include <DxLib.h>
 
 SkyboxRenderer::~SkyboxRenderer()
 {

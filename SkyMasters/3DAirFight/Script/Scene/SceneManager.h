@@ -1,5 +1,5 @@
-#ifndef _MAINSCENE_H
-#define _MAINSCENE_H
+#ifndef _SCENEMANAGER_H
+#define _SCENEMANAGER_H
 
 // ライブラリ・ヘッダ
 #include "SuperDxPhysics.h"
@@ -9,13 +9,15 @@
 #include <memory>
 #include <future>
 
+class Game;
+
 /// <summary>
 /// シーンを管理する
 /// </summary>
 class SceneManager {
 public:
 	// コンストラクタ
-	SceneManager() : p_currentScene(nullptr), currentSceneType(SceneType::TitleScene), currentStep(SceneStep::Load) {}
+	SceneManager(Game* game) : p_game(game), p_currentScene(nullptr), currentSceneType(SceneType::TitleScene), currentStep(SceneStep::Load) {}
 
 	// デストラクタ
 	~SceneManager();
@@ -25,7 +27,10 @@ public:
 
 	void DrawLoading();
 
+	// ゲーム
+	Game* p_game;
 private:
+
 	// 現在のシーン
 	std::unique_ptr<SceneBase> p_currentScene;
 

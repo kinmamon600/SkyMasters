@@ -1,11 +1,18 @@
 // ライブラリ・ヘッダ
 #include "Game.h"
+#include"../Scene/SceneManager.h"
 
 // デストラクタ
 Game::~Game()
 {
     delete sceneManager;
     sceneManager = nullptr;
+}
+
+
+void Game::Initialize() 
+{
+	sceneManager = new SceneManager(this);
 }
 
 // ゲームの更新

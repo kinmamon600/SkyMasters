@@ -2,17 +2,18 @@
 
 #include "SceneBase.h"
 #include "../Actor/Actor.h"
+#include"../Game/Game.h"
 
 #include <memory>
 
 class GameScene : public SceneBase
 {
 public:
+    GameScene(SceneManager* sceneManager) : SceneBase(sceneManager) {};
     bool Load() override;
     void Initialize() override;
     void Execute() override;
     SceneType Terminate() override;
-    //void Draw() override;
 
 private:
     std::unique_ptr<Actor> skyboxObject;

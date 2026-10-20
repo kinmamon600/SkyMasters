@@ -19,8 +19,6 @@ public:
 	void UpdateComponents();
 	virtual void UpdateActor();
 
-	virtual void Draw();
-
 	State GetState() const { return mState; }
 	void SetState(State state) { mState = state; }
 

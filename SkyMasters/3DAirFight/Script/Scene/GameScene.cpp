@@ -1,6 +1,8 @@
 #include"GameScene.h"
+#include"SceneManager.h"
 #include"../Component/SkyboxRenderer.h"
 #include"../Component/UIRenderer.h"
+#include"../Game/Game.h"
 
 bool GameScene::Load()
 {
@@ -10,27 +12,25 @@ bool GameScene::Load()
 
 void GameScene::Initialize()
 {
-	skyboxObject = std::make_unique<Actor>();
-	uiObject = std::make_unique<Actor>();
+    skyboxObject = std::make_unique<Actor>(p_sceneManager->p_game);
+    uiObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
-	skyboxObject->AddComponent(new SkyboxRenderer());
+    // コンポーネントを生成
+    auto* skyboxRenderer = new SkyboxRenderer(skyboxObject.get());
+    auto* uiRenderer = new UIRenderer(uiObject.get());
 
-	uiObject->AddComponent(new UIRenderer());
+	skyboxObject->AddComponent(skyboxRenderer);
+	uiObject->AddComponent(uiRenderer);
 }
 
 void GameScene::Execute()
 {
     // 1. skybox
-    skyboxObject->Draw();
 
     // 2. 通常の3Dオブジェクト
-    for (auto& actor : mActors)
-    {
-        actor->Draw();
-    }
+
 
     // 3. 2D UI
-    uiObject->Draw();
 }
 
 SceneType GameScene::Terminate()
