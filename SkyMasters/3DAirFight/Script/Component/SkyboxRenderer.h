@@ -4,7 +4,11 @@
 class SkyboxRenderer : public Component
 {
 public:
-    SkyboxRenderer() = default;
+    SkyboxRenderer(Actor* owner)
+        :Component(owner)
+    {
+        
+    }
     ~SkyboxRenderer() override;
 
     // ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İ

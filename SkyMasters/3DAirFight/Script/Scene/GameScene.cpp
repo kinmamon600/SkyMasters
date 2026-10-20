@@ -1,6 +1,13 @@
 #include"GameScene.h"
 #include"../Component/SkyboxRenderer.h"
 #include"../Component/UIRenderer.h"
+#include"../Game/Game.h"
+
+GameScene::GameScene(Game* game) 
+    :mGame(game)
+{
+
+}
 
 bool GameScene::Load()
 {
@@ -10,12 +17,12 @@ bool GameScene::Load()
 
 void GameScene::Initialize()
 {
-	skyboxObject = std::make_unique<Actor>();
-	uiObject = std::make_unique<Actor>();
+	skyboxObject = std::make_unique<Actor>(mGame);
+	uiObject = std::make_unique<Actor>(mGame);
 
-	skyboxObject->AddComponent(new SkyboxRenderer());
+	skyboxObject->AddComponent(new SkyboxRenderer(skyboxObject.get()));
 
-	uiObject->AddComponent(new UIRenderer());
+	uiObject->AddComponent(new UIRenderer(uiObject.get()));
 }
 
 void GameScene::Execute()
