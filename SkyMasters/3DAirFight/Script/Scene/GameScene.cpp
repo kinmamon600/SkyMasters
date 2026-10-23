@@ -28,8 +28,10 @@ void GameScene::Initialize()
 void GameScene::Execute()
 {
     Transform* uiTr = uiObject->GetComponent<Transform>();
+
     VECTOR tr = uiTr->GetPosition();
     uiTr->SetPosition(VGet(tr.x + 1.0f, tr.y + 1.0f, 0.0f));
+
     float Z = uiTr->GetRotation().z;
     uiTr->SetRotation(VGet(0.0f, 0.0f, Z + 1.0f));
 }
