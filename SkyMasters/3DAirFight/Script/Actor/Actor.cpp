@@ -2,12 +2,14 @@
 #include "../Game/Game.h"
 #include "../Component/Component.h"
 #include <algorithm>
+#include"DxLib.h"
 
 Actor::Actor(Game* game)
 	:mState(EActive)
 	, mGame(game)
 {
 	mGame->AddActor(this);
+	printfDx("Actorコンストラクタが呼ばれたよ\n");
 }
 
 Actor::~Actor()
@@ -39,6 +41,7 @@ void Actor::UpdateComponents()
 
 void Actor::UpdateActor()
 {
+
 }
 
 void Actor::AddComponent(Component* component)
@@ -47,9 +50,7 @@ void Actor::AddComponent(Component* component)
 	//（自分より順序が高い最初の要素）
 	int myOrder = component->GetUpdateOrder();
 	auto iter = mComponents.begin();
-	for (;
-		iter != mComponents.end();
-		++iter)
+	for (;iter != mComponents.end();++iter)
 	{
 		if (myOrder < (*iter)->GetUpdateOrder())
 		{

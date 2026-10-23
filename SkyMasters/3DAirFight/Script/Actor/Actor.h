@@ -27,6 +27,22 @@ public:
 	// Add/remove components
 	void AddComponent(class Component* component);
 	void RemoveComponent(class Component* component);
+
+	template <typename T>
+	T* GetComponent()
+	{
+		for (class Component* component : mComponents)
+		{
+			T* result = dynamic_cast<T*>(component);
+
+			if (result != nullptr)
+			{
+				return result;
+			}
+		}
+		return nullptr;
+	}
+
 private:
 	State mState;
 

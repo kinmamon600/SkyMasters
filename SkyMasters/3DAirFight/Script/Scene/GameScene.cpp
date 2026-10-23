@@ -2,11 +2,12 @@
 #include"SceneManager.h"
 #include"../Component/SkyboxRenderer.h"
 #include"../Component/UIRenderer.h"
+#include"../Component/Transform.h"
 #include"../Game/Game.h"
 
 bool GameScene::Load()
 {
-    // モデル読み込み
+    testHandle = LoadGraph("../Sprites/bomb.png");
     return true;
 }
 
@@ -18,17 +19,19 @@ void GameScene::Initialize()
     // コンポーネントを生成
     new SkyboxRenderer(skyboxObject.get());
     new UIRenderer(uiObject.get());
+    new Transform(uiObject.get());
 
+    auto* uiComp = uiObject->GetComponent<UIRenderer>();
+    uiComp->SetGrphHandle(testHandle);
 }
 
 void GameScene::Execute()
 {
-    // 1. skybox
-
-    // 2. 通常の3Dオブジェクト
-
-
-    // 3. 2D UI
+    Transform* uiTr = uiObject->GetComponent<Transform>();
+    VECTOR tr = uiTr->GetPosition();
+    uiTr->SetPosition(VGet(tr.x + 1.0f, tr.y + 1.0f, 0.0f));
+    float Z = uiTr->GetRotation().z;
+    uiTr->SetRotation(VGet(0.0f, 0.0f, Z + 1.0f));
 }
 
 SceneType GameScene::Terminate()

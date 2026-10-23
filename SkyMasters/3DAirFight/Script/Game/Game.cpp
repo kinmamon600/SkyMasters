@@ -1,6 +1,7 @@
 // ライブラリ・ヘッダ
 #include "Game.h"
 #include"../Scene/SceneManager.h"
+#include"../Actor/Actor.h"
 
 // デストラクタ
 Game::~Game()
@@ -20,6 +21,10 @@ void Game::Update()
 {
     // シーンの更新
     sceneManager->Update();
+	for (Actor* act : mActors)
+	{
+		act->Update();
+	}
 }
 
 void Game::AddActor(Actor* actor)

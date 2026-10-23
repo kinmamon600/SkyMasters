@@ -158,7 +158,7 @@ void SceneManager::DrawLoading()
 	for (int i = 0; i < dotCount; i++)
 	{
 		// ‚PŒÂ‚¸‚Â‰~Žüã‚Ì”z’u
-		double angle = (loadingAngle + i * 360 / dotCount) * 3.14159265 / 180.0;
+		double angle = (loadingAngle + i * 360 / dotCount) * DX_PI / 180.0;
 
 		int x = centerX + static_cast<int>(std::cos(angle) * radius);
 		int y = centerY + static_cast<int>(std::sin(angle) * radius);

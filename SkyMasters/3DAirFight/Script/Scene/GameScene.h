@@ -17,8 +17,9 @@ public:
     SceneType Terminate() override;
 
 private:
-    class Game* mGame;
-
     std::unique_ptr<Actor> skyboxObject;
     std::unique_ptr<Actor> uiObject;
+
+    // ‰æ‘œƒnƒ“ƒhƒ‹
+    int testHandle = -1;
 };
