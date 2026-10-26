@@ -2,12 +2,14 @@
 #include"SceneManager.h"
 #include"../Component/SkyboxRenderer.h"
 #include"../Component/UIRenderer.h"
+#include"../Component/ModelRenderer.h"
 #include"../Component/Transform.h"
 #include"../Game/Game.h"
 
 bool GameScene::Load()
 {
     testHandle = LoadGraph("../Sprites/bomb.png");
+    modelHnadle = MV1LoadModel()
     return true;
 }
 
@@ -15,14 +17,18 @@ void GameScene::Initialize()
 {
     skyboxObject = std::make_unique<Actor>(p_sceneManager->p_game);
     uiObject = std::make_unique<Actor>(p_sceneManager->p_game);
+    modelObject=std::make_unique<Actor>(p_sceneManager->p_game);
 
     // コンポーネントを生成
     new SkyboxRenderer(skyboxObject.get());
     new UIRenderer(uiObject.get());
+    new ModelRenderer(uiObject.get());
     new Transform(uiObject.get());
 
     auto* uiComp = uiObject->GetComponent<UIRenderer>();
     uiComp->SetGrphHandle(testHandle);
+    auto* modelComp = modelObject->GetComponent<ModelRenderer>();
+    modelComp->SetModelHandle()
 }
 
 void GameScene::Execute()

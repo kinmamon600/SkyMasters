@@ -19,7 +19,9 @@ public:
 private:
     std::unique_ptr<Actor> skyboxObject;
     std::unique_ptr<Actor> uiObject;
+    std::unique_ptr<Actor> modelObject;
 
     // ‰æ‘œƒnƒ“ƒhƒ‹
     int testHandle = -1;
+    int modleHandle = -1;
 };
