@@ -20,8 +20,6 @@ void UIRenderer::Update()
 
 void UIRenderer::Draw()
 {
-	//printfDx("Draw\n");
-
 	if (m_graphHandle == -1)
 	{
 		return;
