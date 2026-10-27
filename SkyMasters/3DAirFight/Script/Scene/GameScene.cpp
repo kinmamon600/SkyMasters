@@ -9,26 +9,30 @@
 bool GameScene::Load()
 {
     testHandle = LoadGraph("../Sprites/bomb.png");
-    modelHnadle = MV1LoadModel()
+
+    modelHandle = MV1LoadModel("../3DModle/Alice.mv1");
     return true;
 }
 
 void GameScene::Initialize()
 {
+    printfDx("モデルハンドルは[%d]", modelHandle);
+
     skyboxObject = std::make_unique<Actor>(p_sceneManager->p_game);
     uiObject = std::make_unique<Actor>(p_sceneManager->p_game);
-    modelObject=std::make_unique<Actor>(p_sceneManager->p_game);
+    modelObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
     // コンポーネントを生成
     new SkyboxRenderer(skyboxObject.get());
     new UIRenderer(uiObject.get());
-    new ModelRenderer(uiObject.get());
+    new ModelRenderer(modelObject.get());
     new Transform(uiObject.get());
+    new Transform(modelObject.get());
 
-    auto* uiComp = uiObject->GetComponent<UIRenderer>();
+    UIRenderer* uiComp = uiObject->GetComponent<UIRenderer>();
     uiComp->SetGrphHandle(testHandle);
-    auto* modelComp = modelObject->GetComponent<ModelRenderer>();
-    modelComp->SetModelHandle()
+    ModelRenderer* modelComp = modelObject->GetComponent<ModelRenderer>();
+    modelComp->SetModelHandle(modelHandle);
 }
 
 void GameScene::Execute()
@@ -40,6 +44,14 @@ void GameScene::Execute()
 
     float Z = uiTr->GetRotation().z;
     uiTr->SetRotation(VGet(0.0f, 0.0f, Z + 1.0f));
+
+    Transform* modTr = modelObject->GetComponent<Transform>();
+
+    VECTOR t = modTr->GetPosition();
+    modTr->SetPosition(VGet(t.x + 1.0f, t.y + 1.0f, 0.0f));
+
+    float Y = modTr->GetRotation().y;
+    modTr->SetRotation(VGet(0.0f, Y + 1.0f, 0.0f));
 }
 
 SceneType GameScene::Terminate()

@@ -23,5 +23,5 @@ private:
 
     // ‰æ‘œƒnƒ“ƒhƒ‹
     int testHandle = -1;
-    int modleHandle = -1;
+    int modelHandle = -1;
 };

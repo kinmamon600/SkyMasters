@@ -1,44 +1,5 @@
-﻿  GameScene.cpp
-C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_perf_counter.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Script/Scene/GameScene.cpp' をコンパイルしています)
-  
-C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_heap_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Script/Scene/GameScene.cpp' をコンパイルしています)
-  
-C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Script/Scene/GameScene.cpp' をコンパイルしています)
-  
-C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_update_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Script/Scene/GameScene.cpp' をコンパイルしています)
-  
-C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Script/Scene/GameScene.cpp' をコンパイルしています)
-  
-C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_large_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Script/Scene/GameScene.cpp' をコンパイルしています)
-  
-C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\solver\pfx_constraint_pair.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Script/Scene/GameScene.cpp' をコンパイルしています)
-  
-C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_task_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Script/Scene/GameScene.cpp' をコンパイルしています)
-  
-C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_sync_components.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Script/Scene/GameScene.cpp' をコンパイルしています)
-  
-C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\collision\pfx_island_generation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Script/Scene/GameScene.cpp' をコンパイルしています)
-  
-C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mass.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Script/Scene/GameScene.cpp' をコンパイルしています)
-  
-C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mesh_creator.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Script/Scene/GameScene.cpp' をコンパイルしています)
-  
-C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_static_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Script/Scene/GameScene.cpp' をコンパイルしています)
-  
-C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Script/Scene/GameScene.cpp' をコンパイルしています)
-  
+﻿  ModelRenderer.cpp
+C:\Users\G008\Desktop\SkyMasters\SkyMasters\3DAirFight\Script\Component\ModelRenderer.cpp(45,56): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\G008\Desktop\SkyMasters\SkyMasters\3DAirFight\Script\Component\ModelRenderer.cpp(45,48): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\G008\Desktop\SkyMasters\SkyMasters\3DAirFight\Script\Component\ModelRenderer.cpp(45,40): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
   3DAirFight.vcxproj -> C:\Users\G008\Desktop\SkyMasters\SkyMasters\x64\Debug\3DAirFight.exe
