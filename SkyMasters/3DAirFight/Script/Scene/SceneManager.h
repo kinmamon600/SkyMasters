@@ -9,6 +9,7 @@
 #include <memory>
 #include <future>
 
+// 前方宣言
 class Game;
 
 /// <summary>
@@ -17,7 +18,8 @@ class Game;
 class SceneManager {
 public:
 	// コンストラクタ
-	SceneManager(Game* game) : p_game(game), p_currentScene(nullptr), currentSceneType(SceneType::GameScene), currentStep(SceneStep::Load) {}
+	SceneManager(Game* game) 
+		: p_game(game), p_currentScene(nullptr), currentSceneType(SceneType::GameScene), currentStep(SceneStep::Load) {}
 
 	// デストラクタ
 	~SceneManager();
@@ -30,7 +32,6 @@ public:
 	// ゲーム
 	Game* p_game;
 private:
-
 	// 現在のシーン
 	std::unique_ptr<SceneBase> p_currentScene;
 

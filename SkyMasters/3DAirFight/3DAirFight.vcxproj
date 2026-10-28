@@ -145,6 +145,9 @@
     <ClCompile Include="Script\Component\UIRenderer.cpp" />
     <ClCompile Include="Script\Game\Game.cpp" />
     <ClCompile Include="Script\Game\Main.cpp" />
+    <ClCompile Include="Script\Input\ControllerDeviceData.cpp" />
+    <ClCompile Include="Script\Input\ControllerInput.cpp" />
+    <ClCompile Include="Script\Input\InputManager.cpp" />
     <ClCompile Include="Script\Scene\SceneManager.cpp" />
     <ClCompile Include="Script\Scene\SceneBase.cpp" />
     <ClCompile Include="Script\Component\Component.cpp" />
@@ -163,6 +166,10 @@
     <ClInclude Include="Script\Component\UIRenderer.h" />
     <ClInclude Include="Script\Game\Game.h" />
     <ClInclude Include="Script\Component\SkyboxRenderer.h" />
+    <ClInclude Include="Script\Input\ControllerDeviceData.h" />
+    <ClInclude Include="Script\Input\ControllerInput.h" />
+    <ClInclude Include="Script\Input\ControllerTypeKeyConfiguration.h" />
+    <ClInclude Include="Script\Input\InputManager.h" />
     <ClInclude Include="Script\Scene\GameScene.h" />
     <ClInclude Include="Script\Scene\SceneManager.h" />
     <ClInclude Include="Script\Scene\SceneBase.h" />
