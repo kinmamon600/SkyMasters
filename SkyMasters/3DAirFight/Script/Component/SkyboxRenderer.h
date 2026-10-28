@@ -22,7 +22,7 @@ public:
     void SetScale(float scale);
 
     // ƒ‚ƒfƒ‹‚Ì•`‰æ
-    void Draw() override;
+    void Draw();
 
     // ƒ‚ƒfƒ‹‚Ì‰ð•ú
     void Release();

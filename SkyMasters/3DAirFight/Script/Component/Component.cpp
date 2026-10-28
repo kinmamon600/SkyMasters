@@ -20,7 +20,3 @@ void Component::Update()
 
 }
 
-void Component::Draw()
-{
-
-}
