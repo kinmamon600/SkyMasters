@@ -138,11 +138,15 @@
     <ClCompile Include="..\SuperDxPhysics\AddFiles\pfx_rigidbody_world.cpp" />
     <ClCompile Include="..\SuperDxPhysics\AddFiles\physics_func.cpp" />
     <ClCompile Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Script\Actor\Actor.cpp" />
     <ClCompile Include="Script\Component\Camera.cpp" />
     <ClCompile Include="Script\Component\ModelRenderer.cpp" />
     <ClCompile Include="Script\Component\SkyBoxRenderer.cpp" />
     <ClCompile Include="Script\Component\UIRenderer.cpp" />
+=======
+    <ClCompile Include="Script\Component\Component.cpp" />
+>>>>>>> origin/Nakada
     <ClCompile Include="Script\Game\Game.cpp" />
     <ClCompile Include="Script\Game\Main.cpp" />
     <ClCompile Include="Script\Input\ControllerDeviceData.cpp" />
@@ -159,11 +163,16 @@
     <ClInclude Include="..\SuperDxPhysics\AddFiles\pfx_rigidbody_world_implementation.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\physics_func.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.h" />
+<<<<<<< HEAD
     <ClInclude Include="Script\Component\Camera.h" />
     <ClInclude Include="Script\Component\ModelRenderer.h" />
     <ClInclude Include="Script\Component\Component.h" />
     <ClInclude Include="Script\Actor\Actor.h" />
     <ClInclude Include="Script\Component\UIRenderer.h" />
+=======
+    <ClInclude Include="Script\Component\Component.h" />
+    <ClInclude Include="Script\GameObject\GameObject.h" />
+>>>>>>> origin/Nakada
     <ClInclude Include="Script\Game\Game.h" />
     <ClInclude Include="Script\Component\SkyboxRenderer.h" />
     <ClInclude Include="Script\Input\ControllerDeviceData.h" />

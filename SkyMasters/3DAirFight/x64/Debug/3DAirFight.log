@@ -1,4 +1,5 @@
 ﻿  pfx_rigidbody_world.cpp
+<<<<<<< HEAD
 C:\Users\G008\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_perf_counter.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
   (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
   
@@ -360,3 +361,355 @@ libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_capsule.obj) : warning LNK4099: P
 libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_cylinder.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_cylinder.obj)' で、または 'C:\Users\G008\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
 libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_convex.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_convex.obj)' で、または 'C:\Users\G008\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
   3DAirFight.vcxproj -> C:\Users\G008\Desktop\SkyMasters\SkyMasters\x64\Debug\3DAirFight.exe
+=======
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_perf_counter.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_heap_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_update_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_large_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\solver\pfx_constraint_pair.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_task_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_sync_components.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\collision\pfx_island_generation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mass.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mesh_creator.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_static_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/pfx_rigidbody_world.cpp' をコンパイルしています)
+  
+  physics_func.cpp
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_perf_counter.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/physics_func.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_heap_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/physics_func.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/physics_func.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_update_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/physics_func.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/physics_func.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_large_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/physics_func.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\solver\pfx_constraint_pair.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/physics_func.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_task_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/physics_func.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_sync_components.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/physics_func.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\collision\pfx_island_generation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/physics_func.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mass.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/physics_func.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mesh_creator.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/physics_func.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_static_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/physics_func.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/physics_func.cpp' をコンパイルしています)
+  
+  SuperDxPhysics.cpp
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_perf_counter.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/SuperDxPhysics.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_heap_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/SuperDxPhysics.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/SuperDxPhysics.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_update_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/SuperDxPhysics.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/SuperDxPhysics.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_large_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/SuperDxPhysics.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\solver\pfx_constraint_pair.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/SuperDxPhysics.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_task_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/SuperDxPhysics.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_sync_components.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/SuperDxPhysics.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\collision\pfx_island_generation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/SuperDxPhysics.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mass.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/SuperDxPhysics.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mesh_creator.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/SuperDxPhysics.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_static_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/SuperDxPhysics.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '../SuperDxPhysics/AddFiles/SuperDxPhysics.cpp' をコンパイルしています)
+  
+  Component.cpp
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_perf_counter.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Component/Component.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_heap_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Component/Component.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Component/Component.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_update_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Component/Component.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Component/Component.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_large_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Component/Component.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\solver\pfx_constraint_pair.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Component/Component.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_task_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Component/Component.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_sync_components.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Component/Component.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\collision\pfx_island_generation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Component/Component.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mass.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Component/Component.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mesh_creator.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Component/Component.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_static_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Component/Component.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Component/Component.cpp' をコンパイルしています)
+  
+  Game.cpp
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_perf_counter.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Game.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_heap_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Game.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Game.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_update_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Game.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Game.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_large_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Game.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\solver\pfx_constraint_pair.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Game.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_task_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Game.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_sync_components.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Game.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\collision\pfx_island_generation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Game.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mass.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Game.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mesh_creator.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Game.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_static_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Game.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Game.cpp' をコンパイルしています)
+  
+  Main.cpp
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_perf_counter.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Main.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_heap_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Main.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Main.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_update_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Main.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Main.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_large_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Main.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\solver\pfx_constraint_pair.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Main.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_task_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Main.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_sync_components.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Main.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\collision\pfx_island_generation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Main.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mass.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Main.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mesh_creator.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Main.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_static_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Main.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Game/Main.cpp' をコンパイルしています)
+  
+  SceneManager.cpp
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_perf_counter.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Scene/SceneManager.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\base\pfx_heap_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Scene/SceneManager.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Scene/SceneManager.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\broadphase\pfx_update_broadphase_proxy.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Scene/SceneManager.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Scene/SceneManager.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\collision\pfx_large_tri_mesh.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Scene/SceneManager.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\base_level\solver\pfx_constraint_pair.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Scene/SceneManager.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_task_manager.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Scene/SceneManager.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\task\pfx_sync_components.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Scene/SceneManager.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\low_level\collision\pfx_island_generation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Scene/SceneManager.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mass.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Scene/SceneManager.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_mesh_creator.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Scene/SceneManager.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_static_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Scene/SceneManager.cpp' をコンパイルしています)
+  
+C:\Users\G029\Desktop\SkyMasters\SkyMasters\SuperDxPhysics\GamePhysicsSdk\extra\physics_effects\include\physics_effects\util\pfx_array_implementation.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Script/Scene/SceneManager.cpp' をコンパイルしています)
+  
+  SceneBase.cpp
+  コードを生成中...
+libScePhysicsEffectsD.lib(pfx_sort.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_sort.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_broadphase_single.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_broadphase_single.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_collision_detection_single.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_collision_detection_single.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_refresh_contacts_single.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_refresh_contacts_single.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_ray_cast.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_ray_cast.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_batched_ray_cast_single.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_batched_ray_cast_single.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_island_generation.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_island_generation.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_constraint_solver_single.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_constraint_solver_single.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_update_rigid_states_single.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_update_rigid_states_single.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_collidable.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_collidable.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_joint_ball.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_joint_ball.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_joint_swing_twist.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_joint_swing_twist.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_joint_hinge.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_joint_hinge.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_joint_universal.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_joint_universal.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_mass.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_mass.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_mesh_creator.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_mesh_creator.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_util_common.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_util_common.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_joint_fix.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_joint_fix.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_update_broadphase_proxy.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_update_broadphase_proxy.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_manifold.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_manifold.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_detect_collision_func.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_detect_collision_func.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_intersect_ray_func.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_intersect_ray_func.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_constraint.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_constraint.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_joint_constraint_func.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_joint_constraint_func.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_shape.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_shape.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_box_box.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_box_box.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_box_capsule.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_box_capsule.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_box_sphere.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_box_sphere.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_capsule_capsule.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_capsule_capsule.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_capsule_sphere.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_capsule_sphere.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_sphere_sphere.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_sphere_sphere.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_gjk_solver.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_gjk_solver.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_cache.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_cache.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_large_tri_mesh.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_large_tri_mesh.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_gjk_support_func.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_gjk_support_func.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_intersect_ray_box.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_intersect_ray_box.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_intersect_ray_sphere.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_intersect_ray_sphere.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_intersect_ray_capsule.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_intersect_ray_capsule.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_intersect_ray_cylinder.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_intersect_ray_cylinder.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_intersect_ray_convex.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_intersect_ray_convex.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_intersect_ray_large_tri_mesh.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_intersect_ray_large_tri_mesh.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_simplex_solver.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_simplex_solver.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_sphere.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_sphere.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_box.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_box.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_capsule.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_capsule.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_cylinder.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_cylinder.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_convex.obj) : warning LNK4099: PDB 'vc90.pdb' が 'libScePhysicsEffectsD.lib(pfx_contact_tri_mesh_convex.obj)' で、または 'C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\vc90.pdb' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+  3DAirFight.vcxproj -> C:\Users\G029\Desktop\SkyMasters\SkyMasters\x64\Debug\3DAirFight.exe
+>>>>>>> origin/Nakada

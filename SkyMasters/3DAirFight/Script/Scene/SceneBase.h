@@ -18,7 +18,7 @@ public:
 	// コンストラクタ
 	SceneBase(SceneManager* sceneManager) : p_sceneManager(sceneManager) {};
 
-	// デストラクタ
+	// 仮想デストラクタ
 	virtual ~SceneBase() = default;
 
 	// シーンの初期化

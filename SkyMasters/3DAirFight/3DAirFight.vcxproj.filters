@@ -33,10 +33,17 @@
     <ClCompile Include="Script\Game\Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="Script\Scene\SceneManager.cpp">
+=======
+    <ClCompile Include="Script\Scene\SceneBase.cpp">
+>>>>>>> origin/Nakada
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
     <ClCompile Include="Script\Scene\SceneManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Scene\SceneBase.cpp">
+    <ClCompile Include="Script\Component\Component.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Script\Actor\Actor.cpp">
@@ -86,9 +93,12 @@
     <ClInclude Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.h">
       <Filter>SDP</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Script\Scene\SceneManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+=======
+>>>>>>> origin/Nakada
     <ClInclude Include="Script\Scene\SceneBase.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -98,6 +108,7 @@
     <ClInclude Include="Script\Scene\SceneDefine.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Script\Component\Component.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -134,5 +145,16 @@
     <ClInclude Include="Script\Input\InputManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+=======
+    <ClInclude Include="Script\Scene\SceneManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\GameObject\GameObject.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Component\Component.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+>>>>>>> origin/Nakada
   </ItemGroup>
 </Project>
