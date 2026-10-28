@@ -1,7 +1,7 @@
 #ifndef _GAME_H
 #define _GAME_H
 
-#include<vector>
+#include <vector>
 #include <algorithm>
 
 // ライブラリ・ヘッダ

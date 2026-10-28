@@ -32,7 +32,6 @@ int g_indexBufferHandles[PHYSICS_OBJECT_MAX];
 const unsigned int RED = GetColor(255, 0, 0);
 const unsigned int GREEN = GetColor(0, 255, 0);
 
-
 // 初期化関数
 bool SDP::PhysicsInit(const VECTOR& size)
 {
@@ -50,6 +49,8 @@ bool SDP::PhysicsInit(const VECTOR& size)
 		g_convexMeshes[i] = PfxConvexMesh();
 		g_convexMeshesID[i] = ID_NULL;
 	}
+
+	g_totalObjectNumber = 0;
 
 	return physicsInit(PfxVector3(size.x, size.y, size.z));
 }
@@ -80,6 +81,7 @@ void SDP::ResetPhysicsWorld()
 	for (int i = 0; i < PHYSICS_OBJECT_MAX; ++i)
 	{
 		g_physicsObjectMaterial[i] = MATERIALPARAM();
+		g_renderFlags[i] = true;
 
 		if (g_vertexBufferHandles[i] != BUFFERHANDLE_NULL)
 		{
@@ -96,12 +98,17 @@ void SDP::ResetPhysicsWorld()
 		g_convexMeshes[i] = PfxConvexMesh();
 		g_convexMeshesID[i] = ID_NULL;
 	}
+
+	g_totalObjectNumber = 0;
 }
 
 // シミュレーション
-void SDP::PhysicsSimulate()
+void SDP::SimulatePhysics()
 {
-	physicsSimulate();
+	if (g_totalObjectNumber != 0)
+	{
+		physicsSimulate();
+	}
 }
 
 // 重力設定

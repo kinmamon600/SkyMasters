@@ -21,6 +21,7 @@ Game::~Game()
 // ゲームの初期化
 void Game::Initialize() 
 {
+	// 各マネージャクラスの初期化
 	sceneManager = new SceneManager(this);
 	p_inputManager = new InputManager{};
 	p_componentManager = new ComponentManager{};

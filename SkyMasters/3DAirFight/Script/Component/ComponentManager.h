@@ -34,7 +34,9 @@ public:
 private:
 	// コンポーネントのポインタ可変長配列
 	// Actorが所有権を持つのでただアドレスを持つだけ
-	std::vector<class Component*> p_components;
+	// 処理系コンポーネントとレンダリング系コンポーネントを別に保持
+	std::vector<class Component*> p_processComponents;
+	std::vector<class Component*> p_renderComponents;
 };
 
 #endif

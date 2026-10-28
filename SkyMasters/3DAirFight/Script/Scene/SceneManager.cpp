@@ -1,8 +1,10 @@
 // ライブラリ・ヘッダ
-#include "SceneManager.h"
-
 #include<chrono>
 #include<cmath>
+
+#include "SuperDxPhysics.h"
+
+#include "SceneManager.h"
 
 // 各シーンクラスのヘッダ
 #include "GameScene.h"
@@ -73,6 +75,10 @@ void SceneManager::Initialize()
 // 現在シーンの更新
 void SceneManager::Execute()
 {
+	// 物理演算更新
+	SDP::SimulatePhysics();
+
+	// シーン更新
 	p_currentScene->Execute();
 
 	// シーン遷移のリクエストがあればシーン終了
@@ -85,12 +91,14 @@ void SceneManager::Execute()
 // 現在シーンの終了
 void SceneManager::Terminate()
 {
-	// 現在シーンの終了
-	SDP::ResetPhysicsWorld();
+	// シーンのリセット
 	SceneType nextSceneType = p_currentScene->Terminate();
 	//delete currentScene;
 	//currentScene = nullptr;
 	p_currentScene.reset();
+
+	// 物理世界のリセット
+	SDP::ResetPhysicsWorld();
 
 	// 次のシーンを設定
 	currentSceneType = nextSceneType;
