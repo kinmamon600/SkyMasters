@@ -13,7 +13,7 @@ public:
     }
     ~ModelRenderer();
 
-    void Update()override;
+    void Update();
 
     void SetModelHandle(int handle);
 

@@ -6,7 +6,6 @@ public:
 	Component(class Actor* owner, int updateOrder = 100);
 	virtual ~Component();
 	virtual void Update();
-	virtual void Draw();
 
 	int GetUpdateOrder() const { return mUpdateOrder; }
 protected:

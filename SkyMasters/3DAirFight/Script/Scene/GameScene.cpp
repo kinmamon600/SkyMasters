@@ -16,8 +16,6 @@ bool GameScene::Load()
 
 void GameScene::Initialize()
 {
-    printfDx("ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Í[%d]", modelHandle);
-
     skyboxObject = std::make_unique<Actor>(p_sceneManager->p_game);
     uiObject = std::make_unique<Actor>(p_sceneManager->p_game);
     modelObject = std::make_unique<Actor>(p_sceneManager->p_game);

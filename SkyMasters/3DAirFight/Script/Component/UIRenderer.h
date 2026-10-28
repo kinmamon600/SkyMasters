@@ -13,7 +13,7 @@ public:
     }
     ~UIRenderer();
 
-    void Update()override;
+    void Update();
 
     void SetGrphHandle(int handle);
 
