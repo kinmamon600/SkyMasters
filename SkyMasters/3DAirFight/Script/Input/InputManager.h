@@ -20,43 +20,43 @@ public:
 	// 入力モード
 	enum InputMode
 	{
-		Menu,	// メニュー画面等用 (1Pのコントローラの入力を取る コントローラの接続・切断に対するリアクション無し)
-		Game,	// ゲーム画面等用　 (設定されたコントローラ数分の入力を取る コントローラの接続・切断に対するリアクション有)
+		Menu = 0,	// メニュー画面等用 (1Pのコントローラの入力を取る コントローラの接続・切断に対するリアクション無し)
+		Game = 1,	// ゲーム画面等用　 (設定されたコントローラ数分の入力を取る コントローラの接続・切断に対するリアクション有)
 	};
 
 	// ボタン名
 	enum Button
 	{
-		NORTH,
-		EAST,
-		SOUTH,
-		WEST,
+		NORTH	=  0,
+		EAST	=  1,
+		SOUTH	=  2,
+		WEST	=  3,
 
-		L,
-		R,
-		ZL,
-		ZR,
+		L		=  4,
+		R		=  5,
+		ZL		=  6,
+		ZR		=  7,
 
-		START,
-		SELECT,
+		START	=  8,
+		SELECT	=  9,
 
-		UP,
-		DOWN,
-		LEFT,
-		RIGHT,
+		UP		= 10,
+		DOWN	= 11,
+		LEFT	= 12,
+		RIGHT	= 13,
 	};
 
 	// アナログ入力名
 	enum Analog
 	{
-		LX,
-		LY,
+		LX = 0,
+		LY = 1,
 
-		RX,
-		RY,
+		RX = 2,
+		RY = 3,
 
-		AX,
-		AY,
+		AX = 4,
+		AY = 5,
 	};
 
 	// コンストラクタ

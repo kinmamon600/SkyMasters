@@ -1,13 +1,15 @@
 #pragma once
 
-#include"Component.h"
-#include"DxLib.h"
+// ライブラリ・ヘッダ
+#include <DxLib.h>
+#include "Component.h"
+#include "ComponentUpdateOrder.h"
 
 class Transform :public Component
 {
 public:
 	Transform(Actor* owner)
-		:Component(owner)
+		:Component(owner, static_cast<int>(ComponentUpdateOrder::Transform))
 	{
 
 	};

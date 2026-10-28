@@ -140,6 +140,8 @@
     <ClCompile Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.cpp" />
     <ClCompile Include="Script\Actor\Actor.cpp" />
     <ClCompile Include="Script\Component\Camera.cpp" />
+    <ClCompile Include="Script\Component\ComponentManager.cpp" />
+    <ClCompile Include="Script\Component\Input.cpp" />
     <ClCompile Include="Script\Component\ModelRenderer.cpp" />
     <ClCompile Include="Script\Component\SkyBoxRenderer.cpp" />
     <ClCompile Include="Script\Component\UIRenderer.cpp" />
@@ -160,6 +162,9 @@
     <ClInclude Include="..\SuperDxPhysics\AddFiles\physics_func.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.h" />
     <ClInclude Include="Script\Component\Camera.h" />
+    <ClInclude Include="Script\Component\ComponentManager.h" />
+    <ClInclude Include="Script\Component\ComponentUpdateOrder.h" />
+    <ClInclude Include="Script\Component\Input.h" />
     <ClInclude Include="Script\Component\ModelRenderer.h" />
     <ClInclude Include="Script\Component\Component.h" />
     <ClInclude Include="Script\Actor\Actor.h" />
