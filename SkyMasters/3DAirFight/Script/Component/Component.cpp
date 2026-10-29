@@ -19,7 +19,3 @@ void Component::Update()
 {
 
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> Nakada_InputAndPh

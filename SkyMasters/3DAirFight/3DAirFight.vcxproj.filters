@@ -33,14 +33,10 @@
     <ClCompile Include="Script\Game\Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="Script\Scene\SceneManager.cpp">
-=======
-    <ClCompile Include="Script\Scene\SceneBase.cpp">
->>>>>>> origin/Nakada
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Scene\SceneManager.cpp">
+    <ClCompile Include="Script\Scene\SceneBase.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Script\Component\Component.cpp">
@@ -99,12 +95,9 @@
     <ClInclude Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.h">
       <Filter>SDP</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Script\Scene\SceneManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-=======
->>>>>>> origin/Nakada
     <ClInclude Include="Script\Scene\SceneBase.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -114,7 +107,6 @@
     <ClInclude Include="Script\Scene\SceneDefine.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Script\Component\Component.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -151,9 +143,7 @@
     <ClInclude Include="Script\Input\InputManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-<<<<<<< HEAD
-=======
-    <ClInclude Include="Script\Scene\SceneManager.h">
+<ClInclude Include="Script\Scene\SceneManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Script\GameObject\GameObject.h">
@@ -162,8 +152,6 @@
     <ClInclude Include="Script\Component\Component.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
->>>>>>> origin/Nakada
-=======
     <ClInclude Include="Script\Component\ComponentManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -172,7 +160,5 @@
     </ClInclude>
     <ClInclude Include="Script\Component\Input.h">
       <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
->>>>>>> Nakada_InputAndPh
-  </ItemGroup>
+    </ClInclude>  </ItemGroup>
 </Project>

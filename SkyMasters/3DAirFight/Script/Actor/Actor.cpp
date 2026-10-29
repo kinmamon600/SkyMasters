@@ -73,11 +73,7 @@ void Actor::RemoveComponent(Component* component)
 	{
 		mComponents.erase(iter);
 	}
-<<<<<<< HEAD
-}
-=======
 
 	delete component;
 	component = nullptr;
 }
->>>>>>> Nakada_InputAndPh
