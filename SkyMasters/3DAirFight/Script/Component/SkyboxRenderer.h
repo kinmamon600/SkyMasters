@@ -1,12 +1,15 @@
 #pragma once
+
+// ライブラリ・ヘッダ
+#include <DxLib.h>
 #include "Component.h"
-#include"Dxlib.h"
+#include "ComponentUpdateOrder.h"
 
 class SkyboxRenderer : public Component
 {
 public:
     SkyboxRenderer(Actor* owner)
-        :Component(owner)
+        :Component(owner, static_cast<int>(ComponentUpdateOrder::SkyboxRenderer))
     {
         
     }

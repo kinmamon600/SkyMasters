@@ -3,7 +3,7 @@
 
 /*
 * SuperDxPhysics
-* Ver 1.1.0
+* Ver 1.1.1
 *
 * 注意:ここでの「物理オブジェクト」とは、描画されるものを指します。
 */
@@ -71,7 +71,7 @@ namespace SDP {
 	void ResetPhysicsWorld();
 
 	// シミュレーション
-	void PhysicsSimulate();
+	void SimulatePhysics();
 
 	// 重力設定
 	void SetGravity(float gravity);

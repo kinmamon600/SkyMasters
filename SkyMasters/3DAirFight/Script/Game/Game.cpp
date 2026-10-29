@@ -3,6 +3,7 @@
 #include "../Actor/Actor.h"
 #include "../Scene/SceneManager.h"
 #include "../Input/InputManager.h"
+#include "../Component/ComponentManager.h"
 
 // デストラクタ
 Game::~Game()
@@ -12,13 +13,18 @@ Game::~Game()
 
 	delete p_inputManager;
 	p_inputManager = nullptr;
+
+	delete p_componentManager;
+	p_componentManager = nullptr;
 }
 
 // ゲームの初期化
 void Game::Initialize() 
 {
+	// 各マネージャクラスの初期化
 	sceneManager = new SceneManager(this);
 	p_inputManager = new InputManager{};
+	p_componentManager = new ComponentManager{};
 }
 
 // ゲームの更新
@@ -29,6 +35,8 @@ void Game::Update()
 
     // シーンの更新
     sceneManager->Update();
+
+	// アクターの更新(コンポーネントも)
 	for (Actor* act : mActors)
 	{
 		act->Update();
@@ -69,4 +77,22 @@ void Game::RemoveActor(Actor* actor)
 		std::iter_swap(iter, mActors.end() - 1);
 		mActors.pop_back();
 	}
+}
+
+// コンポーネントの追加
+void Game::AddComponent(Component* component)
+{
+	p_componentManager->AddComponent(component);
+}
+
+// コンポーネントの削除
+void Game::RemoveComponent(Component* component)
+{
+	p_componentManager->RemoveComponent(component);
+}
+
+// 入力管理クラスの取得
+InputManager* Game::GetInputManager() const
+{
+	return p_inputManager;
 }

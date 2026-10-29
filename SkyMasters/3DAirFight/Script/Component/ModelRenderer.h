@@ -1,13 +1,15 @@
 #pragma once
 
-#include "Component.h"
+// ライブラリ・ヘッダ
 #include <DxLib.h>
+#include "Component.h"
+#include "ComponentUpdateOrder.h"
 
 class ModelRenderer : public Component
 {
 public:
     ModelRenderer(Actor* owner)
-        :Component(owner)
+        :Component(owner, static_cast<int>(ComponentUpdateOrder::ModelRenderer))
     {
 
     }

@@ -26,7 +26,7 @@ void Actor::Update()
 {
 	if (mState == EActive)
 	{
-		UpdateComponents();
+		//UpdateComponents();
 		UpdateActor();
 	}
 }
@@ -46,6 +46,8 @@ void Actor::UpdateActor()
 
 void Actor::AddComponent(Component* component)
 {
+	mGame->AddComponent(component);
+
 	//ソート済みベクター内で挿入位置を見つける
 	//（自分より順序が高い最初の要素）
 	int myOrder = component->GetUpdateOrder();
@@ -64,9 +66,18 @@ void Actor::AddComponent(Component* component)
 
 void Actor::RemoveComponent(Component* component)
 {
+	mGame->RemoveComponent(component);
+
 	auto iter = std::find(mComponents.begin(), mComponents.end(), component);
 	if (iter != mComponents.end())
 	{
 		mComponents.erase(iter);
 	}
+<<<<<<< HEAD
 }
+=======
+
+	delete component;
+	component = nullptr;
+}
+>>>>>>> Nakada_InputAndPh
