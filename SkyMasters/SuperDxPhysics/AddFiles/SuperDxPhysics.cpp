@@ -10,6 +10,7 @@ using namespace SDP;
 unsigned int g_totalObjectNumber = 0;
 
 // 各オブジェクトの色とマテリアル
+#ifdef _DEBUG
 MATERIALPARAM g_physicsObjectMaterial[PHYSICS_OBJECT_MAX];
 
 const COLOR_F COLORF_ZERO = GetColorF(0.0f, 0.0f, 0.0f, 0.0f);
@@ -18,6 +19,7 @@ const float MATERIAL_POWER = 20.0f;
 
 // 各オブジェクトの表示・非表示設定
 bool g_renderFlags[PHYSICS_OBJECT_MAX];
+#endif
 
 // 凸メッシュデータ
 // データを保持し続けるためグローバル
@@ -25,17 +27,20 @@ PfxConvexMesh g_convexMeshes[CONVEX_MESH_MAX];
 short g_convexMeshesID[CONVEX_MESH_MAX];
 
 // DxLibの描画用バッファハンドル
+#ifdef _DEBUG
 int g_vertexBufferHandles[PHYSICS_OBJECT_MAX];
 int g_indexBufferHandles[PHYSICS_OBJECT_MAX];
 
 //Rayの色
 const unsigned int RED = GetColor(255, 0, 0);
 const unsigned int GREEN = GetColor(0, 255, 0);
+#endif
 
 // 初期化関数
 bool SDP::PhysicsInit(const VECTOR& size)
 {
 	// 配列・リストの初期化
+#ifdef _DEBUG
 	for (int i = 0; i < PHYSICS_OBJECT_MAX; ++i)
 	{
 		g_physicsObjectMaterial[i] = MATERIALPARAM();
@@ -43,6 +48,7 @@ bool SDP::PhysicsInit(const VECTOR& size)
 		g_vertexBufferHandles[i] = BUFFERHANDLE_NULL;
 		g_indexBufferHandles[i] = BUFFERHANDLE_NULL;
 	}
+#endif
 
 	for (int i = 0; i < CONVEX_MESH_MAX; ++i)
 	{
@@ -58,6 +64,7 @@ bool SDP::PhysicsInit(const VECTOR& size)
 // 終了関数
 void SDP::PhysicsRelease()
 {
+#ifdef _DEBUG
 	for (int i = 0; i < PHYSICS_OBJECT_MAX; ++i)
 	{
 		if (g_vertexBufferHandles[i] != BUFFERHANDLE_NULL)
@@ -69,6 +76,7 @@ void SDP::PhysicsRelease()
 			g_indexBufferHandles[i] = BUFFERHANDLE_NULL;
 		}
 	}
+#endif
 
 	physicsRelease();
 }
@@ -78,6 +86,7 @@ void SDP::ResetPhysicsWorld()
 {
 	physicsResetWorld();
 
+#ifdef _DEBUG
 	for (int i = 0; i < PHYSICS_OBJECT_MAX; ++i)
 	{
 		g_physicsObjectMaterial[i] = MATERIALPARAM();
@@ -92,6 +101,7 @@ void SDP::ResetPhysicsWorld()
 			g_indexBufferHandles[i] = BUFFERHANDLE_NULL;
 		}
 	}
+#endif
 
 	for (int i = 0; i < CONVEX_MESH_MAX; ++i)
 	{
@@ -126,6 +136,7 @@ float SDP::GetGravity()
 	return gravity_vec.getY();
 }
 
+#ifdef _DEBUG
 // 描画用バッファの設定
 void RegistrationBuffer(unsigned int id, MeshDatas* datas, const COLOR_U8& color)
 {
@@ -185,6 +196,7 @@ void RegistrationBuffer
 	SetVertexBufferData(0, vertex.data(), vtx_cnt, g_vertexBufferHandles[id]);
 	SetIndexBufferData(0, idx_data, idx_cnt, g_indexBufferHandles[id]);
 }
+#endif
 
 // 物理オブジェクト:球の生成
 int SDP::CreatePhysicalSphere
@@ -214,11 +226,14 @@ int SDP::CreatePhysicalSphere
 
 	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
 	int id = rb_world->addRigidBody(state, body, collidable);
+
+#ifdef _DEBUG
 	SetColor(id, color);
 	g_renderFlags[id] = true;
 
 	// 描画用バッファの設定
 	RegistrationBuffer(id, NUM_SPHERE_VTX, NUM_SPHERE_IDX, sphere_vtx, sphere_idx, color);
+#endif
 
 	return id;
 }
@@ -251,11 +266,14 @@ int SDP::CreatePhysicalBox
 
 	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
 	int id = rb_world->addRigidBody(state, body, collidable);
+
+#ifdef _DEBUG
 	SetColor(id, color);
 	g_renderFlags[id] = true;
 
 	// 描画用バッファの設定
 	RegistrationBuffer(id, NUM_BOX_VTX, NUM_BOX_IDX, box_vtx, box_idx, color);
+#endif
 
 	return id;
 }
@@ -288,11 +306,14 @@ int SDP::CreatePhysicalCylinder
 
 	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
 	int id = rb_world->addRigidBody(state, body, collidable);
+
+#ifdef _DEBUG
 	SetColor(id, color);
 	g_renderFlags[id] = true;
 
 	// 描画用バッファの設定
 	RegistrationBuffer(id, NUM_CYLINDER_VTX, NUM_CYLINDER_IDX, cylinder_vtx, cylinder_idx, color);
+#endif
 
 	return id;
 }
@@ -325,12 +346,15 @@ int SDP::CreatePhysicalCapsule
 
 	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
 	int id = rb_world->addRigidBody(state, body, collidable);
+
+#ifdef _DEBUG
 	SetColor(id, color);
 	g_renderFlags[id] = true;
 
 	// 描画用バッファの作成
 	// 特殊な形状なので筒の形でバッファに登録
 	RegistrationBuffer(id, NUM_CYLINDER_VTX, NUM_CYLINDER_IDX, cylinder_vtx, cylinder_idx, color);
+#endif
 
 	return id;
 }
@@ -431,11 +455,14 @@ int SDP::CreatePhysicalConvexMesh(const VECTOR& pos, MeshDatas* datas, ePfxMotio
 
 	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
 	int id = rb_world->addRigidBody(state, body, collidable);
+
+#ifdef _DEBUG
 	SetColor(id, color);
 	g_renderFlags[id] = true;
 
 	// 描画用バッファの設定
 	RegistrationBuffer(id, datas, color);
+#endif
 
 	return id;
 }
@@ -550,11 +577,14 @@ int SDP::CreatePhysicalLargeTriMesh
 
 	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
 	int id = rb_world->addRigidBody(state, body, collidable);
+
+#ifdef _DEBUG
 	SetColor(id, color);
 	g_renderFlags[id] = true;
 
 	// 描画用バッファの設定
 	RegistrationBuffer(id, datas, color);
+#endif
 
 	return id;
 }
@@ -585,11 +615,14 @@ int SDP::CreatePhysicalGround(const COLOR_U8& color)
 
 	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
 	int id = rb_world->addRigidBody(state, body, collidable);
+
+#ifdef _DEBUG
 	SetColor(id, color);
 	g_renderFlags[id] = true;
 
 	// 描画用バッファの設定
 	RegistrationBuffer(id, NUM_BOX_VTX, NUM_BOX_IDX, box_vtx, box_idx, color);
+#endif
 
 	return id;
 }
@@ -603,6 +636,7 @@ void SDP::DestroyPhysicalObject(unsigned int id)
 	--g_totalObjectNumber;
 	rb_world->removeRigidBody(id);
 
+#ifdef _DEBUG
 	SetColor(id, GetColorU8(0, 0, 0, 0));
 
 	g_physicsObjectMaterial[id].Diffuse = COLORF_ZERO;
@@ -615,6 +649,7 @@ void SDP::DestroyPhysicalObject(unsigned int id)
 	DeleteIndexBuffer(g_indexBufferHandles[id]);
 	g_vertexBufferHandles[id] = BUFFERHANDLE_NULL;
 	g_indexBufferHandles[id] = BUFFERHANDLE_NULL;
+#endif
 
 	for (int i = 0; i < CONVEX_MESH_MAX; ++i)
 	{
@@ -701,6 +736,7 @@ MATRIX WorldT2MATRIX(PfxTransform3* wt)
 	return dx_mat;
 }
 
+#ifdef _DEBUG
 // 物理オブジェクトの描画
 void SDP::RenderPhysicalObject()
 {
@@ -809,6 +845,7 @@ bool SDP::GetRenderFlag(unsigned int id)
 {
 	return g_renderFlags[id];
 }
+#endif
 
 // 総オブジェクト数の取得
 unsigned int SDP::GetTotalObjectNumber()
@@ -914,6 +951,7 @@ VECTOR SDP::GetDirection(unsigned int id, const VECTOR& std_vec)
 	return re_vec;
 }
 
+#ifdef _DEBUG
 // ディフューズカラーをアンビエントカラーに変換
 COLOR_F Color2Ambient(const COLOR_U8& color)
 {
@@ -937,6 +975,7 @@ void SDP::SetAmbient(unsigned int id, const COLOR_F& amb)
 	g_physicsObjectMaterial[id].Emissive = COLORF_ZERO;
 	g_physicsObjectMaterial[id].Power = MATERIAL_POWER;
 }
+#endif
 
 // 物理オブジェクトの並進速度設定
 void SDP::SetLinerVelocity(unsigned int id, const VECTOR& vec)
@@ -1109,6 +1148,7 @@ int SDP::RayCast(const VECTOR& start, const VECTOR& direction)
 	return out.m_objectId;
 }
 
+#ifdef _DEBUG
 // Rayを表示
 void SDP::DrawRay(const VECTOR& start, const VECTOR& direction, int objectId)
 {
@@ -1130,3 +1170,4 @@ void SDP::DrawRay(const VECTOR& start, const VECTOR& direction, int objectId)
 			GREEN);
 	}
 }
+#endif
