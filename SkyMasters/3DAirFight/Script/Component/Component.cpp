@@ -2,19 +2,22 @@
 #include "../Actor/Actor.h"
 #include"DxLib.h"
 
+// コンストラクタ
 Component::Component(Actor* owner, int updateOrder)
-	:mOwner(owner)
-	, mUpdateOrder(updateOrder)
+	:m_owner(owner)
+	, m_updateOrder(updateOrder)
 {
-	mOwner->AddComponent(this);
+	m_owner->AddComponent(this);
 	printfDx("Componentコンストラクタが呼ばれたよ\n");
 }
 
+// デストラクタ
 Component::~Component()
 {
-	mOwner->RemoveComponent(this);
+	m_owner->RemoveComponent(this);
 }
 
+// 更新
 void Component::Update()
 {
 

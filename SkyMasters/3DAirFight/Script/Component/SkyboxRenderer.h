@@ -8,11 +8,11 @@
 class SkyboxRenderer : public Component
 {
 public:
+    // コンストラクタ
     SkyboxRenderer(Actor* owner)
-        :Component(owner, static_cast<int>(ComponentUpdateOrder::SkyboxRenderer))
-    {
-        
-    }
+        :Component(owner, static_cast<int>(ComponentUpdateOrder::SkyboxRenderer)){}
+
+    // デストラクタ
     ~SkyboxRenderer() override;
 
     // モデルの読み込み
@@ -31,8 +31,8 @@ public:
     void Release();
 
 private:
-    int modelHandle = -1;
+    int m_modelHandle = -1;
 
-    VECTOR centerPosition = VGet(0.0f, 0.0f, 0.0f);
-    float scale = 1000.0f;
+    VECTOR m_centerPosition = VGet(0.0f, 0.0f, 0.0f);
+    float m_scale = 1000.0f;
 };

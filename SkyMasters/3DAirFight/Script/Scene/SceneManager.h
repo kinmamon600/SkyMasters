@@ -27,6 +27,7 @@ public:
 	// シーンの更新
 	void Update();
 
+	// Lodingクルクルの描画
 	void DrawLoading();
 
 	// ゲーム

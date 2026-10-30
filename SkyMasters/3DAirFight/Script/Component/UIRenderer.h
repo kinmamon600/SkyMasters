@@ -8,15 +8,17 @@
 class UIRenderer : public Component
 {
 public:
+    // コンストラクタ
     UIRenderer(Actor* owner)
-        :Component(owner, static_cast<int>(ComponentUpdateOrder::UIRenderer))
-    {
+        :Component(owner, static_cast<int>(ComponentUpdateOrder::UIRenderer)){}
 
-    }
+    // デストラクタ
     ~UIRenderer();
 
+    // 更新
     void Update();
 
+    // 画像ハンドルのセット
     void SetGrphHandle(int handle);
 
 private:

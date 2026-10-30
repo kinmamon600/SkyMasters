@@ -6,6 +6,7 @@
 #include"../Component/Transform.h"
 #include"../Game/Game.h"
 
+// “Ç‚İ‚İ
 bool GameScene::Load()
 {
     testHandle = LoadGraph("../Sprites/bomb.png");
@@ -14,6 +15,7 @@ bool GameScene::Load()
     return true;
 }
 
+// ‰Šú‰»
 void GameScene::Initialize()
 {
     skyboxObject = std::make_unique<Actor>(p_sceneManager->p_game);
@@ -33,6 +35,7 @@ void GameScene::Initialize()
     modelComp->SetModelHandle(modelHandle);
 }
 
+// XV
 void GameScene::Execute()
 {
     Transform* uiTr = uiObject->GetComponent<Transform>();
@@ -52,6 +55,7 @@ void GameScene::Execute()
     modTr->SetRotation(VGet(0.0f, Y + 1.0f, 0.0f));
 }
 
+// I—¹
 SceneType GameScene::Terminate()
 {
     skyboxObject.reset();

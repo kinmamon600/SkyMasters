@@ -15,15 +15,26 @@ public:
 	};
 	~Transform() {};
 
-	const VECTOR& GetPosition() const { return mPosition; }
-	void SetPosition(const VECTOR& pos) { mPosition = pos; }
-	const VECTOR& GetRotation() const { return mRotation; }
-	void SetRotation(const VECTOR& rotation) { mRotation = rotation; }
-	const VECTOR& GetScale() const { return mScale; }
-	void SetScale(const VECTOR& scale) { mScale = scale; }
+	// 座標の取得
+	const VECTOR& GetPosition() const { return m_position; }
+
+	// 座標のセット
+	void SetPosition(const VECTOR& pos) { m_position = pos; }
+
+	// 回転の取得
+	const VECTOR& GetRotation() const { return m_rotation; }
+
+	// 回転のセット
+	void SetRotation(const VECTOR& rotation) { m_rotation = rotation; }
+
+	// サイズの取得
+	const VECTOR& GetScale() const { return m_scale; }
+
+	// サイズのセット
+	void SetScale(const VECTOR& scale) { m_scale = scale; }
 
 private:
-	VECTOR mPosition = VGet(0.0f, 0.0f, 0.0f);
-	VECTOR mRotation = VGet(0.0f, 0.0f, 0.0f);
-	VECTOR mScale = VGet(1.0f, 1.0f, 1.0f);
+	VECTOR m_position = VGet(0.0f, 0.0f, 0.0f);
+	VECTOR m_rotation = VGet(0.0f, 0.0f, 0.0f);
+	VECTOR m_scale = VGet(1.0f, 1.0f, 1.0f);
 };

@@ -5,14 +5,15 @@ SkyboxRenderer::~SkyboxRenderer()
     Release();
 }
 
+// モデルの読み込み
 bool SkyboxRenderer::Load(const char* filePath)
 {
     // 二重読み込みを防止
     Release();
 
-    modelHandle = MV1LoadModel(filePath);
+    m_modelHandle = MV1LoadModel(filePath);
 
-    if (modelHandle == -1)
+    if (m_modelHandle == -1)
     {
         return false;
     }
@@ -23,38 +24,42 @@ bool SkyboxRenderer::Load(const char* filePath)
     return true;
 }
 
+// カメラの位置に合わせて背景の中心を移動
 void SkyboxRenderer::SetCenterPosition(VECTOR position)
 {
-    centerPosition = position;
+    m_centerPosition = position;
 }
 
+// 球体の大きさを設定
 void SkyboxRenderer::SetScale(float scale)
 {
-    this->scale = scale;
+    this->m_scale = scale;
 }
 
+// モデルの描画
 void SkyboxRenderer::Draw()
 {
-    if (modelHandle == -1)
+    if (m_modelHandle == -1)
     {
         return;
     }
 
     // 背景モデルの位置と大きさを設定
-    MV1SetPosition(modelHandle, centerPosition);
+    MV1SetPosition(m_modelHandle, m_centerPosition);
     MV1SetScale(
-        modelHandle,
-        VGet(scale, scale, scale)
+        m_modelHandle,
+        VGet(m_scale, m_scale, m_scale)
     );
 
-    MV1DrawModel(modelHandle);
+    MV1DrawModel(m_modelHandle);
 }
 
+// モデルの解放
 void SkyboxRenderer::Release()
 {
-    if (modelHandle != -1)
+    if (m_modelHandle != -1)
     {
-        MV1DeleteModel(modelHandle);
-        modelHandle = -1;
+        MV1DeleteModel(m_modelHandle);
+        m_modelHandle = -1;
     }
 }

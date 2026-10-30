@@ -10,6 +10,7 @@ void UIRenderer::SetGrphHandle(int handle)
 	m_graphHandle = handle;
 }
 
+// XV
 void UIRenderer::Update()
 {
 	if (m_isVisible)
@@ -18,6 +19,7 @@ void UIRenderer::Update()
 	}
 }
 
+// ‰æ‘œ‚Ì•`‰æ
 void UIRenderer::Draw()
 {
 	if (m_graphHandle == -1)
@@ -25,7 +27,7 @@ void UIRenderer::Draw()
 		return;
 	}
 
-	Transform* tr = mOwner->GetComponent<Transform>();
+	Transform* tr = m_owner->GetComponent<Transform>();
 
 	if (tr == nullptr)
 	{

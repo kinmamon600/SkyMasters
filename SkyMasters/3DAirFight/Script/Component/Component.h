@@ -3,12 +3,19 @@
 class Component
 {
 public:
+	// コンストラクタ
 	Component(class Actor* owner, int updateOrder);
+
+	// デストラクタ
 	virtual ~Component();
+
+	// 更新
 	virtual void Update();
 
-	int GetUpdateOrder() const { return mUpdateOrder; }
+	// アップデート順の取得
+	int GetUpdateOrder() const { return m_updateOrder; }
+
 protected:
-	class Actor* mOwner;
-	int mUpdateOrder;
+	class Actor* m_owner;
+	int m_updateOrder;
 };
