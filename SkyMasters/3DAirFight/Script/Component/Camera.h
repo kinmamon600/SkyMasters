@@ -10,7 +10,7 @@
 /// カメラコンポーネント
 /// カメラ位置や描画エリア等を設定する
 /// </summary>
-class Camera :public Component
+class Camera : public Component
 {
 public:
 	// コンストラクタ

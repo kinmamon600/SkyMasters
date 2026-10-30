@@ -138,12 +138,14 @@
     <ClCompile Include="..\SuperDxPhysics\AddFiles\pfx_rigidbody_world.cpp" />
     <ClCompile Include="..\SuperDxPhysics\AddFiles\physics_func.cpp" />
     <ClCompile Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.cpp" />
-<ClCompile Include="Script\Actor\Actor.cpp" />
+    <ClCompile Include="Script\Actor\Actor.cpp" />
     <ClCompile Include="Script\Component\Camera.cpp" />
     <ClCompile Include="Script\Component\Component.cpp" />
     <ClCompile Include="Script\Component\ComponentManager.cpp" />
     <ClCompile Include="Script\Component\Input.cpp" />
     <ClCompile Include="Script\Component\ModelRenderer.cpp" />
+    <ClCompile Include="Script\Component\PhysicsCollider.cpp" />
+    <ClCompile Include="Script\Component\PhysicsColliderBox.cpp" />
     <ClCompile Include="Script\Component\SkyBoxRenderer.cpp" />
     <ClCompile Include="Script\Component\UIRenderer.cpp" />
     <ClCompile Include="Script\Game\Game.cpp" />
@@ -153,9 +155,10 @@
     <ClCompile Include="Script\Input\InputManager.cpp" />
     <ClCompile Include="Script\Scene\SceneManager.cpp" />
     <ClCompile Include="Script\Scene\SceneBase.cpp" />
-    <ClCompile Include="Script\Scene\GameScene.cpp" />  </ItemGroup>
+    <ClCompile Include="Script\Scene\GameScene.cpp" />
+  </ItemGroup>
   <ItemGroup>
-<ClInclude Include="..\SuperDxPhysics\AddFiles\pfx_high_level_include.h" />
+    <ClInclude Include="..\SuperDxPhysics\AddFiles\pfx_high_level_include.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\pfx_rigidbody_world.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\pfx_rigidbody_world_implementation.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\physics_func.h" />
@@ -167,6 +170,8 @@
     <ClInclude Include="Script\Component\ModelRenderer.h" />
     <ClInclude Include="Script\Component\Component.h" />
     <ClInclude Include="Script\Actor\Actor.h" />
+    <ClInclude Include="Script\Component\PhysicsCollider.h" />
+    <ClInclude Include="Script\Component\PhysicsColliderBox.h" />
     <ClInclude Include="Script\Component\UIRenderer.h" />
     <ClInclude Include="Script\GameObject\GameObject.h" />
     <ClInclude Include="Script\Game\Game.h" />
