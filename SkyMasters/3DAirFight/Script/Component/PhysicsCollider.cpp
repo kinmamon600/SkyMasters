@@ -1,6 +1,8 @@
 // ライブラリ・ヘッダ
 #include "PhysicsCollider.h"
 #include "SuperDxPhysics.h"
+#include "../Actor/Actor.h"
+#include "Transform.h"
 
 // デストラクタ
 PhysicsCollider::~PhysicsCollider()
@@ -11,7 +13,15 @@ PhysicsCollider::~PhysicsCollider()
 // 更新処理
 void PhysicsCollider::Update()
 {
+	// 自身がアタッチされているアクターのトランスフォームを取得
+	Transform* owner_tr = mOwner->GetComponent<Transform>();
 
+	// トランスフォームを更新
+	if (owner_tr != nullptr)
+	{
+		owner_tr->SetPosition(SDP::GetPosition(m_sdpID));
+		owner_tr->SetRotation(SDP::GetRotate(m_sdpID));
+	}
 }
 
 // 座標取得
