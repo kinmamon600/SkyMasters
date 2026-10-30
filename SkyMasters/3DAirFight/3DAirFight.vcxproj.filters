@@ -78,6 +78,9 @@
     <ClCompile Include="Script\Component\Input.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Component\Fighter.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SuperDxPhysics\AddFiles\pfx_high_level_include.h">
@@ -143,7 +146,7 @@
     <ClInclude Include="Script\Input\InputManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-<ClInclude Include="Script\Scene\SceneManager.h">
+    <ClInclude Include="Script\Scene\SceneManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Script\GameObject\GameObject.h">
@@ -160,5 +163,15 @@
     </ClInclude>
     <ClInclude Include="Script\Component\Input.h">
       <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>  </ItemGroup>
+    </ClInclude>
+    <ClInclude Include="Script\Component\GamePlayer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Component\Fighter.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Component\FighterDataLoader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
