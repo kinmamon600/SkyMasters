@@ -189,12 +189,6 @@ unsigned int ControllerInput::GetControllerType()				const { return m_deviceData
 ControllerDeviceData::InputType ControllerInput::GetInputType() const { return m_deviceData.GetInputType(); };
 ControllerDeviceData ControllerInput::GetDeviceData()			const { return m_deviceData; }
 
-// コントローラ番号の更新(コントローラ数が変化した場合に実行)
-void ControllerInput::UpdateControllerNumber(int new_num)
-{
-	m_deviceData.SetGamepadNum(new_num);
-}
-
 // 入力のクリア
 void ControllerInput::ClearInput()
 {
@@ -222,6 +216,12 @@ void ControllerInput::ClearInput()
 	m_currentSelect = false;
 
 	SetPreviousInput();
+}
+
+// コントローラ番号の更新(コントローラ数が変化した場合に実行)
+void ControllerInput::UpdateControllerNumber(int new_num)
+{
+	m_deviceData.SetGamepadNum(new_num);
 }
 
 // 1つ前の入力の設定

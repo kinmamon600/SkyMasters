@@ -30,8 +30,22 @@ void Game::Initialize()
 // ゲームの更新
 void Game::Update()
 {
+	// 前のフレームから引き続きコントローラ数が減っていたらゲームの実行処理を行わない
+	// 変わりにコントローラの接続画面を表示
+	if (p_inputManager->WasControllerRemoved())
+	{
+		return;
+	}
+
 	// 入力の更新
 	p_inputManager->Update();
+
+	// このフレームからコントローラ数が減っていたらゲームの実行処理を行わない
+	// 変わりにコントローラの接続画面を表示
+	if (p_inputManager->WasControllerRemoved())
+	{
+		return;
+	}
 
     // シーンの更新
     sceneManager->Update();

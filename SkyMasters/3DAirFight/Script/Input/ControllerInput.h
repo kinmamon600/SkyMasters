@@ -109,6 +109,9 @@ public:
 	ControllerDeviceData::InputType GetInputType() const;	// 入力タイプの取得
 	ControllerDeviceData GetDeviceData() const;				// コントローラのデバイス情報
 
+	// 入力のクリア
+	void ClearInput();
+
 private:
 	// このインプットクラスが使用されているか
 	bool m_isUse = false;
@@ -167,9 +170,6 @@ private:
 
 	// コントローラ番号の更新(コントローラ数が変化した場合に実行)
 	void UpdateControllerNumber(int new_num);
-
-	// 入力のクリア
-	void ClearInput();
 
 	// 1つ前の入力の設定
 	void SetPreviousInput();

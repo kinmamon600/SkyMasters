@@ -74,6 +74,12 @@ public:
 	// 接続されているコントローラ数の取得
 	unsigned short GetControllerNum();
 
+	// 想定されるコントローラ数を設定
+	void SetExpectedControllerNum(unsigned short num);
+
+	// 想定されるコントローラ数を取得
+	unsigned short GetExpectedControllerNum() const;
+
 	// コントローラ入力状態の取得
 	const ControllerInput* GetInput(unsigned short player) const;
 
@@ -107,6 +113,9 @@ private:
 
 	// 接続されているコントローラ数
 	unsigned short m_connectedControllerNum = 0;
+
+	// 想定されるコントローラ数
+	unsigned short m_expectedControllerNum = 1;
 
 	// コントローラが追加接続されたか
 	bool m_wasControllerAdded = false;

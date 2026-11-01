@@ -69,6 +69,23 @@ unsigned short InputManager::GetControllerNum()
 	return m_connectedControllerNum;
 }
 
+// 想定されるコントローラ数を設定
+void InputManager::SetExpectedControllerNum(unsigned short num)
+{
+	if (num > PLAYER_NUM_MAX)
+	{
+		num = PLAYER_NUM_MAX;
+	}
+
+	m_expectedControllerNum = num;
+}
+
+// 想定されるコントローラ数を取得
+unsigned short InputManager::GetExpectedControllerNum() const
+{
+	return m_expectedControllerNum;
+}
+
 // コントローラ入力状態の取得
 const ControllerInput* InputManager::GetInput(unsigned short player) const
 {
@@ -383,6 +400,15 @@ void InputManager::UpdateModeGame()
 	m_connectedControllerNum = current_ctrl_num;
 
 	// 入力状態の更新
+	// コントローラ数が減っていた場合更新しない
+	if (m_wasControllerRemoved) 
+	{
+		for (unsigned short i = 0; i < PLAYER_NUM_MAX; ++i)
+		{
+			p_controllerInputs[i]->ClearInput();
+		}
+		return;
+	}
 	for (unsigned short i = 0; i < m_connectedControllerNum; ++i)
 	{
 		if (i >= PLAYER_NUM_MAX) { break; }
