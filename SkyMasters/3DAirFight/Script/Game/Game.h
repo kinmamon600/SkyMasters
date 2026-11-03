@@ -58,5 +58,9 @@ private:
 
     // Actor‚ğ’Ç‰Á‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚é‚©
     bool mUpdatingActors;
+
+    // “ü—Í‚ÌXV
+    // ˆÈ~‚Ìˆ—‚ÌÀs‰Â”Û‚ğ•Ô‚·
+    bool UpdateInput();
 };
 #endif

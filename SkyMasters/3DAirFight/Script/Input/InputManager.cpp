@@ -348,6 +348,12 @@ bool InputManager::WasControllerRemoved() const
 	return m_wasControllerRemoved;
 }
 
+// コントローラの接続設定画面を表示する
+void InputManager::DispControllerSettingsWindow()
+{
+	DrawString(0, 540, "コントローラーを接続してください", GetColor(255, 255, 255));
+}
+
 // 入力モード:メニュー時の更新処理
 void InputManager::UpdateModeMenu()
 {

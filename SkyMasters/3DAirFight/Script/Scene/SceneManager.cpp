@@ -44,6 +44,12 @@ void SceneManager::Update()
 	}
 }
 
+// 現在のシーンタイプの取得
+SceneStep SceneManager::GetSceneStep() const
+{
+	return currentStep;
+}
+
 // シーンの生成
 void SceneManager::CreateScene()
 {

@@ -27,6 +27,9 @@ public:
 	// シーンの更新
 	void Update();
 
+	// 現在のシーンタイプの取得
+	SceneStep GetSceneStep() const;
+
 	// Lodingクルクルの描画
 	void DrawLoading();
 

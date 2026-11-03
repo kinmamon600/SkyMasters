@@ -30,22 +30,9 @@ void Game::Initialize()
 // ゲームの更新
 void Game::Update()
 {
-	// 前のフレームから引き続きコントローラ数が減っていたらゲームの実行処理を行わない
-	// 変わりにコントローラの接続画面を表示
-	if (p_inputManager->WasControllerRemoved())
-	{
-		return;
-	}
-
 	// 入力の更新
-	p_inputManager->Update();
-
-	// このフレームからコントローラ数が減っていたらゲームの実行処理を行わない
-	// 変わりにコントローラの接続画面を表示
-	if (p_inputManager->WasControllerRemoved())
-	{
-		return;
-	}
+	// falseが返ってきたとき(コントローラが減った時等)は以降の処理を行わない
+	if (!UpdateInput()) { return; }
 
     // シーンの更新
     sceneManager->Update();
@@ -109,4 +96,34 @@ void Game::RemoveComponent(Component* component)
 InputManager* Game::GetInputManager() const
 {
 	return p_inputManager;
+}
+
+// 入力の更新
+// 以降の処理の実行可否を返す
+bool Game::UpdateInput()
+{
+	// ロード中の時は問答無用でtrue
+	if (sceneManager->GetSceneStep() == SceneStep::Load)
+	{
+		return true;
+	}
+
+	// 前のフレームから引き続きコントローラ数が減っていたらゲームの実行処理を行わない
+	// 変わりにコントローラの接続画面を表示
+	if (p_inputManager->WasControllerRemoved())
+	{
+		p_inputManager->DispControllerSettingsWindow();
+		return false;
+	}
+
+	// 入力の更新
+	p_inputManager->Update();
+
+	// このフレームからコントローラ数が減っていたらゲームの実行処理を行わない
+	// 変わりにコントローラの接続画面を表示
+	if (p_inputManager->WasControllerRemoved())
+	{
+		p_inputManager->DispControllerSettingsWindow();
+		return false;
+	}
 }

@@ -104,9 +104,12 @@ public:
 	// コントローラが切断されたかを返す
 	bool WasControllerRemoved() const;
 
+	// コントローラの接続設定画面を表示する
+	void DispControllerSettingsWindow();
+
 private:
 	// 現在の入力モード
-	InputMode m_inputMode = InputMode::Menu;
+	InputMode m_inputMode = InputMode::Game;
 
 	// コントローラの入力配列
 	std::array<ControllerInput*, PLAYER_NUM_MAX> p_controllerInputs;

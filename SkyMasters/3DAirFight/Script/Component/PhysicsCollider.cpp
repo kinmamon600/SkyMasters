@@ -14,7 +14,7 @@ PhysicsCollider::~PhysicsCollider()
 void PhysicsCollider::Update()
 {
 	// 自身がアタッチされているアクターのトランスフォームを取得
-	Transform* owner_tr = mOwner->GetComponent<Transform>();
+	Transform* owner_tr = m_owner->GetComponent<Transform>();
 
 	// トランスフォームを更新
 	if (owner_tr != nullptr)
