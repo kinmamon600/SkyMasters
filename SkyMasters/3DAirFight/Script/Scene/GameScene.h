@@ -2,7 +2,8 @@
 
 #include "SceneBase.h"
 #include "../Actor/Actor.h"
-#include"../Game/Game.h"
+#include "../Game/Game.h"
+#include "../Component/FIghter/FighterDataLoader.h"
 
 #include <memory>
 
@@ -28,6 +29,8 @@ private:
     std::unique_ptr<Actor> skyboxObject;
     std::unique_ptr<Actor> uiObject;
     std::unique_ptr<Actor> modelObject;
+
+    FighterDataLoader m_loader;
 
     // ‰æ‘œƒnƒ“ƒhƒ‹
     int testHandle = -1;

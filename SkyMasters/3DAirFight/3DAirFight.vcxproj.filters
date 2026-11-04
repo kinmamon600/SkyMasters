@@ -81,10 +81,10 @@
     <ClCompile Include="Script\Component\Fighter.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Component\FIghter\FighterDataLoader.cpp">
+    <ClCompile Include="Script\Component\Fighter\FighterDataLoader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Component\FIghter\Fighter.cpp">
+    <ClCompile Include="Script\Component\Fighter\Fighter.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -173,19 +173,16 @@
     <ClInclude Include="Script\Component\GamePlayer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Script\Component\Fighter.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Script\Component\FighterDataLoader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Script\Component\FIghter\FighterDataLoader.h">
+    <ClInclude Include="Script\Component\Fighter\FighterDataLoader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Script\Component\FIghter\FighterData.h">
+    <ClInclude Include="Script\Component\Fighter\FighterData.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Script\Component\FIghter\Fighter.h">
+    <ClInclude Include="Script\Component\Fighter\Fighter.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

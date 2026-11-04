@@ -8,7 +8,7 @@
 // 機体の読み込み
 bool FighterDataLoader::LoadBody()
 {
-	int bodyFileHandle = FileRead_open("Body.csv");
+	int bodyFileHandle = FileRead_open("../../../CSV/Body.csv");
 
 	if (bodyFileHandle == 0)
 	{
@@ -169,7 +169,7 @@ bool FighterDataLoader::LoadDiffuser()
 	return true;
 }
 
-
+// スペシャル武器の読み込み
 bool FighterDataLoader::LoadSpecialWeapon()
 {
 	int spwFileHandle = FileRead_open("SpecialWeapon.csv");
@@ -210,4 +210,24 @@ bool FighterDataLoader::LoadSpecialWeapon()
 	FileRead_close(spwFileHandle);
 
 	return true;
+}
+
+BodyData FighterDataLoader::GetBody(short id) const
+{
+	return m_bodyData[id];
+}
+
+WingData FighterDataLoader::GetWing(short id) const
+{
+	return m_wingData[id];
+}
+
+DiffuserData FighterDataLoader::GetDiffuser(short id) const
+{
+	return m_diffuserData[id];
+}
+
+SpecialWeaponData FighterDataLoader::GetSpecialWeapon(short id) const
+{
+	return m_specialWeaponData[id];
 }
