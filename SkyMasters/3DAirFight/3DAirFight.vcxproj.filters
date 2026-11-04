@@ -78,12 +78,22 @@
     <ClCompile Include="Script\Component\Input.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Script\Component\FIghter\Fighter.cpp">
+=======
+    <ClCompile Include="Script\Component\Fighter.cpp">
+>>>>>>> keigo
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Script\Component\FIghter\FighterDataLoader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
+    <ClCompile Include="Script\Component\FIghter\Fighter.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+>>>>>>> keigo
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SuperDxPhysics\AddFiles\pfx_high_level_include.h">
@@ -170,7 +180,14 @@
     <ClInclude Include="Script\Component\GamePlayer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Script\Component\FIghter\Fighter.h">
+=======
+    <ClInclude Include="Script\Component\Fighter.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Component\FighterDataLoader.h">
+>>>>>>> keigo
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Script\Component\FIghter\FighterDataLoader.h">
@@ -179,5 +196,11 @@
     <ClInclude Include="Script\Component\FIghter\FighterData.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+<<<<<<< HEAD
+=======
+    <ClInclude Include="Script\Component\FIghter\Fighter.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+>>>>>>> keigo
   </ItemGroup>
 </Project>

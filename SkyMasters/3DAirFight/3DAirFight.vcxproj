@@ -142,6 +142,10 @@
     <ClCompile Include="Script\Component\Camera.cpp" />
     <ClCompile Include="Script\Component\Component.cpp" />
     <ClCompile Include="Script\Component\ComponentManager.cpp" />
+<<<<<<< HEAD
+=======
+    <ClCompile Include="Script\Component\Fighter.cpp" />
+>>>>>>> keigo
     <ClCompile Include="Script\Component\FIghter\Fighter.cpp" />
     <ClCompile Include="Script\Component\FIghter\FighterDataLoader.cpp" />
     <ClCompile Include="Script\Component\Input.cpp" />
@@ -166,6 +170,11 @@
     <ClInclude Include="Script\Component\Camera.h" />
     <ClInclude Include="Script\Component\ComponentManager.h" />
     <ClInclude Include="Script\Component\ComponentUpdateOrder.h" />
+<<<<<<< HEAD
+=======
+    <ClInclude Include="Script\Component\Fighter.h" />
+    <ClInclude Include="Script\Component\FighterDataLoader.h" />
+>>>>>>> keigo
     <ClInclude Include="Script\Component\FIghter\Fighter.h" />
     <ClInclude Include="Script\Component\FIghter\FighterData.h" />
     <ClInclude Include="Script\Component\FIghter\FighterDataLoader.h" />
