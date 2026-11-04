@@ -3,16 +3,16 @@
 // 機体データ
 struct BodyData
 {
-	int hp;				  // 体力
+	short hp;			  // 体力
 	float rotateSpeed;	  // 回転速度
 	float accele;		  // 加速度
-	int attackPower;	  // 通常攻撃力
+	short attackPower;	  // 通常攻撃力
 };
 
 // 翼のデータ
 struct WingData
 {
-	int hp;				  // 体力
+	short hp;			  // 体力
 	float rotateSpeed;	  // 回転速度
 	float accele;		  // 加速度
 };
@@ -20,7 +20,7 @@ struct WingData
 // ディフーザーのデータ
 struct DiffuserData
 {
-	int hp;				  // 体力
+	short hp;			  // 体力
 	float rotateSpeed;	  // 回転速度
 	float accele;		  // 加速度
 };
@@ -28,11 +28,12 @@ struct DiffuserData
 // スペシャル武器のデータ
 struct SpecialWeaponData
 {
-	int specialAttack;	  // スペシャル攻撃力
+	short specialAttack;	  // スペシャル攻撃力
 };
 
 struct FighterData
 {
+	short id;
 	BodyData body;
 	WingData wing;
 	DiffuserData diffuser;

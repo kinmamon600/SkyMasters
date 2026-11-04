@@ -143,6 +143,8 @@
     <ClCompile Include="Script\Component\Component.cpp" />
     <ClCompile Include="Script\Component\ComponentManager.cpp" />
     <ClCompile Include="Script\Component\Fighter.cpp" />
+    <ClCompile Include="Script\Component\FIghter\Fighter.cpp" />
+    <ClCompile Include="Script\Component\FIghter\FighterDataLoader.cpp" />
     <ClCompile Include="Script\Component\Input.cpp" />
     <ClCompile Include="Script\Component\ModelRenderer.cpp" />
     <ClCompile Include="Script\Component\SkyBoxRenderer.cpp" />
@@ -167,6 +169,9 @@
     <ClInclude Include="Script\Component\ComponentUpdateOrder.h" />
     <ClInclude Include="Script\Component\Fighter.h" />
     <ClInclude Include="Script\Component\FighterDataLoader.h" />
+    <ClInclude Include="Script\Component\FIghter\Fighter.h" />
+    <ClInclude Include="Script\Component\FIghter\FighterData.h" />
+    <ClInclude Include="Script\Component\FIghter\FighterDataLoader.h" />
     <ClInclude Include="Script\Component\GamePlayer.h" />
     <ClInclude Include="Script\Component\Input.h" />
     <ClInclude Include="Script\Component\ModelRenderer.h" />
