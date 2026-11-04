@@ -152,6 +152,7 @@
     <ClCompile Include="Script\Game\Main.cpp" />
     <ClCompile Include="Script\Input\ControllerDeviceData.cpp" />
     <ClCompile Include="Script\Input\ControllerInput.cpp" />
+    <ClCompile Include="Script\Input\ControllerUI.cpp" />
     <ClCompile Include="Script\Input\InputManager.cpp" />
     <ClCompile Include="Script\Scene\SceneManager.cpp" />
     <ClCompile Include="Script\Scene\SceneBase.cpp" />
@@ -179,12 +180,14 @@
     <ClInclude Include="Script\Input\ControllerDeviceData.h" />
     <ClInclude Include="Script\Input\ControllerInput.h" />
     <ClInclude Include="Script\Input\ControllerTypeKeyConfiguration.h" />
+    <ClInclude Include="Script\Input\ControllerUI.h" />
     <ClInclude Include="Script\Input\InputManager.h" />
     <ClInclude Include="Script\Scene\GameScene.h" />
     <ClInclude Include="Script\Scene\SceneManager.h" />
     <ClInclude Include="Script\Scene\SceneBase.h" />
     <ClInclude Include="Script\Scene\SceneDefine.h" />
     <ClInclude Include="Script\Component\Transform.h" />
+    <ClInclude Include="Script\Screen\Screen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,7 +5,10 @@
 #include <array>
 
 #include "DxLib.h"  // https://dxlib.xsrv.jp/dxfunc.html
-#include "ControllerInput.h"
+
+// 前方宣言
+class ControllerInput;
+class ControllerDeviceData;
 
 // 定数
 const unsigned short PLAYER_NUM_MAX = 4;// 最大プレイヤー人数

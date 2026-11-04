@@ -3,14 +3,15 @@
 #include "DxLib.h"  // https://dxlib.xsrv.jp/dxfunc.html
 #include "SuperDxPhysics.h"
 
+#include "Screen/Screen.h"
 #include "Game.h"
 
 // メイン
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	// 画面モードの設定
-	SetGraphMode(1920, 1080, 32, 60);
-	SetWindowSize(1920, 1080);
+	SetGraphMode(Screen::Width, Screen::Height, 32, 60);
+	SetWindowSize(Screen::Width, Screen::Height);
 	ChangeWindowMode(FALSE);		// フルスクリーン表示
 	SetMouseDispFlag(FALSE);		// マウスカーソル非表示
 	SetMainWindowText("SKY MASTES");// ウィンドウ名

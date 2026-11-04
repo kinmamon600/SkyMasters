@@ -3,6 +3,8 @@
 #include <iterator>
 
 #include "InputManager.h"
+
+#include "ControllerInput.h"
 #include "ControllerDeviceData.h"
 
 // コンストラクタ
