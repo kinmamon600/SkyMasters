@@ -1,4 +1,5 @@
 // ライブラリ・ヘッダ
+#include "Screen/Screen.h"
 #include "ControllerUI.h"
 #include "ControllerInput.h"
 #include "ControllerDeviceData.h"
@@ -12,7 +13,40 @@ ControllerUI::~ControllerUI()
 // 入力状態の描画
 void ControllerUI::Disp()
 {
+	// 枠の描画
+	DrawBox(m_ox + 20, m_oy + 20, Screen::Width / 2 - 20, Screen::Height / 2 - 20, m_colorOn, FALSE);
 
+	unsigned int center_x = m_ox + Screen::Width / 4;
+	unsigned int center_y = m_ox + Screen::Height / 4;
+
+	// コントローラ種類に合わせて描画変更
+	switch (m_controllerInput->GetControllerType())
+	{
+	case DX_PADTYPE_XBOX_360:
+	case DX_PADTYPE_XBOX_ONE:
+		break;
+
+	case DX_PADTYPE_DUAL_SHOCK_3:
+	case DX_PADTYPE_DUAL_SHOCK_4:
+	case DX_PADTYPE_DUAL_SENSE:
+		break;
+
+	case DX_PADTYPE_SWITCH_JOY_CON_L:
+		break;
+
+	case DX_PADTYPE_SWITCH_JOY_CON_R:
+		break;
+
+	case DX_PADTYPE_SWITCH_PRO_CTRL:
+	case DX_PADTYPE_SWITCH_HORI_PAD:
+		break;
+
+	case DX_PADTYPE_OTHER:
+		break;
+
+	default:
+		break;
+	}
 }
 
 // ボタンの色を返す
