@@ -4,23 +4,22 @@
 #include "FighterData.h"
 #include <vector>
 
-class FighterDataLoader : Component
+class FighterDataLoader
 {
 public:
-	FighterDataLoader(Actor* owner)
-		:Component(owner, static_cast<int>(ComponentUpdateOrder::Behaviour)) {}
+	FighterDataLoader() {}
 
 	bool LoadBody();
-	static BodyData GetBody(int id);
+	BodyData GetBody(short id) const;
 
 	bool LoadWing();
-	static WingData GetWing(int id);
+	WingData GetWing(short id) const;
 
 	bool LoadDiffuser();
-	static DiffuserData GetDiffuser(int id);
+	DiffuserData GetDiffuser(short id) const;
 
 	bool LoadSpecialWeapon();
-	static SpecialWeaponData GetSpecialWeapon(int id);
+	SpecialWeaponData GetSpecialWeapon(short id) const;
 
 private:
 	std::vector<BodyData>m_bodyData;

@@ -1,4 +1,4 @@
-#include"Fighter.h"
+#include "Fighter.h"
 
 void Fighter::SetData(const FighterData& data)
 {

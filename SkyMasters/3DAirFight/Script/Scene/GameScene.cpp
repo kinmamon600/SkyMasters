@@ -1,15 +1,23 @@
-#include"GameScene.h"
-#include"SceneManager.h"
-#include"../Component/SkyboxRenderer.h"
-#include"../Component/UIRenderer.h"
-#include"../Component/ModelRenderer.h"
-#include"../Component/Transform.h"
-#include"../Game/Game.h"
+#include "GameScene.h"
+#include "SceneManager.h"
+#include "../Component/SkyboxRenderer.h"
+#include "../Component/UIRenderer.h"
+#include "../Component/ModelRenderer.h"
+#include "../Component/Transform.h"
+#include "../Game/Game.h"
+
+
+#include "../Component/FIghter/FighterDataLoader.h"
 
 // ì«Ç›çûÇ›
 bool GameScene::Load()
 {
-    testHandle = LoadGraph("../Sprites/bomb.png");
+    m_loader.LoadBody();
+    m_loader.LoadWing();
+    m_loader.LoadDiffuser();
+    m_loader.LoadSpecialWeapon();
+
+    testHandle = LoadGraph ("../Sprites/bomb.png");
 
     modelHandle = MV1LoadModel("../3DModle/Alice.mv1");
     return true;

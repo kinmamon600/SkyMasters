@@ -8,7 +8,7 @@
 // 機体の読み込み
 bool FighterDataLoader::LoadBody()
 {
-	int bodyFileHandle = FileRead_open("Body.csv");
+	int bodyFileHandle = FileRead_open("../CSV/Body.csv");
 
 	if (bodyFileHandle == 0)
 	{
@@ -51,11 +51,11 @@ bool FighterDataLoader::LoadBody()
 
 		m_bodyData.push_back(bodyData);
 
-		printfDx("ボディ\n何パーツ目か:%d\n", bodyCount);
-		printfDx("体力:%d\n", bodyData.hp);
-		printfDx("回転速度:%f\n", bodyData.rotateSpeed);
-		printfDx("加速度:%d\n", bodyData.accele);
-		printfDx("通常攻撃力:%d\n", bodyData.attackPower);
+		//printfDx("ボディ\n何パーツ目か:%d\n", bodyCount);
+		//printfDx("体力:%d\n", bodyData.hp);
+		//printfDx("回転速度:%f\n", bodyData.rotateSpeed);
+		//printfDx("加速度:%d\n", bodyData.accele);
+		//printfDx("通常攻撃力:%d\n\n", bodyData.attackPower);
 	}
 
 	FileRead_close(bodyFileHandle);
@@ -66,7 +66,7 @@ bool FighterDataLoader::LoadBody()
 // 翼の読み込み
 bool FighterDataLoader::LoadWing()
 {
-	int wingfFileHandle = FileRead_open("Wing.csv");
+	int wingfFileHandle = FileRead_open("../CSV/Wing.csv");
 
 	if (wingfFileHandle == 0)
 	{
@@ -105,10 +105,10 @@ bool FighterDataLoader::LoadWing()
 
 		m_wingData.push_back(wingData);
 
-		printfDx("翼\n何パーツ目か:%d\n", wingCount);
-		printfDx("体力:%d\n", wingData.hp);
-		printfDx("回転速度:%f\n", wingData.rotateSpeed);
-		printfDx("加速度:%d\n", wingData.accele);
+		//printfDx("翼\n何パーツ目か:%d\n", wingCount);
+		//printfDx("体力:%d\n", wingData.hp);
+		//printfDx("回転速度:%f\n", wingData.rotateSpeed);
+		//printfDx("加速度:%d\n\n", wingData.accele);
 	}
 
 	FileRead_close(wingfFileHandle);
@@ -119,7 +119,7 @@ bool FighterDataLoader::LoadWing()
 // ディフューザーの読み込み
 bool FighterDataLoader::LoadDiffuser()
 {
-	int diffFileHandle = FileRead_open("Diffuser.csv");
+	int diffFileHandle = FileRead_open("../CSV/Diffuser.csv");
 
 	if (diffFileHandle == 0)
 	{
@@ -158,10 +158,10 @@ bool FighterDataLoader::LoadDiffuser()
 
 		m_diffuserData.push_back(diffData);
 
-		printfDx("ディフューザー\n何パーツ目か:%d\n", diffCount);
-		printfDx("体力:%d\n", diffData.hp);
-		printfDx("回転速度:%f\n", diffData.rotateSpeed);
-		printfDx("加速度:%d\n", diffData.accele);
+		//printfDx("ディフューザー\n何パーツ目か:%d\n", diffCount);
+		//printfDx("体力:%d\n", diffData.hp);
+		//printfDx("回転速度:%f\n", diffData.rotateSpeed);
+		//printfDx("加速度:%d\n\n", diffData.accele);
 	}
 
 	FileRead_close(diffFileHandle);
@@ -169,7 +169,7 @@ bool FighterDataLoader::LoadDiffuser()
 	return true;
 }
 
-
+// スペシャル武器の読み込み
 bool FighterDataLoader::LoadSpecialWeapon()
 {
 	int spwFileHandle = FileRead_open("SpecialWeapon.csv");
@@ -210,4 +210,24 @@ bool FighterDataLoader::LoadSpecialWeapon()
 	FileRead_close(spwFileHandle);
 
 	return true;
+}
+
+BodyData FighterDataLoader::GetBody(short id) const
+{
+	return m_bodyData[id];
+}
+
+WingData FighterDataLoader::GetWing(short id) const
+{
+	return m_wingData[id];
+}
+
+DiffuserData FighterDataLoader::GetDiffuser(short id) const
+{
+	return m_diffuserData[id];
+}
+
+SpecialWeaponData FighterDataLoader::GetSpecialWeapon(short id) const
+{
+	return m_specialWeaponData[id];
 }
