@@ -78,13 +78,13 @@
     <ClCompile Include="Script\Component\Input.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Component\Fighter.cpp">
+    <ClCompile Include="Script\Component\Fighter\Fighter.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Script\Component\Fighter\FighterDataLoader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Component\Fighter\Fighter.cpp">
+    <ClCompile Include="Script\Component\Fighter.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

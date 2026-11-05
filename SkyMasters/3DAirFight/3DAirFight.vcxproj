@@ -142,8 +142,8 @@
     <ClCompile Include="Script\Component\Camera.cpp" />
     <ClCompile Include="Script\Component\Component.cpp" />
     <ClCompile Include="Script\Component\ComponentManager.cpp" />
-    <ClCompile Include="Script\Component\Fighter.cpp" />
     <ClCompile Include="Script\Component\Fighter\Fighter.cpp" />
+    <ClCompile Include="Script\Component\Fighter.cpp" />
     <ClCompile Include="Script\Component\Fighter\FighterDataLoader.cpp" />
     <ClCompile Include="Script\Component\Input.cpp" />
     <ClCompile Include="Script\Component\ModelRenderer.cpp" />
