@@ -19,7 +19,7 @@ public:
     void SetModelHandle(int handle);
 
     // 更新
-    void Update();
+    void Update()override;
 
 private:
     // 3Dオブジェクトハンドル

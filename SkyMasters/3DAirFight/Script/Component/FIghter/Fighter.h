@@ -7,13 +7,39 @@
 class Fighter : public Component
 {
 public:
-	Fighter(Actor* owner,const Fighter& data)
-		: Component(owner,
-			static_cast<int>(ComponentUpdateOrder::Behaviour)){}
+	// コンストラクタ
+	Fighter(Actor* owner)
+		: Component(owner,static_cast<int>(ComponentUpdateOrder::Behaviour)){}
 
-	void SetData(const FighterData& data);
+	// デストラクタ
+	~Fighter(){}
+
+	enum PlayerState
+	{
+		Manual,		   // マニュアル操作
+		Automatic,	   // 自動操作
+		Dead,		   // 死亡
+	};
+
+	// 初期化
+	void Initialize();
+
+	// 更新
+	void Execute();
+
+	// 終了
+	//void Terminate();
+
+	// ステートの変更
+	void ChangeState(PlayerState state);
+
+	//	各部品のステータスの合計を求める
+	FighterStatus AddStatus(short bodyID,short wingID,short diffID,short spwID);
 
 private:
-	FighterData m_fighterData{};
+	PlayerState m_currentState = Manual;
 
+	FighterStatus m_status{};
+
+	FighterDataLoader m_loader;
 };

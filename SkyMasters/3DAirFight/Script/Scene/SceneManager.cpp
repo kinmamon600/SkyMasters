@@ -146,13 +146,11 @@ void SceneManager::Load()
 
 		if (loadSucceeded)
 		{
-			printfDx("’†‚Í‚¢‚é‚æ");
 			// “Ç‚İ‚İ¬Œ÷‚Ì‚İ‰Šú‰»
 			currentStep = SceneStep::Initialize;
 		}
 		else
 		{
-			printfDx("ŠOo‚é‚æ");
 			p_currentScene.reset();
 			currentSceneType = SceneType::Exit;
 		}
