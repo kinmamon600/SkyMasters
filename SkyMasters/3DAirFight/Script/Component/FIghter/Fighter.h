@@ -1,8 +1,8 @@
 #pragma once
-#include"../Component.h"
-#include"../ComponentUpdateOrder.h"
-#include"FighterData.h"
-#include"FighterDataLoader.h"
+#include "../Component.h"
+#include "../ComponentUpdateOrder.h"
+#include "FighterData.h"
+#include "FighterDataLoader.h"
 
 class Fighter : public Component
 {
