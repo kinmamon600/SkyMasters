@@ -11,6 +11,7 @@
 #include "../Component/Input.h"
 #include "../Component/PhysicsColliderBox.h"
 #include "../Component/Fighter/Fighter.h"
+#include "../Component/Fighter/Manual.h"
 
 #include "../Component/Fighter/FighterDataLoader.h"
 
@@ -30,25 +31,27 @@ bool GameScene::Load()
 // 初期化
 void GameScene::Initialize()
 {
+    printfDx("初期化しまーす\n");
     // インスタンスの生成
     playerObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
     // コンポーネントを生成
+    new Camera(playerObject.get());
     new Transform(playerObject.get());
     new Fighter(playerObject.get());
+    new Manual(playerObject.get());
     new PhysicsColliderBox(playerObject.get(),VGet(0,0,0),VGet(1,1,1),PhysicsCollider::Active,100);
     new Input(playerObject.get());
     new ModelRenderer(playerObject.get());
 
     ModelRenderer* modelComp = playerObject->GetComponent<ModelRenderer>();
     modelComp->SetModelHandle(playerModel);
-
 }
 
 // 更新
 void GameScene::Execute()
 {
-
+    
 }
 
 // 終了

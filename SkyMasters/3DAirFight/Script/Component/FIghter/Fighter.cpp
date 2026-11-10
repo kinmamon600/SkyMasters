@@ -1,5 +1,7 @@
+#include "Actor/Actor.h"
 #include "Fighter.h"
 #include "FighterDataLoader.h"
+#include "Manual.h"
 
 // ‰Šú‰»
 void Fighter::Initialize()
@@ -8,15 +10,19 @@ void Fighter::Initialize()
 }
 
 // XV
-void Fighter::Execute()
+void Fighter::Update()
 {
 	switch (m_currentState)
 	{
-	case Fighter::Manual:
+	case Fighter::PlayerState::Manual:
+	{
+		Manual* manuComp = m_owner->GetComponent<Manual>();
+		manuComp->FighterControl();
+	}
 		break;
-	case Fighter::Automatic:
+	case Fighter::PlayerState::Automatic:
 		break;
-	case Fighter::Dead:
+	case Fighter::PlayerState::Dead:
 		break;
 	}
 }

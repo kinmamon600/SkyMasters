@@ -1,4 +1,5 @@
 // ライブラリ・ヘッダ
+#include "DxLib.h"
 #include "ComponentManager.h"
 #include "Component.h"
 #include "ComponentUpdateOrder.h"
@@ -25,6 +26,7 @@ void ComponentManager::AddComponent(Component* component)
 
 		// イテレーターの位置の前に要素を挿入する
 		p_renderComponents.insert(iter, component);
+		printfDx("描画系コンポーネント追加");
 	}
 	else
 	{
@@ -39,25 +41,33 @@ void ComponentManager::AddComponent(Component* component)
 
 		// イテレーターの位置の前に要素を挿入する
 		p_processComponents.insert(iter, component);
+		printfDx("描画系じゃないコンポーネント追加");
 	}
 }
 
 // コンポーネントの削除
 void ComponentManager::RemoveComponent(Component* component)
 {
-	// 処理系コンポーネントを検索、見つかったら消去
-	auto iter = std::find(p_processComponents.begin(), p_processComponents.end(), component);
-	if (iter != p_processComponents.end())
-	{
-		p_processComponents.erase(iter);
-		return;
-	}
+	int myOrder = component->GetUpdateOrder();
 
-	// レンダリング系コンポーネントを検索、見つかったら消去
-	iter = std::find(p_renderComponents.begin(), p_renderComponents.end(), component);
-	if (iter != p_renderComponents.end())
+	if (myOrder > static_cast<int>(ComponentUpdateOrder::StartRenderComponent) &&
+		myOrder < static_cast<int>(ComponentUpdateOrder::EndRenderComponent))
 	{
-		p_renderComponents.erase(iter);
+		// レンダリング系コンポーネントを検索、見つかったら消去
+		auto iter = std::find(p_renderComponents.begin(), p_renderComponents.end(), component);
+		if (iter != p_renderComponents.end())
+		{
+			p_renderComponents.erase(iter);
+		}
+	}
+	else
+	{
+		// 処理系コンポーネントを検索、見つかったら消去
+		auto iter = std::find(p_processComponents.begin(), p_processComponents.end(), component);
+		if (iter != p_processComponents.end())
+		{
+			p_processComponents.erase(iter);
+		}
 	}
 }
 
@@ -65,6 +75,7 @@ void ComponentManager::RemoveComponent(Component* component)
 // アクターは関係なくコンポーネントの更新順にのっとって更新
 void ComponentManager::Update()
 {
+	printfDx("更新！");
 	// 全コンポーネントを順次更新
 	for (auto comp : p_processComponents)
 	{

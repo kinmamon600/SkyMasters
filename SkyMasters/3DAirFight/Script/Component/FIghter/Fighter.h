@@ -14,7 +14,7 @@ public:
 	// デストラクタ
 	~Fighter(){}
 
-	enum PlayerState
+	enum class PlayerState
 	{
 		Manual,		   // マニュアル操作
 		Automatic,	   // 自動操作
@@ -25,7 +25,7 @@ public:
 	void Initialize();
 
 	// 更新
-	void Execute();
+	void Update()override;
 
 	// 終了
 	//void Terminate();
@@ -37,7 +37,7 @@ public:
 	FighterStatus AddStatus(short bodyID,short wingID,short diffID,short spwID);
 
 private:
-	PlayerState m_currentState = Manual;
+	PlayerState m_currentState = PlayerState::Manual;
 
 	FighterStatus m_status{};
 

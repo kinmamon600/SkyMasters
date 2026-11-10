@@ -7,6 +7,9 @@
 
 #include <memory>
 
+/// <summary>
+/// ƒƒCƒ“‚Æ‚È‚éí“¬ƒV[ƒ“
+/// </summary>
 class GameScene : public SceneBase
 {
 public:

@@ -1,6 +1,7 @@
 // ライブラリ・ヘッダ
 #include<chrono>
 #include<cmath>
+#include"DxLib.h"
 
 #include "SuperDxPhysics.h"
 
@@ -118,6 +119,7 @@ void SceneManager::Load()
 	{
 		CreateScene();
 
+		// シーン生成に失敗したとき用
 		if (p_currentScene == nullptr)
 		{
 			return;

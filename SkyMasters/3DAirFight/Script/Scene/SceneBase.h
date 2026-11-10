@@ -19,7 +19,8 @@ public:
 	SceneBase(SceneManager* sceneManager) : p_sceneManager(sceneManager) {};
 
 	// 仮想デストラクタ
-	virtual ~SceneBase() = default;
+	//virtual ~SceneBase() = default;
+	~SceneBase() {};
 
 	// シーンの初期化
 	virtual void Initialize() = 0;
@@ -41,6 +42,7 @@ protected:
 	// シーンの切り替えリクエスト
 	void RequestSceneChange();
 
+	// シーンマネージャ
 	SceneManager* p_sceneManager;
 
 private:
