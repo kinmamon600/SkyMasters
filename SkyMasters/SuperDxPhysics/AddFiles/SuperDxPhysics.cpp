@@ -630,6 +630,8 @@ int SDP::CreatePhysicalGround(const COLOR_U8& color)
 // 物理オブジェクトの削除
 void SDP::DestroyPhysicalObject(unsigned int id)
 {
+	if (id < 0) { return; }
+
 	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
 	if (rb_world->isRemovedRigidBody(id)) return;
 

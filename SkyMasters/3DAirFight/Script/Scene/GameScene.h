@@ -7,6 +7,9 @@
 
 #include <memory>
 
+/// <summary>
+/// メインとなる戦闘シーン
+/// </summary>
 class GameScene : public SceneBase
 {
 public:
@@ -25,16 +28,16 @@ public:
     SceneType Terminate() override;
 
 private:
-    // 
-    std::unique_ptr<Actor> skyboxObject;
-    std::unique_ptr<Actor> uiObject;
+    // ゲームオブジェクト
+    std::unique_ptr<Actor> playerObject;
     std::unique_ptr<Actor> modelObject;
+    //std::unique_ptr<Actor> skyboxObject;
+    //std::unique_ptr<Actor> uiObject;
 
     FighterDataLoader m_loader;
 
     // 画像ハンドル
-    int testHandle = -1;
 
     // ３Dモデルハンドル
-    int modelHandle = -1;
+    int playerModel = -1;
 };

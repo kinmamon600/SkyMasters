@@ -35,6 +35,7 @@ public:
     // モデルハンドルのセット
     void SetModelHandle(int handle);
 
+<<<<<<< HEAD
     // ディフューズカラーの設定
     void SetDiffuse(COLOR_F dif);
 
@@ -55,6 +56,10 @@ public:
 
     // テクスチャマスクの削除
     void RemoveTextureMask(unsigned short index);
+=======
+    // 更新
+    void Update()override;
+>>>>>>> keigo
 
 private:
     // 3Dオブジェクトハンドル
