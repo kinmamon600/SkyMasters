@@ -1,6 +1,7 @@
 // ライブラリ・ヘッダ
 #include<chrono>
 #include<cmath>
+#include"DxLib.h"
 
 #include "SuperDxPhysics.h"
 
@@ -118,6 +119,7 @@ void SceneManager::Load()
 	{
 		CreateScene();
 
+		// シーン生成に失敗したとき用
 		if (p_currentScene == nullptr)
 		{
 			return;
@@ -146,13 +148,11 @@ void SceneManager::Load()
 
 		if (loadSucceeded)
 		{
-			printfDx("中はいるよ");
 			// 読み込み成功時のみ初期化
 			currentStep = SceneStep::Initialize;
 		}
 		else
 		{
-			printfDx("外出るよ");
 			p_currentScene.reset();
 			currentSceneType = SceneType::Exit;
 		}

@@ -8,14 +8,7 @@
 // デストラクタ
 Game::~Game()
 {
-    delete sceneManager;
-    sceneManager = nullptr;
-
-	delete p_inputManager;
-	p_inputManager = nullptr;
-
-	delete p_componentManager;
-	p_componentManager = nullptr;
+	
 }
 
 // ゲームの初期化
@@ -32,7 +25,7 @@ void Game::Update()
 {
 	// 入力の更新
 	// falseが返ってきたとき(コントローラが減った時等)は以降の処理を行わない
-	if (!UpdateInput()) { return; }
+	//if (!UpdateInput()) { return; }
 
     // シーンの更新
     sceneManager->Update();
@@ -42,6 +35,28 @@ void Game::Update()
 	{
 		act->Update();
 	}
+}
+
+// ゲームの終了
+// アクターやコンポーネントのメモリを解放する
+void Game::Terminate()
+{
+	// 全アクターの解放
+	// アクターの解放時に連鎖的にコンポーネントも解放される
+	for (Actor* act : mActors)
+	{
+		delete act;
+	}
+
+	// 各マネージャの解放
+	delete p_componentManager;
+	p_componentManager = nullptr;
+
+	delete p_inputManager;
+	p_inputManager = nullptr;
+
+	delete sceneManager;
+	sceneManager = nullptr;
 }
 
 // 新規アクターの追加

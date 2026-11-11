@@ -31,13 +31,13 @@ void Actor::Update()
 	}
 }
 
-void Actor::UpdateComponents()
-{
-	for (auto comp : mComponents)
-	{
-		comp->Update();
-	}
-}
+//void Actor::UpdateComponents()
+//{
+//	for (auto comp : mComponents)
+//	{
+//		comp->Update();
+//	}
+//}
 
 void Actor::UpdateActor()
 {
@@ -73,7 +73,4 @@ void Actor::RemoveComponent(Component* component)
 	{
 		mComponents.erase(iter);
 	}
-
-	delete component;
-	component = nullptr;
 }

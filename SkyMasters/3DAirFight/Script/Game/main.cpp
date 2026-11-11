@@ -10,9 +10,15 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	// 画面モードの設定
+<<<<<<< HEAD
 	SetGraphMode(Screen::Width, Screen::Height, 32, 60);
 	SetWindowSize(Screen::Width, Screen::Height);
 	ChangeWindowMode(FALSE);		// フルスクリーン表示
+=======
+	SetGraphMode(1920/2, 1080/2, 32, 60);
+	SetWindowSize(1920/2, 1080/2);
+	ChangeWindowMode(TRUE);		// フルスクリーン表示
+>>>>>>> main
 	SetMouseDispFlag(FALSE);		// マウスカーソル非表示
 	SetMainWindowText("SKY MASTES");// ウィンドウ名
 
@@ -39,6 +45,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	Game* game = new Game();
 	game->Initialize();
 
+	// 描画範囲設定
+	SetCameraNearFar(500.0f, 110000.0f);
+
 	// メインループ
 	while (ProcessMessage() != -1 && CheckHitKey(KEY_INPUT_ESCAPE) != 1)
 	{
@@ -52,10 +61,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		WaitTimer(16);	// 一定時間待つ
 	}
 
-	delete game;
-
 	// 物理世界の後始末
 	SDP::PhysicsRelease();
+
+	// ゲームの実行処理終了
+	game->Terminate();
+	delete game;
 
 	// ＤＸライブラリの後始末
 	DxLib_End();

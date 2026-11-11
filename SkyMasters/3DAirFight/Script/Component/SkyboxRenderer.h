@@ -15,8 +15,14 @@ public:
     // デストラクタ
     ~SkyboxRenderer() override;
 
-    // モデルの読み込み
-    bool Load(const char* filePath);
+    // 更新
+    void Update() override;
+
+    // モデルハンドルの設定
+    void SetHandles(int model_handle, int texture_handle);
+
+    // テクスチャの設定
+    void SetTextureHandle(int texture_handle);
 
     // カメラの位置に合わせて背景の中心を移動
     void SetCenterPosition(VECTOR position);
@@ -31,7 +37,11 @@ public:
     void Release();
 
 private:
+    // 天球のモデルハンドル
     int m_modelHandle = -1;
+
+    // テクスチャのハンドル
+    int m_textureHandle = -1;
 
     VECTOR m_centerPosition = VGet(0.0f, 0.0f, 0.0f);
     float m_scale = 1000.0f;

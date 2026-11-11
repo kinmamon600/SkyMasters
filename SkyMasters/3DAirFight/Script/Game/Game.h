@@ -26,6 +26,10 @@ public:
     // ゲームの更新
     void Update();
 
+    // ゲームの終了
+    // アクターやコンポーネントのメモリを解放する
+    void Terminate();
+
     // 新規アクターの追加
     void AddActor(Actor* actor);
 
