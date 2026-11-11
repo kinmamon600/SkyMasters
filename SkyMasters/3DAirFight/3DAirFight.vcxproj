@@ -151,6 +151,7 @@
     <ClCompile Include="Script\Component\PhysicsCollider.cpp" />
     <ClCompile Include="Script\Component\PhysicsColliderBox.cpp" />
     <ClCompile Include="Script\Component\SkyBoxRenderer.cpp" />
+    <ClCompile Include="Script\Component\Transform.cpp" />
     <ClCompile Include="Script\Component\UIRenderer.cpp" />
     <ClCompile Include="Script\Game\Game.cpp" />
     <ClCompile Include="Script\Game\Main.cpp" />

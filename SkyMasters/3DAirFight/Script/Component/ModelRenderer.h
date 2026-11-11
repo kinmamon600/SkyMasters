@@ -32,6 +32,8 @@ public:
     // 更新
     void Update() override;
 
+    void SetScale(VECTOR scale);
+
     // モデルハンドルのセット
     void SetModelHandle(int handle);
 

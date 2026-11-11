@@ -71,6 +71,9 @@ public:
 	// 反発係数取得
 	float GetRestitution();
 
+	// SDP上のオブジェクトIDの取得
+	int GetID() const;
+
 protected:
 	// SDP上のオブジェクトID
 	int m_sdpID = -1;

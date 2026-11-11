@@ -17,6 +17,11 @@ void ModelRenderer::Update()
 	}
 }
 
+void ModelRenderer::SetScale(VECTOR scale)
+{
+	MV1SetScale(m_modelHandle, scale);
+}
+
 // ‰æ‘œ‚Ì•`‰æ
 void ModelRenderer::Draw()
 {

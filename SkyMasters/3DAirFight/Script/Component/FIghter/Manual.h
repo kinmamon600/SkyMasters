@@ -34,7 +34,7 @@ private:
 	const unsigned int JOYSTICK_MAX = 1000;		// スティックの最大値
 
 	// 必要なパラメータ群
-	float speed = 1.0f;					// 前に進む速度 ブーストとかエアブレーキのときはコレを変更
+	float speed = 10.0f;					// 前に進む速度 ブーストとかエアブレーキのときはコレを変更
 	float pitchAngularVelocity = 1.0f;	// ピッチ角速度
 	float yawAngularVelocity = 1.0f;	// ヨー角速度
 	float yawSlopeAngleMax = 45.0f;		// ヨーの時どのくらい傾くか

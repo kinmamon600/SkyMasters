@@ -1,7 +1,9 @@
+
 #include "Actor/Actor.h"
 #include "Fighter.h"
 #include "FighterDataLoader.h"
 #include "Manual.h"
+#include "../Transform.h"
 
 // ‰Šú‰»
 void Fighter::Initialize()

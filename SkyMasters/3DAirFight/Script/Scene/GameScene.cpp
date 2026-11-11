@@ -43,7 +43,7 @@ void GameScene::Initialize()
     new Transform(playerObject.get());
     new Fighter(playerObject.get());
     new Manual(playerObject.get());
-    new PhysicsColliderBox(playerObject.get(),VGet(0,0,0),VGet(1,1,1),PhysicsCollider::Active,100);
+    new PhysicsColliderBox(playerObject.get(),VGet(0,0,0),VGet(1,1,1),PhysicsCollider::Active,0);
     new Input(playerObject.get());
     new ModelRenderer(playerObject.get());
 
@@ -51,10 +51,12 @@ void GameScene::Initialize()
 
     ModelRenderer* modelComp = playerObject->GetComponent<ModelRenderer>();
     modelComp->SetModelHandle(playerModel);
+    modelComp->SetScale(VGet(0.1f, 0.1f, 0.1f));
 
     Camera* cameraComp = playerObject->GetComponent<Camera>();
     cameraComp->SetDispArea(0, 0, 1920 / 2, 1080 / 2);
     cameraComp->SetDispCenter(1920 / 4, 1080 / 4);
+    cameraComp->SetPosition(VGet(0,100,400));
 
     SkyboxRenderer* skyComp = skyBoxObject->GetComponent<SkyboxRenderer>();
     skyComp->SetHandles(skyHandel, skyTx);
@@ -63,7 +65,9 @@ void GameScene::Initialize()
 // çXêV
 void GameScene::Execute()
 {
-    
+    Transform* trComp = playerObject->GetComponent<Transform>();
+    VECTOR pos = trComp->GetPosition();
+    //printfDx("%f, %f, %f\n", pos.x, pos.y, pos.z);
 }
 
 // èIóπ

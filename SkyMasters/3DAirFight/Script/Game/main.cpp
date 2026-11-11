@@ -40,7 +40,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	game->Initialize();
 
 	// •`‰æ”ÍˆÍİ’è
-	SetCameraNearFar(500.0f, 110000.0f);
+	SetCameraNearFar(100.0f, 110000.0f);
 
 	// ƒƒCƒ“ƒ‹[ƒv
 	while (ProcessMessage() != -1 && CheckHitKey(KEY_INPUT_ESCAPE) != 1)

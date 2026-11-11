@@ -945,6 +945,7 @@ VECTOR SDP::GetDirection(unsigned int id, const VECTOR& std_vec)
 	PfxQuat q = state.getOrientation();
 
 	PfxVector3 qv(q.getX(), q.getY(), q.getZ());
+	printfDx("%d:%f, %f, %f\n", id, q.getX(), q.getY(), q.getZ());
 	PfxVector3 t = 2.0f * cross(qv, vec);
 
 	vec = vec + q.getW() * t + cross(qv, t);

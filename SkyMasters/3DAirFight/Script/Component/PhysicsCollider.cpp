@@ -7,7 +7,7 @@
 // デストラクタ
 PhysicsCollider::~PhysicsCollider()
 {
-	//SDP::DestroyPhysicalObject(m_sdpID);
+	SDP::DestroyPhysicalObject(m_sdpID);
 }
 
 // 更新処理
@@ -108,4 +108,10 @@ void PhysicsCollider::SetRestitution(float elastic)
 float PhysicsCollider::GetRestitution()
 {
 	return SDP::GetRestitution(m_sdpID);
+}
+
+// SDP上のオブジェクトIDの取得
+int PhysicsCollider::GetID() const
+{
+	return m_sdpID;
 }
