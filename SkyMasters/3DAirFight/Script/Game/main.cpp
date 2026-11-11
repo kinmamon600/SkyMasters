@@ -10,15 +10,9 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	// 画面モードの設定
-<<<<<<< HEAD
 	SetGraphMode(Screen::Width, Screen::Height, 32, 60);
 	SetWindowSize(Screen::Width, Screen::Height);
-	ChangeWindowMode(FALSE);		// フルスクリーン表示
-=======
-	SetGraphMode(1920/2, 1080/2, 32, 60);
-	SetWindowSize(1920/2, 1080/2);
 	ChangeWindowMode(TRUE);		// フルスクリーン表示
->>>>>>> main
 	SetMouseDispFlag(FALSE);		// マウスカーソル非表示
 	SetMainWindowText("SKY MASTES");// ウィンドウ名
 
@@ -30,7 +24,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
 	// 物理世界の初期化
-	if (!SDP::PhysicsInit(VGet(100.0f, 100.0f, 100.0f)))
+	if (!SDP::PhysicsInit(VGet(1000.0f, 1000.0f, 1000.0f)))
 	{
 		// エラーが発生したらプログラム終了
 		return -1;

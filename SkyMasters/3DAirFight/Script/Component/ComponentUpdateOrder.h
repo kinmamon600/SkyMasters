@@ -14,10 +14,10 @@ enum class ComponentUpdateOrder
 	// 描画処理
 	Camera,
 
-	StartRenderComponent,	// ここからレンダリング系コンポーネント (オーダーがこの値の時は更新されない)
+	StartRenderComponent,	// ここからレンダリング系コンポーネント (この値はオーダーに設定しない)
 	SkyboxRenderer,
 	ModelRenderer,
-	EndRenderComponent,		// ここまでレンダリング系コンポーネント (オーダーがこの値の時は更新されない)
+	EndRenderComponent,		// ここまでレンダリング系コンポーネント (この値はオーダーに設定しない)
 
 	UIRenderer,
 };

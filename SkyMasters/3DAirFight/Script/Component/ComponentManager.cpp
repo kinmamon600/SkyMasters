@@ -75,7 +75,7 @@ void ComponentManager::RemoveComponent(Component* component)
 // アクターは関係なくコンポーネントの更新順にのっとって更新
 void ComponentManager::Update()
 {
-	printfDx("更新！");
+	//printfDx("更新！");
 	// 全コンポーネントを順次更新
 	for (auto comp : p_processComponents)
 	{

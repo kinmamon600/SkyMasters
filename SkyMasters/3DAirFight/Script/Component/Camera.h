@@ -3,6 +3,9 @@
 
 // ライブラリ・ヘッダ
 #include <DxLib.h>
+
+#include "Screen/Screen.h"
+
 #include "Component.h"
 #include "ComponentUpdateOrder.h"
 
@@ -58,14 +61,14 @@ private:
 	VECTOR m_up = VGet(0.0f, 1.0f, 0.0f);
 
 	// 画面上の描画範囲
-	int m_dispArea_minX = -1;
-	int m_dispArea_minY = -1;
-	int m_dispArea_maxX = -1;
-	int m_dispArea_maxY = -1;
+	unsigned int m_dispArea_minX = 0;
+	unsigned int m_dispArea_minY = 0;
+	unsigned int m_dispArea_maxX = Screen::Width;
+	unsigned int m_dispArea_maxY = Screen::Height;
 
 	// 画面上の注視点位置
-	int m_dispCenterX = -1;
-	int m_dispCenterY = -1;
+	unsigned int m_dispCenterX = Screen::Width / 2;
+	unsigned int m_dispCenterY = Screen::Height / 2;
 };
 
 #endif

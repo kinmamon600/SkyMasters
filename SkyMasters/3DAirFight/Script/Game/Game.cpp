@@ -28,9 +28,19 @@ void Game::Update()
 	//if (!UpdateInput()) { return; }
 
     // シーンの更新
+	SceneStep current_step = sceneManager->GetSceneStep();
     sceneManager->Update();
 
-	// アクターの更新(コンポーネントも)
+	// ロード・初期化・シーン終了時はコンポーネント・アクターを更新しない
+	if (current_step != SceneStep::Execute)
+	{
+		return;
+	}
+
+	// コンポーネントの更新
+	p_componentManager->Update();
+
+	// アクターの更新
 	for (Actor* act : mActors)
 	{
 		act->Update();
