@@ -7,7 +7,7 @@
 // デストラクタ
 PhysicsCollider::~PhysicsCollider()
 {
-	SDP::DestroyPhysicalObject(m_sdpID);
+	//SDP::DestroyPhysicalObject(m_sdpID);
 }
 
 // 更新処理

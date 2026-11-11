@@ -27,6 +27,13 @@ void Game::Update()
 	// falseが返ってきたとき(コントローラが減った時等)は以降の処理を行わない
 	//if (!UpdateInput()) { return; }
 
+	// 保留状態のアクターを新規登録
+	for (auto pending : mPendingActors)
+	{
+		mActors.emplace_back(pending);
+	}
+	mPendingActors.clear();
+
     // シーンの更新
 	SceneStep current_step = sceneManager->GetSceneStep();
     sceneManager->Update();

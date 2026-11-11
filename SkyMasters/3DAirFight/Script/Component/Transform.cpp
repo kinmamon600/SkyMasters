@@ -19,7 +19,7 @@ void Transform::SetPosition(const VECTOR& pos)
 	// 物理コライダーがアタッチされていたら座標更新
 	PhysicsCollider* pc = m_owner->GetComponent<PhysicsCollider>();
 	if (pc == nullptr) { return; }
-	SDP::SetPosition(pc->GetID(), pos);
+	//SDP::SetPosition(pc->GetID(), pos);
 }
 
 // 回転の取得
@@ -36,7 +36,7 @@ void Transform::SetRotation(const VECTOR& rotation)
 	// 物理コライダーがアタッチされていたら回転更新
 	PhysicsCollider* pc = m_owner->GetComponent<PhysicsCollider>();
 	if (pc == nullptr) { return; }
-	SDP::SetRotate(pc->GetID(), rotation);
+	//SDP::SetRotate(pc->GetID(), rotation);
 }
 
 // サイズの取得
