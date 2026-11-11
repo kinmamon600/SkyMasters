@@ -55,7 +55,12 @@ void Game::Terminate()
 	// アクターの解放時に連鎖的にコンポーネントも解放される
 	for (Actor* act : mActors)
 	{
-		delete act;
+		auto iter = std::find(mActors.begin(), mActors.end(), act);
+		if (iter != mActors.end())
+		{
+			mActors.erase(iter);
+			delete act;
+		}
 	}
 
 	// 各マネージャの解放

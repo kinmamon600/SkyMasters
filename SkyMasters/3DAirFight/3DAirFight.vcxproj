@@ -185,7 +185,7 @@
     <ClInclude Include="Script\Component\UIRenderer.h" />
     <ClInclude Include="Script\GameObject\GameObject.h" />
     <ClInclude Include="Script\Game\Game.h" />
-    <ClInclude Include="Script\Component\SkyboxRenderer.h" />
+    <ClInclude Include="Script\Component\SkyBoxRenderer.h" />
     <ClInclude Include="Script\Input\ControllerDeviceData.h" />
     <ClInclude Include="Script\Input\ControllerInput.h" />
     <ClInclude Include="Script\Input\ControllerTypeKeyConfiguration.h" />

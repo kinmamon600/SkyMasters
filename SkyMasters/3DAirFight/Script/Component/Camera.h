@@ -67,8 +67,13 @@ private:
 	unsigned int m_dispArea_maxY = Screen::Height;
 
 	// ‰æ–Êã‚Ì’‹“_ˆÊ’u
+<<<<<<< HEAD
 	unsigned int m_dispCenterX = Screen::Width / 2;
 	unsigned int m_dispCenterY = Screen::Height / 2;
+=======
+	int m_dispCenterX = 0;
+	int m_dispCenterY = 0;
+>>>>>>> keigo
 };
 
 #endif
