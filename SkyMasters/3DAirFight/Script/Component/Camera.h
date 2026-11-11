@@ -64,8 +64,8 @@ private:
 	int m_dispArea_maxY = -1;
 
 	// ‰æ–Êã‚Ì’‹“_ˆÊ’u
-	int m_dispCenterX = -1;
-	int m_dispCenterY = -1;
+	int m_dispCenterX = 0;
+	int m_dispCenterY = 0;
 };
 
 #endif

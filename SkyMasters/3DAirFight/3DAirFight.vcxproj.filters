@@ -134,7 +134,7 @@
     <ClInclude Include="Script\Component\Transform.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Script\Component\SkyboxRenderer.h">
+    <ClInclude Include="Script\Component\SkyBoxRenderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Script\Component\UIRenderer.h">
