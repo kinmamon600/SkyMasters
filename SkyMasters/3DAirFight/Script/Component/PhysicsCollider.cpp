@@ -7,10 +7,7 @@
 // デストラクタ
 PhysicsCollider::~PhysicsCollider()
 {
-<<<<<<< HEAD
 	//RemoveComponentにコレ↓書くべきなのよね
-=======
->>>>>>> b6f04ddb26ac082dc786c1008df53c1d2ebdc50f
 	//SDP::DestroyPhysicalObject(m_sdpID);
 }
 

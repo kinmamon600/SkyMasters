@@ -28,17 +28,12 @@ void Game::Update()
 	//if (!UpdateInput()) { return; }
 	UpdateInput();
 
-<<<<<<< HEAD
-	// 物理演算更新
-	SDP::SimulatePhysics();
-=======
 	// 保留状態のアクターを新規登録
 	for (auto pending : mPendingActors)
 	{
 		mActors.emplace_back(pending);
 	}
 	mPendingActors.clear();
->>>>>>> b6f04ddb26ac082dc786c1008df53c1d2ebdc50f
 
     // シーンの更新
 	SceneStep current_step = sceneManager->GetSceneStep();
@@ -49,6 +44,9 @@ void Game::Update()
 	{
 		return;
 	}
+
+	// 物理演算更新
+	SDP::SimulatePhysics();
 
 	// コンポーネントの更新
 	p_componentManager->Update();

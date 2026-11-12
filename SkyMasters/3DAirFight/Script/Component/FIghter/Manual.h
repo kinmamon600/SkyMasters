@@ -30,7 +30,7 @@ public:
 	float VariableTransition_QuadraticFluctuation(float ratio, float min, float max);
 private:
 	// 必要なパラメータ群
-	float speed = 100.0f;					// 前に進む速度 ブーストとかエアブレーキのときはコレを変更
+	float speed = 100.0f;				// 前に進む速度 ブーストとかエアブレーキのときはコレを変更
 	float pitchAngularVelocity = 1.0f;	// ピッチ角速度
 	float yawAngularVelocity = 1.0f;	// ヨー角速度
 	float yawSlopeAngleMax = 45.0f;		// ヨーの時どのくらい傾くか
