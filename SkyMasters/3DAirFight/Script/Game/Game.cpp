@@ -27,8 +27,17 @@ void Game::Update()
 	// falseが返ってきたとき(コントローラが減った時等)は以降の処理を行わない
 	//if (!UpdateInput()) { return; }
 
+<<<<<<< HEAD
 	// 物理演算更新
 	SDP::SimulatePhysics();
+=======
+	// 保留状態のアクターを新規登録
+	for (auto pending : mPendingActors)
+	{
+		mActors.emplace_back(pending);
+	}
+	mPendingActors.clear();
+>>>>>>> b6f04ddb26ac082dc786c1008df53c1d2ebdc50f
 
     // シーンの更新
 	SceneStep current_step = sceneManager->GetSceneStep();

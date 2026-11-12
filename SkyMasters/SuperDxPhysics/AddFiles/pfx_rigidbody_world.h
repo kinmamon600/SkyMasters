@@ -296,7 +296,7 @@ public:
 	PfxUInt32 getContactCapacity() const {return m_contacts.capacity();}
 
 	PfxRigidState &getRigidState(PfxUInt16 rigidBodyId) {return m_states[rigidBodyId];}
-	const PfxRigidState	&getRigidState(PfxUInt16 rigidBodyId) const {return m_states[rigidBodyId];}
+	const PfxRigidState& getRigidState(PfxUInt16 rigidBodyId) const { return m_states[rigidBodyId]; }
 	
 	PfxRigidBody &getRigidBody(PfxUInt16 rigidBodyId) {return m_bodies[rigidBodyId];}
 	const PfxRigidBody &getRigidBody(PfxUInt16 rigidBodyId) const {return m_bodies[rigidBodyId];}

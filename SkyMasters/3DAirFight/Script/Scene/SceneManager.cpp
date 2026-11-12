@@ -82,6 +82,11 @@ void SceneManager::Initialize()
 // 現在シーンの更新
 void SceneManager::Execute()
 {
+<<<<<<< HEAD
+=======
+	
+
+>>>>>>> b6f04ddb26ac082dc786c1008df53c1d2ebdc50f
 	// シーン更新
 	p_currentScene->Execute();
 
