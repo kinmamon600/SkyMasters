@@ -943,7 +943,6 @@ VECTOR SDP::GetDirection(unsigned int id, const VECTOR& std_vec)
 	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
 	PfxRigidState& state = rb_world->getRigidState(id);
 	PfxQuat q = state.getOrientation();
-	printfDx("%d:%f, %f, %f, %f\n", id, q.getX(), q.getY(), q.getZ(), q.getW());
 
 	PfxVector3 qv(q.getX(), q.getY(), q.getZ());
 	PfxVector3 t = 2.0f * cross(qv, vec);

@@ -9,7 +9,7 @@
 #include "../Component/Transform.h"
 #include "../Component/Camera.h"
 #include "../Component/Input.h"
-#include "../Component/PhysicsColliderBox.h"
+#include "../Component/PhysicsColliderSphere.h"
 #include "../Component/Fighter/Fighter.h"
 #include "../Component/Fighter/Manual.h"
 
@@ -41,44 +41,41 @@ void GameScene::Initialize()
     skyBoxObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
     // コンポーネントを生成
-    //new Camera(playerObject.get());
-    //new Transform(playerObject.get());
-    //new Fighter(playerObject.get());
-    //new Manual(playerObject.get());
-    new PhysicsColliderBox(playerObject.get(),VGet(0,0,0),VGet(1,1,1),PhysicsCollider::Active,0);
-    //new Input(playerObject.get());
-    //new ModelRenderer(playerObject.get());
+    new Camera(playerObject.get());
+    new Transform(playerObject.get());
+    new PhysicsColliderSphere(playerObject.get(),VGet(0,0,0),1,PhysicsCollider::Active,1);
+    new Input(playerObject.get());
+    new ModelRenderer(playerObject.get());
+    new Fighter(playerObject.get());
+    new Manual(playerObject.get());
 
-    //new SkyboxRenderer(skyBoxObject.get());
+    new SkyboxRenderer(skyBoxObject.get());
 
-    //ModelRenderer* modelComp = playerObject->GetComponent<ModelRenderer>();
-    //modelComp->SetModelHandle(playerModel);
-    //modelComp->SetScale(VGet(0.1f, 0.1f, 0.1f));
+    ModelRenderer* modelComp = playerObject->GetComponent<ModelRenderer>();
+    modelComp->SetModelHandle(playerModel);
+    modelComp->SetScale(VGet(0.1f, 0.1f, 0.1f));
 
-    //Camera* cameraComp = playerObject->GetComponent<Camera>();
-    //cameraComp->SetDispArea(0, 0, 1920 / 2, 1080 / 2);
-    //cameraComp->SetDispCenter(1920 / 4, 1080 / 4);
-    //cameraComp->SetPosition(VGet(0,100,400));
+    Camera* cameraComp = playerObject->GetComponent<Camera>();
+    cameraComp->SetDispArea(0, 0, 1920 / 2, 1080 / 2);
+    cameraComp->SetDispCenter(1920 / 4, 1080 / 4);
+    cameraComp->SetPosition(VGet(0,100,400));
 
-    //SkyboxRenderer* skyComp = skyBoxObject->GetComponent<SkyboxRenderer>();
-    //skyComp->SetHandles(skyHandel, skyTx);
-
-    //PhysicsColliderBox* pcbComp = playerObject->GetComponent<PhysicsColliderBox>();
-    //pcbComp->GetDirection(VGet(0, 0, -1));
+    SkyboxRenderer* skyComp = skyBoxObject->GetComponent<SkyboxRenderer>();
+    skyComp->SetHandles(skyHandel, skyTx);
 }
 
 // 更新
 void GameScene::Execute()
 {
-    //PhysicsColliderBox* pcbComp = playerObject->GetComponent<PhysicsColliderBox>();
+    //PhysicsColliderSphere* pcbComp = playerObject->GetComponent<PhysicsColliderSphere>();
     //pcbComp->GetDirection(VGet(0, 0, -1));
-    SDP::GetDirection(0, VGet(0, 0, -1));
+    //SDP::GetDirection(0, VGet(0, 0, -1));
 }
 
 // 終了
 SceneType GameScene::Terminate()
 {
-    //skyboxObject.reset();
+    skyBoxObject.reset();
     //uiObject.reset();
     //modelObject.reset();
     playerObject.reset();
