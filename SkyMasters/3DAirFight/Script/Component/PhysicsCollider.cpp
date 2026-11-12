@@ -7,7 +7,8 @@
 // デストラクタ
 PhysicsCollider::~PhysicsCollider()
 {
-	SDP::DestroyPhysicalObject(m_sdpID);
+	//RemoveComponentにコレ↓書くべきなのよね
+	//SDP::DestroyPhysicalObject(m_sdpID);
 }
 
 // 更新処理

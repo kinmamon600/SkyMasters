@@ -82,9 +82,6 @@ void SceneManager::Initialize()
 // 現在シーンの更新
 void SceneManager::Execute()
 {
-	// 物理演算更新
-	SDP::SimulatePhysics();
-
 	// シーン更新
 	p_currentScene->Execute();
 

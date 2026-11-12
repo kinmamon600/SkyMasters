@@ -27,6 +27,9 @@ void Game::Update()
 	// falseが返ってきたとき(コントローラが減った時等)は以降の処理を行わない
 	//if (!UpdateInput()) { return; }
 
+	// 物理演算更新
+	SDP::SimulatePhysics();
+
     // シーンの更新
 	SceneStep current_step = sceneManager->GetSceneStep();
     sceneManager->Update();

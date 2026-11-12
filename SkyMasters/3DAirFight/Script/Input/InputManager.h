@@ -121,7 +121,7 @@ private:
 	unsigned short m_connectedControllerNum = 0;
 
 	// 想定されるコントローラ数
-	unsigned short m_expectedControllerNum = 1;
+	unsigned short m_expectedControllerNum = 0;
 
 	// コントローラが追加接続されたか
 	bool m_wasControllerAdded = false;

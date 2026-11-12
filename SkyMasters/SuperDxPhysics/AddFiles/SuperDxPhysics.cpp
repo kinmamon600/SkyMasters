@@ -115,10 +115,10 @@ void SDP::ResetPhysicsWorld()
 // シミュレーション
 void SDP::SimulatePhysics()
 {
-	if (g_totalObjectNumber != 0)
-	{
+	//if (g_totalObjectNumber != 0)
+	//{
 		physicsSimulate();
-	}
+	//}
 }
 
 // 重力設定
