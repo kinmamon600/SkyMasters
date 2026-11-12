@@ -26,6 +26,7 @@ void Game::Update()
 	// 入力の更新
 	// falseが返ってきたとき(コントローラが減った時等)は以降の処理を行わない
 	//if (!UpdateInput()) { return; }
+	UpdateInput();
 
 	// 保留状態のアクターを新規登録
 	for (auto pending : mPendingActors)
