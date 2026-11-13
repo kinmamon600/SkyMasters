@@ -11,6 +11,10 @@
 
 VECTOR Manual::FighterControl()
 {
+	// どのくらい動いているかを -1.0f ~ 1.0f で返す
+	float result_x = 0.0f;
+	float result_y = 0.0f;
+
 	// 入力・物理コライダーの取得
 	Input* input = m_owner->GetComponent<Input>();
 	PhysicsColliderSphere* pcs = m_owner->GetComponent<PhysicsColliderSphere>();
@@ -21,10 +25,6 @@ VECTOR Manual::FighterControl()
 	// 速度設定
 	// hpが0なら0
 	VECTOR linear_velocity = VScale(forward, speed);
-<<<<<<< HEAD
-	//VECTOR linear_velocity = VGet(0, 0, -speed);
-=======
->>>>>>> Nakada/PhysicsComponent
 
 	// 角速度設定 & ヨー時の傾き設定
 	// プレイヤー操作時で無ければ0
@@ -36,9 +36,10 @@ VECTOR Manual::FighterControl()
 	
 	// ピッチの角速度設定
 	float pitch_dot = VDot(VGet(0.0f, 1.0f, 0.0f), forward);
-	float pitch_target = (1.0f - std::abs(pitch_dot)) * (pitchAngleMax / 90.0f) * (float)(input->GetAnalog(Input::LY)) / ANALOG_INPUT_MAX;
+	//float pitch_target = (1.0f - std::abs(pitch_dot)) * (pitchAngleMax / 90.0f) * (float)(input->GetAnalog(Input::LY)) / ANALOG_INPUT_MAX;
+	float pitch_target = (1.0f - std::abs(pitch_dot)) * (pitchAngleMax / 180.0f * DX_PI) * (float)(input->GetAnalog(Input::LY)) / ANALOG_INPUT_MAX;
 	pitch = (pitch_dot - pitch_target) * (90.0f / pitchAngleMax) * pitchAngularVelocity;
-	printfDx("%f\n", pitch);
+	result_y = pitch_dot * (90.0f / pitchAngleMax);
 
 	// ヨーの角速度設定
 	yaw = -(float)(input->GetAnalog(Input::LX)) / ANALOG_INPUT_MAX * yawAngularVelocity;
@@ -76,7 +77,8 @@ VECTOR Manual::FighterControl()
 	VECTOR axis_x = VAdd(VScale(direction, c), VScale(VCross(axis_z, direction), s));
 	
 	direction = pcs->GetDirection(VGet(0.0f, 1.0f, 0.0f));
-	VECTOR axis_y = VAdd(VScale(direction, c), VScale(VCross(axis_z, direction), s));
+	//VECTOR axis_y = VAdd(VScale(direction, c), VScale(VCross(axis_z, direction), s));
+	VECTOR axis_y = VGet(0.0f, 1.0f, 0.0f);
 	
 	// 角速度設定
 	VECTOR control_angularvelocity = VGet(axis_x.x * pitch + axis_y.x * yaw,
@@ -90,15 +92,27 @@ VECTOR Manual::FighterControl()
 	yawSlopeAngle = current_yawslopeangle;
 	
 	VECTOR angular_velocity = VAdd(control_angularvelocity, yawslope_angularvelocity);
+	//VECTOR angular_velocity = control_angularvelocity;
 
 	// 速度設定
 	pcs->SetLinerVelocity(linear_velocity);
 	pcs->SetAngularVelocity(angular_velocity);
 
-	return VGet(0, 0, 0);
+	// 返り値設定
+	result_x = -yawSlopeAngle / yawSlopeAngleMax;
+	VECTOR result = VGet(result_x, -result_y, 0);
+	if (VSize(result) > 1.0f)
+	{
+		result = VNorm(result);
+	}
+	//printfDx("%f\n", result_y);
+
+	printfDx("%f, %f\n", result.x, result.y);
+	return result;
+	//return VGet((float)(input->GetAnalog(Input::LX)) / ANALOG_INPUT_MAX, (float)(input->GetAnalog(Input::LY)) / ANALOG_INPUT_MAX, 0.0f);
 }
 
-float  Manual::VariableTransition_QuadraticIncrease(float ratio, float min, float max)
+float Manual::VariableTransition_QuadraticIncrease(float ratio, float min, float max)
 {
 	if (ratio < 0.0f) { ratio = 0.0f; }
 	if (ratio > 1.0f) { ratio = 1.0f; }
@@ -106,7 +120,7 @@ float  Manual::VariableTransition_QuadraticIncrease(float ratio, float min, floa
 	return (max - min) * ratio * ratio + min;
 }
 
-float  Manual::VariableTransition_QuadraticDecrease(float ratio, float min, float max)
+float Manual::VariableTransition_QuadraticDecrease(float ratio, float min, float max)
 {
 	if (ratio < 0.0f) { ratio = 0.0f; }
 	if (ratio > 1.0f) { ratio = 1.0f; }
@@ -114,7 +128,7 @@ float  Manual::VariableTransition_QuadraticDecrease(float ratio, float min, floa
 	return (min - max) * ratio * ratio + max;
 }
 
-float  Manual::VariableTransition_QuadraticFluctuation(float ratio, float min, float max)
+float Manual::VariableTransition_QuadraticFluctuation(float ratio, float min, float max)
 {
 	if (ratio < 0.0f) { ratio = 0.0f; }
 	if (ratio > 1.0f) { ratio = 1.0f; }

@@ -152,6 +152,7 @@
     <ClCompile Include="Script\Component\ModelRenderer.cpp" />
     <ClCompile Include="Script\Component\PhysicsCollider.cpp" />
     <ClCompile Include="Script\Component\PhysicsColliderBox.cpp" />
+    <ClCompile Include="Script\Component\PhysicsColliderCylinder.cpp" />
     <ClCompile Include="Script\Component\PhysicsColliderSphere.cpp" />
     <ClCompile Include="Script\Component\SkyBoxRenderer.cpp" />
     <ClCompile Include="Script\Component\Transform.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Script\Actor\Actor.h" />
     <ClInclude Include="Script\Component\PhysicsCollider.h" />
     <ClInclude Include="Script\Component\PhysicsColliderBox.h" />
+    <ClInclude Include="Script\Component\PhysicsColliderCylinder.h" />
     <ClInclude Include="Script\Component\PhysicsColliderSphere.h" />
     <ClInclude Include="Script\Component\UIRenderer.h" />
     <ClInclude Include="Script\GameObject\GameObject.h" />

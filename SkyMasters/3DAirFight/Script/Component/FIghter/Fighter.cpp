@@ -22,13 +22,13 @@ void Fighter::Update()
 	{
 		// ‹@‘Ì§Œä
 		Manual* manuComp = m_owner->GetComponent<Manual>();
-		manuComp->FighterControl();
+		VECTOR ctrl_value = manuComp->FighterControl();
 
 		// ƒJƒƒ‰Ý’è
 		ManualCamera* manuCameraComp = p_myCamera->GetComponent<ManualCamera>();
 		Transform* trComp = m_owner->GetComponent<Transform>();
 		PhysicsColliderSphere* pcComp = m_owner->GetComponent<PhysicsColliderSphere>();
-		manuCameraComp->SetCamera(trComp, pcComp, 0, 0, 60.0f);
+		manuCameraComp->SetCamera(trComp, pcComp, ctrl_value.x, ctrl_value.y, 60.0f);
 	}
 		break;
 	case Fighter::PlayerState::Automatic:

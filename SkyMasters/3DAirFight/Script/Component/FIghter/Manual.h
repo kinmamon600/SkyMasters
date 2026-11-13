@@ -33,7 +33,7 @@ private:
 	// 必要なパラメータ群
 	float speed = 100.0f;					// 前に進む速度 ブーストとかエアブレーキのときはコレを変更
 
-	float pitchAngularVelocity = 3.0f;		// ピッチ角速度
+	float pitchAngularVelocity = 0.7f;		// ピッチ角速度
 	float pitchAngleMax = 45.0f;			// 最大ピッチ角
 
 	float yawAngularVelocity = 1.0f;		// ヨー角速度

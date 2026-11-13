@@ -10,6 +10,7 @@
 #include "../Component/Camera.h"
 #include "../Component/Input.h"
 #include "../Component/PhysicsColliderSphere.h"
+#include "../Component/PhysicsColliderBox.h"
 #include "../Component/Fighter/Fighter.h"
 #include "../Component/Fighter/Manual.h"
 #include "../Component/FIghter/ManualCamera.h"
@@ -44,7 +45,8 @@ void GameScene::Initialize()
 
     // コンポーネントを生成
     new Transform(playerObject.get());
-    new PhysicsColliderSphere(playerObject.get(),VGet(0,0,0),1,PhysicsCollider::Active,1);
+    new PhysicsColliderSphere(playerObject.get(),VGet(0.0f, 0.0f, 0.0f),1,PhysicsCollider::Active,1);
+    //new PhysicsColliderBox(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(1.0f, 1.0f, 1.0f), PhysicsCollider::Active, 1);
     new Input(playerObject.get());
     new ModelRenderer(playerObject.get());
     new Fighter(playerObject.get(), cameraObject.get());
@@ -73,7 +75,8 @@ void GameScene::Execute()
 {
     //PhysicsColliderSphere* pcbComp = playerObject->GetComponent<PhysicsColliderSphere>();
     //pcbComp->GetDirection(VGet(0, 0, -1));
-    //SDP::GetDirection(0, VGet(0, 0, -1));
+    //VECTOR vec = SDP::GetDirection(0, VGet(0, 0, -1));
+    //printfDx("%f, %f, %f\n", vec.x, vec.y, vec.z);
 }
 
 // 終了
