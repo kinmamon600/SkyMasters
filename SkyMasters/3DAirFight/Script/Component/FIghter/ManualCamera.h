@@ -21,9 +21,21 @@ public:
 	~ManualCamera() {}
 
 	// カメラコンポーネントを設定
-	void SetCamera(const Transform* p_player_tr, const PhysicsCollider* p_player_pc, float x_value, float y_value, float fov);
+	void SetCamera(const Transform* p_player_tr, PhysicsCollider* p_player_pc, float x_value, float y_value, float fov);
 
 private:
+	float cameraFixationOffset = 60.0f;
+	float cameraDefaultPitchAngle = 3.5f;
+	float cameraDistance = 35.0f;
+
+	float cameraCenterAreaX = 40.0f;
+	float cameraCenterAreaY = 20.0f;
+
+	float cameraYawAngle = 8.75f;
+	float cameraPitchAngle = 5.5f;
+
+	float cameraTurnDistanceX = 880.0f;
+	float cameraTurnDistanceY = 730.0f;
 };
 
 #endif

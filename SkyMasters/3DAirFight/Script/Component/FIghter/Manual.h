@@ -18,7 +18,8 @@ public:
 	// デストラクタ
 	~Manual() {}
 
-	void FighterControl();
+	// マニュアル操作での機体制御
+	VECTOR FighterControl();
 
 	// 増加:ratioが0.0でmin、1.0でmaxになる
 	float VariableTransition_QuadraticIncrease(float ratio, float min, float max);
