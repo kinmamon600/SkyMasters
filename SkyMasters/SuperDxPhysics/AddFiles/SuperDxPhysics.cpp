@@ -744,7 +744,8 @@ void SDP::RenderPhysicalObject()
 {
 	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
 
-	for (int id = 0; id < (int)rb_world->getRigidBodyCount(); id++) {
+	for (int id = 0; id < (int)rb_world->getRigidBodyCount(); id++)
+	{
 		// オブジェクトが無い、描画しない設定の時は描画しない
 		if (rb_world->isRemovedRigidBody(id)) continue;
 		if (!g_renderFlags[id]) continue;
@@ -759,7 +760,8 @@ void SDP::RenderPhysicalObject()
 
 		PfxShapeIterator itrShape(coll);
 
-		for (int j = 0; j < (int)coll.getNumShapes(); j++, ++itrShape) {
+		for (int j = 0; j < (int)coll.getNumShapes(); j++, ++itrShape)
+		{
 			const PfxShape& shape = *itrShape;
 			PfxTransform3 offsetT = shape.getOffsetTransform();
 			PfxTransform3 worldT = rbT * offsetT;
@@ -855,6 +857,33 @@ unsigned int SDP::GetTotalObjectNumber()
 	return g_totalObjectNumber;
 }
 
+// 行列の取得
+const MATRIX& SDP::GetMatrix(unsigned int id)
+{
+	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
+
+	// オブジェクトが無い、描画しない設定の時は描画しない
+	if (rb_world->isRemovedRigidBody(id)) { return MGetIdent(); }
+	if (!g_renderFlags[id]) { return MGetIdent(); }
+
+	const PfxRigidState& state = rb_world->getRigidState(id);
+	const PfxCollidable& coll = rb_world->getCollidable(id);
+
+	PfxTransform3 rbT(state.getOrientation(), state.getPosition());
+
+	// マテリアルの設定
+	SetMaterialParam(g_physicsObjectMaterial[id]);
+
+	PfxShapeIterator itrShape(coll);
+
+	const PfxShape& shape = *itrShape;
+	PfxTransform3 offsetT = shape.getOffsetTransform();
+	PfxTransform3 worldT = rbT * offsetT;
+
+	// 回転・移動行列の取得
+	return WorldT2MATRIX(&worldT);
+}
+
 // 物理オブジェクトの座標設定
 void SDP::SetPosition(unsigned int id, const VECTOR& pos)
 {
@@ -902,37 +931,81 @@ void SDP::SetRotate(unsigned int id, const VECTOR& rotate)
 // 物理オブジェクトの回転取得
 VECTOR SDP::GetRotate(unsigned int id)
 {
-	// GamePhysicsSDKのクオータニオンからDxLibのVectorに変換
+	//// GamePhysicsSDKのクオータニオンからDxLibのVectorに変換
+	//PfxRigidBodyWorld* rb_world = &physicsGetWorld();
+	//PfxRigidState& state = rb_world->getRigidState(id);
+	//PfxQuat orientation = state.getOrientation();
+	//
+	//float sinr_cosp = 2.0f * (orientation.getW() * orientation.getX() + orientation.getY() * orientation.getZ());
+	//float cosr_cosp = 1.0f - 2.0f * (orientation.getX() * orientation.getX() + orientation.getY() * orientation.getY());
+	//float rx = atan2f(sinr_cosp, cosr_cosp);
+	//
+	//float sinp = 2.0f * (orientation.getW() * orientation.getY() - orientation.getZ() * orientation.getX());
+	//float ry = 0.0f;
+	//
+	//if (fabsf(sinp) >= 1.0f)
+	//{
+	//	ry = copysignf(SCE_PFX_PI * 0.5f, sinp);
+	//}
+	//else
+	//{
+	//	ry = asinf(sinp);
+	//}
+	//
+	//float siny_cosp = 2.0f * (orientation.getW() * orientation.getZ() + orientation.getX() * orientation.getY());
+	//float cosy_cosp = 1.0f - 2.0f * (orientation.getY() * orientation.getY() + orientation.getZ() * orientation.getZ());
+	//float rz = atan2f(siny_cosp, cosy_cosp);
+	//
+	//// ラジアン -> 度
+	//rx *= 180.0f / SCE_PFX_PI;
+	//ry *= 180.0f / SCE_PFX_PI;
+	//rz *= 180.0f / SCE_PFX_PI;
+	//
+	//return VGet(rx, ry, -rz);
+
 	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
-	PfxRigidState& state = rb_world->getRigidState(id);
-	PfxQuat orientation = state.getOrientation();
-
-	float sinr_cosp = 2.0f * (orientation.getW() * orientation.getX() + orientation.getY() * orientation.getZ());
-	float cosr_cosp = 1.0f - 2.0f * (orientation.getX() * orientation.getX() + orientation.getY() * orientation.getY());
-	float rx = atan2f(sinr_cosp, cosr_cosp);
-
-	float sinp = 2.0f * (orientation.getW() * orientation.getY() - orientation.getZ() * orientation.getX());
-	float ry = 0.0f;
-
-	if (fabsf(sinp) >= 1.0f)
+	
+	// オブジェクトが無い、描画しない設定の時は描画しない
+	if (rb_world->isRemovedRigidBody(id)) { return VGet(0.0f, 0.0f, 0.0f); }
+	if (!g_renderFlags[id]) { return VGet(0.0f, 0.0f, 0.0f); }
+	
+	const PfxRigidState& state = rb_world->getRigidState(id);
+	const PfxCollidable& coll = rb_world->getCollidable(id);
+	
+	PfxTransform3 rbT(state.getOrientation(), state.getPosition());
+	
+	// マテリアルの設定
+	SetMaterialParam(g_physicsObjectMaterial[id]);
+	
+	PfxShapeIterator itrShape(coll);
+	
+	const PfxShape& shape = *itrShape;
+	PfxTransform3 offsetT = shape.getOffsetTransform();
+	PfxTransform3 worldT = rbT * offsetT;
+	
+	// 回転・移動行列の取得
+	MATRIX mat = WorldT2MATRIX(&worldT);
+	
+	float rx, ry, rz;
+	int result = GetMatrixYZXRotation(&mat, &rx, &ry, &rz);
+	
+	if (result == 0)
 	{
-		ry = copysignf(SCE_PFX_PI * 0.5f, sinp);
+		// 取得成功（rx, ry, rz にラジアンが入る）
+		printfDx("X: %f, Y: %f, Z: %f\n", rx, ry, rz);
 	}
 	else
 	{
-		ry = asinf(sinp);
+		// ジンバルロック発生時（Y軸回転が±90度付近の場合など）
+		printfDx("ジンバルロックが発生しました\n");
 	}
-
-	float siny_cosp = 2.0f * (orientation.getW() * orientation.getZ() + orientation.getX() * orientation.getY());
-	float cosy_cosp = 1.0f - 2.0f * (orientation.getY() * orientation.getY() + orientation.getZ() * orientation.getZ());
-	float rz = atan2f(siny_cosp, cosy_cosp);
-
+	
 	// ラジアン -> 度
-	rx *= 180.0f / SCE_PFX_PI;
-	ry *= 180.0f / SCE_PFX_PI;
-	rz *= 180.0f / SCE_PFX_PI;
-
-	return VGet(rx, ry, -rz);
+	rx *= 180.0f / DX_PI_F;
+	ry *= 180.0f / DX_PI_F;
+	rz *= 180.0f / DX_PI_F;
+	
+	return VGet(rx, ry, rz);
 }
 
 // 物理オブジェクトの向き取得

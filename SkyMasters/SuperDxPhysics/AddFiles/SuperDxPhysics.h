@@ -3,7 +3,7 @@
 
 /*
 * SuperDxPhysics
-* Ver 1.1.2
+* Ver 1.1.3
 *
 * 注意:ここでの「物理オブジェクト」とは、描画されるものを指します。
 */
@@ -114,6 +114,9 @@ namespace SDP {
 
 	// 総オブジェクト数の取得
 	unsigned int GetTotalObjectNumber();
+
+	// 行列の取得
+	const MATRIX& GetMatrix(unsigned int id);
 
 	// 物理オブジェクトの座標設定
 	void SetPosition(unsigned int id, const VECTOR& pos);
