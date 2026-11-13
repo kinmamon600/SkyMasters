@@ -9,6 +9,7 @@
 
 // 各シーンクラスのヘッダ
 #include "GameScene.h"
+#include"TitleScene.h"
 
 // デストラクタ
 SceneManager::~SceneManager()
@@ -57,6 +58,7 @@ void SceneManager::CreateScene()
 	switch (currentSceneType)
 	{
 	case SceneType::TitleScene:
+		p_currentScene = std::make_unique<TitleScene>(this);
 		break;
 
 	case SceneType::GameScene:

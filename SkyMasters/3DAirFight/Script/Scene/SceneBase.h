@@ -38,9 +38,10 @@ public:
 	// シーン遷移するかの取得
 	bool IsSceneChangeRequested() const;
 
-protected:
 	// シーンの切り替えリクエスト
 	void RequestSceneChange();
+
+protected:
 
 	// シーンマネージャ
 	SceneManager* p_sceneManager;

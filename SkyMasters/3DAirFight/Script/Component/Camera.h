@@ -50,6 +50,8 @@ public:
 	// 注視点位置設定
 	void SetDispCenter(unsigned int x, unsigned int y);
 
+	void SetFOV(float fov);
+
 private:
 	// カメラの座標
 	VECTOR m_position = VGet(0.0f, 0.0f, 0.0f);
