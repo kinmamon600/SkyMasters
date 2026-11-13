@@ -50,6 +50,7 @@ public:
 	// ’‹“_ˆÊ’uİ’è
 	void SetDispCenter(unsigned int x, unsigned int y);
 
+	// ‹–ìŠpİ’è
 	void SetFOV(float fov);
 
 private:

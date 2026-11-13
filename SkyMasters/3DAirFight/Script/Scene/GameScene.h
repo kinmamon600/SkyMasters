@@ -33,6 +33,7 @@ private:
     std::unique_ptr<Actor> skyBoxObject;
     //std::unique_ptr<Actor> uiObject;
     //std::unique_ptr<Actor> modelObject;
+    std::unique_ptr<Actor> cameraObject;
 
     FighterDataLoader m_loader;
 

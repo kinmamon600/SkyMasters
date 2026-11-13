@@ -12,6 +12,7 @@
 #include "../Component/PhysicsColliderSphere.h"
 #include "../Component/Fighter/Fighter.h"
 #include "../Component/Fighter/Manual.h"
+#include "../Component/FIghter/ManualCamera.h"
 
 #include "../Component/Fighter/FighterDataLoader.h"
 
@@ -39,15 +40,18 @@ void GameScene::Initialize()
     // 芥一の生成
     playerObject = std::make_unique<Actor>(p_sceneManager->p_game);
     skyBoxObject = std::make_unique<Actor>(p_sceneManager->p_game);
+    cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
     // コンポーネントを生成
-    new Camera(playerObject.get());
     new Transform(playerObject.get());
     new PhysicsColliderSphere(playerObject.get(),VGet(0,0,0),1,PhysicsCollider::Active,1);
     new Input(playerObject.get());
     new ModelRenderer(playerObject.get());
-    new Fighter(playerObject.get());
+    new Fighter(playerObject.get(), cameraObject.get());
     new Manual(playerObject.get());
+
+    new Camera(cameraObject.get());
+    new ManualCamera(cameraObject.get());
 
     new SkyboxRenderer(skyBoxObject.get());
 
@@ -55,7 +59,7 @@ void GameScene::Initialize()
     modelComp->SetModelHandle(playerModel);
     modelComp->SetScale(VGet(0.1f, 0.1f, 0.1f));
 
-    Camera* cameraComp = playerObject->GetComponent<Camera>();
+    Camera* cameraComp = cameraObject->GetComponent<Camera>();
     cameraComp->SetDispArea(0, 0, 1920 / 2, 1080 / 2);
     cameraComp->SetDispCenter(1920 / 4, 1080 / 4);
     cameraComp->SetPosition(VGet(0,100,400));
@@ -79,6 +83,7 @@ SceneType GameScene::Terminate()
     //uiObject.reset();
     //modelObject.reset();
     playerObject.reset();
+    cameraObject.reset();
 
     // 仮
     return SceneType::Exit;
