@@ -1,3 +1,6 @@
+// ライブラリ・ヘッダ
+#include <cmath>
+
 #include "Manual.h"
 #include "../../Screen/Screen.h"
 #include "../../Actor/Actor.h"
@@ -27,14 +30,19 @@ void Manual::FighterControl()
 	// プレイヤー操作時で無ければ0
 	float pitch = 0.0f;
 	float yaw = 0.0f;
-	//float roll = 0.0f;
 	
 	float current_yawslopeangle = 0.0f;
 	float target_yawslopeangle = 0.0f;
 	
-	pitch = -(float)(input->GetAnalog(Input::LY)) / ANALOG_INPUT_MAX * pitchAngularVelocity;
+	// ピッチの角速度設定
+	float pitch_dot = VDot(VGet(0.0f, 1.0f, 0.0f), forward);
+	float pitch_target = (1.0f - std::abs(pitch_dot)) * (pitchAngleMax / 90.0f) * (float)(input->GetAnalog(Input::LY)) / ANALOG_INPUT_MAX;
+	pitch = (pitch_dot - pitch_target) * (90.0f / pitchAngleMax) * pitchAngularVelocity;
+
+	// ヨーの角速度設定
 	yaw = -(float)(input->GetAnalog(Input::LX)) / ANALOG_INPUT_MAX * yawAngularVelocity;
 	
+	// ヨーの傾き設定
 	target_yawslopeangle = -(float)(input->GetAnalog(Input::LX)) / ANALOG_INPUT_MAX * yawSlopeAngleMax;
 	
 	if (target_yawslopeangle > yawSlopeAngle)
@@ -82,7 +90,7 @@ void Manual::FighterControl()
 	
 	VECTOR angular_velocity = VAdd(control_angularvelocity, yawslope_angularvelocity);
 
-	// 代入
+	// 速度設定
 	pcs->SetLinerVelocity(linear_velocity);
 	pcs->SetAngularVelocity(angular_velocity);
 }

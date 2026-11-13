@@ -20,8 +20,9 @@ void PhysicsCollider::Update()
 	// トランスフォームを更新
 	if (owner_tr != nullptr)
 	{
-		owner_tr->SetPosition(SDP::GetPosition(m_sdpID));
-		owner_tr->SetRotation(SDP::GetRotate(m_sdpID));
+		//owner_tr->SetPosition(SDP::GetPosition(m_sdpID));
+		//owner_tr->SetRotation(SDP::GetRotate(m_sdpID));
+		owner_tr->SetMatrix(SDP::GetMatrix(m_sdpID));
 	}
 }
 

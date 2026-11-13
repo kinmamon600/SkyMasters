@@ -15,6 +15,12 @@ public:
 	};
 	~Transform() {};
 
+	// 行列の取得
+	const MATRIX& GetMatrix() const;
+
+	// 行列のセット
+	void SetMatrix(const MATRIX mat);
+
 	// 座標の取得
 	const VECTOR& GetPosition() const;
 
@@ -34,7 +40,13 @@ public:
 	void SetScale(const VECTOR& scale);
 
 private:
-	VECTOR m_position = VGet(0.0f, 0.0f, 0.0f);
-	VECTOR m_rotation = VGet(0.0f, 0.0f, 0.0f);
-	VECTOR m_scale = VGet(1.0f, 1.0f, 1.0f);
+	//VECTOR m_position = VGet(0.0f, 0.0f, 0.0f);
+	//VECTOR m_rotation = VGet(0.0f, 0.0f, 0.0f);
+	//VECTOR m_scale = VGet(1.0f, 1.0f, 1.0f);
+
+	// 行列
+	MATRIX m_matrix = MGetIdent();
+
+	// 行列の作成
+	MATRIX CreateTransformMatrix(const VECTOR& position, const VECTOR& rotation, const VECTOR& scale);
 };
