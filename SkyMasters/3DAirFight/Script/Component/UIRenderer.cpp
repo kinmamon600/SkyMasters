@@ -3,7 +3,11 @@
 #include"../Actor/Actor.h"
 
 
-UIRenderer::~UIRenderer() {}
+UIRenderer::~UIRenderer() 
+{
+	printfDx("UIのデストラクタ呼ばれたよ\n");
+	DeleteGraph(m_graphHandle);
+}
 
 void UIRenderer::SetGrphHandle(int handle)
 {

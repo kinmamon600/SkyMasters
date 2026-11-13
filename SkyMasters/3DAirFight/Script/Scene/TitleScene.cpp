@@ -50,7 +50,25 @@ void TitleScene::Initialize()
 // XV
 void TitleScene::Execute()
 {
-	
+	Transform* startTr = startButtonObject->GetComponent<Transform>();
+
+	Transform* endTr = endButtonObject->GetComponent<Transform>();
+
+	ButtonManager* buttonComp = buttonManagerObject->GetComponent<ButtonManager>();
+
+	switch (buttonComp->m_currentButton)
+	{
+	case ButtonManager::TitleButtonType::Start:
+		startTr->SetScale(VGet(1.5, 1.5, 0));
+		endTr->SetScale(VGet(1, 1, 0));
+		break;
+	case ButtonManager::TitleButtonType::End:
+		endTr->SetScale(VGet(1.5, 1.5, 0));
+		startTr->SetScale(VGet(1, 1, 0));
+		break;
+	default:
+		break;
+	}
 }
 
 // I—¹

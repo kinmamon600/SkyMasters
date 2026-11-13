@@ -14,6 +14,7 @@ Component::Component(Actor* owner, int updateOrder)
 // デストラクタ
 Component::~Component()
 {
+	printfDx("コンポーネントのデストラクタ呼ばれたよ\n");
 	m_owner->RemoveComponent(this);
 }
 

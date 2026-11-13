@@ -7,7 +7,7 @@ void ButtonManager::Update()
 	Input* inComp = m_owner->GetComponent<Input>();
 
 	// ‰E“ü—Í
-	if (inComp->GetButton(Input::Button::RIGHT) /* || inComp->GetAnalog(Input::Analog::LX) > 0*/)
+	if (inComp->GetButtonDown(Input::Button::RIGHT) /* || inComp->GetAnalog(Input::Analog::LX) > 0*/)
 	{
 		m_currentButton++;
 
@@ -17,7 +17,7 @@ void ButtonManager::Update()
 	}
 
 	// ¶“ü—Í
-	if (inComp->GetButton(Input::Button::LEFT) /* || inComp->GetAnalog(Input::Analog::LX) < 0*/)
+	if (inComp->GetButtonDown(Input::Button::LEFT) /* || inComp->GetAnalog(Input::Analog::LX) < 0*/)
 	{
 		m_currentButton--;
 
@@ -27,7 +27,7 @@ void ButtonManager::Update()
 	}
 
 	// Œˆ’è
-	if (inComp->GetButton(Input::Button::EAST))
+	if (inComp->GetButtonDown(Input::Button::EAST))
 	{
 		printfDx("Œˆ’è‚µ‚½‚æ\n");
 

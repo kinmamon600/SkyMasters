@@ -42,6 +42,9 @@ public:
     // コンポーネントの削除
     void RemoveComponent(Component* component);
 
+    // 全アクターの削除
+    void RemoveActorAll();
+
     // 入力管理クラスの取得
     InputManager* GetInputManager() const;
 

@@ -103,6 +103,8 @@ void SceneManager::Terminate()
 	//currentScene = nullptr;
 	p_currentScene.reset();
 
+	p_game->RemoveActorAll();
+
 	// •¨—¢ŠE‚ÌƒŠƒZƒbƒg
 	SDP::ResetPhysicsWorld();
 
