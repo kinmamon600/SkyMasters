@@ -65,3 +65,8 @@ void Camera::SetDispCenter(unsigned int x, unsigned int y)
 	m_dispCenterX = x;
 	m_dispCenterY = y;
 }
+
+void Camera::SetFOV(float fov)
+{
+	SetupCamera_Perspective((fov / 180.0f) * DX_PI_F);
+}
