@@ -1,9 +1,11 @@
-
+// ライブラリ・ヘッダ
 #include "Actor/Actor.h"
 #include "Fighter.h"
 #include "FighterDataLoader.h"
 #include "Manual.h"
+#include "ManualCamera.h"
 #include "../Transform.h"
+#include "../PhysicsColliderSphere.h"
 
 // 初期化
 void Fighter::Initialize()
@@ -18,8 +20,15 @@ void Fighter::Update()
 	{
 	case Fighter::PlayerState::Manual:
 	{
+		// 機体制御
 		Manual* manuComp = m_owner->GetComponent<Manual>();
 		manuComp->FighterControl();
+
+		// カメラ設定
+		ManualCamera* manuCameraComp = p_myCamera->GetComponent<ManualCamera>();
+		Transform* trComp = m_owner->GetComponent<Transform>();
+		PhysicsColliderSphere* pcComp = m_owner->GetComponent<PhysicsColliderSphere>();
+		manuCameraComp->SetCamera(trComp, pcComp, 0, 0, 60.0f);
 	}
 		break;
 	case Fighter::PlayerState::Automatic:

@@ -9,7 +9,7 @@
 #include "../PhysicsColliderSphere.h"
 
 
-void Manual::FighterControl()
+VECTOR Manual::FighterControl()
 {
 	// 入力・物理コライダーの取得
 	Input* input = m_owner->GetComponent<Input>();
@@ -21,7 +21,10 @@ void Manual::FighterControl()
 	// 速度設定
 	// hpが0なら0
 	VECTOR linear_velocity = VScale(forward, speed);
+<<<<<<< HEAD
 	//VECTOR linear_velocity = VGet(0, 0, -speed);
+=======
+>>>>>>> Nakada/PhysicsComponent
 
 	// 角速度設定 & ヨー時の傾き設定
 	// プレイヤー操作時で無ければ0
@@ -35,6 +38,7 @@ void Manual::FighterControl()
 	float pitch_dot = VDot(VGet(0.0f, 1.0f, 0.0f), forward);
 	float pitch_target = (1.0f - std::abs(pitch_dot)) * (pitchAngleMax / 90.0f) * (float)(input->GetAnalog(Input::LY)) / ANALOG_INPUT_MAX;
 	pitch = (pitch_dot - pitch_target) * (90.0f / pitchAngleMax) * pitchAngularVelocity;
+	printfDx("%f\n", pitch);
 
 	// ヨーの角速度設定
 	yaw = -(float)(input->GetAnalog(Input::LX)) / ANALOG_INPUT_MAX * yawAngularVelocity;
@@ -90,6 +94,8 @@ void Manual::FighterControl()
 	// 速度設定
 	pcs->SetLinerVelocity(linear_velocity);
 	pcs->SetAngularVelocity(angular_velocity);
+
+	return VGet(0, 0, 0);
 }
 
 float  Manual::VariableTransition_QuadraticIncrease(float ratio, float min, float max)

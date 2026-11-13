@@ -8,8 +8,8 @@ class Fighter : public Component
 {
 public:
 	// コンストラクタ
-	Fighter(Actor* owner)
-		: Component(owner,static_cast<int>(ComponentUpdateOrder::Behaviour)){}
+	Fighter(Actor* owner, Actor* cam)
+		: Component(owner,static_cast<int>(ComponentUpdateOrder::Behaviour)), p_myCamera(cam){}
 
 	// デストラクタ
 	~Fighter(){}
@@ -42,4 +42,7 @@ private:
 	FighterStatus m_status{};
 
 	FighterDataLoader m_loader;
+
+	// 自身を映すカメラ
+	Actor* p_myCamera;
 };
