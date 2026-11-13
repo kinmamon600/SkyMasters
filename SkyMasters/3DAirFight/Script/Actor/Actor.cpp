@@ -14,6 +14,7 @@ Actor::Actor(Game* game)
 
 Actor::~Actor()
 {
+	printfDx("芥のデストラクタが呼ばれたよ\n");
 	mGame->RemoveActor(this);
 	// デストラクタがRemoveComponentを呼びループするため削除が必要
 	while (!mComponents.empty())
