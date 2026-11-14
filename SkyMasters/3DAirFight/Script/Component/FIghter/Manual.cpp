@@ -36,7 +36,6 @@ VECTOR Manual::FighterControl()
 	
 	// ピッチの角速度設定
 	float pitch_dot = VDot(VGet(0.0f, 1.0f, 0.0f), forward);
-	//float pitch_target = (1.0f - std::abs(pitch_dot)) * (pitchAngleMax / 90.0f) * (float)(input->GetAnalog(Input::LY)) / ANALOG_INPUT_MAX;
 	float pitch_target = (1.0f - std::abs(pitch_dot)) * (pitchAngleMax / 180.0f * DX_PI) * (float)(input->GetAnalog(Input::LY)) / ANALOG_INPUT_MAX;
 	pitch = (pitch_dot - pitch_target) * (90.0f / pitchAngleMax) * pitchAngularVelocity;
 	result_y = pitch_dot * (90.0f / pitchAngleMax);
@@ -77,7 +76,6 @@ VECTOR Manual::FighterControl()
 	VECTOR axis_x = VAdd(VScale(direction, c), VScale(VCross(axis_z, direction), s));
 	
 	direction = pcs->GetDirection(VGet(0.0f, 1.0f, 0.0f));
-	//VECTOR axis_y = VAdd(VScale(direction, c), VScale(VCross(axis_z, direction), s));
 	VECTOR axis_y = VGet(0.0f, 1.0f, 0.0f);
 	
 	// 角速度設定
@@ -92,7 +90,6 @@ VECTOR Manual::FighterControl()
 	yawSlopeAngle = current_yawslopeangle;
 	
 	VECTOR angular_velocity = VAdd(control_angularvelocity, yawslope_angularvelocity);
-	//VECTOR angular_velocity = control_angularvelocity;
 
 	// 速度設定
 	pcs->SetLinerVelocity(linear_velocity);
@@ -105,11 +102,9 @@ VECTOR Manual::FighterControl()
 	{
 		result = VNorm(result);
 	}
-	//printfDx("%f\n", result_y);
 
-	printfDx("%f, %f\n", result.x, result.y);
+	//printfDx("%f, %f\n", result.x, result.y);
 	return result;
-	//return VGet((float)(input->GetAnalog(Input::LX)) / ANALOG_INPUT_MAX, (float)(input->GetAnalog(Input::LY)) / ANALOG_INPUT_MAX, 0.0f);
 }
 
 float Manual::VariableTransition_QuadraticIncrease(float ratio, float min, float max)

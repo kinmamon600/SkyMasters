@@ -24,18 +24,18 @@ public:
 	void SetCamera(const Transform* p_player_tr, PhysicsColliderSphere* p_player_pc, float x_value, float y_value, float fov);
 
 private:
-	float cameraFixationOffset = 600.0f;
-	float cameraDefaultPitchAngle = 3.5f;
-	float cameraDistance = 900.0f;
+	float cameraFixationOffset = 550.0f;
+	float cameraDefaultPitchAngle = 3.0f;
+	float cameraDistance = 855.0f;
 
-	float cameraCenterAreaX = 40.0f;
-	float cameraCenterAreaY = 20.0f;
+	float cameraCenterAreaX = 20.0f;
+	float cameraCenterAreaY = 10.0f;
 
 	float cameraYawAngle = 8.75f;
 	float cameraPitchAngle = 5.5f;
 
-	float cameraTurnDistanceX = 88.0f;
-	float cameraTurnDistanceY = 73.0f;
+	float cameraTurnDistanceX = 94.0f;
+	float cameraTurnDistanceY = 85.0f;
 };
 
 #endif
