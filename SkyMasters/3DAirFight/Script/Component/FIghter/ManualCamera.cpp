@@ -7,6 +7,7 @@
 #include"../../Screen/Screen.h"
 #include "../Transform.h"
 #include "../PhysicsColliderSphere.h"
+#include "../PhysicsColliderBox.h"
 
 // カメラコンポーネントを設定
 void ManualCamera::SetCamera(const Transform* p_player_tr, PhysicsColliderSphere* p_player_pc, float x_value, float y_value, float fov)

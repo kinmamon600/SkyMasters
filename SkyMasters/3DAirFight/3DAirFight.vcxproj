@@ -143,6 +143,7 @@
     <ClCompile Include="Script\Component\Camera.cpp" />
     <ClCompile Include="Script\Component\Component.cpp" />
     <ClCompile Include="Script\Component\ComponentManager.cpp" />
+    <ClCompile Include="Script\Component\FIghter\Automatic.cpp" />
     <ClCompile Include="Script\Component\Fighter\Fighter.cpp" />
     <ClCompile Include="Script\Component\Fighter\FighterData.cpp" />
     <ClCompile Include="Script\Component\Fighter\FighterDataLoader.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="Script\Input\ControllerInput.cpp" />
     <ClCompile Include="Script\Input\ControllerUI.cpp" />
     <ClCompile Include="Script\Input\InputManager.cpp" />
+    <ClCompile Include="Script\Math\VariableTransition.cpp" />
     <ClCompile Include="Script\Scene\SceneManager.cpp" />
     <ClCompile Include="Script\Scene\SceneBase.cpp" />
     <ClCompile Include="Script\Scene\GameScene.cpp" />
@@ -178,6 +180,7 @@
     <ClInclude Include="Script\Component\Camera.h" />
     <ClInclude Include="Script\Component\ComponentManager.h" />
     <ClInclude Include="Script\Component\ComponentUpdateOrder.h" />
+    <ClInclude Include="Script\Component\FIghter\Automatic.h" />
     <ClInclude Include="Script\Component\Fighter\Fighter.h" />
     <ClInclude Include="Script\Component\Fighter\FighterData.h" />
     <ClInclude Include="Script\Component\Fighter\FighterDataLoader.h" />
@@ -201,6 +204,7 @@
     <ClInclude Include="Script\Input\ControllerTypeKeyConfiguration.h" />
     <ClInclude Include="Script\Input\ControllerUI.h" />
     <ClInclude Include="Script\Input\InputManager.h" />
+    <ClInclude Include="Script\Math\VariableTransition.h" />
     <ClInclude Include="Script\Scene\GameScene.h" />
     <ClInclude Include="Script\Scene\SceneManager.h" />
     <ClInclude Include="Script\Scene\SceneBase.h" />

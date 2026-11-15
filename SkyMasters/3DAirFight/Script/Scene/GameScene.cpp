@@ -14,6 +14,7 @@
 #include "../Component/Fighter/Fighter.h"
 #include "../Component/Fighter/Manual.h"
 #include "../Component/FIghter/ManualCamera.h"
+#include "../Component/FIghter/Automatic.h"
 
 #include "../Component/Fighter/FighterDataLoader.h"
 
@@ -45,12 +46,13 @@ void GameScene::Initialize()
 
     // コンポーネントを生成
     new Transform(playerObject.get());
-    new PhysicsColliderSphere(playerObject.get(),VGet(0.0f, 0.0f, 0.0f),1,PhysicsCollider::Active,1);
+    new PhysicsColliderSphere(playerObject.get(),VGet(0.0f, 0.0f, 0.0f),30,PhysicsCollider::Active,1);
     //new PhysicsColliderBox(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(1.0f, 1.0f, 1.0f), PhysicsCollider::Active, 1);
     new Input(playerObject.get());
     new ModelRenderer(playerObject.get());
     new Fighter(playerObject.get(), cameraObject.get());
     new Manual(playerObject.get());
+    new Automatic(playerObject.get());
 
     new Camera(cameraObject.get());
     new ManualCamera(cameraObject.get());

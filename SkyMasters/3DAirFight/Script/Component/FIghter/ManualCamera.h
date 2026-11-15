@@ -8,6 +8,7 @@
 // ‘O•ûéŒ¾
 class Transform;
 class PhysicsColliderSphere;
+class PhysicsColliderBox;
 
 class ManualCamera : public Component
 {

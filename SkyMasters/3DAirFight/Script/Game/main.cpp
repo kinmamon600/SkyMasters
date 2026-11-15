@@ -48,9 +48,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		// 画面クリア
 		DxLib::ClearDrawScreen();
 
-		// 物理演算更新
-		//SDP::SimulatePhysics();
-
 		// ゲームの更新
 		game->Update();
 
