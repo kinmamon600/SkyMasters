@@ -10,6 +10,7 @@
 #include "Manual.h"
 #include "ManualCamera.h"
 #include "Automatic.h"
+#include "AutomaticCamera.h"
 
 // 初期化
 void Fighter::Initialize()
@@ -32,8 +33,9 @@ void Fighter::Update()
 		ManualCamera* manuCameraComp = p_myCamera->GetComponent<ManualCamera>();
 		Transform* trComp = m_owner->GetComponent<Transform>();
 		PhysicsColliderSphere* pcComp = m_owner->GetComponent<PhysicsColliderSphere>();
-		//manuCameraComp->SetCamera(trComp, pcComp, ctrl_value.x, ctrl_value.y, 60.0f);
+		manuCameraComp->SetCamera(this, trComp, pcComp, ctrl_value.x, ctrl_value.y, 60.0f);
 
+		// 別ステートへの遷移分岐
 		Input* input = m_owner->GetComponent<Input>();
 		if (input->GetButtonDown(Input::L))
 		{
@@ -43,12 +45,19 @@ void Fighter::Update()
 		break;
 	case Fighter::PlayerState::Automatic:
 	{
+		// 機体制御
 		Automatic* autoComp = m_owner->GetComponent<Automatic>();
 
 		if (!autoComp->Turn())
 		{
 			m_currentState = Fighter::PlayerState::Manual;
 		}
+
+		// カメラ設定
+		AutomaticCamera* autoCameraComp = p_myCamera->GetComponent<AutomaticCamera>();
+		PhysicsColliderSphere* pcComp = m_owner->GetComponent<PhysicsColliderSphere>();
+		Transform* trComp = m_owner->GetComponent<Transform>();
+		autoCameraComp->TurnCamera(this, autoComp, pcComp, trComp);
 	}
 		break;
 	case Fighter::PlayerState::Dead:

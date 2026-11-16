@@ -15,6 +15,7 @@
 #include "../Component/Fighter/Manual.h"
 #include "../Component/FIghter/ManualCamera.h"
 #include "../Component/FIghter/Automatic.h"
+#include "../Component/FIghter/AutomaticCamera.h"
 
 #include "../Component/Fighter/FighterDataLoader.h"
 
@@ -56,6 +57,7 @@ void GameScene::Initialize()
 
     new Camera(cameraObject.get());
     new ManualCamera(cameraObject.get());
+    new AutomaticCamera(cameraObject.get());
 
     new SkyboxRenderer(skyBoxObject.get());
 

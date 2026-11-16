@@ -53,6 +53,9 @@ public:
 	// ‹–ìŠpİ’è
 	void SetFOV(float fov);
 
+	// ‹–ìŠp‚Ìæ“¾
+	float GetFOV() const;
+
 private:
 	// ƒJƒƒ‰‚ÌÀ•W
 	VECTOR m_position = VGet(0.0f, 0.0f, 0.0f);
@@ -72,6 +75,9 @@ private:
 	// ‰æ–Êã‚Ì’‹“_ˆÊ’u
 	unsigned int m_dispCenterX = Screen::Width / 2;
 	unsigned int m_dispCenterY = Screen::Height / 2;
+
+	// ‹–ìŠp
+	float m_fov = 60.0f;
 };
 
 #endif

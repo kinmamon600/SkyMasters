@@ -144,6 +144,7 @@
     <ClCompile Include="Script\Component\Component.cpp" />
     <ClCompile Include="Script\Component\ComponentManager.cpp" />
     <ClCompile Include="Script\Component\FIghter\Automatic.cpp" />
+    <ClCompile Include="Script\Component\FIghter\AutomaticCamera.cpp" />
     <ClCompile Include="Script\Component\Fighter\Fighter.cpp" />
     <ClCompile Include="Script\Component\Fighter\FighterData.cpp" />
     <ClCompile Include="Script\Component\Fighter\FighterDataLoader.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Script\Component\ComponentManager.h" />
     <ClInclude Include="Script\Component\ComponentUpdateOrder.h" />
     <ClInclude Include="Script\Component\FIghter\Automatic.h" />
+    <ClInclude Include="Script\Component\FIghter\AutomaticCamera.h" />
     <ClInclude Include="Script\Component\Fighter\Fighter.h" />
     <ClInclude Include="Script\Component\Fighter\FighterData.h" />
     <ClInclude Include="Script\Component\Fighter\FighterDataLoader.h" />

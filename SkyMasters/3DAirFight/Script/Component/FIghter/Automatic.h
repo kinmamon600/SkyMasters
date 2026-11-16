@@ -23,15 +23,6 @@ public:
 	// デストラクタ
 	~Automatic() {}
 
-	// 機体の向きをニュートラルに戻す
-	// ニュートラルになったらtrue
-	bool ReturnNeutral();
-
-	// ターン
-	// trueの時継続
-	bool Turn();
-
-private:
 	// ターン動作のステート
 	enum class TurnState
 	{
@@ -40,12 +31,35 @@ private:
 		RollTurn,	// ロールで姿勢をニュートラルに戻す
 	};
 
+	// 機体の向きをニュートラルに戻す
+	// ニュートラルになったらtrue
+	bool ReturnNeutral();
+
+	// ターン
+	// trueの時継続
+	bool Turn();
+
+	// ターンの現在状態の取得
+	TurnState GetCurrentTurnState() const;
+
+	// ターンの進行値の取得
+	float GetCurrentTurnValue() const;
+
+private:
 	// ターンの現在状態
 	TurnState m_currentTurnState = Automatic::TurnState::SetUp;
+
+	// ターンの進行値(0.0 ~ 1.0 もしくは 0.0 ~ -1.0)
+	// ステート毎に値が変わる
+	float m_currentTurnValue = 0.0f;
 
 	// 宙返り
 	// trueの時継続
 	bool PitchTurn();
+
+	// ロールしてニュートラルに戻る
+	// trueの時継続
+	bool RollTurn();
 };
 
 #endif

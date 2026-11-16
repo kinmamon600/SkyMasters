@@ -17,19 +17,23 @@ bool Automatic::ReturnNeutral()
 	// 入力・物理コライダーの取得
 	PhysicsColliderSphere* pcs = m_owner->GetComponent<PhysicsColliderSphere>();
 
-	// 自機の向きの取得
-	VECTOR forward = pcs->GetDirection(VGet(0.0f, 0.0f, -1.0f));
-
 	// 現在の姿勢取得
-	float pitch_dot = VDot(VGet(0.0f, 1.0f, 0.0f), forward);
+	VECTOR down = pcs->GetDirection(VGet(0.0f, -1.0f, 0.0f));
+	float dot = VDot(VGet(0.0f, 1.0f, 0.0f), down);
+	m_currentTurnValue = -dot;
+	//printfDx("%f\n", m_currentTurnValue);
 
-	// 姿勢がニュートラルなら処理終了
-	if (pitch_dot < 0.01f)
+	// 機体がひっくり返っていたなら処理終了
+	if (dot < -0.99f)
 	{
 		pcs->SetLinerVelocity(VGet(0.0f, 0.0f, 0.0f));
 		pcs->SetAngularVelocity(VGet(0.0f, 0.0f, 0.0f));
 		return true;
 	}
+
+	// 自機の向きの取得
+	VECTOR forward = pcs->GetDirection(VGet(0.0f, 0.0f, -1.0f));
+	float pitch_dot = VDot(VGet(0.0f, 1.0f, 0.0f), forward);
 
 	// 自機制御コンポーネント取得
 	Fighter* fighter = m_owner->GetComponent<Fighter>();
@@ -123,7 +127,7 @@ bool Automatic::Turn()
 
 	case Automatic::TurnState::RollTurn:
 		// 姿勢をニュートラルに戻す
-		if (ReturnNeutral())
+		if (!RollTurn())
 		{
 			m_currentTurnState = Automatic::TurnState::SetUp;
 			return false;
@@ -137,6 +141,18 @@ bool Automatic::Turn()
 	return true;
 }
 
+// ターンの現在状態の取得
+Automatic::TurnState Automatic::GetCurrentTurnState() const
+{
+	return m_currentTurnState;
+}
+
+// ターンの進行値の取得
+float Automatic::GetCurrentTurnValue() const
+{
+	return m_currentTurnValue;
+}
+
 // 宙返り
 // trueの時継続
 bool Automatic::PitchTurn()
@@ -146,10 +162,10 @@ bool Automatic::PitchTurn()
 
 	// 自機の向きの取得
 	VECTOR forward = pcs->GetDirection(VGet(0.0f, 0.0f, -1.0f));
-	VECTOR down = pcs->GetDirection(VGet(0.0f, 1.0f, 0.0f));
+	VECTOR up = pcs->GetDirection(VGet(0.0f, 1.0f, 0.0f));
 
 	// 現在の姿勢取得
-	float pitch_dot = VDot(VGet(0.0f, 1.0f, 0.0f), down);
+	float pitch_dot = VDot(VGet(0.0f, 1.0f, 0.0f), up);
 
 	// 機体がひっくり返っていたなら処理終了
 	if (pitch_dot < -0.99f)
@@ -181,6 +197,52 @@ bool Automatic::PitchTurn()
 	VECTOR angular_velocity = VGet(axis_x.x * pitch,
 		axis_x.y * pitch,
 		axis_x.z * pitch);
+
+	// 速度設定
+	pcs->SetLinerVelocity(linear_velocity);
+	pcs->SetAngularVelocity(angular_velocity);
+
+	return true;
+}
+
+// ロールしてニュートラルに戻る
+// trueの時継続
+bool Automatic::RollTurn()
+{
+	// 入力・物理コライダーの取得
+	PhysicsColliderSphere* pcs = m_owner->GetComponent<PhysicsColliderSphere>();
+
+	// 自機の向きの取得
+	VECTOR forward = pcs->GetDirection(VGet(0.0f, 0.0f, -1.0f));
+	VECTOR down = pcs->GetDirection(VGet(0.0f, -1.0f, 0.0f));
+
+	// 現在の姿勢取得
+	float dot = VDot(VGet(0.0f, 1.0f, 0.0f), down);
+	m_currentTurnValue = -dot / 2.0f - 0.5f;
+
+	// 機体がひっくり返っていたなら処理終了
+	if (dot < -0.99f)
+	{
+		pcs->SetLinerVelocity(VGet(0.0f, 0.0f, 0.0f));
+		pcs->SetAngularVelocity(VGet(0.0f, 0.0f, 0.0f));
+		return false;
+	}
+
+	// 自機制御コンポーネント取得
+	Fighter* fighter = m_owner->GetComponent<Fighter>();
+
+	// 速度設定
+	VECTOR linear_velocity = VScale(forward, fighter->speed);
+
+	float roll = fighter->rollAngularVelocity;
+
+	// 機体の軸方向設定
+	VECTOR axis_z = VScale(forward, -1.0f);
+	
+	// 角速度設定
+	VECTOR angular_velocity = VGet(axis_z.x * roll,
+		axis_z.y * roll,
+		axis_z.z * roll);
 
 	// 速度設定
 	pcs->SetLinerVelocity(linear_velocity);
