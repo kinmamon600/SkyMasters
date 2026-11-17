@@ -61,8 +61,8 @@ private:
 	void Load();
 
 	// 非同期処理の管理
-	std::future<bool>loadTask;		// 非同期処理完了を確認
-	bool isLoadStarted = false;		// 非同期処理を開始したか記録
+	//std::future<bool>loadTask;		// 非同期処理完了を確認
+	//bool isLoadStarted = false;		// 非同期処理を開始したか記録
 
 	// ロードアニメーションの管理
 	int loadingAngle = 0;

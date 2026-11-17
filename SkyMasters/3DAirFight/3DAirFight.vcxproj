@@ -139,7 +139,8 @@
     <ClCompile Include="..\SuperDxPhysics\AddFiles\physics_func.cpp" />
     <ClCompile Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.cpp" />
     <ClCompile Include="Script\Actor\Actor.cpp" />
-    <ClCompile Include="Script\Component\ButtonManager.cpp" />
+    <ClCompile Include="Script\Component\ButtonManager\FighterPickButtonManager.cpp" />
+    <ClCompile Include="Script\Component\ButtonManager\TitleButtonManager.cpp" />
     <ClCompile Include="Script\Component\Camera.cpp" />
     <ClCompile Include="Script\Component\Component.cpp" />
     <ClCompile Include="Script\Component\ComponentManager.cpp" />
@@ -165,7 +166,12 @@
     <ClCompile Include="Script\Input\ControllerInput.cpp" />
     <ClCompile Include="Script\Input\ControllerUI.cpp" />
     <ClCompile Include="Script\Input\InputManager.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Script\Math\VariableTransition.cpp" />
+=======
+    <ClCompile Include="Script\Loader\EnemyLoader.cpp" />
+    <ClCompile Include="Script\Scene\FighterPickScene.cpp" />
+>>>>>>> keigo
     <ClCompile Include="Script\Scene\SceneManager.cpp" />
     <ClCompile Include="Script\Scene\SceneBase.cpp" />
     <ClCompile Include="Script\Scene\GameScene.cpp" />
@@ -177,7 +183,8 @@
     <ClInclude Include="..\SuperDxPhysics\AddFiles\pfx_rigidbody_world_implementation.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\physics_func.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.h" />
-    <ClInclude Include="Script\Component\ButtonManager.h" />
+    <ClInclude Include="Script\Component\ButtonManager\FighterPickButtonManager.h" />
+    <ClInclude Include="Script\Component\ButtonManager\TitleButtonManager.h" />
     <ClInclude Include="Script\Component\Camera.h" />
     <ClInclude Include="Script\Component\ComponentManager.h" />
     <ClInclude Include="Script\Component\ComponentUpdateOrder.h" />
@@ -206,7 +213,13 @@
     <ClInclude Include="Script\Input\ControllerTypeKeyConfiguration.h" />
     <ClInclude Include="Script\Input\ControllerUI.h" />
     <ClInclude Include="Script\Input\InputManager.h" />
+<<<<<<< HEAD
     <ClInclude Include="Script\Math\VariableTransition.h" />
+=======
+    <ClInclude Include="Script\Loader\EnemyData.h" />
+    <ClInclude Include="Script\Loader\EnemyLoader.h" />
+    <ClInclude Include="Script\Scene\FighterPickScene.h" />
+>>>>>>> keigo
     <ClInclude Include="Script\Scene\GameScene.h" />
     <ClInclude Include="Script\Scene\SceneManager.h" />
     <ClInclude Include="Script\Scene\SceneBase.h" />

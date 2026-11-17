@@ -1,14 +1,14 @@
 #pragma once
-#include"../Actor/Actor.h"
-#include"Component.h"
-#include"ComponentUpdateOrder.h"
-#include"Input.h"
-#include"../Scene/SceneBase.h"
+#include"../../Actor/Actor.h"
+#include"../Component.h"
+#include"../ComponentUpdateOrder.h"
+#include"../Input.h"
+#include"../../Scene/SceneBase.h"
 
-class ButtonManager : public Component
+class TitleButtonManager : public Component
 {
 public:
-	ButtonManager(Actor* owner,SceneBase* base)
+	TitleButtonManager(Actor* owner,SceneBase* base)
 		:Component(owner, static_cast<int>(ComponentUpdateOrder::Behaviour)) {sb = base;};
 
 	void Update()override;
@@ -20,7 +20,7 @@ public:
 		Count,      // É{É^ÉìÇÃêî
 	};
 
-	int m_currentButton = Start;
+	unsigned short m_currentButton = Start;
 
 private:
 	SceneBase* sb;

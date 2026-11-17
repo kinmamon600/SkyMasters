@@ -1,8 +1,8 @@
-#include"ButtonManager.h"
-#include"Input.h"
-#include"../Scene/SceneBase.h"
+#include"TitleButtonManager.h"
+#include"../Input.h"
+#include"../../Scene/SceneBase.h"
 
-void ButtonManager::Update()
+void TitleButtonManager::Update()
 {
 	Input* inComp = m_owner->GetComponent<Input>();
 
@@ -11,9 +11,7 @@ void ButtonManager::Update()
 	{
 		m_currentButton++;
 
-		m_currentButton %= TitleButtonType::Count;
-
-		printfDx("%d\n", m_currentButton);
+		m_currentButton = (m_currentButton + TitleButtonType::Count) % TitleButtonType::Count;
 	}
 
 	// ¶“ü—Í
@@ -21,9 +19,7 @@ void ButtonManager::Update()
 	{
 		m_currentButton--;
 
-		m_currentButton %= TitleButtonType::Count;
-
-		printfDx("%d\n", m_currentButton);
+		m_currentButton = (m_currentButton + TitleButtonType::Count) % TitleButtonType::Count;
 	}
 
 	// Œˆ’è
@@ -33,10 +29,10 @@ void ButtonManager::Update()
 
 		switch (m_currentButton)
 		{
-		case ButtonManager::TitleButtonType::Start:
+		case TitleButtonManager::TitleButtonType::Start:
 			sb->RequestSceneChange();
 			break;
-		case ButtonManager::TitleButtonType::End:
+		case TitleButtonManager::TitleButtonType::End:
 			sb->RequestSceneChange();
 			break;
 		default:

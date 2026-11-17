@@ -21,6 +21,8 @@ public:
     // 画像ハンドルのセット
     void SetGrphHandle(int handle);
 
+    void SetIsVisible(bool isVisible);
+
 private:
     // 画像ハンドル
     int m_graphHandle = -1;
