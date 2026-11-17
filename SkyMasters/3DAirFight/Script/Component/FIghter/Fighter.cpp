@@ -51,13 +51,21 @@ void Fighter::Update()
 		if (!autoComp->Turn())
 		{
 			m_currentState = Fighter::PlayerState::Manual;
-		}
 
-		// ƒJƒƒ‰Ý’è
-		AutomaticCamera* autoCameraComp = p_myCamera->GetComponent<AutomaticCamera>();
-		PhysicsColliderSphere* pcComp = m_owner->GetComponent<PhysicsColliderSphere>();
-		Transform* trComp = m_owner->GetComponent<Transform>();
-		autoCameraComp->TurnCamera(this, autoComp, pcComp, trComp);
+			// ƒJƒƒ‰Ý’è
+			ManualCamera* manuCameraComp = p_myCamera->GetComponent<ManualCamera>();
+			Transform* trComp = m_owner->GetComponent<Transform>();
+			PhysicsColliderSphere* pcComp = m_owner->GetComponent<PhysicsColliderSphere>();
+			manuCameraComp->SetCamera(this, trComp, pcComp, 0.0f, 0.0f, 60.0f);
+		}
+		else
+		{
+			// ƒJƒƒ‰Ý’è
+			AutomaticCamera* autoCameraComp = p_myCamera->GetComponent<AutomaticCamera>();
+			PhysicsColliderSphere* pcComp = m_owner->GetComponent<PhysicsColliderSphere>();
+			Transform* trComp = m_owner->GetComponent<Transform>();
+			autoCameraComp->TurnCamera(this, autoComp, pcComp, trComp);
+		}
 	}
 		break;
 	case Fighter::PlayerState::Dead:

@@ -49,9 +49,12 @@ private:
 	// ターンの現在状態
 	TurnState m_currentTurnState = Automatic::TurnState::SetUp;
 
-	// ターンの進行値(0.0 ~ 1.0 もしくは 0.0 ~ -1.0)
+	// ターンの進行値(-1.0f ~ 1.0f)
 	// ステート毎に値が変わる
 	float m_currentTurnValue = 0.0f;
+
+	// 姿勢判定用の内積値を保持する用
+	float m_pastTurnDot = 0.0f;
 
 	// 宙返り
 	// trueの時継続

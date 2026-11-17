@@ -20,16 +20,18 @@ bool Automatic::ReturnNeutral()
 	// 現在の姿勢取得
 	VECTOR down = pcs->GetDirection(VGet(0.0f, -1.0f, 0.0f));
 	float dot = VDot(VGet(0.0f, 1.0f, 0.0f), down);
-	m_currentTurnValue = -dot;
-	//printfDx("%f\n", m_currentTurnValue);
 
 	// 機体がひっくり返っていたなら処理終了
-	if (dot < -0.99f)
+	if (dot >= m_pastTurnDot)
 	{
+		m_pastTurnDot = 2.0f;
 		pcs->SetLinerVelocity(VGet(0.0f, 0.0f, 0.0f));
 		pcs->SetAngularVelocity(VGet(0.0f, 0.0f, 0.0f));
 		return true;
 	}
+
+	m_currentTurnValue = -dot;
+	m_pastTurnDot = dot;
 
 	// 自機の向きの取得
 	VECTOR forward = pcs->GetDirection(VGet(0.0f, 0.0f, -1.0f));
@@ -39,34 +41,48 @@ bool Automatic::ReturnNeutral()
 	Fighter* fighter = m_owner->GetComponent<Fighter>();
 
 	// 速度設定
-	VECTOR linear_velocity = VScale(forward, fighter->speed);
+	VECTOR linear_velocity = VScale(forward, fighter->m_speed);
 
 	// 角速度設定 & ヨー時の傾き設定
-	// プレイヤー操作時で無ければ0
 	float pitch = 0.0f;
 
 	float current_yawslopeangle = 0.0f;
 	float target_yawslopeangle = 0.0f;
 
 	// ピッチの角速度設定
-	float pitch_target = 0;
-	pitch = (pitch_dot - pitch_target) * (90.0f / fighter->pitchAngleMax) * (fighter->pitchAngularVelocity);
+	pitch = pitch_dot * (90.0f / fighter->m_pitchAngleMax) * fighter->m_pitchAngularVelocity;
+
+	if (std::abs(pitch) < (fighter->m_pitchAngularVelocity) / 10.0f)
+	{
+		if (pitch_dot > 0.0f)
+		{
+			pitch = (fighter->m_pitchAngularVelocity) / 10.0f;
+		}
+		else if (pitch_dot < 0.0f)
+		{
+			pitch = -(fighter->m_pitchAngularVelocity) / 10.0f;
+		}
+		else
+		{
+			pitch = 0.0f;
+		}
+	}
 	
 	// ヨーの傾き設定
 	target_yawslopeangle = 0;
 
-	if (target_yawslopeangle > fighter->yawSlopeAngle)
+	if (target_yawslopeangle > fighter->m_yawSlopeAngle)
 	{
-		float spd = VariableTransition_QuadraticFluctuation((target_yawslopeangle - fighter->yawSlopeAngle) / (fighter->yawSlopeAngleMax * 2.0f),
-			fighter->yawSlopeAngleSpeedMin, fighter->yawSlopeAngleSpeedMax);
-		current_yawslopeangle = fighter->yawSlopeAngle + spd / Screen::FPS;
+		float spd = VariableTransition_QuadraticFluctuation((target_yawslopeangle - fighter->m_yawSlopeAngle) / (fighter->m_yawSlopeAngleMax * 2.0f),
+			fighter->m_yawSlopeAngleSpeedMin, fighter->m_yawSlopeAngleSpeedMax);
+		current_yawslopeangle = fighter->m_yawSlopeAngle + spd / Screen::FPS;
 		if (current_yawslopeangle > target_yawslopeangle) { current_yawslopeangle = target_yawslopeangle; }
 	}
-	else if (target_yawslopeangle < fighter->yawSlopeAngle)
+	else if (target_yawslopeangle < fighter->m_yawSlopeAngle)
 	{
-		float spd = VariableTransition_QuadraticFluctuation((fighter->yawSlopeAngle - target_yawslopeangle) / (fighter->yawSlopeAngleMax * 2.0f),
-			fighter->yawSlopeAngleSpeedMin, fighter->yawSlopeAngleSpeedMax);
-		current_yawslopeangle = fighter->yawSlopeAngle - spd / Screen::FPS;
+		float spd = VariableTransition_QuadraticFluctuation((fighter->m_yawSlopeAngle - target_yawslopeangle) / (fighter->m_yawSlopeAngleMax * 2.0f),
+			fighter->m_yawSlopeAngleSpeedMin, fighter->m_yawSlopeAngleSpeedMax);
+		current_yawslopeangle = fighter->m_yawSlopeAngle - spd / Screen::FPS;
 		if (current_yawslopeangle < target_yawslopeangle) { current_yawslopeangle = target_yawslopeangle; }
 	}
 	else
@@ -78,7 +94,7 @@ bool Automatic::ReturnNeutral()
 	VECTOR axis_z = VScale(forward, -1.0f);
 	VECTOR direction = pcs->GetDirection(VGet(1.0f, 0.0f, 0.0f));
 
-	float rad = fighter->yawSlopeAngle * DX_PI_F / 180.0f;
+	float rad = fighter->m_yawSlopeAngle * DX_PI_F / 180.0f;
 	float c = std::cos(rad);
 	float s = std::sin(rad);
 
@@ -89,11 +105,11 @@ bool Automatic::ReturnNeutral()
 		axis_x.y * pitch,
 		axis_x.z * pitch);
 
-	float yawslopeangle_changeamount = current_yawslopeangle - fighter->yawSlopeAngle;
+	float yawslopeangle_changeamount = current_yawslopeangle - fighter->m_yawSlopeAngle;
 	VECTOR yawslope_angularvelocity = VGet(axis_z.x * yawslopeangle_changeamount,
 		axis_z.y * yawslopeangle_changeamount,
 		axis_z.z * yawslopeangle_changeamount);
-	fighter->yawSlopeAngle = current_yawslopeangle;
+	fighter->m_yawSlopeAngle = current_yawslopeangle;
 
 	VECTOR angular_velocity = VAdd(control_angularvelocity, yawslope_angularvelocity);
 
@@ -115,6 +131,7 @@ bool Automatic::Turn()
 		if (ReturnNeutral())
 		{
 			m_currentTurnState = Automatic::TurnState::PitchTurn;
+			PitchTurn();
 		}
 		break;
 
@@ -122,6 +139,7 @@ bool Automatic::Turn()
 		if (!PitchTurn())
 		{
 			m_currentTurnState = Automatic::TurnState::RollTurn;
+			RollTurn();
 		}
 		break;
 
@@ -168,26 +186,30 @@ bool Automatic::PitchTurn()
 	float pitch_dot = VDot(VGet(0.0f, 1.0f, 0.0f), up);
 
 	// 機体がひっくり返っていたなら処理終了
-	if (pitch_dot < -0.99f)
+	if (pitch_dot >= m_pastTurnDot)
 	{
+		m_pastTurnDot = 2.0f;
 		pcs->SetLinerVelocity(VGet(0.0f, 0.0f, 0.0f));
 		pcs->SetAngularVelocity(VGet(0.0f, 0.0f, 0.0f));
 		return false;
 	}
 
+	m_currentTurnValue = -pitch_dot;
+	m_pastTurnDot = pitch_dot;
+
 	// 自機制御コンポーネント取得
 	Fighter* fighter = m_owner->GetComponent<Fighter>();
 
 	// 速度設定
-	VECTOR linear_velocity = VScale(forward, fighter->speed);
+	VECTOR linear_velocity = VScale(forward, fighter->m_speed);
 
-	float pitch = -fighter->pitchAngularVelocity;
+	float pitch = -fighter->m_pitchAngularVelocity;
 
 	// 機体の軸方向設定
 	VECTOR axis_z = VScale(forward, -1.0f);
 	VECTOR direction = pcs->GetDirection(VGet(1.0f, 0.0f, 0.0f));
 
-	float rad = fighter->yawSlopeAngle * DX_PI_F / 180.0f;
+	float rad = fighter->m_yawSlopeAngle * DX_PI_F / 180.0f;
 	float c = std::cos(rad);
 	float s = std::sin(rad);
 
@@ -218,23 +240,27 @@ bool Automatic::RollTurn()
 
 	// 現在の姿勢取得
 	float dot = VDot(VGet(0.0f, 1.0f, 0.0f), down);
-	m_currentTurnValue = -dot / 2.0f - 0.5f;
 
 	// 機体がひっくり返っていたなら処理終了
-	if (dot < -0.99f)
+	//if (dot <= -1.0f)
+	if (dot >= m_pastTurnDot)
 	{
+		m_pastTurnDot = 2.0f;
 		pcs->SetLinerVelocity(VGet(0.0f, 0.0f, 0.0f));
 		pcs->SetAngularVelocity(VGet(0.0f, 0.0f, 0.0f));
 		return false;
 	}
 
+	m_currentTurnValue = -dot / 2.0f - 0.5f;
+	m_pastTurnDot = dot;
+
 	// 自機制御コンポーネント取得
 	Fighter* fighter = m_owner->GetComponent<Fighter>();
 
 	// 速度設定
-	VECTOR linear_velocity = VScale(forward, fighter->speed);
+	VECTOR linear_velocity = VScale(forward, fighter->m_speed);
 
-	float roll = fighter->rollAngularVelocity;
+	float roll = fighter->m_rollAngularVelocityMax * (-m_currentTurnValue + fighter->m_rollAngularVelocityMin);
 
 	// 機体の軸方向設定
 	VECTOR axis_z = VScale(forward, -1.0f);

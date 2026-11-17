@@ -28,7 +28,7 @@ VECTOR Manual::FighterControl()
 	VECTOR forward = pcs->GetDirection(VGet(0.0f, 0.0f, -1.0f));
 
 	// 速度設定
-	VECTOR linear_velocity = VScale(forward, fighter->speed);
+	VECTOR linear_velocity = VScale(forward, fighter->m_speed);
 
 	// 角速度設定 & ヨー時の傾き設定
 	// プレイヤー操作時で無ければ0
@@ -40,28 +40,28 @@ VECTOR Manual::FighterControl()
 	
 	// ピッチの角速度設定
 	float pitch_dot = VDot(VGet(0.0f, 1.0f, 0.0f), forward);
-	float pitch_target = (1.0f - std::abs(pitch_dot)) * (fighter->pitchAngleMax / 180.0f * DX_PI) * (float)(input->GetAnalog(Input::LY)) / ANALOG_INPUT_MAX;
-	pitch = (pitch_dot - pitch_target) * (90.0f / fighter->pitchAngleMax) * fighter->pitchAngularVelocity;
-	result_y = pitch_dot * (90.0f / fighter->pitchAngleMax);
+	float pitch_target = (1.0f - std::abs(pitch_dot)) * (fighter->m_pitchAngleMax / 180.0f * DX_PI) * (float)(input->GetAnalog(Input::LY)) / ANALOG_INPUT_MAX;
+	pitch = (pitch_dot - pitch_target) * (90.0f / fighter->m_pitchAngleMax) * fighter->m_pitchAngularVelocity;
+	result_y = pitch_dot * (90.0f / fighter->m_pitchAngleMax);
 
 	// ヨーの角速度設定
-	yaw = -(float)(input->GetAnalog(Input::LX)) / ANALOG_INPUT_MAX * fighter->yawAngularVelocity;
+	yaw = -(float)(input->GetAnalog(Input::LX)) / ANALOG_INPUT_MAX * fighter->m_yawAngularVelocity;
 	
 	// ヨーの傾き設定
-	target_yawslopeangle = -(float)(input->GetAnalog(Input::LX)) / ANALOG_INPUT_MAX * fighter->yawSlopeAngleMax;
+	target_yawslopeangle = -(float)(input->GetAnalog(Input::LX)) / ANALOG_INPUT_MAX * fighter->m_yawSlopeAngleMax;
 	
-	if (target_yawslopeangle > fighter->yawSlopeAngle)
+	if (target_yawslopeangle > fighter->m_yawSlopeAngle)
 	{
-		float spd = VariableTransition_QuadraticFluctuation((target_yawslopeangle - fighter->yawSlopeAngle) / (fighter->yawSlopeAngleMax * 2.0f),
-			fighter->yawSlopeAngleSpeedMin, fighter->yawSlopeAngleSpeedMax);
-		current_yawslopeangle = fighter->yawSlopeAngle + spd / Screen::FPS;
+		float spd = VariableTransition_QuadraticFluctuation((target_yawslopeangle - fighter->m_yawSlopeAngle) / (fighter->m_yawSlopeAngleMax * 2.0f),
+			fighter->m_yawSlopeAngleSpeedMin, fighter->m_yawSlopeAngleSpeedMax);
+		current_yawslopeangle = fighter->m_yawSlopeAngle + spd / Screen::FPS;
 		if (current_yawslopeangle > target_yawslopeangle) { current_yawslopeangle = target_yawslopeangle; }
 	}
-	else if (target_yawslopeangle < fighter->yawSlopeAngle)
+	else if (target_yawslopeangle < fighter->m_yawSlopeAngle)
 	{
-		float spd = VariableTransition_QuadraticFluctuation((fighter->yawSlopeAngle - target_yawslopeangle) / (fighter->yawSlopeAngleMax * 2.0f),
-			fighter->yawSlopeAngleSpeedMin, fighter->yawSlopeAngleSpeedMax);
-		current_yawslopeangle = fighter->yawSlopeAngle - spd / Screen::FPS;
+		float spd = VariableTransition_QuadraticFluctuation((fighter->m_yawSlopeAngle - target_yawslopeangle) / (fighter->m_yawSlopeAngleMax * 2.0f),
+			fighter->m_yawSlopeAngleSpeedMin, fighter->m_yawSlopeAngleSpeedMax);
+		current_yawslopeangle = fighter->m_yawSlopeAngle - spd / Screen::FPS;
 		if (current_yawslopeangle < target_yawslopeangle) { current_yawslopeangle = target_yawslopeangle; }
 	}
 	else
@@ -73,7 +73,7 @@ VECTOR Manual::FighterControl()
 	VECTOR axis_z = VScale(forward, -1.0f);
 	VECTOR direction = pcs->GetDirection(VGet(1.0f, 0.0f, 0.0f));
 	
-	float rad = fighter->yawSlopeAngle * DX_PI_F / 180.0f;
+	float rad = fighter->m_yawSlopeAngle * DX_PI_F / 180.0f;
 	float c = std::cos(rad);
 	float s = std::sin(rad);
 	
@@ -87,11 +87,11 @@ VECTOR Manual::FighterControl()
 		axis_x.y * pitch + axis_y.y * yaw,
 		axis_x.z * pitch + axis_y.z * yaw);
 	
-	float yawslopeangle_changeamount = current_yawslopeangle - fighter->yawSlopeAngle;
+	float yawslopeangle_changeamount = current_yawslopeangle - fighter->m_yawSlopeAngle;
 	VECTOR yawslope_angularvelocity = VGet(axis_z.x * yawslopeangle_changeamount,
 		axis_z.y * yawslopeangle_changeamount,
 		axis_z.z * yawslopeangle_changeamount);
-	fighter->yawSlopeAngle = current_yawslopeangle;
+	fighter->m_yawSlopeAngle = current_yawslopeangle;
 	
 	VECTOR angular_velocity = VAdd(control_angularvelocity, yawslope_angularvelocity);
 
@@ -100,7 +100,7 @@ VECTOR Manual::FighterControl()
 	pcs->SetAngularVelocity(angular_velocity);
 
 	// 返り値設定
-	result_x = -fighter->yawSlopeAngle / fighter->yawSlopeAngleMax;
+	result_x = -fighter->m_yawSlopeAngle / fighter->m_yawSlopeAngleMax;
 	VECTOR result = VGet(result_x, -result_y, 0);
 	if (VSize(result) > 1.0f)
 	{
