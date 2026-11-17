@@ -13,8 +13,12 @@
 #include "../Component/PhysicsColliderBox.h"
 #include "../Component/Fighter/Fighter.h"
 #include "../Component/Fighter/Manual.h"
+<<<<<<< HEAD
 #include "../Component/FIghter/ManualCamera.h"
 #include "../Component/FIghter/Automatic.h"
+=======
+#include "../Component/Fighter/ManualCamera.h"
+>>>>>>> keigo
 
 #include "../Component/Fighter/FighterDataLoader.h"
 
@@ -28,10 +32,16 @@ bool GameScene::Load()
     m_loader.LoadDiffuser();
     m_loader.LoadSpecialWeapon();
 
+    // ”ñ“¯ŠúŠJn
+    SetUseASyncLoadFlag(TRUE);
+
     playerModel = MV1LoadModel("../3DModel/testFighter.mv1");
 
     skyHandel = MV1LoadModel("../3DModel/SkyBox/SkyBox.mv1");
     skyTx = LoadGraph("../3DModel/SkyBox/SkyTx.png");
+
+    // ”ñ“¯ŠúI—¹
+    SetUseASyncLoadFlag(FALSE);
 
     return true;
 }
@@ -39,6 +49,7 @@ bool GameScene::Load()
 // ‰Šú‰»
 void GameScene::Initialize()
 {
+
     // ŠHˆê‚Ì¶¬
     playerObject = std::make_unique<Actor>(p_sceneManager->p_game);
     skyBoxObject = std::make_unique<Actor>(p_sceneManager->p_game);

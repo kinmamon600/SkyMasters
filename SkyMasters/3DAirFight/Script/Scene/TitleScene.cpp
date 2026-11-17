@@ -2,7 +2,7 @@
 #include"SceneManager.h"
 #include"../Screen/Screen.h"
 #include"../Game/Game.h"
-#include"../Component/ButtonManager.h"
+#include"../Component/ButtonManager/TitleButtonManager.h"
 #include"../Component/Input.h"
 #include"../Component/Camera.h"
 #include"../Component/UIRenderer.h"
@@ -12,8 +12,8 @@
 // ì«Ç›çûÇ›
 bool TitleScene::Load()
 {
-	startHandle = LoadGraph("../Sprites/bomb.png");
-	endHandle = LoadGraph("../Sprites/bomb.png");
+	startHandle = LoadGraph("../Sprites/Button_START.png");
+	endHandle = LoadGraph("../Sprites/Button_END.png");
 
 	return true;
 }
@@ -26,7 +26,7 @@ void TitleScene::Initialize()
 	buttonManagerObject = std::make_unique<Actor>(p_sceneManager->p_game);
 	cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
-	new ButtonManager(buttonManagerObject.get(),this);
+	new TitleButtonManager(buttonManagerObject.get(),this);
 	new Input(buttonManagerObject.get());
 	new Camera(cameraObject.get());
 	new UIRenderer( startButtonObject.get());
@@ -40,11 +40,13 @@ void TitleScene::Initialize()
 	UIRenderer* endSprite = endButtonObject->GetComponent<UIRenderer>();
 	endSprite->SetGrphHandle(endHandle);
 
-	Transform* StartTr = startButtonObject->GetComponent<Transform>();
-	StartTr->SetPosition(VGet(Screen::Width / 3, Screen::Height / 3 * 2, 0));
+	Transform* startTr = startButtonObject->GetComponent<Transform>();
+	startTr->SetPosition(VGet(Screen::Width / 3, Screen::Height / 3 * 2, 0.0f));
+	startTr->SetScale(VGet(0.1f, 0.1f, 0.0f));
 
 	Transform* endTr = endButtonObject->GetComponent<Transform>();
-	endTr->SetPosition(VGet(Screen::Width / 3 * 2, Screen::Height / 3 * 2, 0));
+	endTr->SetPosition(VGet(Screen::Width / 3 * 2, Screen::Height / 3 * 2, 0.0f));
+	endTr->SetScale(VGet(0.1f, 0.1f, 0.0f));
 }
 
 // çXêV
@@ -54,17 +56,17 @@ void TitleScene::Execute()
 
 	Transform* endTr = endButtonObject->GetComponent<Transform>();
 
-	ButtonManager* buttonComp = buttonManagerObject->GetComponent<ButtonManager>();
+	TitleButtonManager* buttonComp = buttonManagerObject->GetComponent<TitleButtonManager>();
 
 	switch (buttonComp->m_currentButton)
 	{
-	case ButtonManager::TitleButtonType::Start:
-		startTr->SetScale(VGet(1.5, 1.5, 0));
-		endTr->SetScale(VGet(1, 1, 0));
+	case TitleButtonManager::TitleButtonType::Start:
+		startTr->SetScale(VGet(0.2f, 0.2f, 0.0f));
+		endTr->SetScale(VGet(0.15f, 0.15f, 0.0f));
 		break;
-	case ButtonManager::TitleButtonType::End:
-		endTr->SetScale(VGet(1.5, 1.5, 0));
-		startTr->SetScale(VGet(1, 1, 0));
+	case TitleButtonManager::TitleButtonType::End:
+		endTr->SetScale(VGet(0.2f, 0.2f, 0.0f));
+		startTr->SetScale(VGet(0.15f, 0.15f, 0.0f));
 		break;
 	default:
 		break;
@@ -74,14 +76,14 @@ void TitleScene::Execute()
 // èIóπ
 SceneType TitleScene::Terminate()
 {
-	ButtonManager* buttonComp = buttonManagerObject->GetComponent<ButtonManager>();
+	TitleButtonManager* buttonComp = buttonManagerObject->GetComponent<TitleButtonManager>();
 
 	switch (buttonComp->m_currentButton)
 	{
-	case ButtonManager::TitleButtonType::Start:
+	case TitleButtonManager::TitleButtonType::Start:
 		return SceneType::GameScene;
 		break;
-	case ButtonManager::TitleButtonType::End:
+	case TitleButtonManager::TitleButtonType::End:
 		return SceneType::Exit;
 		break;
 	default:
