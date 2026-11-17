@@ -4,6 +4,7 @@
 enum class SceneType
 {
     TitleScene,
+    FighterPickScene,
     GameScene,
     Exit,
 };

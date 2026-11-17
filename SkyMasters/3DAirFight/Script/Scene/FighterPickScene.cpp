@@ -63,6 +63,8 @@ void FighterPickScene::Initialize()
 
         UIRenderer* bodyUI = bodyObject[i]->GetComponent<UIRenderer>();
         bodyUI->SetGrphHandle(bodyHandles[i]);
+        Transform* bodyTr = bodyObject[i]->GetComponent<Transform>();
+        bodyTr->SetPosition(VGet(Screen::Width / 4, Screen::Height / 2, 0.0f));
     }
 
     // 翼のActorとCompの生成・ハンドルの設定
@@ -85,6 +87,8 @@ void FighterPickScene::Initialize()
 
         UIRenderer* diffUI = diffuserObject[i]->GetComponent<UIRenderer>();
         diffUI->SetGrphHandle(diffuserHandles[i]);
+        Transform* diffTr = wingObject[i]->GetComponent<Transform>();
+        diffTr->SetPosition(VGet(Screen::Width / 4 * 2, Screen::Height / 2, 0.0f));
     }
 
     // コンポーネントの生成  
