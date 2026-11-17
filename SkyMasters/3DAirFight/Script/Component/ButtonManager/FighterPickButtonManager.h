@@ -4,7 +4,7 @@
 #include"../ComponentUpdateOrder.h"
 #include"../Input.h"
 #include"../../Scene/SceneBase.h"
-#include"../Fighter/FighterDataLoader.h"
+#include"../../Loader/FighterDataLoader.h"
 
 class FighterPickButtonManager : public Component
 {

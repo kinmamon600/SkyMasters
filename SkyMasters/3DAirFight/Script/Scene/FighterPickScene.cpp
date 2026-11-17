@@ -7,7 +7,7 @@
 #include"../Component/UIRenderer.h"
 #include"../Component/Transform.h"
 #include"../Component/ButtonManager/FighterPickButtonManager.h"
-#include"../Component/Fighter/FighterDataLoader.h"
+#include"../Loader/FighterDataLoader.h"
 
 #include<string>
 

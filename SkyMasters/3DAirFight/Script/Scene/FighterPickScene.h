@@ -2,7 +2,7 @@
 
 #include "SceneBase.h"
 #include "../Actor/Actor.h"
-#include"../Component/Fighter/FighterDataLoader.h"
+#include"../Loader/FighterDataLoader.h"
 #include<vector>
 
 class FighterPickScene :public SceneBase

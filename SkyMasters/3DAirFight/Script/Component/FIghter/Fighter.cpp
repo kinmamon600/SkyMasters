@@ -1,7 +1,7 @@
 // ライブラリ・ヘッダ
 #include "Actor/Actor.h"
 #include "Fighter.h"
-#include "FighterDataLoader.h"
+#include "../../Loader/FighterDataLoader.h"
 #include "Manual.h"
 #include "ManualCamera.h"
 #include "../Transform.h"

@@ -1,3 +1,4 @@
+#include"LoaderBase.h"
 #include"EnemyLoader.h"
 #include "DxLib.h"
 #include <string>
@@ -5,12 +6,28 @@
 #include <vector>
 #include <cstdlib>
 
+bool EnemyLoader::Load(LoadType type)
+{
+	switch (type)
+	{
+	case LoadType::EnemyStatus:
+		StatusLoad();
+		break;
+	case LoadType::EnemyTransform:
+		TransformLoad();
+		break;
+	default:
+		break;
+	}
+	return true;
+}
+
 bool EnemyLoader::StatusLoad()
 {
 
 	short handle = FileRead_open("../CSV/EnemyStatus.csv");
 
-	if (handle== 0)
+	if (handle == 0)
 	{
 		// “Ç‚İ‚İ¸”s
 		return false;
@@ -31,15 +48,15 @@ bool EnemyLoader::StatusLoad()
 
 		// ”»•Ê”Ô†
 		std::getline(SS, token, ',');
-		short id = std::stoi(token);
+		short id = StringToInt(token);
 
 		// ‘Ì—Í
 		std::getline(SS, token, ',');
-		enemyStatus.hp = std::stoi(token);
+		enemyStatus.hp = StringToFloat(token);
 
 		// UŒ‚—Í
 		std::getline(SS, token, ',');
-		enemyStatus.attack = std::stoi(token);
+		enemyStatus.attack = StringToInt(token);
 
 		m_enemyStatus.push_back(enemyStatus);
 	}
@@ -49,13 +66,12 @@ bool EnemyLoader::StatusLoad()
 	return true;
 }
 
-
 bool EnemyLoader::TransformLoad()
 {
 
 	short handleTr = FileRead_open("../CSV/EnemyTransform.csv");
 
-	if (handleTr== 0)
+	if (handleTr == 0)
 	{
 		// “Ç‚İ‚İ¸”s
 		return false;
@@ -74,26 +90,58 @@ bool EnemyLoader::TransformLoad()
 
 		EnemyTransform enemyTrans;
 
-		//// “Gí—Ş”»•Ê
-		//std::getline(trSS, tokenTr, ',');
-		//short enemyID = std::stoi(tokenTr);
-		//
-		//// “GŒÂ‘Ì”»•Ê
-		//std::getline(trSS, tokenTr, ',');
-		//short instanceID = std::stoi(tokenTr);
-		//
-		//// ‘Ì—Í
-		//std::getline(trSS, tokenTr, ',');
-		//enemyTrans. = std::stoi(tokenTr);
-		//
-		//// UŒ‚—Í
-		//std::getline(trSS, tokenTr, ',');
-		//enemyTrans.attack = std::stoi(tokenTr);
-		//
-		//m_enemyStatus.push_back(enemyStatus);
+		// “Gí—Ş”»•Ê
+		std::getline(trSS, tokenTr, ',');
+		short enemyID = StringToInt(tokenTr);
+
+		// “GŒÂ‘Ì”»•Ê
+		std::getline(trSS, tokenTr, ',');
+		short instanceID = StringToInt(tokenTr);
+
+		// PosX
+		std::getline(trSS, tokenTr, ',');
+		enemyTrans.position.x = StringToFloat(tokenTr);
+
+		// PosY
+		std::getline(trSS, tokenTr, ',');
+		enemyTrans.position.y = StringToFloat(tokenTr);
+
+		// PosZ
+		std::getline(trSS, tokenTr, ',');
+		enemyTrans.position.z = StringToFloat(tokenTr);
+
+		// RoteX
+		std::getline(trSS, tokenTr, ',');
+		enemyTrans.rotation.x = StringToFloat(tokenTr);
+
+		// RoteY
+		std::getline(trSS, tokenTr, ',');
+		enemyTrans.rotation.y = StringToFloat(tokenTr);
+
+		// RoteZ
+		std::getline(trSS, tokenTr, ',');
+		enemyTrans.rotation.z = StringToFloat(tokenTr);
+
+		// ScaleX
+		std::getline(trSS, tokenTr, ',');
+		enemyTrans.scale.x = StringToFloat(tokenTr);
+
+		// ScaleY
+		std::getline(trSS, tokenTr, ',');
+		float sizeY = StringToFloat(tokenTr);
+
+		// ScaleZ
+		std::getline(trSS, tokenTr, ',');
+		float sizeZ = StringToFloat(tokenTr);
+
+		m_enemyTrans.push_back(enemyTrans);
 	}
 
 	FileRead_close(handleTr);
 
 	return true;
 }
+
+//EnemyStatus EnemyLoader::GetStatus(short id){}
+
+//EnemyTransform EnemyLoader::GetTransform(short id){}

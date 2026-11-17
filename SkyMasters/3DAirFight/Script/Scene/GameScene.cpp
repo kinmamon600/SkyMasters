@@ -14,7 +14,7 @@
 #include "../Component/Fighter/Manual.h"
 #include "../Component/Fighter/ManualCamera.h"
 
-#include "../Component/Fighter/FighterDataLoader.h"
+#include "../Loader/FighterDataLoader.h"
 
 #include "SuperDxPhysics.h"
 

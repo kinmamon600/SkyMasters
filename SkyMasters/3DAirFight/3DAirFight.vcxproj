@@ -163,7 +163,11 @@
     <ClCompile Include="Script\Input\ControllerInput.cpp" />
     <ClCompile Include="Script\Input\ControllerUI.cpp" />
     <ClCompile Include="Script\Input\InputManager.cpp" />
+    <ClCompile Include="Script\Loader\CSVLoader.cpp" />
     <ClCompile Include="Script\Loader\EnemyLoader.cpp" />
+    <ClCompile Include="Script\Loader\FighterData.cpp" />
+    <ClCompile Include="Script\Loader\FighterDataLoader.cpp" />
+    <ClCompile Include="Script\Loader\LoaderBase.cpp" />
     <ClCompile Include="Script\Scene\FighterPickScene.cpp" />
     <ClCompile Include="Script\Scene\SceneManager.cpp" />
     <ClCompile Include="Script\Scene\SceneBase.cpp" />
@@ -203,8 +207,12 @@
     <ClInclude Include="Script\Input\ControllerTypeKeyConfiguration.h" />
     <ClInclude Include="Script\Input\ControllerUI.h" />
     <ClInclude Include="Script\Input\InputManager.h" />
+    <ClInclude Include="Script\Loader\CSVLoader.h" />
     <ClInclude Include="Script\Loader\EnemyData.h" />
     <ClInclude Include="Script\Loader\EnemyLoader.h" />
+    <ClInclude Include="Script\Loader\FighterData.h" />
+    <ClInclude Include="Script\Loader\FighterDataLoader.h" />
+    <ClInclude Include="Script\Loader\LoaderBase.h" />
     <ClInclude Include="Script\Scene\FighterPickScene.h" />
     <ClInclude Include="Script\Scene\GameScene.h" />
     <ClInclude Include="Script\Scene\SceneManager.h" />
