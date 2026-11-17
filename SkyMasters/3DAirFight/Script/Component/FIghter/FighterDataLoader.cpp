@@ -231,3 +231,8 @@ SpecialWeaponData FighterDataLoader::GetSpecialWeapon(short id) const
 {
 	return m_specialWeaponData[id];
 }
+
+int FighterDataLoader::GetDataNum()
+{
+	return m_bodyData.size();
+}

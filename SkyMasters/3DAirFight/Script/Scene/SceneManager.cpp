@@ -6,6 +6,7 @@
 #include "SuperDxPhysics.h"
 
 #include "SceneManager.h"
+#include "../Game/Game.h"
 
 // 各シーンクラスのヘッダ
 #include "GameScene.h"
@@ -127,41 +128,51 @@ void SceneManager::Load()
 		}
 	}
 
-	// 非同期処理開始
-	if (!isLoadStarted)
+	// シーンの読み込み状況を確認
+	if (p_currentScene->Load())
 	{
-		SceneBase* scene = p_currentScene.get();
-
-		loadTask = std::async(std::launch::async, [scene]()
-		{
-			return scene->Load();
-		});
-
-		isLoadStarted = true;
-	}
-
-	// 非同期処理完了の確認
-	if (loadTask.valid() && loadTask.wait_for(std::chrono::seconds(0)) == std::future_status::ready)
-	{
-		// 非同期処理の終了を受け取る
-		bool loadSucceeded = loadTask.get();
-		isLoadStarted = false;
-
-		if (loadSucceeded)
-		{
-			// 読み込み成功時のみ初期化
-			currentStep = SceneStep::Initialize;
-		}
-		else
-		{
-			p_currentScene.reset();
-			currentSceneType = SceneType::Exit;
-		}
+		currentStep = SceneStep::Initialize;
 	}
 	else
 	{
 		DrawLoading();
 	}
+
+	// 非同期処理開始  過去の産物
+	//if (!isLoadStarted)
+	//{
+	//	SceneBase* scene = p_currentScene.get();
+	//
+	//	loadTask = std::async(std::launch::async, [scene]()
+	//	{
+	//		return scene->Load();
+	//	});
+	//
+	//	isLoadStarted = true;
+	//}
+	//
+	//// 非同期処理完了の確認
+	//if (loadTask.valid() && loadTask.wait_for(std::chrono::seconds(0)) == std::future_status::ready)
+	//{
+	//	// 非同期処理の終了を受け取る
+	//	bool loadSucceeded = loadTask.get();
+	//	isLoadStarted = false;
+	//
+	//	if (loadSucceeded)
+	//	{
+	//		// 読み込み成功時のみ初期化
+	//		currentStep = SceneStep::Initialize;
+	//	}
+	//	else
+	//	{
+	//		p_currentScene.reset();
+	//		currentSceneType = SceneType::Exit;
+	//	}
+	//}
+	//else
+	//{
+	//	DrawLoading();
+	//}
 }
 
 // Loadingクルクルの表示

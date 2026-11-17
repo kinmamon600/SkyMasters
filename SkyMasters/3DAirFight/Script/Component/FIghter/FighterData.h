@@ -6,7 +6,7 @@ struct BodyData
 	short hp;			  // 体力
 	float rotateSpeed;	  // 回転速度
 	float accele;		  // 加速度
-	short attackPower;	  // 通常攻撃力
+	float attackPower;	  // 通常攻撃力
 };
 
 // 翼のデータ

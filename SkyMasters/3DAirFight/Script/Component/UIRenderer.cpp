@@ -52,3 +52,9 @@ void UIRenderer::Draw()
 	DrawRotaGraph3(pos.x, pos.y, sizeXBuf / 2, sizeYBuf / 2, scale.x, scale.y, angle, m_graphHandle, TRUE, FALSE);
 	
 }
+
+
+void UIRenderer::SetIsVisible(bool isVisible)
+{
+	m_isVisible = isVisible;
+}
