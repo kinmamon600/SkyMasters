@@ -114,7 +114,6 @@
     <ClCompile Include="Script\Scene\TitleScene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="Script\Component\PhysicsColliderCylinder.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -122,7 +121,6 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Script\Math\VariableTransition.cpp">
-=======
     <ClCompile Include="Script\Scene\FighterPickScene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -130,7 +128,6 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Script\Loader\EnemyLoader.cpp">
->>>>>>> keigo
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Script\Component\FIghter\AutomaticCamera.cpp">
@@ -258,7 +255,6 @@
     <ClInclude Include="Script\Scene\TitleScene.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Script\Component\PhysicsColliderCylinder.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -266,7 +262,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Script\Math\VariableTransition.h">
-=======
     <ClInclude Include="Script\Scene\FighterPickScene.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -277,7 +272,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Script\Loader\EnemyData.h">
->>>>>>> keigo
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Script\Component\FIghter\AutomaticCamera.h">

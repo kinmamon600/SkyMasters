@@ -80,6 +80,9 @@ private:
 	// ヒットポイント
 	int m_hp = 1000;
 
+	// オートマチック動作の向き
+	short m_automaticDirection = 0;
+
 	// 自身を映すカメラ
 	Actor* p_myCamera;
 };

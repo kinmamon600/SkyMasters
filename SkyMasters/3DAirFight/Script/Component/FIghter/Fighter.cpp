@@ -39,6 +39,7 @@ void Fighter::Update()
 		Input* input = m_owner->GetComponent<Input>();
 		if (input->GetButtonDown(Input::L))
 		{
+			m_automaticDirection = input->GetAnalog(Input::LY);
 			m_currentState = Fighter::PlayerState::Automatic;
 		}
 	}
@@ -48,7 +49,7 @@ void Fighter::Update()
 		// ‹@‘Ì§Œä
 		Automatic* autoComp = m_owner->GetComponent<Automatic>();
 
-		if (!autoComp->Turn())
+		if (!autoComp->Turn((float)m_automaticDirection))
 		{
 			m_currentState = Fighter::PlayerState::Manual;
 

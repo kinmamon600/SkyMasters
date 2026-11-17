@@ -31,13 +31,9 @@ public:
 		RollTurn,	// ロールで姿勢をニュートラルに戻す
 	};
 
-	// 機体の向きをニュートラルに戻す
-	// ニュートラルになったらtrue
-	bool ReturnNeutral();
-
 	// ターン
 	// trueの時継続
-	bool Turn();
+	bool Turn(float direction);
 
 	// ターンの現在状態の取得
 	TurnState GetCurrentTurnState() const;
@@ -56,9 +52,13 @@ private:
 	// 姿勢判定用の内積値を保持する用
 	float m_pastTurnDot = 0.0f;
 
+	// 機体の向きをニュートラルに戻す
+	// ニュートラルになったらtrue
+	bool ReturnNeutral();
+
 	// 宙返り
 	// trueの時継続
-	bool PitchTurn();
+	bool PitchTurn(float turn_direction);
 
 	// ロールしてニュートラルに戻る
 	// trueの時継続

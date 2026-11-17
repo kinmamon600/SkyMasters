@@ -13,16 +13,9 @@
 #include "../Component/PhysicsColliderBox.h"
 #include "../Component/Fighter/Fighter.h"
 #include "../Component/Fighter/Manual.h"
-<<<<<<< HEAD
 #include "../Component/FIghter/ManualCamera.h"
 #include "../Component/FIghter/Automatic.h"
-<<<<<<< HEAD
 #include "../Component/FIghter/AutomaticCamera.h"
-=======
-=======
-#include "../Component/Fighter/ManualCamera.h"
->>>>>>> keigo
->>>>>>> main
 
 #include "../Component/Fighter/FighterDataLoader.h"
 
