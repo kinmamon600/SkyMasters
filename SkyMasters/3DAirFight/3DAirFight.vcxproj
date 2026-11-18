@@ -140,6 +140,7 @@
     <ClCompile Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.cpp" />
     <ClCompile Include="Script\Actor\Actor.cpp" />
     <ClCompile Include="Script\Component\BackgroundRenderer.cpp" />
+    <ClCompile Include="Script\Component\Behavior.cpp" />
     <ClCompile Include="Script\Component\ButtonManager\FighterPickButtonManager.cpp" />
     <ClCompile Include="Script\Component\ButtonManager\TitleButtonManager.cpp" />
     <ClCompile Include="Script\Component\Camera.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="..\SuperDxPhysics\AddFiles\physics_func.h" />
     <ClInclude Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.h" />
     <ClInclude Include="Script\Component\BackgroundRenderer.h" />
+    <ClInclude Include="Script\Component\Behavior.h" />
     <ClInclude Include="Script\Component\ButtonManager\FighterPickButtonManager.h" />
     <ClInclude Include="Script\Component\ButtonManager\TitleButtonManager.h" />
     <ClInclude Include="Script\Component\Camera.h" />

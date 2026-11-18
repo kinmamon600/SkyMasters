@@ -48,6 +48,9 @@ public:
     // 入力管理クラスの取得
     InputManager* GetInputManager() const;
 
+    // コンポーネント管理クラスの取得
+    ComponentManager* GetComponentManager() const;
+
     // 存在するActorの動的配列
     std::vector<Actor*> mActors;
 

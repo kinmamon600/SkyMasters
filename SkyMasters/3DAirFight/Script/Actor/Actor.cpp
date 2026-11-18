@@ -45,6 +45,12 @@ void Actor::UpdateActor()
 
 }
 
+// コンポーネント管理クラスの取得
+ComponentManager* Actor::GetComponentManager() const
+{
+	return mGame->GetComponentManager();
+}
+
 void Actor::AddComponent(Component* component)
 {
 	mGame->AddComponent(component);

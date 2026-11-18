@@ -6,8 +6,8 @@
 enum class ComponentUpdateOrder
 {
 	// XVˆ—
-	Input,
 	PhysicsCollider,
+	Input,
 	Transform,
 	Behaviour,
 

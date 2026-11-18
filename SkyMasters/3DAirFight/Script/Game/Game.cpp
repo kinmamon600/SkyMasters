@@ -160,6 +160,12 @@ InputManager* Game::GetInputManager() const
 	return p_inputManager;
 }
 
+// コンポーネント管理クラスの取得
+ComponentManager* Game::GetComponentManager() const
+{
+	return p_componentManager;
+}
+
 // 入力の更新
 // 以降の処理の実行可否を返す
 bool Game::UpdateInput()

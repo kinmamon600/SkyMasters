@@ -5,7 +5,7 @@
 #include "Component.h"
 #include "ComponentUpdateOrder.h"
 
-class Transform :public Component
+class Transform : public Component
 {
 public:
 	Transform(Actor* owner)

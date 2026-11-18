@@ -12,7 +12,21 @@ void ComponentManager::AddComponent(Component* component)
 	int myOrder = component->GetUpdateOrder();
 
 	// レンダリング系コンポーネントであれば専用配列に挿入
-	if (myOrder > static_cast<int>(ComponentUpdateOrder::StartRenderComponent) &&
+	if (myOrder == static_cast<int>(ComponentUpdateOrder::PhysicsCollider))
+	{
+		auto iter = p_physicsColliderComponents.begin();
+		for (; iter != p_physicsColliderComponents.end(); ++iter)
+		{
+			if (myOrder < (*iter)->GetUpdateOrder())
+			{
+				break;
+			}
+		}
+
+		// イテレーターの位置の前に要素を挿入する
+		p_physicsColliderComponents.insert(iter, component);
+	}
+	else if (myOrder > static_cast<int>(ComponentUpdateOrder::StartRenderComponent) &&
 		myOrder < static_cast<int>(ComponentUpdateOrder::EndRenderComponent))
 	{
 		auto iter = p_renderComponents.begin();
@@ -26,7 +40,6 @@ void ComponentManager::AddComponent(Component* component)
 
 		// イテレーターの位置の前に要素を挿入する
 		p_renderComponents.insert(iter, component);
-		//printfDx("描画系コンポーネント追加");
 	}
 	else
 	{
@@ -41,7 +54,6 @@ void ComponentManager::AddComponent(Component* component)
 
 		// イテレーターの位置の前に要素を挿入する
 		p_processComponents.insert(iter, component);
-		//printfDx("描画系じゃないコンポーネント追加");
 	}
 }
 
@@ -50,7 +62,16 @@ void ComponentManager::RemoveComponent(Component* component)
 {
 	int myOrder = component->GetUpdateOrder();
 
-	if (myOrder > static_cast<int>(ComponentUpdateOrder::StartRenderComponent) &&
+	if (myOrder == static_cast<int>(ComponentUpdateOrder::PhysicsCollider))
+	{
+		// 処理系コンポーネントを検索、見つかったら消去
+		auto iter = std::find(p_physicsColliderComponents.begin(), p_physicsColliderComponents.end(), component);
+		if (iter != p_physicsColliderComponents.end())
+		{
+			p_physicsColliderComponents.erase(iter);
+		}
+	}
+	else if (myOrder > static_cast<int>(ComponentUpdateOrder::StartRenderComponent) &&
 		myOrder < static_cast<int>(ComponentUpdateOrder::EndRenderComponent))
 	{
 		// レンダリング系コンポーネントを検索、見つかったら消去
@@ -75,8 +96,12 @@ void ComponentManager::RemoveComponent(Component* component)
 // アクターは関係なくコンポーネントの更新順にのっとって更新
 void ComponentManager::Update()
 {
-	//printfDx("更新！");
-	// 全コンポーネントを順次更新
+	// コンポーネントを順次更新
+	for (auto comp : p_physicsColliderComponents)
+	{
+		comp->Update();
+	}
+
 	for (auto comp : p_processComponents)
 	{
 		comp->Update();
