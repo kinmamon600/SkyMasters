@@ -9,12 +9,12 @@ Actor::Actor(Game* game)
 	, mGame(game)
 {
 	mGame->AddActor(this);
-	printfDx("Actorコンストラクタが呼ばれたよ\n");
+	//printfDx("Actorコンストラクタが呼ばれたよ\n");
 }
 
 Actor::~Actor()
 {
-	printfDx("芥のデストラクタが呼ばれたよ\n");
+	//printfDx("芥のデストラクタが呼ばれたよ\n");
 	mGame->RemoveActor(this);
 	// デストラクタがRemoveComponentを呼びループするため削除が必要
 	while (!mComponents.empty())

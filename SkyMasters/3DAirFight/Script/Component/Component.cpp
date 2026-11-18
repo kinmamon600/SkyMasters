@@ -8,13 +8,13 @@ Component::Component(Actor* owner, int updateOrder)
 	, m_updateOrder(updateOrder)
 {
 	m_owner->AddComponent(this);
-	printfDx("Componentコンストラクタが呼ばれたよ\n");
+	//printfDx("Componentコンストラクタが呼ばれたよ\n");
 }
 
 // デストラクタ
 Component::~Component()
 {
-	printfDx("コンポーネントのデストラクタ呼ばれたよ\n");
+	//printfDx("コンポーネントのデストラクタ呼ばれたよ\n");
 	m_owner->RemoveComponent(this);
 }
 

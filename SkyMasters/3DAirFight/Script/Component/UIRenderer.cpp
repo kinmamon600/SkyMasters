@@ -5,7 +5,7 @@
 
 UIRenderer::~UIRenderer() 
 {
-	printfDx("UIのデストラクタ呼ばれたよ\n");
+	//printfDx("UIのデストラクタ呼ばれたよ\n");
 	DeleteGraph(m_graphHandle);
 }
 

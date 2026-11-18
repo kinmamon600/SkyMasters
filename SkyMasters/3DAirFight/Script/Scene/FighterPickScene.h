@@ -5,7 +5,7 @@
 #include"../Loader/FighterDataLoader.h"
 #include<vector>
 
-class FighterPickScene :public SceneBase
+class FighterPickScene : public SceneBase
 {
 public:
 	FighterPickScene(SceneManager* sceneManager) : SceneBase(sceneManager) {};

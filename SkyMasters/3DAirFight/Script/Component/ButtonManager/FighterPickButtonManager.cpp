@@ -2,6 +2,23 @@
 #include"../Input.h"
 #include"../UIRenderer.h"
 
+// コンストラクタ
+FighterPickButtonManager::FighterPickButtonManager(Actor* owner,
+	const std::vector<std::unique_ptr<Actor>>& body,
+	const std::vector<std::unique_ptr<Actor>>& wing,
+	const std::vector<std::unique_ptr<Actor>>& diffuser,
+	FighterDataLoader& loader,
+	SceneBase* base)
+	:Component(owner, static_cast<int>(ComponentUpdateOrder::Behaviour)),
+		m_bodyObject(body),
+		m_wingObject(wing),
+		m_diffObject(diffuser),
+		m_load(loader)
+{
+	sb = base;
+}
+
+
 void FighterPickButtonManager::Update()
 {
 	Input* inComp = m_owner->GetComponent<Input>();
@@ -13,15 +30,15 @@ void FighterPickButtonManager::Update()
 		{
 		case Body:
 			bodyID++;
-			bodyID = (bodyID + m_load->GetDataNum()) % m_load->GetDataNum();
+			bodyID = (bodyID + m_load.GetDataNum()) % m_load.GetDataNum();
 			break;
 		case Wing:
 			wingID++;
-			wingID = (wingID + m_load->GetDataNum()) % m_load->GetDataNum();
+			wingID = (wingID + m_load.GetDataNum()) % m_load.GetDataNum();
 			break;
 		case Diffuser:
 			diffuserID++;
-			diffuserID = (diffuserID + m_load->GetDataNum()) % m_load->GetDataNum();
+			diffuserID = (diffuserID + m_load.GetDataNum()) % m_load.GetDataNum();
 			break;
 		//case Spw:
 		//	spwID++;
@@ -39,15 +56,15 @@ void FighterPickButtonManager::Update()
 		{
 		case Body:
 			bodyID--;
-			bodyID = (bodyID + m_load->GetDataNum()) % m_load->GetDataNum();
+			bodyID = (bodyID + m_load.GetDataNum()) % m_load.GetDataNum();
 			break;
 		case Wing:
 			wingID--;
-			wingID = (wingID + m_load->GetDataNum()) % m_load->GetDataNum();
+			wingID = (wingID + m_load.GetDataNum()) % m_load.GetDataNum();
 			break;
 		case Diffuser:
 			diffuserID--;
-			diffuserID = (diffuserID + m_load->GetDataNum()) % m_load->GetDataNum();
+			diffuserID = (diffuserID + m_load.GetDataNum()) % m_load.GetDataNum();
 			break;
 			//case Spw:
 			//	spwID--;
@@ -63,12 +80,12 @@ void FighterPickButtonManager::Update()
 	{
 		pickParts++;
 
-		if (pickParts = m_load->GetDataNum())
+		if (pickParts == m_load.GetDataNum())
 		{
-
+			sb->RequestSceneChange();
 		}
 
-		pickParts = (pickParts + m_load->GetDataNum()) % m_load->GetDataNum();
+		pickParts = (pickParts + m_load.GetDataNum()) % m_load.GetDataNum();
 	}
 
 	// キャンセル
@@ -76,17 +93,18 @@ void FighterPickButtonManager::Update()
 	{
 		pickParts--;
 
-		pickParts = (pickParts + m_load->GetDataNum()) % m_load->GetDataNum();
+		pickParts = (pickParts + m_load.GetDataNum()) % m_load.GetDataNum();
 	}
 }
 
-void FighterPickButtonManager::SetBodyActor(std::vector<std::unique_ptr<Actor>>& actors)
+// 選んだ機体だけ表示
+void FighterPickButtonManager::BodyID()
 {
-	short dataNum = m_load->GetDataNum();
+	short dataNum = m_load.GetDataNum();
 
 	for (short i = 0; i < dataNum; i++)
 	{
-		UIRenderer* bodyUIComp = actors[i]->GetComponent<UIRenderer>();
+		UIRenderer* bodyUIComp = m_bodyObject[i]->GetComponent<UIRenderer>();
 		if (i == bodyID)
 		{
 			bodyUIComp->SetIsVisible(true);
@@ -98,13 +116,14 @@ void FighterPickButtonManager::SetBodyActor(std::vector<std::unique_ptr<Actor>>&
 	}
 }
 
-void FighterPickButtonManager::SetWingActor(std::vector<std::unique_ptr<Actor>>& actors)
+// 選んだ翼だけ表示
+void FighterPickButtonManager::WingID()
 {
-	short dataNum = m_load->GetDataNum();
+	short dataNum = m_load.GetDataNum();
 
 	for (short i = 0; i < dataNum; i++)
 	{
-		UIRenderer* wingUIComp = actors[i]->GetComponent<UIRenderer>();
+		UIRenderer* wingUIComp = m_wingObject[i]->GetComponent<UIRenderer>();
 		if (i == wingID)
 		{
 			wingUIComp->SetIsVisible(true);
@@ -116,13 +135,14 @@ void FighterPickButtonManager::SetWingActor(std::vector<std::unique_ptr<Actor>>&
 	}
 }
 
-void FighterPickButtonManager::SetDiffActor(std::vector<std::unique_ptr<Actor>>&  actors)
+// 選んだディフューザーだけ表示
+void FighterPickButtonManager::DiffuserID()
 {
-	short dataNum = m_load->GetDataNum();
+	short dataNum = m_load.GetDataNum();
 
 	for (short i = 0; i < dataNum; i++)
 	{
-		UIRenderer* diffUIComp = actors[i]->GetComponent<UIRenderer>();
+		UIRenderer* diffUIComp = m_diffObject[i]->GetComponent<UIRenderer>();
 		if (i == diffuserID)
 		{
 			diffUIComp->SetIsVisible(true);
