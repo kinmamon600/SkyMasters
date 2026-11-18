@@ -19,7 +19,7 @@ class SceneManager {
 public:
 	// コンストラクタ
 	SceneManager(Game* game) 
-		: p_game(game), p_currentScene(nullptr), currentSceneType(SceneType::GameScene), currentStep(SceneStep::Load) {}
+		: p_game(game), p_currentScene(nullptr), currentSceneType(SceneType::TitleScene), currentStep(SceneStep::Load) {}
 
 	// デストラクタ
 	~SceneManager();
