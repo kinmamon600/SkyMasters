@@ -25,7 +25,9 @@ private:
     std::unique_ptr<Actor> endButtonObject;
     std::unique_ptr<Actor> buttonManagerObject;
     std::unique_ptr<Actor> cameraObject;
+    std::unique_ptr<Actor> backgroundObject;
 
     int startHandle = -1;
     int endHandle = -1;
+    int backgroundHandle = -1;
 };

@@ -12,7 +12,7 @@ public:
     UIRenderer(Actor* owner)
         :Component(owner, static_cast<int>(ComponentUpdateOrder::UIRenderer)) 
     {
-        //printfDx("UIRendererが呼ばれたよ\n");
+
     }
 
     // デストラクタ
