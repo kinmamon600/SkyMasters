@@ -146,8 +146,6 @@
     <ClCompile Include="Script\Component\ComponentManager.cpp" />
     <ClCompile Include="Script\Component\FIghter\Automatic.cpp" />
     <ClCompile Include="Script\Component\Fighter\Fighter.cpp" />
-    <ClCompile Include="Script\Component\Fighter\FighterData.cpp" />
-    <ClCompile Include="Script\Component\Fighter\FighterDataLoader.cpp" />
     <ClCompile Include="Script\Component\Fighter\Manual.cpp" />
     <ClCompile Include="Script\Component\FIghter\ManualCamera.cpp" />
     <ClCompile Include="Script\Component\Input.cpp" />
@@ -166,9 +164,16 @@
     <ClCompile Include="Script\Input\ControllerUI.cpp" />
     <ClCompile Include="Script\Input\InputManager.cpp" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClCompile Include="Script\Math\VariableTransition.cpp" />
 =======
+=======
+    <ClCompile Include="Script\Loader\CSVLoader.cpp" />
+>>>>>>> keigon/FIghterPick
     <ClCompile Include="Script\Loader\EnemyLoader.cpp" />
+    <ClCompile Include="Script\Loader\FighterData.cpp" />
+    <ClCompile Include="Script\Loader\FighterDataLoader.cpp" />
+    <ClCompile Include="Script\Loader\LoaderBase.cpp" />
     <ClCompile Include="Script\Scene\FighterPickScene.cpp" />
 >>>>>>> keigo
     <ClCompile Include="Script\Scene\SceneManager.cpp" />
@@ -212,10 +217,17 @@
     <ClInclude Include="Script\Input\ControllerUI.h" />
     <ClInclude Include="Script\Input\InputManager.h" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClInclude Include="Script\Math\VariableTransition.h" />
 =======
+=======
+    <ClInclude Include="Script\Loader\CSVLoader.h" />
+>>>>>>> keigon/FIghterPick
     <ClInclude Include="Script\Loader\EnemyData.h" />
     <ClInclude Include="Script\Loader\EnemyLoader.h" />
+    <ClInclude Include="Script\Loader\FighterData.h" />
+    <ClInclude Include="Script\Loader\FighterDataLoader.h" />
+    <ClInclude Include="Script\Loader\LoaderBase.h" />
     <ClInclude Include="Script\Scene\FighterPickScene.h" />
 >>>>>>> keigo
     <ClInclude Include="Script\Scene\GameScene.h" />

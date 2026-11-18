@@ -2,7 +2,7 @@
 
 #include "SceneBase.h"
 #include "../Actor/Actor.h"
-#include "../Component/FIghter/FighterDataLoader.h"
+#include "../Loader/FighterDataLoader.h"
 
 #include <memory>
 

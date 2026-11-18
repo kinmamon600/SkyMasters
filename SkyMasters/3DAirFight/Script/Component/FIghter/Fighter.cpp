@@ -1,12 +1,16 @@
 // ライブラリ・ヘッダ
 #include "Actor/Actor.h"
 #include "Fighter.h"
+<<<<<<< HEAD
 #include "FighterDataLoader.h"
 #include "../Transform.h"
 #include "../Input.h"
 #include "../PhysicsColliderSphere.h"
 #include "../PhysicsColliderBox.h"
 
+=======
+#include "../../Loader/FighterDataLoader.h"
+>>>>>>> keigon/FIghterPick
 #include "Manual.h"
 #include "ManualCamera.h"
 #include "Automatic.h"

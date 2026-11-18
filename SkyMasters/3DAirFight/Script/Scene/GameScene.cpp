@@ -20,7 +20,7 @@
 #include "../Component/Fighter/ManualCamera.h"
 >>>>>>> keigo
 
-#include "../Component/Fighter/FighterDataLoader.h"
+#include "../Loader/FighterDataLoader.h"
 
 #include "SuperDxPhysics.h"
 
