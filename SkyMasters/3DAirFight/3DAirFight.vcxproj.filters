@@ -295,18 +295,11 @@
     <ClInclude Include="Script\Loader\EnemyLoader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Script\Loader\EnemyData.h">
-<<<<<<< HEAD
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Script\Component\FIghter\AutomaticCamera.h">
-=======
->>>>>>> keigo
-=======
     <ClInclude Include="Script\Loader\FighterData.h">
->>>>>>> keigon/FIghterPick
->>>>>>> main
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
