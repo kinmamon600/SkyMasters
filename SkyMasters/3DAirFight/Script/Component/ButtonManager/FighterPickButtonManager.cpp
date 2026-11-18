@@ -131,7 +131,7 @@ void FighterPickButtonManager::Update()
 }
 
 // 選んだ機体だけ表示
-void FighterPickButtonManager::BodyID()
+void FighterPickButtonManager::BodyVisibleID()
 {
 	short dataNum = m_load.GetDataNum();
 
@@ -150,7 +150,7 @@ void FighterPickButtonManager::BodyID()
 }
 
 // 選んだ翼だけ表示
-void FighterPickButtonManager::WingID()
+void FighterPickButtonManager::WingVisibleID()
 {
 	short dataNum = m_load.GetDataNum();
 
@@ -169,7 +169,7 @@ void FighterPickButtonManager::WingID()
 }
 
 // 選んだディフューザーだけ表示
-void FighterPickButtonManager::DiffuserID()
+void FighterPickButtonManager::DiffuserVisibleID()
 {
 	short dataNum = m_load.GetDataNum();
 
@@ -185,4 +185,22 @@ void FighterPickButtonManager::DiffuserID()
 			diffUIComp->SetIsVisible(false);
 		}
 	}
+}
+
+// bodyIDを取得する
+short FighterPickButtonManager::GetBodyID()
+{
+	return bodyID;
+}
+
+// wingIDを取得する
+short FighterPickButtonManager::GetWingID()
+{
+	return wingID;
+}
+
+// diffuserIDを取得する
+short FighterPickButtonManager::GetDiffuserID()
+{
+	return diffuserID;
 }

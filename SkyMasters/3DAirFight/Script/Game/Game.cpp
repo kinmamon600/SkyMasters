@@ -1,5 +1,6 @@
 // ライブラリ・ヘッダ
 #include "Game.h"
+#include "GameManager.h"
 #include "../Actor/Actor.h"
 #include "../Scene/SceneManager.h"
 #include "../Input/InputManager.h"
@@ -18,6 +19,7 @@ void Game::Initialize()
 	sceneManager = new SceneManager(this);
 	p_inputManager = new InputManager{};
 	p_componentManager = new ComponentManager{};
+	p_gameManager = new GameManager{};
 }
 
 // ゲームの更新

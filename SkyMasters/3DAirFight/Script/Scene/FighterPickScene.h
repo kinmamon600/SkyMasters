@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SceneBase.h"
+#include"../Game/GameManager.h"
 #include "../Actor/Actor.h"
 #include"../Loader/FighterDataLoader.h"
 #include<vector>
@@ -8,7 +9,7 @@
 class FighterPickScene : public SceneBase
 {
 public:
-	FighterPickScene(SceneManager* sceneManager) : SceneBase(sceneManager) {};
+	FighterPickScene(SceneManager* sceneManager,GameManager* gameManager) : SceneBase(sceneManager,gameManager){};
 
     // ì«Ç›çûÇ›
     bool Load() override;

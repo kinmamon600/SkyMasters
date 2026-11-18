@@ -8,6 +8,7 @@
 
 // 前方宣言
 class SceneManager;
+class GameManger;
 
 /// <summary>
 /// 全シーン共通の基底クラス
@@ -16,7 +17,8 @@ class SceneBase
 {
 public:
 	// コンストラクタ
-	SceneBase(SceneManager* sceneManager) : p_sceneManager(sceneManager) {};
+	SceneBase(SceneManager* sceneManager,GameManager* gameManager) 
+		: p_sceneManager(sceneManager),p_gameManager(gameManager) {};
 
 	// 仮想デストラクタ
 	//virtual ~SceneBase() = default;
@@ -45,6 +47,8 @@ protected:
 
 	// シーンマネージャ
 	SceneManager* p_sceneManager;
+
+	GameManager* p_gameManager;
 
 private:
 	// シーン遷移するか
