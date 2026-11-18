@@ -9,6 +9,7 @@
 #include "../Input.h"
 #include "../PhysicsColliderSphere.h"
 #include "../PhysicsColliderBox.h"
+#include "../Transform.h"
 
 // ターン
 // trueの時継続
@@ -27,9 +28,10 @@ bool Automatic::Turn(float direction)
 	{
 	case Automatic::TurnState::SetUp:
 		// 姿勢をニュートラルに戻す
-		if (ReturnNeutral())
+		if (ReturnNeutralRoll())
 		{
 			m_currentTurnState = Automatic::TurnState::PitchTurn;
+			m_pastTurnDot = 2.0f;
 			PitchTurn(direction);
 		}
 		break;
@@ -38,15 +40,16 @@ bool Automatic::Turn(float direction)
 		if (!PitchTurn(direction))
 		{
 			m_currentTurnState = Automatic::TurnState::RollTurn;
+			m_pastTurnDot = 2.0f;
 			RollTurn();
 		}
 		break;
 
 	case Automatic::TurnState::RollTurn:
-		// 姿勢をニュートラルに戻す
 		if (!RollTurn())
 		{
 			m_currentTurnState = Automatic::TurnState::SetUp;
+			m_pastTurnDot = 0.0f;
 			return false;
 		}
 		break;
@@ -70,9 +73,9 @@ float Automatic::GetCurrentTurnValue() const
 	return m_currentTurnValue;
 }
 
-// 機体の向きをニュートラルに戻す
+// 機体のロールをニュートラルに戻す
 // ニュートラルになったらtrue
-bool Automatic::ReturnNeutral()
+bool Automatic::ReturnNeutralRoll()
 {
 	// 入力・物理コライダーの取得
 	PhysicsColliderSphere* pcs = m_owner->GetComponent<PhysicsColliderSphere>();
@@ -82,20 +85,24 @@ bool Automatic::ReturnNeutral()
 	VECTOR down = pcs->GetDirection(VGet(0.0f, -1.0f, 0.0f));
 	VECTOR right = pcs->GetDirection(VGet(1.0f, 0.0f, 0.0f));
 
-	float down_dot = VDot(VGet(0.0f, 1.0f, 0.0f), down);
-	float right_dot = VDot(VGet(-1.0f, 0.0f, 0.0f), right);
+	VECTOR reference_right = VNorm(VCross(forward, VGet(0.0f, 1.0f, 0.0f)));
+	float dot = VDot(right, reference_right);
 
-	// 機体がひっくり返っていたなら処理終了
-	if (right_dot >= m_pastTurnDot)
+	// ピッチ・ヨー方向がニュートラルなら処理終了
+	if (dot <= m_pastTurnDot)
+	//Fighter* fighter = m_owner->GetComponent<Fighter>();
+	//if(fighter->m_yawSlopeAngle == 0.0f)
 	{
-		m_pastTurnDot = 2.0f;
 		pcs->SetLinerVelocity(VGet(0.0f, 0.0f, 0.0f));
 		pcs->SetAngularVelocity(VGet(0.0f, 0.0f, 0.0f));
+	
+		Transform* tr = m_owner->GetComponent<Transform>();
+	
 		return true;
 	}
-
-	m_currentTurnValue = -down_dot;
-	m_pastTurnDot = right_dot;
+	
+	m_currentTurnValue = -VDot(VGet(0.0f, 1.0f, 0.0f), down);
+	m_pastTurnDot = dot;
 
 	// 自機の向きの取得
 	float pitch_dot = VDot(VGet(0.0f, 1.0f, 0.0f), forward);
@@ -113,40 +120,44 @@ bool Automatic::ReturnNeutral()
 	float target_yawslopeangle = 0.0f;
 
 	// ピッチの角速度設定
-	pitch = pitch_dot * (90.0f / fighter->m_pitchAngleMax) * fighter->m_pitchAngularVelocity;
-
-	if (std::abs(pitch) < (fighter->m_pitchAngularVelocity) / 10.0f)
-	{
-		if (pitch_dot > 0.0f)
-		{
-			pitch = (fighter->m_pitchAngularVelocity) / 10.0f;
-		}
-		else if (pitch_dot < 0.0f)
-		{
-			pitch = -(fighter->m_pitchAngularVelocity) / 10.0f;
-		}
-		else
-		{
-			pitch = 0.0f;
-		}
-	}
+	//pitch = pitch_dot * (90.0f / fighter->m_pitchAngleMax) * fighter->m_pitchAngularVelocity;
+	//
+	//if (std::abs(pitch) < (fighter->m_pitchAngularVelocity) / 10.0f)
+	//{
+	//	if (pitch_dot > 0.0f)
+	//	{
+	//		pitch = (fighter->m_pitchAngularVelocity) / 10.0f;
+	//	}
+	//	else if (pitch_dot < 0.0f)
+	//	{
+	//		pitch = -(fighter->m_pitchAngularVelocity) / 10.0f;
+	//	}
+	//	else
+	//	{
+	//		pitch = 0.0f;
+	//	}
+	//}
 
 	// ヨーの傾き設定
-	target_yawslopeangle = 0;
-
 	if (target_yawslopeangle > fighter->m_yawSlopeAngle)
 	{
 		float spd = VariableTransition_QuadraticFluctuation((target_yawslopeangle - fighter->m_yawSlopeAngle) / (fighter->m_yawSlopeAngleMax * 2.0f),
 			fighter->m_yawSlopeAngleSpeedMin, fighter->m_yawSlopeAngleSpeedMax);
 		current_yawslopeangle = fighter->m_yawSlopeAngle + spd / Screen::FPS;
-		if (current_yawslopeangle > target_yawslopeangle) { current_yawslopeangle = target_yawslopeangle; }
+		if (current_yawslopeangle > target_yawslopeangle)
+		{
+			current_yawslopeangle = target_yawslopeangle;
+		}
 	}
 	else if (target_yawslopeangle < fighter->m_yawSlopeAngle)
 	{
 		float spd = VariableTransition_QuadraticFluctuation((fighter->m_yawSlopeAngle - target_yawslopeangle) / (fighter->m_yawSlopeAngleMax * 2.0f),
 			fighter->m_yawSlopeAngleSpeedMin, fighter->m_yawSlopeAngleSpeedMax);
 		current_yawslopeangle = fighter->m_yawSlopeAngle - spd / Screen::FPS;
-		if (current_yawslopeangle < target_yawslopeangle) { current_yawslopeangle = target_yawslopeangle; }
+		if (current_yawslopeangle < target_yawslopeangle)
+		{
+			current_yawslopeangle = target_yawslopeangle;
+		}
 	}
 	else
 	{
@@ -155,18 +166,18 @@ bool Automatic::ReturnNeutral()
 
 	// 機体の軸方向設定
 	VECTOR axis_z = VScale(forward, -1.0f);
-	VECTOR direction = pcs->GetDirection(VGet(1.0f, 0.0f, 0.0f));
-
-	float rad = fighter->m_yawSlopeAngle * DX_PI_F / 180.0f;
-	float c = std::cos(rad);
-	float s = std::sin(rad);
-
-	VECTOR axis_x = VAdd(VScale(direction, c), VScale(VCross(axis_z, direction), s));
-
-	// 角速度設定
-	VECTOR control_angularvelocity = VGet(axis_x.x * pitch,
-		axis_x.y * pitch,
-		axis_x.z * pitch);
+	//VECTOR direction = pcs->GetDirection(VGet(1.0f, 0.0f, 0.0f));
+	//
+	//float rad = fighter->m_yawSlopeAngle * DX_PI_F / 180.0f;
+	//float c = std::cos(rad);
+	//float s = std::sin(rad);
+	//
+	//VECTOR axis_x = VAdd(VScale(direction, c), VScale(VCross(axis_z, direction), s));
+	//
+	//// 角速度設定
+	//VECTOR control_angularvelocity = VGet(axis_x.x * pitch,
+	//	axis_x.y * pitch,
+	//	axis_x.z * pitch);
 
 	float yawslopeangle_changeamount = current_yawslopeangle - fighter->m_yawSlopeAngle;
 	VECTOR yawslope_angularvelocity = VGet(axis_z.x * yawslopeangle_changeamount,
@@ -174,11 +185,24 @@ bool Automatic::ReturnNeutral()
 		axis_z.z * yawslopeangle_changeamount);
 	fighter->m_yawSlopeAngle = current_yawslopeangle;
 
-	VECTOR angular_velocity = VAdd(control_angularvelocity, yawslope_angularvelocity);
+	//if (yawslopeangle_changeamount == 0.0f)
+	//{
+	//	pcs->SetLinerVelocity(VGet(0.0f, 0.0f, 0.0f));
+	//	pcs->SetAngularVelocity(VGet(0.0f, 0.0f, 0.0f));
+	//
+	//	Transform* tr = m_owner->GetComponent<Transform>();
+	//
+	//	return true;
+	//}
+	//
+	//m_currentTurnValue = -VDot(VGet(0.0f, 1.0f, 0.0f), down);
+	//m_pastTurnDot = dot;
+
+	//VECTOR angular_velocity = VAdd(control_angularvelocity, yawslope_angularvelocity);
 
 	// 速度設定
 	pcs->SetLinerVelocity(linear_velocity);
-	pcs->SetAngularVelocity(angular_velocity);
+	pcs->SetAngularVelocity(yawslope_angularvelocity);
 
 	return false;
 }
@@ -200,7 +224,6 @@ bool Automatic::PitchTurn(float turn_direction)
 	// 機体がひっくり返っていたなら処理終了
 	if (pitch_dot >= m_pastTurnDot)
 	{
-		m_pastTurnDot = 2.0f;
 		pcs->SetLinerVelocity(VGet(0.0f, 0.0f, 0.0f));
 		pcs->SetAngularVelocity(VGet(0.0f, 0.0f, 0.0f));
 		return false;
@@ -239,7 +262,7 @@ bool Automatic::PitchTurn(float turn_direction)
 	return true;
 }
 
-// ロールしてニュートラルに戻る
+// ロール方向にターン
 // trueの時継続
 bool Automatic::RollTurn()
 {
@@ -254,10 +277,8 @@ bool Automatic::RollTurn()
 	float dot = VDot(VGet(0.0f, 1.0f, 0.0f), down);
 
 	// 機体がひっくり返っていたなら処理終了
-	//if (dot <= -1.0f)
 	if (dot >= m_pastTurnDot)
 	{
-		m_pastTurnDot = 2.0f;
 		pcs->SetLinerVelocity(VGet(0.0f, 0.0f, 0.0f));
 		pcs->SetAngularVelocity(VGet(0.0f, 0.0f, 0.0f));
 		return false;
@@ -272,19 +293,46 @@ bool Automatic::RollTurn()
 	// 速度設定
 	VECTOR linear_velocity = VScale(forward, fighter->m_speed);
 
-	float roll = fighter->m_rollAngularVelocityMax * (-m_currentTurnValue + fighter->m_rollAngularVelocityMin);
+	float roll = fighter->m_rollAngularVelocityMax * -(m_currentTurnValue + fighter->m_rollAngularVelocityMin);
 
-	// 機体の軸方向設定
-	VECTOR axis_z = VScale(forward, -1.0f);
-	
-	// 角速度設定
-	VECTOR angular_velocity = VGet(axis_z.x * roll,
-		axis_z.y * roll,
-		axis_z.z * roll);
+	if (roll < fighter->m_rollAngularVelocityMin)
+	{
+		// ロール0度時の右方向
+		VECTOR reference_right = VNorm(VCross(forward, VGet(0.0f, 1.0f, 0.0f)));
+
+		// ロール0度時の上方向
+		VECTOR reference_up = VNorm(VCross(reference_right, forward));
+
+		VECTOR up = pcs->GetDirection(VGet(0.0f, 1.0f, 0.0f));
+
+		float sin_roll = VDot(up, reference_up);
+
+		float cos_roll = VDot(up, VGet(0.0f, 1.0f, 0.0f));
+
+		roll = atan2f(sin_roll, cos_roll);
+
+		VECTOR rotationAxis = forward;
+		float rotationAngle = -roll;
+
+		// 角速度設定
+		VECTOR angular_velocity = VScale(rotationAxis, rotationAngle);
+		pcs->SetAngularVelocity(angular_velocity);
+	}
+	else
+	{
+		// 機体の軸方向設定
+		VECTOR axis_z = VScale(forward, -1.0f);
+
+		// 角速度設定
+		VECTOR angular_velocity = VGet(axis_z.x * roll,
+			axis_z.y * roll,
+			axis_z.z * roll);
+
+		pcs->SetAngularVelocity(angular_velocity);
+	}
 
 	// 速度設定
 	pcs->SetLinerVelocity(linear_velocity);
-	pcs->SetAngularVelocity(angular_velocity);
 
 	return true;
 }

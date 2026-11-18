@@ -27,16 +27,14 @@ const VECTOR& Transform::GetPosition() const
 // 座標のセット
 void Transform::SetPosition(const VECTOR& pos)
 {
-	//m_position = pos;
-	//
-	//// 物理コライダーがアタッチされていたら座標更新
-	//PhysicsCollider* pc = m_owner->GetComponent<PhysicsCollider>();
-	//if (pc == nullptr) { return; }
-	//SDP::SetPosition(pc->GetID(), pos);
-
 	m_matrix.m[3][0] = pos.x;
 	m_matrix.m[3][1] = pos.y;
 	m_matrix.m[3][2] = pos.z;
+
+	// 物理コライダーがアタッチされていたら座標更新
+	PhysicsCollider* pc = m_owner->GetComponent<PhysicsCollider>();
+	if (pc == nullptr) { return; }
+	SDP::SetPosition(pc->GetID(), pos);
 }
 
 // 回転の取得
@@ -55,13 +53,12 @@ const VECTOR& Transform::GetRotation() const
 // 回転のセット
 void Transform::SetRotation(const VECTOR& rotation)
 {
-	//m_rotation = rotation;
-	//
-	//// 物理コライダーがアタッチされていたら回転更新
-	//PhysicsCollider* pc = m_owner->GetComponent<PhysicsCollider>();
-	//if (pc == nullptr) { return; }
-	//SDP::SetRotate(pc->GetID(), rotation);
 	m_matrix = CreateTransformMatrix(GetPosition(), rotation, GetScale());
+
+	// 物理コライダーがアタッチされていたら回転更新
+	PhysicsCollider* pc = m_owner->GetComponent<PhysicsCollider>();
+	if (pc == nullptr) { return; }
+	SDP::SetRotate(pc->GetID(), rotation);
 }
 
 // サイズの取得

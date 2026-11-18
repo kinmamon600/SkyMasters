@@ -45,8 +45,8 @@ public:
 	const float m_yawAngularVelocity = 1.0f;			// ヨー角速度
 	const float m_yawSlopeAngleMax = 50.0f;				// ヨーの時どのくらい傾くか
 
-	const float m_rollAngularVelocityMax = 7.5f;		// 最大ロール角速度(ターン用)
-	const float m_rollAngularVelocityMin = 0.25f;		// 最小ロール角速度(ターン用)
+	const float m_rollAngularVelocityMax = 9.5f;		// 最大ロール角速度(ターン用)
+	const float m_rollAngularVelocityMin = 1.5f;		// 最小ロール角速度(ターン用)
 
 	const float m_yawSlopeAngleSpeedMax = 100.0f;		// 傾く角速度の最大値
 	const float m_yawSlopeAngleSpeedMin = 50.0f;		// 傾く角速度の最小値

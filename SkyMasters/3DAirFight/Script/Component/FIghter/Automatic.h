@@ -52,15 +52,15 @@ private:
 	// 姿勢判定用の内積値を保持する用
 	float m_pastTurnDot = 0.0f;
 
-	// 機体の向きをニュートラルに戻す
+	// 機体のロールをニュートラルに戻す
 	// ニュートラルになったらtrue
-	bool ReturnNeutral();
+	bool ReturnNeutralRoll();
 
-	// 宙返り
+	// ピッチ方向にターン(宙返り)
 	// trueの時継続
 	bool PitchTurn(float turn_direction);
 
-	// ロールしてニュートラルに戻る
+	// ロール方向にターン
 	// trueの時継続
 	bool RollTurn();
 };
