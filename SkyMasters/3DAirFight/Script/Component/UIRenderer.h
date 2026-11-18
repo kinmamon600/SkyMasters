@@ -10,7 +10,10 @@ class UIRenderer : public Component
 public:
     // コンストラクタ
     UIRenderer(Actor* owner)
-        :Component(owner, static_cast<int>(ComponentUpdateOrder::UIRenderer)){}
+        :Component(owner, static_cast<int>(ComponentUpdateOrder::UIRenderer)) 
+    {
+        //printfDx("UIRendererが呼ばれたよ\n");
+    }
 
     // デストラクタ
     ~UIRenderer();

@@ -26,7 +26,7 @@ void ComponentManager::AddComponent(Component* component)
 
 		// イテレーターの位置の前に要素を挿入する
 		p_renderComponents.insert(iter, component);
-		printfDx("描画系コンポーネント追加");
+		//printfDx("描画系コンポーネント追加");
 	}
 	else
 	{
@@ -41,7 +41,7 @@ void ComponentManager::AddComponent(Component* component)
 
 		// イテレーターの位置の前に要素を挿入する
 		p_processComponents.insert(iter, component);
-		printfDx("描画系じゃないコンポーネント追加");
+		//printfDx("描画系じゃないコンポーネント追加");
 	}
 }
 

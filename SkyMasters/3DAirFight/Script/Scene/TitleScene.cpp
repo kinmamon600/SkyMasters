@@ -42,11 +42,9 @@ void TitleScene::Initialize()
 
 	Transform* startTr = startButtonObject->GetComponent<Transform>();
 	startTr->SetPosition(VGet(Screen::Width / 3, Screen::Height / 3 * 2, 0.0f));
-	startTr->SetScale(VGet(0.1f, 0.1f, 0.0f));
 
 	Transform* endTr = endButtonObject->GetComponent<Transform>();
 	endTr->SetPosition(VGet(Screen::Width / 3 * 2, Screen::Height / 3 * 2, 0.0f));
-	endTr->SetScale(VGet(0.1f, 0.1f, 0.0f));
 }
 
 // XV

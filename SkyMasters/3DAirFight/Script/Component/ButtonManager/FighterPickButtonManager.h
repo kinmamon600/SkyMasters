@@ -4,34 +4,41 @@
 #include"../ComponentUpdateOrder.h"
 #include"../Input.h"
 #include"../../Scene/SceneBase.h"
-#include"../Fighter/FighterDataLoader.h"
+#include"../../Loader/FighterDataLoader.h"
 
 class FighterPickButtonManager : public Component
 {
 public:
-	FighterPickButtonManager(Actor* owner)
-		:Component(owner, static_cast<int>(ComponentUpdateOrder::Behaviour)) {};
+	FighterPickButtonManager(Actor* owner,
+		const std::vector<std::unique_ptr<Actor>>& body,
+		const std::vector<std::unique_ptr<Actor>>& wing,
+		const std::vector<std::unique_ptr<Actor>>& diffuser,
+		FighterDataLoader& loader,
+		SceneBase* base);
 
 	void Update()override;
 
-	void SetBodyActor(std::vector<std::unique_ptr<Actor>>& actors);
-	void SetBodyID();
-
-	void SetWingActor(std::vector<std::unique_ptr<Actor>>& actors);
-
-	void SetDiffActor(std::vector<std::unique_ptr<Actor>>& actors);
+	void BodyID();
+	void WingID();
+	void DiffuserID();
 
 	
 
 private:
 
-	int bodyID;
-	int wingID;
-	int diffuserID;
-	int spwID;
-	int pickParts;
+	const std::vector<std::unique_ptr<Actor>>& m_bodyObject;
+	const std::vector<std::unique_ptr<Actor>>& m_wingObject;
+	const std::vector<std::unique_ptr<Actor>>& m_diffObject;
 
-	FighterDataLoader* m_load;
+	int bodyID = 0;
+	int wingID = 0;
+	int diffuserID = 0;
+	int spwID = 0;
+	int pickParts = 0;
+
+	FighterDataLoader& m_load;
+
+	SceneBase* sb;
 
 	enum RowParts
 	{

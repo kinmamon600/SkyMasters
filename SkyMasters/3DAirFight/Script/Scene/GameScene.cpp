@@ -17,7 +17,7 @@
 #include "../Component/FIghter/Automatic.h"
 #include "../Component/FIghter/AutomaticCamera.h"
 
-#include "../Component/Fighter/FighterDataLoader.h"
+#include "../Loader/FighterDataLoader.h"
 
 #include "SuperDxPhysics.h"
 
