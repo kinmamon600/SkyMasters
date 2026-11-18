@@ -13,6 +13,7 @@ class Component;
 class SceneManager;
 class InputManager;
 class ComponentManager;
+class GameManager;
 
 class Game
 {
@@ -56,6 +57,9 @@ public:
 
     // 保留中のActorの動的配列
     std::vector<Actor*> mPendingActors;
+
+    GameManager* p_gameManager;
+
 private:
     // シーン管理クラス
     SceneManager* sceneManager;
@@ -65,6 +69,7 @@ private:
 
     // コンポーネント管理クラス
     ComponentManager* p_componentManager;
+
 
     // Actorを追加しようとしているか
     bool mUpdatingActors;

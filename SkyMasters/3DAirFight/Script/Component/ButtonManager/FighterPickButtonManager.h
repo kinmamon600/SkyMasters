@@ -18,11 +18,23 @@ public:
 
 	void Update()override;
 
-	void BodyID();
-	void WingID();
-	void DiffuserID();
+	// 選んだ機体だけ表示
+	void BodyVisibleID();
 
-	
+	// 選んだ翼だけ表示
+	void WingVisibleID();
+
+	// 選んだディフューザーだけ表示
+	void DiffuserVisibleID();
+
+	// bodyIDを取得する
+	short GetBodyID();
+
+	// wingIDを取得する
+	short GetWingID();
+
+	// diffuserIDを取得する
+	short GetDiffuserID();
 
 private:
 
