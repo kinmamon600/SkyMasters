@@ -5,6 +5,7 @@
 #include"../Component/Input.h"
 #include"../Component/Camera.h"
 #include"../Component/UIRenderer.h"
+#include"../Component/BackgroundRenderer.h"
 #include"../Component/Transform.h"
 #include"../Component/ButtonManager/FighterPickButtonManager.h"
 #include"../Loader/FighterDataLoader.h"
@@ -45,6 +46,9 @@ bool FighterPickScene::Load()
         diffuserHandles[i] = LoadGraph(diffHandle.c_str());
     }
 
+    pickUI = LoadGraph("../Sprites/FighterPick_UI.png");
+    backgroundHandle = LoadGraph("../Sprites/FighterPick_Background.png");
+
 	return true;
 }
 
@@ -55,10 +59,6 @@ void FighterPickScene::Initialize()
     bodyObject.resize(dataNum);
     wingObject.resize(dataNum);
     diffuserObject.resize(dataNum);
-
-    // 芥一の生成
-    cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);
-    buttonManagerObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
     // 機体のActorとCompの生成・ハンドルの設定
     for (short i = 0; i < dataNum; i++)
@@ -99,11 +99,30 @@ void FighterPickScene::Initialize()
         diffTr->SetPosition(VGet((Screen::Width / 4) * 3, Screen::Height / 2, 0.0f));
     }
 
+    // 芥一の生成
+    cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);
+    buttonManagerObject = std::make_unique<Actor>(p_sceneManager->p_game);
+    backgroundObject = std::make_unique<Actor>(p_sceneManager->p_game);
+
     // コンポーネントの生成  
     new Camera(cameraObject.get());
 
+    new BackgroundRenderer(backgroundObject.get());
+
     new Input(buttonManagerObject.get());
     new FighterPickButtonManager(buttonManagerObject.get(), bodyObject, wingObject, diffuserObject, m_loader, this);
+    new UIRenderer(buttonManagerObject.get());
+    new Transform(buttonManagerObject.get());
+
+    BackgroundRenderer* backComp = backgroundObject->GetComponent<BackgroundRenderer>();
+    backComp->SetGrphHandle(backgroundHandle);
+
+    UIRenderer* UIComp = buttonManagerObject->GetComponent<UIRenderer>();
+    UIComp->SetGrphHandle(pickUI);
+
+    Transform* buttonTr = buttonManagerObject->GetComponent<Transform>();
+    buttonTr->SetPosition(VGet(Screen::Width / 4, Screen::Height / 2, 0.0f));
+    buttonTr->SetScale(VGet(0.5f, 0.5f, 0.0f));
 }
 
 // 更新

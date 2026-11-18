@@ -1,6 +1,8 @@
 #include"FighterPickButtonManager.h"
+#include"../../Screen/Screen.h"
 #include"../Input.h"
 #include"../UIRenderer.h"
+#include"../Transform.h"
 
 // コンストラクタ
 FighterPickButtonManager::FighterPickButtonManager(Actor* owner,
@@ -22,6 +24,7 @@ FighterPickButtonManager::FighterPickButtonManager(Actor* owner,
 void FighterPickButtonManager::Update()
 {
 	Input* inComp = m_owner->GetComponent<Input>();
+	Transform* tr = m_owner->GetComponent<Transform>();
 
 	// 上入力
 	if (inComp->GetButtonDown(Input::Button::UP) /* || inComp->GetAnalog(Input::Analog::LX) > 0*/)
@@ -86,6 +89,21 @@ void FighterPickButtonManager::Update()
 		}
 
 		pickParts = (pickParts + m_load.GetDataNum()) % m_load.GetDataNum();
+
+		switch (pickParts)
+		{
+		case Body:
+			tr->SetPosition(VGet(Screen::Width / 4, Screen::Height / 2, 0.0f));
+			break;
+		case Wing:
+			tr->SetPosition(VGet((Screen::Width / 4) * 2, Screen::Height / 2, 0.0f));
+			break;
+		case Diffuser:
+			tr->SetPosition(VGet((Screen::Width / 4) * 3, Screen::Height / 2, 0.0f));
+			break;
+		default:
+			break;
+		}
 	}
 
 	// キャンセル
@@ -94,6 +112,21 @@ void FighterPickButtonManager::Update()
 		pickParts--;
 
 		pickParts = (pickParts + m_load.GetDataNum()) % m_load.GetDataNum();
+
+		switch (pickParts)
+		{
+		case Body:
+			tr->SetPosition(VGet(Screen::Width / 4, Screen::Height / 2, 0.0f));
+			break;
+		case Wing:
+			tr->SetPosition(VGet((Screen::Width / 4) * 2, Screen::Height / 2, 0.0f));
+			break;
+		case Diffuser:
+			tr->SetPosition(VGet((Screen::Width / 4) * 3, Screen::Height / 2, 0.0f));
+			break;
+		default:
+			break;
+		}
 	}
 }
 
