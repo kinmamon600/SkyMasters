@@ -23,3 +23,15 @@ void Component::Update()
 {
 
 }
+
+// アップデート順の取得
+int Component::GetUpdateOrder() const
+{
+	return m_updateOrder;
+}
+
+// 自身がアタッチされているアクターの取得
+Actor* Component::GetOwner() const
+{
+	return m_owner;
+}

@@ -2,12 +2,14 @@
 #define _BEHAVIOR_H
 
 // ライブラリ・ヘッダ
+#include <vector>
+
 #include <DxLib.h>
 #include "Component.h"
 #include "ComponentUpdateOrder.h"
 
 // 前方宣言
-class PhysicsCollider;
+class Actor;
 
 /// <summary>
 /// ビヘイビア
@@ -24,11 +26,11 @@ public:
 	~Behavior() {};
 
 	// コライダーがアタッチされている時、接触を判定する
-	void CheckContact();
+	void CheckContact(std::vector<Component*> p_physicsColliders);
 
 protected:
 	// コライダーがアタッチされている時、接触時に呼ばれる
-	virtual void IsContact(const PhysicsCollider* other) {};
+	virtual void IsContact(const Actor* other) {};
 
 private:
 

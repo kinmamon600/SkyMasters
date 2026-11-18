@@ -9,7 +9,7 @@
 class FighterPickScene : public SceneBase
 {
 public:
-	FighterPickScene(SceneManager* sceneManager,GameManager* gameManager) : SceneBase(sceneManager,gameManager){};
+	FighterPickScene(SceneManager* sceneManager, GameManager* gameManager) : SceneBase(sceneManager,gameManager){};
 
     // “Ç‚İ‚İ
     bool Load() override;

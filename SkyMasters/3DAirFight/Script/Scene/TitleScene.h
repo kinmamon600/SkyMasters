@@ -6,7 +6,7 @@
 class TitleScene :public SceneBase
 {
 public:
-    TitleScene(SceneManager* sceneManager) : SceneBase(sceneManager) {};
+    TitleScene(SceneManager* sceneManager, GameManager* gameManager) : SceneBase(sceneManager, gameManager) {};
 
     // “Ç‚İ‚İ
     bool Load() override;

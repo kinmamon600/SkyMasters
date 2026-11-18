@@ -1,5 +1,8 @@
 #pragma once
 
+// 前方宣言
+class Actor;
+
 class Component
 {
 public:
@@ -13,9 +16,12 @@ public:
 	virtual void Update();
 
 	// アップデート順の取得
-	int GetUpdateOrder() const { return m_updateOrder; }
+	int GetUpdateOrder() const;
+
+	// 自身がアタッチされているアクターの取得
+	Actor* GetOwner() const;
 
 protected:
-	class Actor* m_owner;
+	Actor* m_owner;
 	int m_updateOrder;
 };

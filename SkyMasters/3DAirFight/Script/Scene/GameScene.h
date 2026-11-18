@@ -12,7 +12,7 @@
 class GameScene : public SceneBase
 {
 public:
-    GameScene(SceneManager* sceneManager) : SceneBase(sceneManager) {};
+    GameScene(SceneManager* sceneManager, GameManager* gameManager) : SceneBase(sceneManager, gameManager) {};
 
     // “Ç‚İ‚İ
     bool Load() override;

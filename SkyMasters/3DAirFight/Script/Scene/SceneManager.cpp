@@ -60,15 +60,15 @@ void SceneManager::CreateScene()
 	switch (currentSceneType)
 	{
 	case SceneType::TitleScene:
-		p_currentScene = std::make_unique<TitleScene>(this);
+		p_currentScene = std::make_unique<TitleScene>(this, p_game->p_gameManager);
 		break;
 
 	case SceneType::FighterPickScene:
-		p_currentScene = std::make_unique<FighterPickScene>(this);
+		p_currentScene = std::make_unique<FighterPickScene>(this, p_game->p_gameManager);
 		break;
 
 	case SceneType::GameScene:
-		p_currentScene = std::make_unique<GameScene>(this);
+		p_currentScene = std::make_unique<GameScene>(this, p_game->p_gameManager);
 		break;
 
 	case SceneType::Exit:

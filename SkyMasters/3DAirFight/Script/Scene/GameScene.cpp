@@ -72,6 +72,7 @@ void GameScene::Initialize()
 
     new Transform(terrainObject.get());
     new ModelRenderer(terrainObject.get());
+    new PhysicsColliderSphere(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), 300, PhysicsCollider::Trigger, 0);
 
     ModelRenderer* modelComp = playerObject->GetComponent<ModelRenderer>();
     modelComp->SetModelHandle(playerModel);

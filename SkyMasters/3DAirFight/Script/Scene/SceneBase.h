@@ -8,7 +8,7 @@
 
 // 前方宣言
 class SceneManager;
-class GameManger;
+class GameManager;
 
 /// <summary>
 /// 全シーン共通の基底クラス

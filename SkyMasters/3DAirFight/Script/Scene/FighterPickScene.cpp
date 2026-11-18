@@ -148,7 +148,7 @@ SceneType FighterPickScene::Terminate()
     id.wingID = fpbm->GetWingID();
     id.diffuserID = fpbm->GetDiffuserID();
 
-    gameManager->SetFighterPartsID(id);
+    p_gameManager->SetFighterPartsID(id);
 
     return SceneType::GameScene;
 }

@@ -5,7 +5,7 @@
 #include "Actor/Actor.h"
 
 // コライダーがアタッチされている時、接触を判定する
-void Behavior::CheckContact()
+void Behavior::CheckContact(std::vector<Component*> p_physicsColliders)
 {
 	// コライダーがアタッチされているか確認
 	PhysicsCollider* pc = m_owner->GetComponent<PhysicsCollider>();
@@ -13,7 +13,7 @@ void Behavior::CheckContact()
 
 	// IDがあるか確認
 	int my_id = pc->GetID();
-	if (my_id > SDP::ID_NULL) { return; }
+	if (my_id == SDP::ID_NULL) { return; }
 
 	// 当たり判定を確認
 	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
@@ -32,12 +32,32 @@ void Behavior::CheckContact()
 
 		if (id_a == my_id)
 		{
-			//m_owner->GetGame()->
+			for (auto comp : p_physicsColliders)
+			{
+				PhysicsCollider* pc = comp->GetOwner()->GetComponent<PhysicsCollider>();
+
+				if (pc == nullptr) { continue; }
+
+				if (pc->GetID() == id_b)
+				{
+					IsContact(comp->GetOwner());
+				}
+			}
 		}
 
 		if (id_b == my_id)
 		{
+			for (auto comp : p_physicsColliders)
+			{
+				PhysicsCollider* pc = comp->GetOwner()->GetComponent<PhysicsCollider>();
 
+				if (pc == nullptr) { continue; }
+
+				if (pc->GetID() == id_a)
+				{
+					IsContact(comp->GetOwner());
+				}
+			}
 		}
 	}
 }

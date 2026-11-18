@@ -1,15 +1,16 @@
 #pragma once
 #include "../Component.h"
+#include "../Behavior.h"
 #include "../ComponentUpdateOrder.h"
 #include "../../Loader/FighterData.h"
 #include"../../Loader/FighterDataLoader.h"
 
-class Fighter : public Component
+class Fighter : public Behavior
 {
 public:
 	// コンストラクタ
 	Fighter(Actor* owner, Actor* cam)
-		: Component(owner,static_cast<int>(ComponentUpdateOrder::Behaviour)), p_myCamera(cam){}
+		: Behavior(owner), p_myCamera(cam){}
 
 	// デストラクタ
 	~Fighter(){}
@@ -25,7 +26,10 @@ public:
 	void Initialize();
 
 	// 更新
-	void Update()override;
+	void Update() override;
+
+	// 当たり判定
+	void IsContact(const Actor* other) override;
 
 	// 終了
 	//void Terminate();

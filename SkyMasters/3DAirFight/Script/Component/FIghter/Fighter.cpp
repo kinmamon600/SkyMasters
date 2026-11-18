@@ -74,8 +74,11 @@ void Fighter::Update()
 	}
 }
 
-// 終了
-//void Fighter::Terminate(){}
+// 当たり判定
+void Fighter::IsContact(const Actor* other)
+{
+	printfDx("ヒット！\n");
+}
 
 // ステートの変更
 void Fighter::ChangeState(PlayerState state)

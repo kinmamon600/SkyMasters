@@ -3,6 +3,8 @@
 #include "ComponentManager.h"
 #include "Component.h"
 #include "ComponentUpdateOrder.h"
+#include "Actor/Actor.h"
+#include "Behavior.h"
 
 // コンポーネントの追加
 void ComponentManager::AddComponent(Component* component)
@@ -11,7 +13,7 @@ void ComponentManager::AddComponent(Component* component)
 	//（自分より順序が高い最初の要素）
 	int myOrder = component->GetUpdateOrder();
 
-	// レンダリング系コンポーネントであれば専用配列に挿入
+	// コライダー、レンダリング系コンポーネントであれば専用配列に挿入
 	if (myOrder == static_cast<int>(ComponentUpdateOrder::PhysicsCollider))
 	{
 		auto iter = p_physicsColliderComponents.begin();
@@ -64,7 +66,7 @@ void ComponentManager::RemoveComponent(Component* component)
 
 	if (myOrder == static_cast<int>(ComponentUpdateOrder::PhysicsCollider))
 	{
-		// 処理系コンポーネントを検索、見つかったら消去
+		// コライダーを検索、見つかったら消去
 		auto iter = std::find(p_physicsColliderComponents.begin(), p_physicsColliderComponents.end(), component);
 		if (iter != p_physicsColliderComponents.end())
 		{
@@ -105,6 +107,17 @@ void ComponentManager::Update()
 	for (auto comp : p_processComponents)
 	{
 		comp->Update();
+
+		// もしコンポーネントがビヘイビアなら、当たり判定の確認
+		if (comp->GetUpdateOrder() == static_cast<int>(ComponentUpdateOrder::Behaviour))
+		{
+			Behavior* behavior = comp->GetOwner()->GetComponent<Behavior>();
+
+			if (behavior != nullptr)
+			{
+				behavior->CheckContact(p_physicsColliderComponents);
+			}
+		}
 
 		// もしコンポーネントがカメラなら、レンダリング処理も実行する
 		if (comp->GetUpdateOrder() == static_cast<int>(ComponentUpdateOrder::Camera))

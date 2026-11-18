@@ -6,6 +6,7 @@
 
 // 前方宣言
 class Component;
+class PhysicsCollider;
 
 /// <summary>
 /// コンポーネントの管理クラス
@@ -35,9 +36,9 @@ private:
 	// コンポーネントのポインタ可変長配列
 	// Actorが所有権を持つのでただアドレスを持つだけ
 	// コライダーと処理系コンポーネントとレンダリング系コンポーネントを別に保持
-	std::vector<class Component*> p_physicsColliderComponents;
-	std::vector<class Component*> p_processComponents;
-	std::vector<class Component*> p_renderComponents;
+	std::vector<Component*> p_physicsColliderComponents;
+	std::vector<Component*> p_processComponents;
+	std::vector<Component*> p_renderComponents;
 };
 
 #endif
