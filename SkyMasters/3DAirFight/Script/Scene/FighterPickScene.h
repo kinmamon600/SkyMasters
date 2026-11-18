@@ -25,6 +25,7 @@ public:
 private:
     std::unique_ptr<Actor> cameraObject;
     std::unique_ptr<Actor> buttonManagerObject;
+    std::unique_ptr<Actor> backgroundObject;
     std::vector<std::unique_ptr<Actor>>  bodyObject;
     std::vector<std::unique_ptr<Actor>>  wingObject;
     std::vector<std::unique_ptr<Actor>>  diffuserObject;
@@ -34,4 +35,7 @@ private:
     std::vector<int> diffuserHandles;
 
     FighterDataLoader m_loader;
+
+    int pickUI = -1;
+    int backgroundHandle = -1;
 };

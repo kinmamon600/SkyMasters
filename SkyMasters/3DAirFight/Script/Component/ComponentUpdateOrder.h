@@ -16,6 +16,7 @@ enum class ComponentUpdateOrder
 
 	StartRenderComponent,	// ここからレンダリング系コンポーネント (この値はオーダーに設定しない)
 	SkyboxRenderer,
+	BackgroundRenderer,
 	ModelRenderer,
 	EndRenderComponent,		// ここまでレンダリング系コンポーネント (この値はオーダーに設定しない)
 
