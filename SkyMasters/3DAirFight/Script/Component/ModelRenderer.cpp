@@ -51,32 +51,33 @@ void ModelRenderer::Draw()
 	MV1SetPosition(m_modelHandle, pos);
 	MV1SetRotationXYZ(m_modelHandle, VGet(angleX, angleY, angleZ));
 
-	// モデルの描画
-	MV1DrawModel(m_modelHandle);
-
-	// テクスチャマスクが無ければ描画処理終了
-	//if (m_textureMasks.size() < 1) { return; }
-	//
-	//// テクスチャマスクに合わせて上書き描画
-	//for (auto tx_mask : m_textureMasks)
-	//{
-	//	MV1SetTextureGraphHandle(m_modelHandle, 0, tx_mask.textureHandle, FALSE);
-	//	MV1SetMaterialDifColor(m_modelHandle, 0, tx_mask.diffuse);
-	//	MV1SetMaterialSpcColor(m_modelHandle, 0, tx_mask.specular);
-	//	MV1SetMaterialEmiColor(m_modelHandle, 0, tx_mask.emissive);
-	//	MV1SetMaterialAmbColor(m_modelHandle, 0, tx_mask.ambient);
-	//	MV1SetMaterialSpcPower(m_modelHandle, 0, tx_mask.specularPower);
-	//
-	//	MV1DrawModel(m_modelHandle);
-	//}
-	//
-	//// 元のテクスチャとマテリアルに戻す
-	//MV1SetTextureGraphHandle(m_modelHandle, 0, m_textureHandle, FALSE);
-	//MV1SetMaterialDifColor(m_modelHandle, 0, m_diffuse);
-	//MV1SetMaterialSpcColor(m_modelHandle, 0, m_specular);
-	//MV1SetMaterialEmiColor(m_modelHandle, 0, m_emissive);
-	//MV1SetMaterialAmbColor(m_modelHandle, 0, m_ambient);
-	//MV1SetMaterialSpcPower(m_modelHandle, 0, m_specularPower);
+	// テクスチャマスクが無ければ一度描画して処理終了
+	if (m_textureMasks.size() < 1)
+	{
+		MV1DrawModel(m_modelHandle);
+		return;
+	}
+	
+	// テクスチャマスクに合わせて上書き描画
+	for (const TextureMask& tx_mask : m_textureMasks)
+	{
+		MV1SetTextureGraphHandle(m_modelHandle, 0, tx_mask.textureHandle, FALSE);
+		MV1SetMaterialDifColor(m_modelHandle, 0, tx_mask.diffuse);
+		MV1SetMaterialSpcColor(m_modelHandle, 0, tx_mask.specular);
+		MV1SetMaterialEmiColor(m_modelHandle, 0, tx_mask.emissive);
+		MV1SetMaterialAmbColor(m_modelHandle, 0, tx_mask.ambient);
+		MV1SetMaterialSpcPower(m_modelHandle, 0, tx_mask.specularPower);
+	
+		MV1DrawModel(m_modelHandle);
+	}
+	
+	// 元のテクスチャとマテリアルに戻す
+	MV1SetTextureGraphHandle(m_modelHandle, 0, m_textureHandle, FALSE);
+	MV1SetMaterialDifColor(m_modelHandle, 0, m_diffuse);
+	MV1SetMaterialSpcColor(m_modelHandle, 0, m_specular);
+	MV1SetMaterialEmiColor(m_modelHandle, 0, m_emissive);
+	MV1SetMaterialAmbColor(m_modelHandle, 0, m_ambient);
+	MV1SetMaterialSpcPower(m_modelHandle, 0, m_specularPower);
 }
 
 // モデルハンドルのセット

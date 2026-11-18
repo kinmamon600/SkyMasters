@@ -2,6 +2,7 @@
 
 // ライブラリ・ヘッダ
 #include <vector>
+//#include <stack>
 
 #include "DxLib.h"
 

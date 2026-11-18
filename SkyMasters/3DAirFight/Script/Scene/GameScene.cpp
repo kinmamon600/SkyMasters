@@ -72,11 +72,38 @@ void GameScene::Initialize()
 
     new Transform(terrainObject.get());
     new ModelRenderer(terrainObject.get());
-    new PhysicsColliderSphere(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), 300, PhysicsCollider::Trigger, 0);
+    //new PhysicsColliderSphere(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), 300, PhysicsCollider::Trigger, 0);
+    new PhysicsColliderBox(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(30.0f, 30.0f, 30.0f), PhysicsCollider::Trigger, 0);
 
     ModelRenderer* modelComp = playerObject->GetComponent<ModelRenderer>();
     modelComp->SetModelHandle(playerModel);
     modelComp->SetScale(VGet(0.1f, 0.1f, 0.1f));
+
+    // ‚±‚±‚©‚ç‚µ‚Î‚ç‚­‰¼‚Å‚·
+    int dif_tx = LoadGraph("../Texture/FighterTextureCo.png");
+    int canopy_tx = LoadGraph("../Texture/FighterTextureCanopy.png");
+    int emi_tx = LoadGraph("../Texture/FighterTextureEm.png");
+    ModelRenderer::TextureMask dif_tm = { dif_tx, 
+        GetColorF(0.4f, 0.4f, 0.4f, 1.0f),
+        GetColorF(0.8f, 0.8f, 0.8f, 1.0f),
+        GetColorF(0.1f, 0.1f, 0.1f, 1.0f),
+        GetColorF(0.8f, 0.8f, 0.8f, 1.0f),
+        64.0f};
+    ModelRenderer::TextureMask canopy_tm = { canopy_tx,
+        GetColorF(0.588f, 0.588f, 0.588f, 1.0f),
+        GetColorF(1.0f, 1.0f, 1.0f, 1.0f),
+        GetColorF(0.1f, 0.1f, 0.1f, 1.0f),
+        GetColorF(0.275f, 0.314f, 0.431f, 1.0f),
+        100.0f };
+    ModelRenderer::TextureMask emi_tm = { emi_tx,
+        GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
+        GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
+        GetColorF(1.0f, 1.0f, 1.0f, 1.0f),
+        GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
+        0.0f };
+    modelComp->AddTextureMask(dif_tm);
+    modelComp->AddTextureMask(canopy_tm);
+    modelComp->AddTextureMask(emi_tm);
 
     Camera* cameraComp = cameraObject->GetComponent<Camera>();
     cameraComp->SetDispArea(0, 0, 1920 / 2, 1080 / 2);
@@ -88,8 +115,7 @@ void GameScene::Initialize()
 
     ModelRenderer* terrainModelComp = terrainObject->GetComponent<ModelRenderer>();
     terrainModelComp->SetModelHandle(planeModel);
-    terrainModelComp->SetScale(VGet(0.01f, 1.0f, 0.01f));
-    //terrainModelComp->SetEmissive(GetColorF(1.0f, 1.0f, 1.0f, 1.0f));
+    terrainModelComp->SetScale(VGet(0.1f, 1.0f, 0.1f));
     Transform* terrainTrComp = terrainObject->GetComponent<Transform>();
     terrainTrComp->SetPosition(VGet(0.0f, -1000.0f, 0.0f));
 }

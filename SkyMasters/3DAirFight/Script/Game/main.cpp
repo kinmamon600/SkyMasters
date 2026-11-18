@@ -12,7 +12,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	// 画面モードの設定
 	SetGraphMode(Screen::Width, Screen::Height, 32, 60);
 	SetWindowSize(Screen::Width, Screen::Height);
-	ChangeWindowMode(TRUE);		// フルスクリーン表示
+	ChangeWindowMode(TRUE);			// フルスクリーン表示
 	SetMouseDispFlag(FALSE);		// マウスカーソル非表示
 	SetMainWindowText("SKY MASTES");// ウィンドウ名
 
@@ -24,7 +24,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
 	// 物理世界の初期化
-	if (!SDP::PhysicsInit(VGet(10000.0f, 5000.0f, 10000.0f)))
+	if (!SDP::PhysicsInit(VGet(100000.0f, 5000.0f, 100000.0f)))
 	{
 		// エラーが発生したらプログラム終了
 		return -1;
@@ -33,7 +33,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	// 描画設定
 	SetUseZBuffer3D(TRUE);		// Ｚバッファを有効にする
 	SetWriteZBuffer3D(TRUE);	// Ｚバッファへの書き込みを有効にする
-	SetGlobalAmbientLight(GetColorF(0.5f, 0.5f, 0.5f, 1.0f));
+	//SetGlobalAmbientLight(GetColorF(0.5f, 0.5f, 0.5f, 1.0f));
 	
 	// ゲーム生成
 	Game* game = new Game();
@@ -48,7 +48,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		// 画面クリア
 		DxLib::ClearDrawScreen();
 
-		SDP::RenderPhysicalObject();
+		//SDP::RenderPhysicalObject();
 		
 		// ゲームの更新
 		game->Update();
