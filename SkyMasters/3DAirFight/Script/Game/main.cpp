@@ -48,6 +48,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		// 画面クリア
 		DxLib::ClearDrawScreen();
 
+		SDP::RenderPhysicalObject();
+		
 		// ゲームの更新
 		game->Update();
 
