@@ -25,8 +25,6 @@ void TitleButtonManager::Update()
 	// Œˆ’è
 	if (inComp->GetButtonDown(Input::Button::EAST))
 	{
-		printfDx("Œˆ’è‚µ‚½‚æ\n");
-
 		switch (m_currentButton)
 		{
 		case TitleButtonManager::TitleButtonType::Start:
