@@ -1,14 +1,18 @@
 #include"FighterPickScene.h"
+
 #include"SceneManager.h"
 #include"../Screen/Screen.h"
 #include"../Game/Game.h"
+
 #include"../Component/Input.h"
 #include"../Component/Camera.h"
 #include"../Component/UIRenderer.h"
 #include"../Component/BackgroundRenderer.h"
 #include"../Component/Transform.h"
 #include"../Component/ButtonManager/FighterPickButtonManager.h"
+
 #include"../Loader/FighterDataLoader.h"
+#include"../Loader/FighterPartsID.h"
 
 #include<string>
 
@@ -129,13 +133,22 @@ void FighterPickScene::Initialize()
 void FighterPickScene::Execute()
 {
     FighterPickButtonManager* fpbm = buttonManagerObject->GetComponent<FighterPickButtonManager>();
-    fpbm->BodyID();
-    fpbm->WingID();
-    fpbm->DiffuserID();
+    fpbm->BodyVisibleID();
+    fpbm->WingVisibleID();
+    fpbm->DiffuserVisibleID();
 }
 
 // I—¹
 SceneType FighterPickScene::Terminate()
 {
+    FighterPartsID id;
+
+    FighterPickButtonManager* fpbm = buttonManagerObject->GetComponent<FighterPickButtonManager>();
+    id.bodyID = fpbm->GetBodyID();
+    id.wingID = fpbm->GetWingID();
+    id.diffuserID = fpbm->GetDiffuserID();
+
+    gameManager->SetFighterPartsID(id);
+
     return SceneType::GameScene;
 }
