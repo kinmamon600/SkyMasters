@@ -33,6 +33,7 @@ bool GameScene::Load()
     SetUseASyncLoadFlag(TRUE);
 
     playerModel = MV1LoadModel("../3DModel/testFighter.mv1");
+    planeModel = MV1LoadModel("../3DModel/Plane.mv1");
 
     skyHandel = MV1LoadModel("../3DModel/SkyBox/SkyBox.mv1");
     skyTx = LoadGraph("../3DModel/SkyBox/SkyTx.png");
@@ -51,6 +52,7 @@ void GameScene::Initialize()
     playerObject = std::make_unique<Actor>(p_sceneManager->p_game);
     skyBoxObject = std::make_unique<Actor>(p_sceneManager->p_game);
     cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);
+    terrainObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
     // コンポーネントを生成
     new Transform(playerObject.get());
@@ -68,6 +70,9 @@ void GameScene::Initialize()
 
     new SkyboxRenderer(skyBoxObject.get());
 
+    new Transform(terrainObject.get());
+    new ModelRenderer(terrainObject.get());
+
     ModelRenderer* modelComp = playerObject->GetComponent<ModelRenderer>();
     modelComp->SetModelHandle(playerModel);
     modelComp->SetScale(VGet(0.1f, 0.1f, 0.1f));
@@ -79,6 +84,13 @@ void GameScene::Initialize()
 
     SkyboxRenderer* skyComp = skyBoxObject->GetComponent<SkyboxRenderer>();
     skyComp->SetHandles(skyHandel, skyTx);
+
+    ModelRenderer* terrainModelComp = terrainObject->GetComponent<ModelRenderer>();
+    terrainModelComp->SetModelHandle(planeModel);
+    terrainModelComp->SetScale(VGet(0.01f, 1.0f, 0.01f));
+    //terrainModelComp->SetEmissive(GetColorF(1.0f, 1.0f, 1.0f, 1.0f));
+    Transform* terrainTrComp = terrainObject->GetComponent<Transform>();
+    terrainTrComp->SetPosition(VGet(0.0f, -1000.0f, 0.0f));
 }
 
 // 更新

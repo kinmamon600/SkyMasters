@@ -33,6 +33,7 @@ private:
     //std::unique_ptr<Actor> uiObject;
     //std::unique_ptr<Actor> modelObject;
     std::unique_ptr<Actor> cameraObject;
+    std::unique_ptr<Actor> terrainObject;
 
     FighterDataLoader m_loader;
 
@@ -40,6 +41,7 @@ private:
 
     // ３Dモデルハンドル
     int playerModel = -1;
+    int planeModel = -1;
 
     // スカイボックスハンドル
     int skyHandel = -1;

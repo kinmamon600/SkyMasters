@@ -24,7 +24,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
 	// 物理世界の初期化
-	if (!SDP::PhysicsInit(VGet(5000.0f, 2000.0f, 5000.0f)))
+	if (!SDP::PhysicsInit(VGet(10000.0f, 5000.0f, 10000.0f)))
 	{
 		// エラーが発生したらプログラム終了
 		return -1;

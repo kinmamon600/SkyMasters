@@ -279,24 +279,6 @@ bool Automatic::RollTurn()
 	// 機体がひっくり返っていたなら処理終了
 	if (dot >= m_pastTurnDot)
 	{
-		pcs->SetLinerVelocity(VGet(0.0f, 0.0f, 0.0f));
-		pcs->SetAngularVelocity(VGet(0.0f, 0.0f, 0.0f));
-		return false;
-	}
-
-	m_currentTurnValue = -dot / 2.0f - 0.5f;
-	m_pastTurnDot = dot;
-
-	// 自機制御コンポーネント取得
-	Fighter* fighter = m_owner->GetComponent<Fighter>();
-
-	// 速度設定
-	VECTOR linear_velocity = VScale(forward, fighter->m_speed);
-
-	float roll = fighter->m_rollAngularVelocityMax * -(m_currentTurnValue + fighter->m_rollAngularVelocityMin);
-
-	if (roll < fighter->m_rollAngularVelocityMin)
-	{
 		// ロール0度時の右方向
 		VECTOR reference_right = VNorm(VCross(forward, VGet(0.0f, 1.0f, 0.0f)));
 
@@ -309,7 +291,7 @@ bool Automatic::RollTurn()
 
 		float cos_roll = VDot(up, VGet(0.0f, 1.0f, 0.0f));
 
-		roll = atan2f(sin_roll, cos_roll);
+		float roll = atan2f(sin_roll, cos_roll);
 
 		VECTOR rotationAxis = forward;
 		float rotationAngle = -roll;
@@ -317,19 +299,30 @@ bool Automatic::RollTurn()
 		// 角速度設定
 		VECTOR angular_velocity = VScale(rotationAxis, rotationAngle);
 		pcs->SetAngularVelocity(angular_velocity);
-	}
-	else
-	{
-		// 機体の軸方向設定
-		VECTOR axis_z = VScale(forward, -1.0f);
 
-		// 角速度設定
-		VECTOR angular_velocity = VGet(axis_z.x * roll,
-			axis_z.y * roll,
-			axis_z.z * roll);
-
-		pcs->SetAngularVelocity(angular_velocity);
+		return false;
 	}
+
+	m_currentTurnValue = -dot / 2.0f - 0.5f;
+	m_pastTurnDot = dot;
+
+	// 自機制御コンポーネント取得
+	Fighter* fighter = m_owner->GetComponent<Fighter>();
+
+	// 速度設定
+	VECTOR linear_velocity = VScale(forward, fighter->m_speed);
+
+	// 機体の軸方向設定
+	VECTOR axis_z = VScale(forward, -1.0f);
+
+	// 角速度設定
+	float roll = 1.0f;
+
+	VECTOR angular_velocity = VGet(axis_z.x * roll,
+		axis_z.y * roll,
+		axis_z.z * roll);
+
+	pcs->SetAngularVelocity(angular_velocity);
 
 	// 速度設定
 	pcs->SetLinerVelocity(linear_velocity);
