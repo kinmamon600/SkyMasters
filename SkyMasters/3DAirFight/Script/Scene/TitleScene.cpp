@@ -30,30 +30,27 @@ void TitleScene::Initialize()
 	cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);
 	backgroundObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
-	// 昆布の生成
+	// ボタンマネージャー
 	new TitleButtonManager(buttonManagerObject.get(),this);
 	new Input(buttonManagerObject.get());
-	new Camera(cameraObject.get());
-	new UIRenderer(startButtonObject.get());
-	new UIRenderer(endButtonObject.get());
-	new Transform(startButtonObject.get());
-	new Transform(endButtonObject.get());
-	new BackgroundRenderer(backgroundObject.get());
 
+	// カメラ
+	new Camera(cameraObject.get());
+	
 	// スタートボタン
-	UIRenderer* startSprite = startButtonObject->GetComponent<UIRenderer>();
+	UIRenderer* startSprite = new UIRenderer(startButtonObject.get());
 	startSprite->SetGrphHandle(startHandle);
-	Transform* startTr = startButtonObject->GetComponent<Transform>();
+	Transform* startTr = new Transform(startButtonObject.get());
 	startTr->SetPosition(VGet(Screen::Width / 3, Screen::Height / 3 * 2, 0.0f));
 
 	// エンドボタン
-	UIRenderer* endSprite = endButtonObject->GetComponent<UIRenderer>();
+	UIRenderer* endSprite = new UIRenderer(endButtonObject.get());
 	endSprite->SetGrphHandle(endHandle);
-	Transform* endTr = endButtonObject->GetComponent<Transform>();
+	Transform* endTr = new Transform(endButtonObject.get());
 	endTr->SetPosition(VGet(Screen::Width / 3 * 2, Screen::Height / 3 * 2, 0.0f));
 
 	// 背景
-	BackgroundRenderer* backComp = backgroundObject->GetComponent<BackgroundRenderer>();
+	BackgroundRenderer* backComp = new BackgroundRenderer(backgroundObject.get());
 	backComp->SetGrphHandle(backgroundHandle);
 }
 

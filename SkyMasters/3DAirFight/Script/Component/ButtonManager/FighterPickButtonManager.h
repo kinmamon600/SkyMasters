@@ -38,6 +38,8 @@ public:
 
 private:
 
+	const short partsNum = 3;
+
 	const std::vector<std::unique_ptr<Actor>>& m_bodyObject;
 	const std::vector<std::unique_ptr<Actor>>& m_wingObject;
 	const std::vector<std::unique_ptr<Actor>>& m_diffObject;

@@ -14,7 +14,7 @@ class ModelRenderer : public Component
 public:
     // コンストラクタ
     ModelRenderer(Actor* owner)
-        :Component(owner, static_cast<int>(ComponentUpdateOrder::ModelRenderer)){}
+        :Component(owner, static_cast<int>(ComponentUpdateOrder::ModelRenderer)) {}
 
     // デストラクタ
     ~ModelRenderer();

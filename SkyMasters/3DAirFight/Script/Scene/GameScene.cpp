@@ -2,6 +2,8 @@
 #include "SceneManager.h"
 #include "../Game/Game.h"
 
+#include<string>
+
 // コンポーネントたち
 #include "../Component/SkyboxRenderer.h"
 #include "../Component/UIRenderer.h"
@@ -30,12 +32,25 @@ bool GameScene::Load()
     m_loader.LoadDiffuser();
     m_loader.LoadSpecialWeapon();
 
+    m_fpID = p_gameManager->GetFighterPartsID();
+
     // 非同期開始
     SetUseASyncLoadFlag(TRUE);
 
+    std::string bodyModel = "../3DModel/BodyParts" + std::to_string(m_fpID.bodyID) + ".mv1";
+    m_bodyModel = MV1LoadModel(bodyModel.c_str()); 
+    std::string wingModel = "../3DModel/WingParts" + std::to_string(m_fpID.wingID) + ".mv1";
+    m_wingModel = MV1LoadModel(wingModel.c_str());
+    std::string diffuserModel = "../3DModel/DiffuserParts" + std::to_string(m_fpID.diffuserID) + ".mv1";
+    m_diffuserModel = MV1LoadModel(diffuserModel.c_str());
+
     playerModel = MV1LoadModel("../3DModel/testFighter.mv1");
+<<<<<<< HEAD
     planeModel = MV1LoadModel("../3DModel/Plane.mv1");
     m_beamModelHandle = MV1LoadModel("../3DModel/Fighter_Bullet.mv1");
+=======
+    planeModel = MV1LoadModel("../3DModel/plane.mv1");
+>>>>>>> keigon/GameManager
 
     skyHandel = MV1LoadModel("../3DModel/SkyBox/SkyBox.mv1");
     skyTx = LoadGraph("../3DModel/SkyBox/SkyTx.png");
@@ -78,45 +93,50 @@ void GameScene::Initialize()
     skyBoxObject = std::make_unique<Actor>(p_sceneManager->p_game);
     cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);
     terrainObject = std::make_unique<Actor>(p_sceneManager->p_game);
-
-    // コンポーネントを生成
+    
+    // Transform
     new Transform(playerObject.get());
-    new PhysicsColliderSphere(playerObject.get(),VGet(0.0f, 0.0f, 0.0f),30,PhysicsCollider::Active,1);
-    //new PhysicsColliderBox(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(1.0f, 1.0f, 1.0f), PhysicsCollider::Active, 1);
-    new Input(playerObject.get());
-    new ModelRenderer(playerObject.get());
-    new Fighter(playerObject.get(), cameraObject.get(), m_beamModelHandle);
-    new Manual(playerObject.get());
-    new Automatic(playerObject.get());
-
-    new Camera(cameraObject.get());
+    new Transform(terrainObject.get());
+    
+    // 物理
+    new PhysicsColliderBox(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(30.0f, 30.0f, 30.0f), PhysicsCollider::Trigger, 0);
+    new PhysicsColliderSphere(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), 30, PhysicsCollider::Active, 1);
+    
+    // カメラ
     new ManualCamera(cameraObject.get());
     new AutomaticCamera(cameraObject.get());
-
-    new SkyboxRenderer(skyBoxObject.get());
-
-    new Transform(terrainObject.get());
-    new ModelRenderer(terrainObject.get());
-    //new PhysicsColliderSphere(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), 300, PhysicsCollider::Trigger, 0);
-    new PhysicsColliderBox(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(30.0f, 30.0f, 30.0f), PhysicsCollider::Trigger, 0);
-
-    ModelRenderer* modelComp = playerObject->GetComponent<ModelRenderer>();
+    Camera* cameraComp = new Camera(cameraObject.get());
+    cameraComp->SetDispArea(0, 0, 1920 / 2, 1080 / 2);
+    cameraComp->SetDispCenter(1920 / 4, 1080 / 4);
+    cameraComp->SetPosition(VGet(0, 100, 400));
+    
+    // プレイヤー
+    //new PhysicsColliderBox(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(1.0f, 1.0f, 1.0f), PhysicsCollider::Active, 1);
+    new Input(playerObject.get());
+<<<<<<< HEAD
+    new ModelRenderer(playerObject.get());
+    new Fighter(playerObject.get(), cameraObject.get(), m_beamModelHandle);
+=======
+    new Fighter(playerObject.get(), cameraObject.get());
+>>>>>>> keigon/GameManager
+    new Manual(playerObject.get());
+    new Automatic(playerObject.get());
+    ModelRenderer* modelComp = new ModelRenderer(playerObject.get());
     modelComp->SetModelHandle(playerModel);
     modelComp->SetScale(VGet(0.1f, 0.1f, 0.1f));
-
+    
+    // 機体のテクスチャー
     modelComp->AddTextureMask(m_fighterTexMaskBody);
     modelComp->AddTextureMask(m_fighterTexMaskCanopy);
     modelComp->AddTextureMask(m_fighterTexMaskEmi);
-
-    Camera* cameraComp = cameraObject->GetComponent<Camera>();
-    cameraComp->SetDispArea(0, 0, 1920 / 2, 1080 / 2);
-    cameraComp->SetDispCenter(1920 / 4, 1080 / 4);
-    cameraComp->SetPosition(VGet(0,100,400));
-
-    SkyboxRenderer* skyComp = skyBoxObject->GetComponent<SkyboxRenderer>();
+    
+    // スカイボックス
+    SkyboxRenderer* skyComp = new SkyboxRenderer(skyBoxObject.get());
     skyComp->SetHandles(skyHandel, skyTx);
-
-    ModelRenderer* terrainModelComp = terrainObject->GetComponent<ModelRenderer>();
+    
+    // 地形
+    //new PhysicsColliderSphere(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), 300, PhysicsCollider::Trigger, 0);
+    ModelRenderer* terrainModelComp = new ModelRenderer(terrainObject.get());
     terrainModelComp->SetModelHandle(planeModel);
     terrainModelComp->SetScale(VGet(0.1f, 1.0f, 0.1f));
     Transform* terrainTrComp = terrainObject->GetComponent<Transform>();
@@ -135,6 +155,10 @@ void GameScene::Execute()
 // 終了
 SceneType GameScene::Terminate()
 {
+<<<<<<< HEAD
+=======
+
+>>>>>>> keigon/GameManager
     // 仮
     return SceneType::Exit;
 }
