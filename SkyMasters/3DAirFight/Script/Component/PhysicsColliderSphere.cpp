@@ -7,4 +7,5 @@ PhysicsColliderSphere::PhysicsColliderSphere(Actor* owner, const VECTOR& pos, fl
 	: PhysicsCollider(owner)
 {
 	m_sdpID = SDP::CreatePhysicalSphere(pos, radius, static_cast<ePfxMotionType>(type), mass, GetColorU8(255, 255, 255, 0));
+	SetTransform();
 }

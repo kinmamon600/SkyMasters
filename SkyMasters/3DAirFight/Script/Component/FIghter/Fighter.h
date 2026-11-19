@@ -1,7 +1,6 @@
 #pragma once
 #include "../Component.h"
 #include "../Behavior.h"
-#include "../ComponentUpdateOrder.h"
 #include "../../Loader/FighterData.h"
 #include"../../Loader/FighterDataLoader.h"
 
@@ -9,8 +8,8 @@ class Fighter : public Behavior
 {
 public:
 	// コンストラクタ
-	Fighter(Actor* owner, Actor* cam)
-		: Behavior(owner), p_myCamera(cam){}
+	Fighter(Actor* owner, Actor* cam, int beam)
+		: Behavior(owner), p_myCamera(cam), m_beamModelHandle(beam){}
 
 	// デストラクタ
 	~Fighter(){}
@@ -86,6 +85,12 @@ private:
 
 	// オートマチック動作の向き
 	short m_automaticDirection = 0;
+
+	// 通常攻撃弾のモデルハンドル
+	int m_beamModelHandle = -1;
+
+	// 通常攻撃
+	void Attack();
 
 	// 自身を映すカメラ
 	Actor* p_myCamera;

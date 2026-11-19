@@ -14,9 +14,7 @@ class PhysicsCollider : public Component
 {
 public:
 	// コンストラクタ
-	PhysicsCollider(Actor* owner)
-		:Component(owner, static_cast<int>(ComponentUpdateOrder::PhysicsCollider)) {
-	};
+	PhysicsCollider(Actor* owner);
 
 	// デストラクタ
 	~PhysicsCollider();
@@ -77,6 +75,9 @@ public:
 protected:
 	// SDP上のオブジェクトID
 	int m_sdpID = -1;
+
+	// トランスフォームの設定(初期設定用)
+	void SetTransform();
 };
 
 #endif

@@ -7,4 +7,5 @@ PhysicsColliderCylinder::PhysicsColliderCylinder(Actor* owner, const VECTOR& pos
 	: PhysicsCollider(owner)
 {
 	m_sdpID = SDP::CreatePhysicalCylinder(pos, length, radius, static_cast<ePfxMotionType>(type), mass, GetColorU8(255, 255, 255, 0));
+	SetTransform();
 }

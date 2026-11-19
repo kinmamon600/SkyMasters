@@ -43,6 +43,7 @@ private:
     // ３Dモデルハンドル
     int playerModel = -1;
     int planeModel = -1;
+    int m_beamModelHandle = -1;
 
     // スカイボックスハンドル
     int skyHandel = -1;

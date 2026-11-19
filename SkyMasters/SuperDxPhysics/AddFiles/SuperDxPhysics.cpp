@@ -864,7 +864,7 @@ const MATRIX& SDP::GetMatrix(unsigned int id)
 
 	// オブジェクトが無い、描画しない設定の時は描画しない
 	if (rb_world->isRemovedRigidBody(id)) { return MGetIdent(); }
-	if (!g_renderFlags[id]) { return MGetIdent(); }
+	//if (!g_renderFlags[id]) { return MGetIdent(); }
 
 	const PfxRigidState& state = rb_world->getRigidState(id);
 	const PfxCollidable& coll = rb_world->getCollidable(id);
@@ -872,7 +872,9 @@ const MATRIX& SDP::GetMatrix(unsigned int id)
 	PfxTransform3 rbT(state.getOrientation(), state.getPosition());
 
 	// マテリアルの設定
+#ifdef _DEBUG
 	SetMaterialParam(g_physicsObjectMaterial[id]);
+#endif
 
 	PfxShapeIterator itrShape(coll);
 

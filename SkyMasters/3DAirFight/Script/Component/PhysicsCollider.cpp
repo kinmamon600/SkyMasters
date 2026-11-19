@@ -4,6 +4,13 @@
 #include "../Actor/Actor.h"
 #include "Transform.h"
 
+// コンストラクタ
+PhysicsCollider::PhysicsCollider(Actor* owner)
+	:Component(owner, static_cast<int>(ComponentUpdateOrder::PhysicsCollider))
+{
+
+}
+
 // デストラクタ
 PhysicsCollider::~PhysicsCollider()
 {
@@ -116,4 +123,16 @@ float PhysicsCollider::GetRestitution()
 int PhysicsCollider::GetID() const
 {
 	return m_sdpID;
+}
+
+// トランスフォームの設定(初期設定用)
+void PhysicsCollider::SetTransform()
+{
+	// トランスフォームの取得
+	Transform* tr = m_owner->GetComponent<Transform>();
+	if (tr == nullptr) { return; }
+
+	// SDPの座標・回転設定
+	SDP::SetPosition(m_sdpID, tr->GetPosition());
+	SDP::SetRotate(m_sdpID, tr->GetRotation());
 }

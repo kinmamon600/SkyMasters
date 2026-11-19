@@ -1,4 +1,6 @@
 // ライブラリ・ヘッダ
+#include <memory>
+
 #include "Actor/Actor.h"
 #include "Fighter.h"
 #include "../Transform.h"
@@ -11,6 +13,7 @@
 #include "ManualCamera.h"
 #include "Automatic.h"
 #include "AutomaticCamera.h"
+#include "../../Behavior/Bullet.h"
 
 // 初期化
 void Fighter::Initialize()
@@ -41,6 +44,13 @@ void Fighter::Update()
 		{
 			m_automaticDirection = input->GetAnalog(Input::LY);
 			m_currentState = Fighter::PlayerState::Automatic;
+		}
+
+		// 攻撃
+		if (input->GetButtonDown(Input::ZR))
+		{
+			printfDx("ZR押したよ\n");
+			Attack();
 		}
 	}
 		break;
@@ -100,3 +110,20 @@ FighterStatus Fighter::AddStatus(short bodyID, short wingID, short diffID, short
 	return m_status;
 }
 
+// 通常攻撃
+void Fighter::Attack()
+{
+	// アクター生成
+	//std::unique_ptr<Actor> obj = std::make_unique<Actor>(m_owner->GetGame());
+	Actor* obj = new Actor(m_owner->GetGame());
+
+	// 機体のトランスフォーム取得
+	Transform* fighter_tr = m_owner->GetComponent<Transform>();
+
+	// トランスフォームのアタッチと設定
+	Transform* tr = new Transform(obj);
+	tr->SetMatrix(fighter_tr->GetMatrix());
+
+	// 弾ビヘイビアをアタッチ
+	new Bullet(obj, 0);
+}

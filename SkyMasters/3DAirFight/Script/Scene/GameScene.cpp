@@ -35,6 +35,7 @@ bool GameScene::Load()
 
     playerModel = MV1LoadModel("../3DModel/testFighter.mv1");
     planeModel = MV1LoadModel("../3DModel/Plane.mv1");
+    m_beamModelHandle = MV1LoadModel("../3DModel/Fighter_Bullet.mv1");
 
     skyHandel = MV1LoadModel("../3DModel/SkyBox/SkyBox.mv1");
     skyTx = LoadGraph("../3DModel/SkyBox/SkyTx.png");
@@ -84,7 +85,7 @@ void GameScene::Initialize()
     //new PhysicsColliderBox(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(1.0f, 1.0f, 1.0f), PhysicsCollider::Active, 1);
     new Input(playerObject.get());
     new ModelRenderer(playerObject.get());
-    new Fighter(playerObject.get(), cameraObject.get());
+    new Fighter(playerObject.get(), cameraObject.get(), m_beamModelHandle);
     new Manual(playerObject.get());
     new Automatic(playerObject.get());
 
@@ -134,12 +135,6 @@ void GameScene::Execute()
 // èIóπ
 SceneType GameScene::Terminate()
 {
-    skyBoxObject.reset();
-    //uiObject.reset();
-    //modelObject.reset();
-    playerObject.reset();
-    cameraObject.reset();
-
     // âº
     return SceneType::Exit;
 }

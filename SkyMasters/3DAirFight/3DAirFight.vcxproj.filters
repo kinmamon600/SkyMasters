@@ -45,6 +45,7 @@
     <ClCompile Include="Script\Component\Behavior.cpp" />
     <ClCompile Include="Script\Component\BackgroundRenderer.cpp" />
     <ClCompile Include="Script\Game\GameManager.cpp" />
+    <ClCompile Include="Script\Behavior\Bullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SuperDxPhysics\AddFiles\pfx_high_level_include.h" />
@@ -103,5 +104,6 @@
     <ClInclude Include="Script\Loader\FighterPartsID.h" />
     <ClInclude Include="Script\Game\GameManager.h" />
     <ClInclude Include="Script\Actor\ActorLayer.h" />
+    <ClInclude Include="Script\Behavior\Bullet.h" />
   </ItemGroup>
 </Project>
