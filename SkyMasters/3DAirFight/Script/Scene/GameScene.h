@@ -3,7 +3,9 @@
 #include "SceneBase.h"
 #include "../Actor/Actor.h"
 #include "../Loader/FighterDataLoader.h"
+#include"../Loader/FighterPartsID.h"
 #include "../Component/ModelRenderer.h"
+#include "../Game/GameManager.h"
 
 #include <memory>
 
@@ -28,19 +30,22 @@ public:
     SceneType Terminate() override;
 
 private:
-    // ゲームオブジェクト
     std::unique_ptr<Actor> playerObject;
     std::unique_ptr<Actor> skyBoxObject;
-    //std::unique_ptr<Actor> uiObject;
-    //std::unique_ptr<Actor> modelObject;
     std::unique_ptr<Actor> cameraObject;
     std::unique_ptr<Actor> terrainObject;
 
+
     FighterDataLoader m_loader;
+
+    FighterPartsID m_fpID;
 
     // 画像ハンドル
 
     // ３Dモデルハンドル
+    int m_bodyModel = -1;
+    int m_wingModel = -1;
+    int m_diffuserModel = -1;
     int playerModel = -1;
     int planeModel = -1;
 

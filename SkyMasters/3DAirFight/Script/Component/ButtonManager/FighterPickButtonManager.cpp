@@ -83,12 +83,13 @@ void FighterPickButtonManager::Update()
 	{
 		pickParts++;
 
-		if (pickParts == m_load.GetDataNum())
+		if (pickParts == partsNum)
 		{
 			sb->RequestSceneChange();
+			return;
 		}
 
-		pickParts = (pickParts + m_load.GetDataNum()) % m_load.GetDataNum();
+		pickParts = (pickParts + partsNum) % partsNum;
 
 		switch (pickParts)
 		{
@@ -111,7 +112,7 @@ void FighterPickButtonManager::Update()
 	{
 		pickParts--;
 
-		pickParts = (pickParts + m_load.GetDataNum()) % m_load.GetDataNum();
+		pickParts = (pickParts + partsNum) % partsNum;
 
 		switch (pickParts)
 		{

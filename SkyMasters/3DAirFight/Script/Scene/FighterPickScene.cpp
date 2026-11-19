@@ -68,12 +68,10 @@ void FighterPickScene::Initialize()
     for (short i = 0; i < dataNum; i++)
     {
         bodyObject[i] = std::make_unique<Actor>(p_sceneManager->p_game);
-        new UIRenderer(bodyObject[i].get());
-        new Transform(bodyObject[i].get());
-
-        UIRenderer* bodyUI = bodyObject[i]->GetComponent<UIRenderer>();
+        
+        UIRenderer* bodyUI = new UIRenderer(bodyObject[i].get());
         bodyUI->SetGrphHandle(bodyHandles[i]);
-        Transform* bodyTr = bodyObject[i]->GetComponent<Transform>();
+        Transform* bodyTr = new Transform(bodyObject[i].get());
         bodyTr->SetPosition(VGet(Screen::Width / 4, Screen::Height / 2, 0.0f));
     }
 
@@ -81,12 +79,10 @@ void FighterPickScene::Initialize()
     for (short i = 0; i < dataNum; i++)
     {
         wingObject[i] = std::make_unique<Actor>(p_sceneManager->p_game);
-        new UIRenderer(wingObject[i].get());
-        new Transform(wingObject[i].get());
-
-        UIRenderer* wingUI = wingObject[i]->GetComponent<UIRenderer>();
+        
+        UIRenderer* wingUI = new UIRenderer(wingObject[i].get());
         wingUI->SetGrphHandle(wingHandles[i]);
-        Transform* wingTr = wingObject[i]->GetComponent<Transform>();
+        Transform* wingTr = new Transform(wingObject[i].get());
         wingTr->SetPosition(VGet(Screen::Width / 2, Screen::Height / 2, 0.0f));
     }
 
@@ -94,12 +90,10 @@ void FighterPickScene::Initialize()
     for (short i = 0; i < dataNum; i++)
     {
         diffuserObject[i] = std::make_unique<Actor>(p_sceneManager->p_game);
-        new UIRenderer(diffuserObject[i].get());
-        new Transform(diffuserObject[i].get());
-
-        UIRenderer* diffUI = diffuserObject[i]->GetComponent<UIRenderer>();
+        
+        UIRenderer* diffUI = new UIRenderer(diffuserObject[i].get());
         diffUI->SetGrphHandle(diffuserHandles[i]);
-        Transform* diffTr = diffuserObject[i]->GetComponent<Transform>();
+        Transform* diffTr = new Transform(diffuserObject[i].get());
         diffTr->SetPosition(VGet((Screen::Width / 4) * 3, Screen::Height / 2, 0.0f));
     }
 
@@ -108,25 +102,22 @@ void FighterPickScene::Initialize()
     buttonManagerObject = std::make_unique<Actor>(p_sceneManager->p_game);
     backgroundObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
-    // コンポーネントの生成  
+    // カメラ 
     new Camera(cameraObject.get());
 
-    new BackgroundRenderer(backgroundObject.get());
-
+    // ボタンマネージャー
     new Input(buttonManagerObject.get());
     new FighterPickButtonManager(buttonManagerObject.get(), bodyObject, wingObject, diffuserObject, m_loader, this);
-    new UIRenderer(buttonManagerObject.get());
-    new Transform(buttonManagerObject.get());
-
-    BackgroundRenderer* backComp = backgroundObject->GetComponent<BackgroundRenderer>();
-    backComp->SetGrphHandle(backgroundHandle);
-
-    UIRenderer* UIComp = buttonManagerObject->GetComponent<UIRenderer>();
+    UIRenderer* UIComp = new UIRenderer(buttonManagerObject.get());
     UIComp->SetGrphHandle(pickUI);
-
-    Transform* buttonTr = buttonManagerObject->GetComponent<Transform>();
+    Transform* buttonTr = new Transform(buttonManagerObject.get());
     buttonTr->SetPosition(VGet(Screen::Width / 4, Screen::Height / 2, 0.0f));
     buttonTr->SetScale(VGet(0.5f, 0.5f, 0.0f));
+    
+    // 背景
+    BackgroundRenderer* backComp = new BackgroundRenderer(backgroundObject.get());
+    backComp->SetGrphHandle(backgroundHandle);
+
 }
 
 // 更新

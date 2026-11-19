@@ -10,7 +10,7 @@ class SkyboxRenderer : public Component
 public:
     // コンストラクタ
     SkyboxRenderer(Actor* owner)
-        :Component(owner, static_cast<int>(ComponentUpdateOrder::SkyboxRenderer)){}
+        :Component(owner, static_cast<int>(ComponentUpdateOrder::SkyboxRenderer)) {}
 
     // デストラクタ
     ~SkyboxRenderer() override;
