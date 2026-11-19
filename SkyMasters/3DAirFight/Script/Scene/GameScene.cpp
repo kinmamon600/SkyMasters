@@ -32,7 +32,7 @@ bool GameScene::Load()
     m_loader.LoadDiffuser();
     m_loader.LoadSpecialWeapon();
 
-   // m_fpID = p_gameManager->GetFighterPartsID();
+    m_fpID = p_gameManager->GetFighterPartsID();
 
     // ”ñ“¯ŠúŠJŽn
     SetUseASyncLoadFlag(TRUE);
