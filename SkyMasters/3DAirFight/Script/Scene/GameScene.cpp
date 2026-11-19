@@ -16,6 +16,7 @@
 #include "../Component/FIghter/ManualCamera.h"
 #include "../Component/FIghter/Automatic.h"
 #include "../Component/FIghter/AutomaticCamera.h"
+#include "../Actor/ActorLayer.h"
 
 #include "../Loader/FighterDataLoader.h"
 
@@ -38,6 +39,29 @@ bool GameScene::Load()
     skyHandel = MV1LoadModel("../3DModel/SkyBox/SkyBox.mv1");
     skyTx = LoadGraph("../3DModel/SkyBox/SkyTx.png");
 
+    // 機体のテクスチャマスク設定
+    int dif_tx = LoadGraph("../Texture/FighterTextureCo.png");
+    int canopy_tx = LoadGraph("../Texture/FighterTextureCanopy.png");
+    int emi_tx = LoadGraph("../Texture/FighterTextureEm.png");
+    m_fighterTexMaskBody = { dif_tx,
+        GetColorF(0.4f, 0.4f, 0.4f, 1.0f),
+        GetColorF(0.8f, 0.8f, 0.8f, 1.0f),
+        GetColorF(0.1f, 0.1f, 0.1f, 1.0f),
+        GetColorF(0.8f, 0.8f, 0.8f, 1.0f),
+        64.0f };
+    m_fighterTexMaskCanopy = { canopy_tx,
+        GetColorF(0.588f, 0.588f, 0.588f, 1.0f),
+        GetColorF(1.0f, 1.0f, 1.0f, 1.0f),
+        GetColorF(0.1f, 0.1f, 0.1f, 1.0f),
+        GetColorF(0.275f, 0.314f, 0.431f, 1.0f),
+        100.0f };
+    m_fighterTexMaskEmi = { emi_tx,
+        GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
+        GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
+        GetColorF(1.0f, 1.0f, 1.0f, 1.0f),
+        GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
+        0.0f };
+
     // 非同期終了
     SetUseASyncLoadFlag(FALSE);
 
@@ -47,9 +71,9 @@ bool GameScene::Load()
 // 初期化
 void GameScene::Initialize()
 {
-
     // 芥一の生成
     playerObject = std::make_unique<Actor>(p_sceneManager->p_game);
+    playerObject->SetLayer(ActorLayer::Player);
     skyBoxObject = std::make_unique<Actor>(p_sceneManager->p_game);
     cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);
     terrainObject = std::make_unique<Actor>(p_sceneManager->p_game);
@@ -79,31 +103,9 @@ void GameScene::Initialize()
     modelComp->SetModelHandle(playerModel);
     modelComp->SetScale(VGet(0.1f, 0.1f, 0.1f));
 
-    // ここからしばらく仮です
-    int dif_tx = LoadGraph("../Texture/FighterTextureCo.png");
-    int canopy_tx = LoadGraph("../Texture/FighterTextureCanopy.png");
-    int emi_tx = LoadGraph("../Texture/FighterTextureEm.png");
-    ModelRenderer::TextureMask dif_tm = { dif_tx, 
-        GetColorF(0.4f, 0.4f, 0.4f, 1.0f),
-        GetColorF(0.8f, 0.8f, 0.8f, 1.0f),
-        GetColorF(0.1f, 0.1f, 0.1f, 1.0f),
-        GetColorF(0.8f, 0.8f, 0.8f, 1.0f),
-        64.0f};
-    ModelRenderer::TextureMask canopy_tm = { canopy_tx,
-        GetColorF(0.588f, 0.588f, 0.588f, 1.0f),
-        GetColorF(1.0f, 1.0f, 1.0f, 1.0f),
-        GetColorF(0.1f, 0.1f, 0.1f, 1.0f),
-        GetColorF(0.275f, 0.314f, 0.431f, 1.0f),
-        100.0f };
-    ModelRenderer::TextureMask emi_tm = { emi_tx,
-        GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
-        GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
-        GetColorF(1.0f, 1.0f, 1.0f, 1.0f),
-        GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
-        0.0f };
-    modelComp->AddTextureMask(dif_tm);
-    modelComp->AddTextureMask(canopy_tm);
-    modelComp->AddTextureMask(emi_tm);
+    modelComp->AddTextureMask(m_fighterTexMaskBody);
+    modelComp->AddTextureMask(m_fighterTexMaskCanopy);
+    modelComp->AddTextureMask(m_fighterTexMaskEmi);
 
     Camera* cameraComp = cameraObject->GetComponent<Camera>();
     cameraComp->SetDispArea(0, 0, 1920 / 2, 1080 / 2);

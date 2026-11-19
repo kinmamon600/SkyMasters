@@ -102,5 +102,6 @@
     <ClInclude Include="Script\Component\BackgroundRenderer.h" />
     <ClInclude Include="Script\Loader\FighterPartsID.h" />
     <ClInclude Include="Script\Game\GameManager.h" />
+    <ClInclude Include="Script\Actor\ActorLayer.h" />
   </ItemGroup>
 </Project>

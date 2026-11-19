@@ -1,5 +1,9 @@
 #pragma once
+
+// ライブラリ・ヘッダ
 #include <vector>
+
+#include "ActorLayer.h"
 
 // 前方宣言
 class Game;
@@ -26,6 +30,12 @@ public:
 
 	State GetState() const { return mState; }
 	void SetState(State state) { mState = state; }
+
+	// レイヤーの取得
+	ActorLayer GetLayer() const;
+
+	// アクターの設定
+	void SetLayer(ActorLayer layer);
 
 	Game* GetGame() { return mGame; }
 
@@ -56,4 +66,7 @@ private:
 
 	std::vector<Component*> mComponents;
 	Game* mGame;
+
+	// 自身のレイヤー
+	ActorLayer m_layer = ActorLayer::Default;
 };

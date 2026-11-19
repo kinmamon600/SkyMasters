@@ -47,11 +47,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	{
 		// 画面クリア
 		DxLib::ClearDrawScreen();
-
-		//SDP::RenderPhysicalObject();
 		
 		// ゲームの更新
 		game->Update();
+
+		//SDP::RenderPhysicalObject();
 
 		ScreenFlip();	// ダブルバッファで画面表示
 		WaitTimer(16);	// 一定時間待つ

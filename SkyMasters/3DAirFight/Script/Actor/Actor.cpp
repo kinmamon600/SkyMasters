@@ -51,6 +51,18 @@ ComponentManager* Actor::GetComponentManager() const
 	return mGame->GetComponentManager();
 }
 
+// レイヤーの取得
+ActorLayer Actor::GetLayer() const
+{
+	return m_layer;
+}
+
+// アクターの設定
+void Actor::SetLayer(ActorLayer layer)
+{
+	m_layer = layer;
+}
+
 void Actor::AddComponent(Component* component)
 {
 	mGame->AddComponent(component);

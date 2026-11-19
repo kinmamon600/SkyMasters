@@ -3,6 +3,7 @@
 #include "SceneBase.h"
 #include "../Actor/Actor.h"
 #include "../Loader/FighterDataLoader.h"
+#include "../Component/ModelRenderer.h"
 
 #include <memory>
 
@@ -46,4 +47,9 @@ private:
     // スカイボックスハンドル
     int skyHandel = -1;
     int skyTx = -1;
+
+    // 機体のテクスチャマスク
+    ModelRenderer::TextureMask m_fighterTexMaskBody = {};   // ボディ部分
+    ModelRenderer::TextureMask m_fighterTexMaskCanopy = {}; // キャノピー部分
+    ModelRenderer::TextureMask m_fighterTexMaskEmi = {};    // 発光部分
 };
