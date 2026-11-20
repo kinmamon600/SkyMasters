@@ -16,7 +16,7 @@ class Bullet : public Behavior
 {
 public:
 	// コンストラクタ
-	Bullet(Actor* owner, float speed);
+	Bullet(Actor* owner, VECTOR velocity);
 
 	// デストラクタ
 	~Bullet() {}
@@ -29,7 +29,7 @@ public:
 
 private:
 	// 弾速
-	float m_speed;
+	VECTOR m_velocity;
 };
 
 #endif

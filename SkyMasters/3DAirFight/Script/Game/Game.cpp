@@ -76,6 +76,16 @@ void Game::Terminate()
 		}
 	}
 
+	for (Actor* act : mPendingActors)
+	{
+		auto iter = std::find(mPendingActors.begin(), mPendingActors.end(), act);
+		if (iter != mPendingActors.end())
+		{
+			mPendingActors.erase(iter);
+			delete act;
+		}
+	}
+
 	// 各マネージャの解放
 	delete p_componentManager;
 	p_componentManager = nullptr;
@@ -152,6 +162,12 @@ void Game::RemoveActorAll()
 	while (!mActors.empty())
 	{
 		Actor* act = mActors.back();
+		delete act;
+	}
+
+	while (!mPendingActors.empty())
+	{
+		Actor* act = mPendingActors.back();
 		delete act;
 	}
 }

@@ -1,19 +1,19 @@
 #pragma once
 
 // ライブラリ・ヘッダ
-#include <DxLib.h>
+#include "DxLib.h"
 #include "Component.h"
 #include "ComponentUpdateOrder.h"
 
 class Transform : public Component
 {
 public:
+	// コンストラクタ
 	Transform(Actor* owner)
-		:Component(owner, static_cast<int>(ComponentUpdateOrder::Transform))
-	{
-		
-	};
-	~Transform() {};
+		:Component(owner, static_cast<int>(ComponentUpdateOrder::Transform)) {}
+
+	// デストラクタ
+	~Transform() {}
 
 	// 行列の取得
 	const MATRIX& GetMatrix() const;

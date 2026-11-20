@@ -1,5 +1,6 @@
 // ライブラリ・ヘッダ
 #include <memory>
+#include "DxLib.h"
 
 #include "Actor/Actor.h"
 #include "Fighter.h"
@@ -7,6 +8,7 @@
 #include "../Input.h"
 #include "../PhysicsColliderSphere.h"
 #include "../PhysicsColliderBox.h"
+#include "../ModelRenderer.h"
 
 #include "../../Loader/FighterDataLoader.h"
 #include "Manual.h"
@@ -50,7 +52,8 @@ void Fighter::Update()
 		if (input->GetButtonDown(Input::ZR))
 		{
 			printfDx("ZR押したよ\n");
-			Attack();
+			VECTOR direction = pcComp->GetDirection(VGet(0.0f, 0.0f, -1.0f));
+			Attack(VScale(direction, 100.0f), VScale(direction, 9000000.0f));
 		}
 	}
 		break;
@@ -87,7 +90,7 @@ void Fighter::Update()
 // 当たり判定
 void Fighter::IsContact(const Actor* other)
 {
-	printfDx("ヒット！\n");
+	//printfDx("ヒット！\n");
 }
 
 // ステートの変更
@@ -111,19 +114,27 @@ FighterStatus Fighter::AddStatus(short bodyID, short wingID, short diffID, short
 }
 
 // 通常攻撃
-void Fighter::Attack()
+void Fighter::Attack(VECTOR offset, VECTOR velocity)
 {
 	// アクター生成
-	//std::unique_ptr<Actor> obj = std::make_unique<Actor>(m_owner->GetGame());
 	Actor* obj = new Actor(m_owner->GetGame());
 
-	// 機体のトランスフォーム取得
+	// 機体のトランスフォームと行列取得
 	Transform* fighter_tr = m_owner->GetComponent<Transform>();
+	MATRIX mat = fighter_tr->GetMatrix();
 
 	// トランスフォームのアタッチと設定
 	Transform* tr = new Transform(obj);
-	tr->SetMatrix(fighter_tr->GetMatrix());
+	//tr->SetMatrix(mat);
+	tr->SetPosition(VAdd(fighter_tr->GetPosition(), offset));
+	tr->SetRotation(fighter_tr->GetRotation());
+
+	// モデルのアタッチ
+	ModelRenderer* renderer = new ModelRenderer(obj);
+	renderer->SetModelHandle(m_beamModelHandle);
+	renderer->SetScale(VGet(0.1f, 0.1f, 0.1f));
+	renderer->SetEmissive(GetColorF(0.2f, 1.0f, 0.0f, 1.0f));
 
 	// 弾ビヘイビアをアタッチ
-	new Bullet(obj, 0);
+	//new Bullet(obj, velocity);
 }

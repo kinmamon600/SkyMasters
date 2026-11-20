@@ -70,7 +70,6 @@ private:
     // コンポーネント管理クラス
     ComponentManager* p_componentManager;
 
-
     // Actorを追加しようとしているか
     bool mUpdatingActors;
 

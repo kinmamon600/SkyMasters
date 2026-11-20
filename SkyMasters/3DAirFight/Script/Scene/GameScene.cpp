@@ -45,12 +45,8 @@ bool GameScene::Load()
     m_diffuserModel = MV1LoadModel(diffuserModel.c_str());
 
     playerModel = MV1LoadModel("../3DModel/testFighter.mv1");
-<<<<<<< HEAD
     planeModel = MV1LoadModel("../3DModel/Plane.mv1");
     m_beamModelHandle = MV1LoadModel("../3DModel/Fighter_Bullet.mv1");
-=======
-    planeModel = MV1LoadModel("../3DModel/plane.mv1");
->>>>>>> keigon/GameManager
 
     skyHandel = MV1LoadModel("../3DModel/SkyBox/SkyBox.mv1");
     skyTx = LoadGraph("../3DModel/SkyBox/SkyTx.png");
@@ -113,12 +109,8 @@ void GameScene::Initialize()
     // プレイヤー
     //new PhysicsColliderBox(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(1.0f, 1.0f, 1.0f), PhysicsCollider::Active, 1);
     new Input(playerObject.get());
-<<<<<<< HEAD
     new ModelRenderer(playerObject.get());
     new Fighter(playerObject.get(), cameraObject.get(), m_beamModelHandle);
-=======
-    new Fighter(playerObject.get(), cameraObject.get());
->>>>>>> keigon/GameManager
     new Manual(playerObject.get());
     new Automatic(playerObject.get());
     ModelRenderer* modelComp = new ModelRenderer(playerObject.get());
@@ -155,10 +147,6 @@ void GameScene::Execute()
 // 終了
 SceneType GameScene::Terminate()
 {
-<<<<<<< HEAD
-=======
-
->>>>>>> keigon/GameManager
     // 仮
     return SceneType::Exit;
 }

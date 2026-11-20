@@ -33,6 +33,9 @@ public:
 	void Update();
 
 private:
+	// 追加保留中のコンポーネント
+	std::vector<Component*> p_PendingComponents;
+
 	// コンポーネントのポインタ可変長配列
 	// Actorが所有権を持つのでただアドレスを持つだけ
 	// コライダーと処理系コンポーネントとレンダリング系コンポーネントを別に保持
