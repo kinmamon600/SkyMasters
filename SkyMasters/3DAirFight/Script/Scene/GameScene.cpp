@@ -27,13 +27,6 @@
 // 読み込み
 bool GameScene::Load()
 {
-    m_loader.LoadBody();
-    m_loader.LoadWing();
-    m_loader.LoadDiffuser();
-    m_loader.LoadSpecialWeapon();
-
-    m_fpID = p_gameManager->GetFighterPartsID();
-
     // 非同期開始
     SetUseASyncLoadFlag(TRUE);
 
@@ -45,12 +38,8 @@ bool GameScene::Load()
     m_diffuserModel = MV1LoadModel(diffuserModel.c_str());
 
     playerModel = MV1LoadModel("../3DModel/testFighter.mv1");
-<<<<<<< HEAD
     planeModel = MV1LoadModel("../3DModel/Plane.mv1");
     m_beamModelHandle = MV1LoadModel("../3DModel/Fighter_Bullet.mv1");
-=======
-    planeModel = MV1LoadModel("../3DModel/plane.mv1");
->>>>>>> keigon/GameManager
 
     skyHandel = MV1LoadModel("../3DModel/SkyBox/SkyBox.mv1");
     skyTx = LoadGraph("../3DModel/SkyBox/SkyTx.png");
@@ -81,6 +70,25 @@ bool GameScene::Load()
     // 非同期終了
     SetUseASyncLoadFlag(FALSE);
 
+    m_fighterLoader.LoadBody();
+    m_fighterLoader.LoadWing();
+    m_fighterLoader.LoadDiffuser();
+    m_fighterLoader.LoadSpecialWeapon();
+
+    m_fpID = p_gameManager->GetFighterPartsID();
+
+    m_enemyLoader.StatusLoad();
+    m_enemyLoader.TransformLoad();
+    int enemyTypeCount = m_enemyLoader.GetTypeCount();
+    m_enemyModel.resize(enemyTypeCount);
+    for (short i = 0; i < enemyTypeCount; i++)
+    {
+        std::string enemyModelHandle = "../3Dmodel/Enemy/Enemy_" + std::to_string(m_enemyLoader.m_enemyStatus[i].id)
+            + "/Enemy_" + std::to_string(m_enemyLoader.m_enemyStatus[i].id) + ".mv1";
+        m_enemyModel[i] = MV1LoadModel(enemyModelHandle.c_str());
+        printfDx("%d\n", m_enemyModel[i]);
+    }
+
     return true;
 }
 
@@ -93,14 +101,36 @@ void GameScene::Initialize()
     skyBoxObject = std::make_unique<Actor>(p_sceneManager->p_game);
     cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);
     terrainObject = std::make_unique<Actor>(p_sceneManager->p_game);
-    
+    bodyObject = std::make_unique<Actor>(p_sceneManager->p_game);
+    wingObject = std::make_unique<Actor>(p_sceneManager->p_game);
+    diffuserObject = std::make_unique<Actor>(p_sceneManager->p_game);
+
+    int enemyInstanceCount = m_enemyLoader.GetInstanceCount();
+    for (short i = 0; i < enemyInstanceCount; i++)
+    {
+        enemyObject[i] = std::make_unique<Actor>(p_sceneManager->p_game);
+        Transform* enemyTr = new Transform(enemyObject[i].get());
+        enemyTr->SetPosition(m_enemyLoader.m_enemyTransform[i].position);
+        enemyTr->SetRotation(m_enemyLoader.m_enemyTransform[i].rotation);
+        enemyTr->SetScale(m_enemyLoader.m_enemyTransform[i].scale);
+    }
+
     // Transform
     new Transform(playerObject.get());
+    new Transform(bodyObject.get());
+    new Transform(wingObject.get());
+    new Transform(diffuserObject.get());
     new Transform(terrainObject.get());
     
     // 物理
     new PhysicsColliderBox(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(30.0f, 30.0f, 30.0f), PhysicsCollider::Trigger, 0);
     new PhysicsColliderSphere(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), 30, PhysicsCollider::Active, 1);
+    for (short i = 0; i < enemyInstanceCount; i++)
+    {
+        new PhysicsColliderSphere(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 30, PhysicsCollider::Active, 1);
+        ModelRenderer* enemyModel = new ModelRenderer(enemyObject[i].get());
+        enemyModel->SetModelHandle(m_enemyModel[i]);
+    }
     
     // カメラ
     new ManualCamera(cameraObject.get());
@@ -109,16 +139,22 @@ void GameScene::Initialize()
     cameraComp->SetDispArea(0, 0, 1920 / 2, 1080 / 2);
     cameraComp->SetDispCenter(1920 / 4, 1080 / 4);
     cameraComp->SetPosition(VGet(0, 100, 400));
+
+    ModelRenderer* bodyModel = new ModelRenderer(bodyObject.get());
+    bodyModel->SetModelHandle(m_bodyModel);
+    bodyModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
+    ModelRenderer* wingModel = new ModelRenderer(wingObject.get());
+    wingModel->SetModelHandle(m_wingModel);
+    wingModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
+    ModelRenderer* diffuserModel = new ModelRenderer(diffuserObject.get());
+    diffuserModel->SetModelHandle(m_diffuserModel);
+    diffuserModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
     
     // プレイヤー
     //new PhysicsColliderBox(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(1.0f, 1.0f, 1.0f), PhysicsCollider::Active, 1);
     new Input(playerObject.get());
-<<<<<<< HEAD
     new ModelRenderer(playerObject.get());
     new Fighter(playerObject.get(), cameraObject.get(), m_beamModelHandle);
-=======
-    new Fighter(playerObject.get(), cameraObject.get());
->>>>>>> keigon/GameManager
     new Manual(playerObject.get());
     new Automatic(playerObject.get());
     ModelRenderer* modelComp = new ModelRenderer(playerObject.get());
@@ -155,10 +191,6 @@ void GameScene::Execute()
 // 終了
 SceneType GameScene::Terminate()
 {
-<<<<<<< HEAD
-=======
-
->>>>>>> keigon/GameManager
     // 仮
     return SceneType::Exit;
 }

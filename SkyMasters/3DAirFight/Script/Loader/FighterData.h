@@ -1,4 +1,7 @@
 #pragma once
+#include"DxLib.h"
+#include<vector>
+
 
 // 機体データ
 struct BodyData
@@ -7,7 +10,9 @@ struct BodyData
 	float rotateSpeed;	  // 回転速度
 	float accele;		  // 加速度
 	float attackPower;	  // 通常攻撃力
-	int handle;
+	std::vector<VECTOR> position;
+	std::vector<VECTOR> rotation;
+	std::vector<VECTOR> scale;
 };
 
 // 翼のデータ
@@ -16,7 +21,9 @@ struct WingData
 	short hp;			  // 体力
 	float rotateSpeed;	  // 回転速度
 	float accele;		  // 加速度
-	int handle;
+	std::vector<VECTOR> position;
+	std::vector<VECTOR> rotation;
+	std::vector<VECTOR> scale;
 };
 
 // ディフーザーのデータ
@@ -25,7 +32,9 @@ struct DiffuserData
 	short hp;			  // 体力
 	float rotateSpeed;	  // 回転速度
 	float accele;		  // 加速度
-	int handle;
+	std::vector<VECTOR> position;
+	std::vector<VECTOR> rotation;
+	std::vector<VECTOR> scale;
 };
 
 // スペシャル武器のデータ

@@ -4,6 +4,7 @@
 #include "../Actor/Actor.h"
 #include "../Loader/FighterDataLoader.h"
 #include"../Loader/FighterPartsID.h"
+#include"../Loader/EnemyLoader.h"
 #include "../Component/ModelRenderer.h"
 #include "../Game/GameManager.h"
 
@@ -34,9 +35,14 @@ private:
     std::unique_ptr<Actor> skyBoxObject;
     std::unique_ptr<Actor> cameraObject;
     std::unique_ptr<Actor> terrainObject;
+    std::unique_ptr<Actor> bodyObject;
+    std::unique_ptr<Actor> wingObject;
+    std::unique_ptr<Actor> diffuserObject;
+    std::vector<std::unique_ptr<Actor>> enemyObject;
 
 
-    FighterDataLoader m_loader;
+    FighterDataLoader m_fighterLoader;
+    EnemyLoader m_enemyLoader;
 
     FighterPartsID m_fpID;
 
@@ -49,6 +55,7 @@ private:
     int playerModel = -1;
     int planeModel = -1;
     int m_beamModelHandle = -1;
+    std::vector<int> m_enemyModel;
 
     // スカイボックスハンドル
     int skyHandel = -1;

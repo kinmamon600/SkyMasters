@@ -51,7 +51,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		// ゲームの更新
 		game->Update();
 
-		SDP::RenderPhysicalObject();
+		//SDP::RenderPhysicalObject();
 
 		ScreenFlip();	// ダブルバッファで画面表示
 		WaitTimer(16);	// 一定時間待つ
