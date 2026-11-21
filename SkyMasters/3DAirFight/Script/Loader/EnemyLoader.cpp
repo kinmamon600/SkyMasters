@@ -118,6 +118,11 @@ bool EnemyLoader::TransformLoad()
 	// ファイルの終端まで
 	while (std::getline(ifs, line))
 	{
+		if (line.compare(0, 3, "\xEF\xBB\xBF") == 0)
+		{
+			line.erase(0, 3);
+		}
+
 		std::stringstream trSS(line);
 		std::string tokenTr;
 
@@ -161,11 +166,11 @@ bool EnemyLoader::TransformLoad()
 
 		// ScaleY
 		std::getline(trSS, tokenTr, ',');
-		float sizeY = StringToFloat(tokenTr);
+		enemyTrans.scale.y = StringToFloat(tokenTr);
 
 		// ScaleZ
 		std::getline(trSS, tokenTr, ',');
-		float sizeZ = StringToFloat(tokenTr);
+		enemyTrans.scale.z = StringToFloat(tokenTr);
 
 		m_enemyTransform.push_back(enemyTrans);
 
