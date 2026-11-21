@@ -168,7 +168,7 @@ void PfxRigidState::sleep()
 {
 	switch (getMotionType()) {
 		case kPfxMotionTypeFixed:
-		case kPfxMotionTypeTrigger:
+		//case kPfxMotionTypeTrigger:
 		return;
 		
 		default:

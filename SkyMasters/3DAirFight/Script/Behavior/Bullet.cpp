@@ -12,10 +12,12 @@ Bullet::Bullet(Actor* owner, VECTOR velocity)
 	// 弾速設定
 	//m_speed = speed / Screen::FPS;
 	//m_speed = speed;
+	//m_velocity = VScale(velocity, 1.0f / Screen::FPS);
 	m_velocity = velocity;
 
+	//ePfxMotionType::kPfxMotionTypeTrigger
 	// コライダーのアタッチと設定
-	new PhysicsColliderSphere(owner, VGet(0.0f, 0.0f, 0.0f), 10.0f, PhysicsCollider::Active, 0.1f);
+	new PhysicsColliderSphere(owner, VGet(0.0f, 0.0f, 0.0f), 10.0f, PhysicsCollider::Trigger, 0.1f);
 	//printfDx("アタッチされたよ\n");
 }
 

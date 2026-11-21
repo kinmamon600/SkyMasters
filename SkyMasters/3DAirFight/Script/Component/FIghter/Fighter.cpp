@@ -51,7 +51,7 @@ void Fighter::Update()
 		// 攻撃
 		if (input->GetButtonDown(Input::ZR))
 		{
-			printfDx("ZR押したよ\n");
+			//printfDx("ZR押したよ\n");
 			VECTOR direction = pcComp->GetDirection(VGet(0.0f, 0.0f, -1.0f));
 			Attack(VScale(direction, 100.0f), VScale(direction, 9000000.0f));
 		}
@@ -125,9 +125,13 @@ void Fighter::Attack(VECTOR offset, VECTOR velocity)
 
 	// トランスフォームのアタッチと設定
 	Transform* tr = new Transform(obj);
-	//tr->SetMatrix(mat);
+	tr->SetMatrix(mat);
 	tr->SetPosition(VAdd(fighter_tr->GetPosition(), offset));
-	tr->SetRotation(fighter_tr->GetRotation());
+
+	VECTOR fighter_rote = fighter_tr->GetRotation();
+	printfDx("機体回転 : %f, %f, %f\n", fighter_rote.x, fighter_rote.y, fighter_rote.z);
+	VECTOR bullet_rote = VGet(fighter_rote.x, fighter_rote.y, fighter_rote.z);
+	//tr->SetRotation(bullet_rote);
 
 	// モデルのアタッチ
 	ModelRenderer* renderer = new ModelRenderer(obj);
@@ -136,5 +140,5 @@ void Fighter::Attack(VECTOR offset, VECTOR velocity)
 	renderer->SetEmissive(GetColorF(0.2f, 1.0f, 0.0f, 1.0f));
 
 	// 弾ビヘイビアをアタッチ
-	//new Bullet(obj, velocity);
+	new Bullet(obj, velocity);
 }

@@ -907,9 +907,9 @@ VECTOR SDP::GetPosition(unsigned int id)
 void SDP::SetRotate(unsigned int id, const VECTOR& rotate)
 {
 	// DxLibのVectorからGamePhysicsSDKのクオータニオンに変換
-	float rx = rotate.x * 0.5f * SCE_PFX_PI / 180.0f;
-	float ry = rotate.y * 0.5f * SCE_PFX_PI / 180.0f;
-	float rz = -rotate.z * 0.5f * SCE_PFX_PI / 180.0f;
+	float rx = -rotate.x * 0.5f * DX_PI / 180.0f;
+	float ry = -rotate.y * 0.5f * DX_PI / 180.0f;
+	float rz = rotate.z * 0.5f * DX_PI / 180.0f;
 
 	float cx = cosf(rx);
 	float sx = sinf(rx);
@@ -1003,9 +1003,9 @@ VECTOR SDP::GetRotate(unsigned int id)
 	}
 	
 	// ラジアン -> 度
-	rx *= 180.0f / DX_PI_F;
-	ry *= 180.0f / DX_PI_F;
-	rz *= 180.0f / DX_PI_F;
+	rx *= 180.0f / DX_PI;
+	ry *= 180.0f / DX_PI;
+	rz *= 180.0f / DX_PI;
 	
 	return VGet(rx, ry, rz);
 }
