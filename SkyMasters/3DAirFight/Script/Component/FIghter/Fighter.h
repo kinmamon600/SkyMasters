@@ -40,8 +40,8 @@ public:
 	FighterStatus AddStatus(short bodyID,short wingID,short diffID,short spwID);
 
 	// 必要なパラメータ群
-	//const float m_speed = 50000.0f;						// 前に進む速度 ブーストとかエアブレーキのときはコレを変更
-	const float m_speed = 0;
+	const float m_speed = 50000.0f;						// 前に進む速度 ブーストとかエアブレーキのときはコレを変更
+	//const float m_speed = 0;
 
 	const float m_pitchAngularVelocity = 1.2f;			// ピッチ角速度
 	const float m_pitchAngleMax = 45.0f;				// 最大ピッチ角

@@ -97,7 +97,6 @@ VECTOR Manual::FighterControl()
 
 	// ‘¬“xİ’è
 	pcs->SetLinerVelocity(linear_velocity);
-	//printfDx("%f, %f, %f\n", angular_velocity.x, angular_velocity.y, angular_velocity.z);
 	pcs->SetAngularVelocity(angular_velocity);
 
 	// •Ô‚è’lİ’è

@@ -63,6 +63,9 @@ private:
 	// ロール方向にターン
 	// trueの時継続
 	bool RollTurn();
+
+	// 回転のピッチ・ロールをカットする(ヨーのみにして地面と水平にする)
+	VECTOR CutPitchRoll(VECTOR rote);
 };
 
 #endif

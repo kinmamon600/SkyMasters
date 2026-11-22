@@ -1,6 +1,8 @@
+// ライブラリ・ヘッダ
 #include "ModelRenderer.h"
 #include "Transform.h"
 #include "../Actor/Actor.h"
+#include "../World/WorldSettings.h"
 
 // デストラクタ
 ModelRenderer::~ModelRenderer()
@@ -83,8 +85,12 @@ void ModelRenderer::Draw()
 // モデルハンドルのセット
 void ModelRenderer::SetModelHandle(int handle)
 {
+	// ハンドル設定
 	m_modelHandle = MV1DuplicateModel(handle);
 	m_textureHandle = MV1GetTextureGraphHandle(m_modelHandle, 0);
+
+	// スケールの初期設定
+	//MV1SetScale(m_modelHandle, VGet(WorldSettings::WorldScale, WorldSettings::WorldScale, WorldSettings::WorldScale));
 
 	m_textureMasks.clear();
 }

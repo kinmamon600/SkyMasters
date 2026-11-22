@@ -51,7 +51,6 @@ void Fighter::Update()
 		// UŒ‚
 		if (input->GetButtonDown(Input::ZR))
 		{
-			//printfDx("ZR‰Ÿ‚µ‚½‚æ\n");
 			VECTOR direction = pcComp->GetDirection(VGet(0.0f, 0.0f, -1.0f));
 			Attack(VScale(direction, 100.0f), VScale(direction, 9000000.0f));
 		}
@@ -129,7 +128,6 @@ void Fighter::Attack(VECTOR offset, VECTOR velocity)
 	tr->SetPosition(VAdd(fighter_tr->GetPosition(), offset));
 
 	VECTOR fighter_rote = fighter_tr->GetRotation();
-	printfDx("‹@‘Ì‰ñ“] : %f, %f, %f\n", fighter_rote.x, fighter_rote.y, fighter_rote.z);
 	VECTOR bullet_rote = VGet(fighter_rote.x, fighter_rote.y, fighter_rote.z);
 	//tr->SetRotation(bullet_rote);
 
