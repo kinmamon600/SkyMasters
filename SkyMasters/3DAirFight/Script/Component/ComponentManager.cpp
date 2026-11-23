@@ -1,5 +1,6 @@
 // ライブラリ・ヘッダ
 #include "DxLib.h"
+#include "SuperDxPhysics.h"
 #include "ComponentManager.h"
 #include "Component.h"
 #include "ComponentUpdateOrder.h"
@@ -104,6 +105,9 @@ void ComponentManager::Update()
 		}
 	}
 	p_PendingComponents.clear();
+
+	// 物理演算更新
+	SDP::SimulatePhysics();
 
 	// コンポーネントを順次更新
 	for (auto comp : p_physicsColliderComponents)

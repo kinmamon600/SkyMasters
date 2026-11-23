@@ -47,9 +47,6 @@ void Game::Update()
 		return;
 	}
 
-	// 物理演算更新
-	SDP::SimulatePhysics();
-
 	// コンポーネントの更新
 	p_componentManager->Update();
 

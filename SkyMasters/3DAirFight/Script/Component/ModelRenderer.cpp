@@ -42,7 +42,7 @@ void ModelRenderer::Draw()
 	// Transformの取得
 	VECTOR pos = tr->GetPosition();
 	VECTOR rote = tr->GetRotation();
-	VECTOR scale = tr->GetScale();
+	//VECTOR scale = tr->GetScale();
 
 	// 度数法から弧度法へ変換
 	double angleX = rote.x * DX_PI / 180.0;
@@ -90,7 +90,7 @@ void ModelRenderer::SetModelHandle(int handle)
 	m_textureHandle = MV1GetTextureGraphHandle(m_modelHandle, 0);
 
 	// スケールの初期設定
-	//MV1SetScale(m_modelHandle, VGet(WorldSettings::WorldScale, WorldSettings::WorldScale, WorldSettings::WorldScale));
+	MV1SetScale(m_modelHandle, VGet(WorldSettings::WorldScale, WorldSettings::WorldScale, WorldSettings::WorldScale));
 
 	m_textureMasks.clear();
 }

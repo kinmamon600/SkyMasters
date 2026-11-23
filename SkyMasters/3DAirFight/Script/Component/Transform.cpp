@@ -40,13 +40,37 @@ void Transform::SetPosition(const VECTOR& pos)
 // 回転の取得
 const VECTOR& Transform::GetRotation() const
 {
-	//return m_rotation;
 	float rotX = 0.0f, rotY = 0.0f, rotZ = 0.0f;
 
 	GetMatrixXYZRotation(&m_matrix, &rotX, &rotY, &rotZ);
-	rotX *= 180.0f / DX_PI;
-	rotY *= 180.0f / DX_PI;
-	rotZ *= 180.0f / DX_PI;
+	rotX = (rotX * 180.0f) / DX_PI;
+	rotY = (rotY * 180.0f) / DX_PI;
+	rotZ = (rotZ * 180.0f) / DX_PI;
+
+	//if (rotX == 180.0f || rotX == -180.0f)
+	//{
+	//	rotX = 0.0f;
+	//}
+
+	//if (rotY == 180.0f || rotY == -180.0f)
+	//{
+	//	rotY = 0.0f;
+	//}
+
+	//if (rotZ == 180.0f || rotZ == -180.0f)
+	//{
+	//	rotZ = 0.0f;
+	//}
+
+	return VGet(rotX, rotY, rotZ);
+}
+
+// 回転の取得(ラジアン)
+const VECTOR& Transform::GetRadRotation() const
+{
+	float rotX = 0.0f, rotY = 0.0f, rotZ = 0.0f;
+
+	GetMatrixXYZRotation(&m_matrix, &rotX, &rotY, &rotZ);
 	return VGet(rotX, rotY, rotZ);
 }
 
@@ -91,7 +115,8 @@ void Transform::SetScale(const VECTOR& scale)
 MATRIX Transform::CreateTransformMatrix(const VECTOR& position, const VECTOR& rotation, const VECTOR& scale)
 {
 	// 度数法からラジアンに変換
-	VECTOR rad = VScale(rotation, DX_PI_F / 180.0f);
+	VECTOR rad = VScale(rotation, DX_PI);
+	rad = VScale(rad, 1.0f / 180.0f);
 
 	// 各行列を作成
 	MATRIX scale_mat = MGetScale(VGet(scale.x, scale.y, scale.z));

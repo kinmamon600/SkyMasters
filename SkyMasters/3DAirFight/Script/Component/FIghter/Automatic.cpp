@@ -400,7 +400,7 @@ bool Automatic::RollTurn()
 // 回転のピッチ・ロールをカットする(ヨーのみにして地面と水平にする)
 VECTOR Automatic::CutPitchRoll(VECTOR rote)
 {
-	printfDx("元　:%f, %f, %f\n", rote.x, rote.y, rote.z);
+	//printfDx("元　:%f, %f, %f\n", rote.x, rote.y, rote.z);
 
 	if (fabsf(rote.x) < 90.0f)
 	{
@@ -429,6 +429,6 @@ VECTOR Automatic::CutPitchRoll(VECTOR rote)
 	}
 
 	//rote = VGet((float)(((int)rote.x + 180) / 360) * 360.0f, rote.y, (float)(((int)rote.z + 180) / 360) * 360.0f);
-	printfDx("変換:%f, %f, %f\n\n", rote.x, rote.y, rote.z);
+	//printfDx("変換:%f, %f, %f\n\n", rote.x, rote.y, rote.z);
 	return rote;
 }

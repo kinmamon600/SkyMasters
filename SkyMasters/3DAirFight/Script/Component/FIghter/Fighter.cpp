@@ -84,6 +84,10 @@ void Fighter::Update()
 	case Fighter::PlayerState::Dead:
 		break;
 	}
+
+	//Transform* trComp = m_owner->GetComponent<Transform>();
+	//VECTOR rote = trComp->GetRotation();
+	//printfDx("@@ %f, %f, %f\n", rote.x, rote.y, rote.z);
 }
 
 // “–‚½‚è”»’è

@@ -30,6 +30,9 @@ public:
 	// 回転の取得
 	const VECTOR& GetRotation() const;
 
+	// 回転の取得(ラジアン)
+	const VECTOR& GetRadRotation() const;
+
 	// 回転のセット
 	void SetRotation(const VECTOR& rotation);
 
