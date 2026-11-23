@@ -25,9 +25,28 @@
 
 #include "SuperDxPhysics.h"
 
+bool GameScene::PrepareLoadData()
+{
+    // CSV読み込み
+    if (!m_enemyLoader.StatusLoad()) return false;
+    if (!m_enemyLoader.TransformLoad()) return false;
+
+    // 敵の種類数を取得
+    int enemyTypeCount = m_enemyLoader.GetTypeCount();
+
+    // 配列サイズ確保
+    m_enemyModel.resize(enemyTypeCount);
+    m_enemyTexMaskBody.resize(enemyTypeCount);
+    m_enemyTexMaskEmi.resize(enemyTypeCount);
+
+    return true;
+}
+
 // 読み込み
 bool GameScene::Load()
 {
+    if (!PrepareLoadData()) { return false; }
+
     // 非同期開始
     SetUseASyncLoadFlag(TRUE);
 
@@ -69,7 +88,7 @@ bool GameScene::Load()
         0.0f };
 
     int enemyTypeCount = m_enemyLoader.GetTypeCount();
-    m_enemyModel.resize(enemyTypeCount);
+    //m_enemyModel.resize(enemyTypeCount);
     for (short i = 0; i < enemyTypeCount; i++)
     {
         std::string difEnemy = "../Texture/Enemy/Enemy_0/Enemy_" + std::to_string(i) + "_Diffuse.png";
@@ -82,7 +101,7 @@ bool GameScene::Load()
            GetColorF(0.1f, 0.1f, 0.1f, 1.0f),
            GetColorF(0.8f, 0.8f, 0.8f, 1.0f),
            64.0f };
-        m_enemyTexMaskEmi = { emiEnemy_tx,
+        m_enemyTexMaskEmi[i] = {emiEnemy_tx,
             GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
             GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
             GetColorF(1.0f, 1.0f, 1.0f, 1.0f),
@@ -100,9 +119,8 @@ bool GameScene::Load()
     m_fighterLoader.LoadSpecialWeapon();
 
 
-    m_enemyLoader.StatusLoad();
-    m_enemyLoader.TransformLoad();
-    m_enemyModel.resize(enemyTypeCount);
+    //m_enemyLoader.StatusLoad();
+    //m_enemyLoader.TransformLoad();
     for (short i = 0; i < enemyTypeCount; i++)
     {
         std::string enemyModelHandle = "../3DModel/Enemy/Enemy_" + std::to_string(i) + "/Enemy_" + std::to_string(i) + ".mv1";
@@ -147,6 +165,7 @@ void GameScene::Initialize()
     // 物理
     new PhysicsColliderBox(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(30.0f, 30.0f, 30.0f), PhysicsCollider::Trigger, 0);
     new PhysicsColliderSphere(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), 30, PhysicsCollider::Active, 1);
+<<<<<<< HEAD
     //for (short i = 0; i < enemyInstanceCount; i++)
     //{
     //    new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 30,10, PhysicsCollider::Fixed, 1);
@@ -156,6 +175,17 @@ void GameScene::Initialize()
     //    enemyModel->AddTextureMask(m_enemyTexMaskBody[m_enemyLoader.m_enemyTransform[i].enemyID]);
     //    enemyModel->AddTextureMask(m_enemyTexMaskEmi);
     //}
+=======
+    for (short i = 0; i < enemyInstanceCount; i++)
+    {
+        new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 30,10, PhysicsCollider::Fixed, 1);
+        ModelRenderer* enemyModel = new ModelRenderer(enemyObject[i].get());
+        enemyModel->SetModelHandle(m_enemyModel[m_enemyLoader.m_enemyTransform[i].enemyID]);
+        enemyModel->SetScale(VGet(0.1f,0.1f,0.1f));
+        enemyModel->AddTextureMask(m_enemyTexMaskBody[m_enemyLoader.m_enemyTransform[i].enemyID]);
+        enemyModel->AddTextureMask(m_enemyTexMaskEmi[m_enemyLoader.m_enemyTransform[i].enemyID]);
+    }
+>>>>>>> main
     
     // カメラ
     new ManualCamera(cameraObject.get());

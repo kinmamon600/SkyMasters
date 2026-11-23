@@ -19,6 +19,9 @@ class GameScene : public SceneBase
 public:
     GameScene(SceneManager* sceneManager, GameManager* gameManager) : SceneBase(sceneManager, gameManager) {};
 
+    // ロードの準備
+    bool PrepareLoadData();
+
     // 読み込み
     bool Load() override;
 
@@ -67,6 +70,6 @@ private:
     ModelRenderer::TextureMask m_fighterTexMaskCanopy = {}; // キャノピー部分
     ModelRenderer::TextureMask m_fighterTexMaskEmi = {};    // 発光部分
 
-    std::vector<ModelRenderer::TextureMask> m_enemyTexMaskBody = {};   // 
-    ModelRenderer::TextureMask m_enemyTexMaskEmi = {};    // 発光部分
+    std::vector<ModelRenderer::TextureMask> m_enemyTexMaskBody;   // 
+    std::vector<ModelRenderer::TextureMask> m_enemyTexMaskEmi;    // 発光部分
 };
