@@ -9,7 +9,7 @@
 /// <summary>
 /// 入力取得コンポーネント
 /// </summary>
-class Input :public Component
+class Input : public Component
 {
 public:
 	// プレイヤー番号

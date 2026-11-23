@@ -13,8 +13,7 @@ class ModelRenderer : public Component
 {
 public:
     // コンストラクタ
-    ModelRenderer(Actor* owner)
-        :Component(owner, static_cast<int>(ComponentUpdateOrder::ModelRenderer)) {}
+    ModelRenderer(Actor* owner);
 
     // デストラクタ
     ~ModelRenderer();
@@ -68,6 +67,9 @@ private:
 
     // 表示・非表示フラグ
     bool m_isVisible = true;
+
+    // モデルの拡縮
+    VECTOR m_modelScale;
 
     // マテリアルのディフューズカラー(拡散反射色)
     COLOR_F m_diffuse = GetColorF(0.8f, 0.8f, 0.8f, 1.0f);

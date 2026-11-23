@@ -28,7 +28,7 @@ VECTOR Manual::FighterControl()
 	VECTOR forward = pcs->GetDirection(VGet(0.0f, 0.0f, -1.0f));
 
 	// 速度設定
-	VECTOR linear_velocity = VScale(forward, fighter->m_speed);
+	VECTOR linear_velocity = VScale(forward, fighter->m_currentSpeed);
 
 	// 角速度設定 & ヨー時の傾き設定
 	// プレイヤー操作時で無ければ0

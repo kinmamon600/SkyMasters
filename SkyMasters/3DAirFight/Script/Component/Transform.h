@@ -22,22 +22,22 @@ public:
 	void SetMatrix(const MATRIX mat);
 
 	// 座標の取得
-	const VECTOR& GetPosition() const;
+	VECTOR GetPosition() const;
 
 	// 座標のセット
 	void SetPosition(const VECTOR& pos);
 
 	// 回転の取得
-	const VECTOR& GetRotation() const;
+	VECTOR GetRotation() const;
 
 	// 回転の取得(ラジアン)
-	const VECTOR& GetRadRotation() const;
+	VECTOR GetRadRotation() const;
 
 	// 回転のセット
 	void SetRotation(const VECTOR& rotation);
 
 	// サイズの取得
-	const VECTOR& GetScale() const;
+	VECTOR GetScale() const;
 
 	// サイズのセット
 	void SetScale(const VECTOR& scale);

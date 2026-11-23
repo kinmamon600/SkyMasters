@@ -1,6 +1,8 @@
+// ライブラリ・ヘッダ
 #include "GameScene.h"
 #include "SceneManager.h"
 #include "../Game/Game.h"
+#include "../World/WorldSettings.h"
 
 #include<string>
 
@@ -150,13 +152,16 @@ void GameScene::Initialize()
     {
         enemyObject[i] = std::make_unique<Actor>(p_sceneManager->p_game);
         Transform* enemyTr = new Transform(enemyObject[i].get());
-        enemyTr->SetPosition(m_enemyLoader.m_enemyTransform[i].position);
+        VECTOR pos = m_enemyLoader.m_enemyTransform[i].position;
+        pos.y += WorldSettings::FloorHeight;
+        enemyTr->SetPosition(pos);
         enemyTr->SetRotation(m_enemyLoader.m_enemyTransform[i].rotation);
         enemyTr->SetScale(m_enemyLoader.m_enemyTransform[i].scale);
     }
 
     // Transform
-    new Transform(playerObject.get());
+    Transform* fighterTr = new Transform(playerObject.get());
+    fighterTr->SetPosition(VGet(0.0f, WorldSettings::FloorHeight + 100.0f, 0.0f));
     new Transform(bodyObject.get());
     new Transform(wingObject.get());
     new Transform(diffuserObject.get());
@@ -164,28 +169,16 @@ void GameScene::Initialize()
     
     // 物理
     new PhysicsColliderBox(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(30.0f, 30.0f, 30.0f), PhysicsCollider::Trigger, 0);
-    new PhysicsColliderSphere(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), 30, PhysicsCollider::Active, 1);
-<<<<<<< HEAD
-    //for (short i = 0; i < enemyInstanceCount; i++)
-    //{
-    //    new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 30,10, PhysicsCollider::Fixed, 1);
-    //    ModelRenderer* enemyModel = new ModelRenderer(enemyObject[i].get());
-    //    enemyModel->SetModelHandle(m_enemyModel[m_enemyLoader.m_enemyTransform[i].enemyID]);
-    //    enemyModel->SetScale(VGet(0.1f,0.1f,0.1f));
-    //    enemyModel->AddTextureMask(m_enemyTexMaskBody[m_enemyLoader.m_enemyTransform[i].enemyID]);
-    //    enemyModel->AddTextureMask(m_enemyTexMaskEmi);
-    //}
-=======
+    new PhysicsColliderSphere(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), 0.3f, PhysicsCollider::Active, 1);
+
     for (short i = 0; i < enemyInstanceCount; i++)
     {
         new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 30,10, PhysicsCollider::Fixed, 1);
         ModelRenderer* enemyModel = new ModelRenderer(enemyObject[i].get());
         enemyModel->SetModelHandle(m_enemyModel[m_enemyLoader.m_enemyTransform[i].enemyID]);
-        enemyModel->SetScale(VGet(0.1f,0.1f,0.1f));
         enemyModel->AddTextureMask(m_enemyTexMaskBody[m_enemyLoader.m_enemyTransform[i].enemyID]);
         enemyModel->AddTextureMask(m_enemyTexMaskEmi[m_enemyLoader.m_enemyTransform[i].enemyID]);
     }
->>>>>>> main
     
     // カメラ
     new ManualCamera(cameraObject.get());
@@ -197,13 +190,10 @@ void GameScene::Initialize()
 
     ModelRenderer* bodyModel = new ModelRenderer(bodyObject.get());
     bodyModel->SetModelHandle(m_bodyModel);
-    bodyModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
     ModelRenderer* wingModel = new ModelRenderer(wingObject.get());
     wingModel->SetModelHandle(m_wingModel);
-    wingModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
     ModelRenderer* diffuserModel = new ModelRenderer(diffuserObject.get());
     diffuserModel->SetModelHandle(m_diffuserModel);
-    diffuserModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
     
     // プレイヤー
     //new PhysicsColliderBox(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(1.0f, 1.0f, 1.0f), PhysicsCollider::Active, 1);
@@ -214,7 +204,6 @@ void GameScene::Initialize()
     new Automatic(playerObject.get());
     ModelRenderer* modelComp = new ModelRenderer(playerObject.get());
     modelComp->SetModelHandle(playerModel);
-    modelComp->SetScale(VGet(0.1f, 0.1f, 0.1f));
     
     // 機体のテクスチャー
     modelComp->AddTextureMask(m_fighterTexMaskBody);
@@ -229,9 +218,8 @@ void GameScene::Initialize()
     //new PhysicsColliderSphere(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), 300, PhysicsCollider::Trigger, 0);
     ModelRenderer* terrainModelComp = new ModelRenderer(terrainObject.get());
     terrainModelComp->SetModelHandle(planeModel);
-    terrainModelComp->SetScale(VGet(0.1f, 1.0f, 0.1f));
     Transform* terrainTrComp = terrainObject->GetComponent<Transform>();
-    terrainTrComp->SetPosition(VGet(0.0f, -1000.0f, 0.0f));
+    terrainTrComp->SetPosition(VGet(0.0f, WorldSettings::FloorHeight, 0.0f));
 }
 
 // 更新

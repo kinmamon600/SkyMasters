@@ -2,6 +2,7 @@
 #include <memory>
 #include "DxLib.h"
 
+#include "World/WorldSettings.h"
 #include "Actor/Actor.h"
 #include "Fighter.h"
 #include "../Transform.h"
@@ -39,6 +40,14 @@ void Fighter::Update()
 		Transform* trComp = m_owner->GetComponent<Transform>();
 		PhysicsColliderSphere* pcComp = m_owner->GetComponent<PhysicsColliderSphere>();
 		manuCameraComp->SetCamera(this, trComp, pcComp, ctrl_value.x, ctrl_value.y, 60.0f);
+
+		//VECTOR pos = trComp->GetPosition();
+		//pos.y = 0.0f;
+		//
+		//if (VSize(pos) > WorldSettings::WorldRadius)
+		//{
+		//	printfDx("エリア外\n\n");
+		//}
 
 		// 別ステートへの遷移分岐
 		Input* input = m_owner->GetComponent<Input>();
@@ -84,6 +93,8 @@ void Fighter::Update()
 	case Fighter::PlayerState::Dead:
 		break;
 	}
+
+	printfDx("Speed:%f\n", m_currentSpeed);
 
 	//Transform* trComp = m_owner->GetComponent<Transform>();
 	//VECTOR rote = trComp->GetRotation();

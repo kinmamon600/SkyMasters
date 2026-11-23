@@ -18,7 +18,7 @@ void Transform::SetMatrix(const MATRIX mat)
 }
 
 // 座標の取得
-const VECTOR& Transform::GetPosition() const
+VECTOR Transform::GetPosition() const
 {
 	//return m_position;
 	return VGet(m_matrix.m[3][0], m_matrix.m[3][1], m_matrix.m[3][2]);
@@ -38,7 +38,7 @@ void Transform::SetPosition(const VECTOR& pos)
 }
 
 // 回転の取得
-const VECTOR& Transform::GetRotation() const
+VECTOR Transform::GetRotation() const
 {
 	float rotX = 0.0f, rotY = 0.0f, rotZ = 0.0f;
 
@@ -66,7 +66,7 @@ const VECTOR& Transform::GetRotation() const
 }
 
 // 回転の取得(ラジアン)
-const VECTOR& Transform::GetRadRotation() const
+VECTOR Transform::GetRadRotation() const
 {
 	float rotX = 0.0f, rotY = 0.0f, rotZ = 0.0f;
 
@@ -86,7 +86,7 @@ void Transform::SetRotation(const VECTOR& rotation)
 }
 
 // サイズの取得
-const VECTOR& Transform::GetScale() const
+VECTOR Transform::GetScale() const
 {
 	//return m_scale;
 	return VGet(

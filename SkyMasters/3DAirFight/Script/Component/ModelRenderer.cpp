@@ -4,6 +4,12 @@
 #include "../Actor/Actor.h"
 #include "../World/WorldSettings.h"
 
+// コンストラクタ
+ModelRenderer::ModelRenderer(Actor* owner) : Component(owner, static_cast<int>(ComponentUpdateOrder::ModelRenderer))
+{
+	m_modelScale = VGet(WorldSettings::WorldScale, WorldSettings::WorldScale, WorldSettings::WorldScale);
+}
+
 // デストラクタ
 ModelRenderer::~ModelRenderer()
 {
@@ -21,7 +27,7 @@ void ModelRenderer::Update()
 
 void ModelRenderer::SetScale(VECTOR scale)
 {
-	MV1SetScale(m_modelHandle, scale);
+	m_modelScale = scale;
 }
 
 // 画像の描画
@@ -42,16 +48,22 @@ void ModelRenderer::Draw()
 	// Transformの取得
 	VECTOR pos = tr->GetPosition();
 	VECTOR rote = tr->GetRotation();
-	//VECTOR scale = tr->GetScale();
+	VECTOR scale = tr->GetScale();
 
 	// 度数法から弧度法へ変換
 	double angleX = rote.x * DX_PI / 180.0;
 	double angleY = rote.y * DX_PI / 180.0;
 	double angleZ = rote.z * DX_PI / 180.0;
 
-	// モデルの座標と回転をセット
+	// モデルのスケールとトランスフォームのスケールを統合
+	scale.x *= m_modelScale.x;
+	scale.y *= m_modelScale.y;
+	scale.z *= m_modelScale.z;
+
+	// モデルの座標・回転・拡縮をセット
 	MV1SetPosition(m_modelHandle, pos);
 	MV1SetRotationXYZ(m_modelHandle, VGet(angleX, angleY, angleZ));
+	MV1SetScale(m_modelHandle, scale);
 
 	// テクスチャマスクが無ければ一度描画して処理終了
 	if (m_textureMasks.size() < 1)
@@ -88,9 +100,6 @@ void ModelRenderer::SetModelHandle(int handle)
 	// ハンドル設定
 	m_modelHandle = MV1DuplicateModel(handle);
 	m_textureHandle = MV1GetTextureGraphHandle(m_modelHandle, 0);
-
-	// スケールの初期設定
-	MV1SetScale(m_modelHandle, VGet(WorldSettings::WorldScale, WorldSettings::WorldScale, WorldSettings::WorldScale));
 
 	m_textureMasks.clear();
 }
