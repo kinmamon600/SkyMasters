@@ -52,7 +52,7 @@ void Fighter::Update()
 		if (input->GetButtonDown(Input::ZR))
 		{
 			VECTOR direction = pcComp->GetDirection(VGet(0.0f, 0.0f, -1.0f));
-			Attack(VScale(direction, 100.0f), VScale(direction, 9000000.0f));
+			Attack(VScale(direction, 500.0f), VScale(direction, 9000000.0f));
 		}
 	}
 		break;

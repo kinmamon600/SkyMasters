@@ -76,7 +76,7 @@ bool GameScene::Load()
         int difEnemy_tx = LoadGraph(difEnemy.c_str());
         std::string emiEnemy = "../Texture/Enemy/Enemy_0/Enemy_" + std::to_string(i) + "_Emissive.png";
         int emiEnemy_tx = LoadGraph(emiEnemy.c_str());
-        m_enemyTexMaskBody = { difEnemy_tx,
+        m_enemyTexMaskBody[i] = {difEnemy_tx,
            GetColorF(0.4f, 0.4f, 0.4f, 1.0f),
            GetColorF(0.8f, 0.8f, 0.8f, 1.0f),
            GetColorF(0.1f, 0.1f, 0.1f, 1.0f),
@@ -147,15 +147,15 @@ void GameScene::Initialize()
     // ï®óù
     new PhysicsColliderBox(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(30.0f, 30.0f, 30.0f), PhysicsCollider::Trigger, 0);
     new PhysicsColliderSphere(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), 30, PhysicsCollider::Active, 1);
-    for (short i = 0; i < enemyInstanceCount; i++)
-    {
-        new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 30,10, PhysicsCollider::Fixed, 1);
-        ModelRenderer* enemyModel = new ModelRenderer(enemyObject[i].get());
-        enemyModel->SetModelHandle(m_enemyModel[m_enemyLoader.m_enemyTransform[i].enemyID]);
-        enemyModel->SetScale(VGet(0.1f,0.1f,0.1f));
-        enemyModel->AddTextureMask(m_enemyTexMaskBody);
-        enemyModel->AddTextureMask(m_enemyTexMaskEmi);
-    }
+    //for (short i = 0; i < enemyInstanceCount; i++)
+    //{
+    //    new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 30,10, PhysicsCollider::Fixed, 1);
+    //    ModelRenderer* enemyModel = new ModelRenderer(enemyObject[i].get());
+    //    enemyModel->SetModelHandle(m_enemyModel[m_enemyLoader.m_enemyTransform[i].enemyID]);
+    //    enemyModel->SetScale(VGet(0.1f,0.1f,0.1f));
+    //    enemyModel->AddTextureMask(m_enemyTexMaskBody[m_enemyLoader.m_enemyTransform[i].enemyID]);
+    //    enemyModel->AddTextureMask(m_enemyTexMaskEmi);
+    //}
     
     // ÉJÉÅÉâ
     new ManualCamera(cameraObject.get());
