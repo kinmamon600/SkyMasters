@@ -12,7 +12,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	// 画面モードの設定
 	SetGraphMode(Screen::Width, Screen::Height, 32, 60);
 	SetWindowSize(Screen::Width, Screen::Height);
-	ChangeWindowMode(TRUE);			// フルスクリーン表示
+	ChangeWindowMode(FALSE);		// フルスクリーン表示
 	SetMouseDispFlag(FALSE);		// マウスカーソル非表示
 	SetMainWindowText("SKY MASTER");// ウィンドウ名
 
@@ -50,9 +50,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		
 		// ゲームの更新
 		game->Update();
-
-		// 物理オブジェクトの描画(デバッグ用)
-		SDP::RenderPhysicalObject();
 
 		ScreenFlip();					// ダブルバッファで画面表示
 		WaitTimer(Screen::OneFrameTime_ms);// 一定時間待つ

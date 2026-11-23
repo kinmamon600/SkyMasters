@@ -8,8 +8,7 @@
 // 前方宣言
 class Fighter;
 class Transform;
-class PhysicsColliderSphere;
-class PhysicsColliderBox;
+class PhysicsCollider;
 
 class ManualCamera : public Component
 {
@@ -23,7 +22,7 @@ public:
 	~ManualCamera() {}
 
 	// カメラコンポーネントを設定
-	void SetCamera(const Fighter* p_player_fighter, const Transform* p_player_tr, PhysicsColliderSphere* p_player_pc, float x_value, float y_value, float fov);
+	void SetCamera(const Fighter* p_player_fighter, const Transform* p_player_tr, PhysicsCollider* p_player_pc, float x_value, float y_value, float fov);
 
 private:
 	

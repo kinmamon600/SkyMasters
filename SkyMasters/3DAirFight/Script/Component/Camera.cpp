@@ -59,6 +59,13 @@ void Camera::SetDispArea(unsigned int min_x, unsigned int min_y, unsigned int ma
 	m_dispArea_maxY = max_y;
 }
 
+// 注視点位置取得
+void Camera::GetDispCenter(unsigned int* x, unsigned int* y)
+{
+	*x = m_dispCenterX;
+	*y = m_dispCenterY;
+}
+
 // 注視点位置設定
 void Camera::SetDispCenter(unsigned int x, unsigned int y)
 {

@@ -11,7 +11,7 @@
 #include "Fighter.h"
 
 // カメラコンポーネントを設定
-void ManualCamera::SetCamera(const Fighter* p_player_fighter, const Transform* p_player_tr, PhysicsColliderSphere* p_player_pc, float x_value, float y_value, float fov)
+void ManualCamera::SetCamera(const Fighter* p_player_fighter, const Transform* p_player_tr, PhysicsCollider* p_player_pc, float x_value, float y_value, float fov)
 {
 	// カメラコンポーネントの取得
 	Camera* camera = m_owner->GetComponent<Camera>();
@@ -33,7 +33,7 @@ void ManualCamera::SetCamera(const Fighter* p_player_fighter, const Transform* p
 
 	// カメラをロドリゲスの回転公式で自機正面が見えるよう位置調整
 	VECTOR axis = p_player_pc->GetDirection(VGet(1.0f, 0.0f, 0.0f));
-	float rad = ((-p_player_fighter->m_cameraDefaultPitchAngle * (1.0f - abs(x_value))) + p_player_fighter->m_cameraPitchAngle * y_value) * DX_PI_F / 180.0f;
+	float rad = ((-p_player_fighter->m_cameraDefaultPitchAngle * (1.0f - abs(y_value))) + p_player_fighter->m_cameraPitchAngle * y_value) * DX_PI_F / 180.0f;
 	float c = std::cos(rad);
 	float s = std::sin(rad);
 	camera_pos = VAdd(VScale(camera_pos, c), VScale(VCross(axis, camera_pos), s));
@@ -48,5 +48,5 @@ void ManualCamera::SetCamera(const Fighter* p_player_fighter, const Transform* p
 
 	camera->SetPosition(camera_pos);
 
-	//camera->SetDispCenter((Screen::Width / 2) - (int)((x_value) * p_player_fighter->m_cameraCenterAreaX), (Screen::Height / 2) - (int)((y_value) * p_player_fighter->m_cameraCenterAreaY));
+	camera->SetDispCenter((p_player_fighter->m_dispCenter.x) + (int)((x_value) * p_player_fighter->m_cameraCenterAreaX), (p_player_fighter->m_dispCenter.y) + (int)((y_value) * p_player_fighter->m_cameraCenterAreaY));
 }

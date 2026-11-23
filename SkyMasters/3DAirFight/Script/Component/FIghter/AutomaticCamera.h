@@ -9,7 +9,7 @@
 class Fighter;
 class Transform;
 class Automatic;
-class PhysicsColliderSphere;
+class PhysicsCollider;
 
 class AutomaticCamera : public Component
 {
@@ -22,17 +22,17 @@ public:
 	~AutomaticCamera() {}
 
 	// ターン時のカメラ制御
-	void TurnCamera(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsColliderSphere* p_player_pc, const Transform* p_player_tr);
+	void TurnCamera(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsCollider* p_player_pc, const Transform* p_player_tr);
 
 private:
 	// ニュートラル位置に戻す(マニュアル操作との繋ぎ)
-	void ReturnNeutral(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsColliderSphere* p_player_pc, const Transform* p_player_tr);
+	void ReturnNeutral(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsCollider* p_player_pc, const Transform* p_player_tr);
 
 	// ピッチターン時のカメラ制御
-	void PitchTurn(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsColliderSphere* p_player_pc, const Transform* p_player_tr);
+	void PitchTurn(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsCollider* p_player_pc, const Transform* p_player_tr);
 
 	// ロールターン時のカメラ制御
-	void RollTurn(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsColliderSphere* p_player_pc, const Transform* p_player_tr);
+	void RollTurn(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsCollider* p_player_pc, const Transform* p_player_tr);
 
 	// カメラの最大座標補正値Y
 	float m_correctionValueY_Max = 10.0f;

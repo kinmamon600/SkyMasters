@@ -51,6 +51,7 @@ private:
     FighterPartsID m_fpID;
 
     // 画像ハンドル
+    int m_reticleImgHandle = -1;    // レティクルの画像ハンドル
 
     // ３Dモデルハンドル
     int m_bodyModel = -1;
@@ -58,7 +59,7 @@ private:
     int m_diffuserModel = -1;
     int playerModel = -1;
     int planeModel = -1;
-    int m_beamModelHandle = -1;
+    int m_beamModelHandle = -1;     // ビームのモデルハンドル
     std::vector<int> m_enemyModel;
 
     // スカイボックスハンドル

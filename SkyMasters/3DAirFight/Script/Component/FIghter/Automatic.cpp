@@ -7,8 +7,7 @@
 #include "../../Screen/Screen.h"
 #include "../../Actor/Actor.h"
 #include "../Input.h"
-#include "../PhysicsColliderSphere.h"
-#include "../PhysicsColliderBox.h"
+#include "../PhysicsCollider.h"
 #include "../Transform.h"
 
 // ターン
@@ -78,7 +77,7 @@ float Automatic::GetCurrentTurnValue() const
 bool Automatic::ReturnNeutral()
 {
 	// 入力・物理コライダーの取得
-	PhysicsColliderSphere* pcs = m_owner->GetComponent<PhysicsColliderSphere>();
+	PhysicsCollider* pcs = m_owner->GetComponent<PhysicsCollider>();
 
 	// 現在の姿勢取得
 	VECTOR forward = pcs->GetDirection(VGet(0.0f, 0.0f, -1.0f));
@@ -202,7 +201,7 @@ bool Automatic::ReturnNeutral()
 bool Automatic::PitchTurn(float turn_direction)
 {
 	// 入力・物理コライダーの取得
-	PhysicsColliderSphere* pcs = m_owner->GetComponent<PhysicsColliderSphere>();
+	PhysicsCollider* pcs = m_owner->GetComponent<PhysicsCollider>();
 
 	// 自機の向きの取得
 	VECTOR forward = pcs->GetDirection(VGet(0.0f, 0.0f, -1.0f));
@@ -258,7 +257,7 @@ bool Automatic::PitchTurn(float turn_direction)
 bool Automatic::RollTurn()
 {
 	// 入力・物理コライダーの取得
-	PhysicsColliderSphere* pcs = m_owner->GetComponent<PhysicsColliderSphere>();
+	PhysicsCollider* pcs = m_owner->GetComponent<PhysicsCollider>();
 
 	// 自機の向きの取得
 	VECTOR forward = pcs->GetDirection(VGet(0.0f, 0.0f, -1.0f));

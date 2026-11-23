@@ -8,8 +8,7 @@ class Fighter : public Behavior
 {
 public:
 	// コンストラクタ
-	Fighter(Actor* owner, Actor* cam, int beam)
-		: Behavior(owner), p_myCamera(cam), m_beamModelHandle(beam){}
+	Fighter(Actor* owner, unsigned short pl_num, MATRIX mat, int beam, int reticle);
 
 	// デストラクタ
 	~Fighter(){}
@@ -29,9 +28,6 @@ public:
 
 	// 当たり判定
 	void IsContact(const Actor* other) override;
-
-	// 終了
-	//void Terminate();
 
 	// ステートの変更
 	void ChangeState(PlayerState state);
@@ -59,14 +55,19 @@ public:
 	const float m_yawSlopeAngleSpeedMax = 100.0f;		// 傾く角速度の最大値
 	const float m_yawSlopeAngleSpeedMin = 50.0f;		// 傾く角速度の最小値
 
-	const float m_cameraFixationOffset = 55.0f;			// 注視点のオフセット
-	const float m_cameraDefaultPitchAngle = 3.0f;		// ニュートラル時のカメラ傾き
-	const float m_cameraDistance = 85.5f;				// 注視点とカメラの間隔
-
-	const float m_cameraCenterAreaX = 20.0f;			// 画面上のカメラ移動範囲X
-	const float m_cameraCenterAreaY = 10.0f;			// 画面上のカメラ移動範囲Y
-
 	// カメラ用パラメータ群
+	VECTOR m_dispAreaMin = VGet(0.0f, 0.0f, 0.0f);		// 画面専有範囲
+	VECTOR m_dispAreaMax = VGet(0.0f, 0.0f, 0.0f);
+
+	VECTOR m_dispCenter = VGet(0.0f, 0.0f, 0.0f);		// 画面中心
+
+	const float m_cameraFixationOffset = 55.0f;			// 注視点のオフセット
+	const float m_cameraDefaultPitchAngle = 4.0f;		// ニュートラル時のカメラ傾き
+	const float m_cameraDistance = 120.0f;				// 注視点とカメラの間隔
+
+	const float m_cameraCenterAreaX = 40.0f;			// 画面上のカメラ移動範囲X
+	const float m_cameraCenterAreaY = 30.0f;			// 画面上のカメラ移動範囲Y
+
 	const float m_cameraYawAngle = 8.75f;				// カメラのヨー方向最大角度
 	const float m_cameraPitchAngle = 5.5f;				// カメラのピッチ方向最大角度
 
@@ -80,11 +81,11 @@ public:
 	float m_yawSlopeAngle = 0.0f;						// 現状どのくらい傾いているか
 
 private:
+	// プレイヤー番号
+	unsigned short m_playerNum = 1;
+
+	// 現在のステート
 	PlayerState m_currentState = PlayerState::Manual;
-
-	FighterStatus m_status{};
-
-	FighterDataLoader m_loader;
 
 	// ヒットポイント
 	int m_hp = 1000;
@@ -95,9 +96,12 @@ private:
 	// 通常攻撃弾のモデルハンドル
 	int m_beamModelHandle = -1;
 
-	// 通常攻撃
-	void Attack(VECTOR offset, VECTOR velocity);
-
 	// 自身を映すカメラ
 	Actor* p_myCamera;
+
+	// レティクル
+	Actor* p_myReticle;
+
+	// 通常攻撃
+	void Attack(VECTOR offset, VECTOR velocity);
 };

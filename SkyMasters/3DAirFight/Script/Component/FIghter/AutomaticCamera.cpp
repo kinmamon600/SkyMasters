@@ -11,7 +11,7 @@
 #include "../PhysicsColliderSphere.h"
 
 // ターン時のカメラ制御
-void AutomaticCamera::TurnCamera(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsColliderSphere* p_player_pc, const Transform* p_player_tr)
+void AutomaticCamera::TurnCamera(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsCollider* p_player_pc, const Transform* p_player_tr)
 {
 	switch (p_player_automatic->GetCurrentTurnState())
 	{
@@ -33,7 +33,7 @@ void AutomaticCamera::TurnCamera(const Fighter* p_player_fighter, const Automati
 }
 
 // ニュートラル位置に戻す(マニュアル操作との繋ぎ)
-void AutomaticCamera::ReturnNeutral(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsColliderSphere* p_player_pc, const Transform* p_player_tr)
+void AutomaticCamera::ReturnNeutral(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsCollider* p_player_pc, const Transform* p_player_tr)
 {
 	// カメラコンポーネントと座標の取得
 	Camera* camera = m_owner->GetComponent<Camera>();
@@ -83,7 +83,7 @@ void AutomaticCamera::ReturnNeutral(const Fighter* p_player_fighter, const Autom
 }
 
 // ピッチターン時のカメラ制御
-void AutomaticCamera::PitchTurn(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsColliderSphere* p_player_pc, const Transform* p_player_tr)
+void AutomaticCamera::PitchTurn(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsCollider* p_player_pc, const Transform* p_player_tr)
 {
 	// カメラコンポーネントと座標の取得
 	Camera* camera = m_owner->GetComponent<Camera>();
@@ -117,7 +117,7 @@ void AutomaticCamera::PitchTurn(const Fighter* p_player_fighter, const Automatic
 }
 
 // ロールターン時のカメラ制御
-void AutomaticCamera::RollTurn(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsColliderSphere* p_player_pc, const Transform* p_player_tr)
+void AutomaticCamera::RollTurn(const Fighter* p_player_fighter, const Automatic* p_player_automatic, PhysicsCollider* p_player_pc, const Transform* p_player_tr)
 {
 	// カメラコンポーネントと座標の取得
 	Camera* camera = m_owner->GetComponent<Camera>();

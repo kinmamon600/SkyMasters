@@ -47,6 +47,9 @@ public:
 	// 描画範囲設定
 	void SetDispArea(unsigned int min_x, unsigned int min_y, unsigned int max_x, unsigned int max_y);
 
+	// 注視点位置取得
+	void GetDispCenter(unsigned int* x, unsigned int* y);
+
 	// 注視点位置設定
 	void SetDispCenter(unsigned int x, unsigned int y);
 

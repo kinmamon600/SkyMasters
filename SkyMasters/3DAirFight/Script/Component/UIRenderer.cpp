@@ -50,7 +50,6 @@ void UIRenderer::Draw()
 	GetGraphSize(m_graphHandle, &sizeXBuf, &sizeYBuf);
 
 	DrawRotaGraph3(pos.x, pos.y, sizeXBuf / 2, sizeYBuf / 2, scale.x, scale.y, angle, m_graphHandle, TRUE, FALSE);
-	
 }
 
 

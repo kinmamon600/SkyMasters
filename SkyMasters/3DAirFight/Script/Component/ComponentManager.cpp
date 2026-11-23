@@ -6,6 +6,7 @@
 #include "ComponentUpdateOrder.h"
 #include "Actor/Actor.h"
 #include "Behavior.h"
+#include "Screen/Screen.h"
 
 // コンポーネントの追加
 void ComponentManager::AddComponent(Component* component)
@@ -137,6 +138,15 @@ void ComponentManager::Update()
 			{
 				rend_comp->Update();
 			}
+
+			// 物理オブジェクトの描画(デバッグ用)
+			SDP::RenderPhysicalObject();
+
+			// 描画範囲初期化
+			SetDrawArea(0, 0, Screen::Width, Screen::Height);
+
+			// 注視点位置初期化
+			SetCameraScreenCenter(Screen::Width / 2.0f, Screen::Height / 2.0f);
 		}
 	}
 }

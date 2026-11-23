@@ -3,13 +3,17 @@
 #include "DxLib.h"
 
 #include "World/WorldSettings.h"
+#include "Screen/Screen.h"
 #include "Actor/Actor.h"
 #include "Fighter.h"
 #include "../Transform.h"
 #include "../Input.h"
-#include "../PhysicsColliderSphere.h"
-#include "../PhysicsColliderBox.h"
+//#include "../PhysicsColliderSphere.h"
+//#include "../PhysicsColliderBox.h"
+#include "../PhysicsColliderCylinder.h"
+#include "../UIRenderer.h"
 #include "../ModelRenderer.h"
+#include "../Camera.h"
 
 #include "../../Loader/FighterDataLoader.h"
 #include "Manual.h"
@@ -18,10 +22,58 @@
 #include "AutomaticCamera.h"
 #include "../../Behavior/Bullet.h"
 
+// コンストラクタ
+Fighter::Fighter(Actor* owner, unsigned short pl_num, MATRIX mat, int beam, int reticle)
+	: Behavior(owner), m_playerNum(pl_num), m_beamModelHandle(beam)
+{
+	// レイヤー設定
+	owner->SetLayer(ActorLayer::Player);
+
+	// 自身が使用する画面範囲の設定
+	m_dispAreaMin.x = ((m_playerNum - 1) % 2) * Screen::Width / 2;
+	m_dispAreaMax.x = m_dispAreaMin.x + Screen::Width / 2;
+
+	m_dispAreaMin.y = ((m_playerNum - 1) / 2) * Screen::Height / 2;
+	m_dispAreaMax.y = m_dispAreaMin.y + Screen::Height / 2;
+
+	m_dispCenter.x = m_dispAreaMin.x + Screen::Width / 4;
+	m_dispCenter.y = m_dispAreaMin.y + Screen::Height / 4;
+
+	// コンポーネントのアタッチ
+	Transform* tr = new Transform(owner);
+	tr->SetMatrix(mat);
+
+	new PhysicsColliderCylinder(owner, VGet(0.0f, 0.0f, 0.0f), 2.0f, 0.5f, PhysicsCollider::Active, 1.0f);
+
+	ModelRenderer* model_renderer = new ModelRenderer(owner);
+	model_renderer->SetModelHandle(MV1LoadModel("../3DModel/testFighter.mv1"));
+
+	Input* input = new Input(owner);
+	input->SetPlayerNum(static_cast<Input::PlayerNum>(m_playerNum - 1));
+
+	new Manual(owner);
+	new Automatic(owner);
+
+	// カメラのアクター生成
+	p_myCamera = new Actor(owner->GetGame());
+	Camera* camera = new Camera(p_myCamera);
+	camera->SetDispArea(m_dispAreaMin.x, m_dispAreaMin.y, m_dispAreaMax.x, m_dispAreaMax.y);
+	camera->SetDispCenter(m_dispCenter.x, m_dispCenter.y);
+	new ManualCamera(p_myCamera);
+	new AutomaticCamera(p_myCamera);
+
+	// レティクルのアクター生成
+	p_myReticle = new Actor(owner->GetGame());
+	Transform* reticle_tr = new Transform(p_myReticle);
+	reticle_tr->SetScale(VGet(0.5f, 0.5f, 0.5f));
+	UIRenderer* reticleRenderer = new UIRenderer(p_myReticle);
+	reticleRenderer->SetGrphHandle(reticle);
+}
+
 // 初期化
 void Fighter::Initialize()
 {
-
+	
 }
 
 // 更新
@@ -38,7 +90,7 @@ void Fighter::Update()
 		// カメラ設定
 		ManualCamera* manuCameraComp = p_myCamera->GetComponent<ManualCamera>();
 		Transform* trComp = m_owner->GetComponent<Transform>();
-		PhysicsColliderSphere* pcComp = m_owner->GetComponent<PhysicsColliderSphere>();
+		PhysicsCollider* pcComp = m_owner->GetComponent<PhysicsCollider>();
 		manuCameraComp->SetCamera(this, trComp, pcComp, ctrl_value.x, ctrl_value.y, 60.0f);
 
 		//VECTOR pos = trComp->GetPosition();
@@ -77,14 +129,14 @@ void Fighter::Update()
 			// カメラ設定
 			ManualCamera* manuCameraComp = p_myCamera->GetComponent<ManualCamera>();
 			Transform* trComp = m_owner->GetComponent<Transform>();
-			PhysicsColliderSphere* pcComp = m_owner->GetComponent<PhysicsColliderSphere>();
+			PhysicsCollider* pcComp = m_owner->GetComponent<PhysicsCollider>();
 			manuCameraComp->SetCamera(this, trComp, pcComp, 0.0f, 0.0f, 60.0f);
 		}
 		else
 		{
 			// カメラ設定
 			AutomaticCamera* autoCameraComp = p_myCamera->GetComponent<AutomaticCamera>();
-			PhysicsColliderSphere* pcComp = m_owner->GetComponent<PhysicsColliderSphere>();
+			PhysicsCollider* pcComp = m_owner->GetComponent<PhysicsCollider>();
 			Transform* trComp = m_owner->GetComponent<Transform>();
 			autoCameraComp->TurnCamera(this, autoComp, pcComp, trComp);
 		}
@@ -94,7 +146,15 @@ void Fighter::Update()
 		break;
 	}
 
-	printfDx("Speed:%f\n", m_currentSpeed);
+	// レティクルの描画
+	Camera* cam = p_myCamera->GetComponent<Camera>();
+	Transform* reticleTr = p_myReticle->GetComponent<Transform>();
+	unsigned int x = 0;
+	unsigned int y = 0;
+	cam->GetDispCenter(&x, &y);
+	reticleTr->SetPosition(VGet(x, y, 0.0f));
+
+	//printfDx("Speed:%f\n", m_currentSpeed);
 
 	//Transform* trComp = m_owner->GetComponent<Transform>();
 	//VECTOR rote = trComp->GetRotation();
@@ -111,20 +171,6 @@ void Fighter::IsContact(const Actor* other)
 void Fighter::ChangeState(PlayerState state)
 {
 	m_currentState = state;
-}
-
-FighterStatus Fighter::AddStatus(short bodyID, short wingID, short diffID, short spwID)
-{
-	// CSVから各パーツのデータを取得
-	BodyData body = m_loader.GetBody(bodyID);
-	WingData wing = m_loader.GetWing(wingID);
-	DiffuserData diffuser = m_loader.GetDiffuser(diffID);
-	SpecialWeaponData weapon = m_loader.GetSpecialWeapon(spwID);
-
-	// ステータスを計算
-	m_status = CalculateFighterStatus(body, wing, diffuser, weapon);
-
-	return m_status;
 }
 
 // 通常攻撃

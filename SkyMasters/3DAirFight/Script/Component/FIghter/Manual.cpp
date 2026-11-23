@@ -8,8 +8,7 @@
 #include "../../Actor/Actor.h"
 #include "../Input.h"
 #include "../../Input/ControllerInput.h"
-#include "../PhysicsColliderSphere.h"
-#include "../PhysicsColliderBox.h"
+#include "../PhysicsCollider.h"
 
 VECTOR Manual::FighterControl()
 {
@@ -22,7 +21,7 @@ VECTOR Manual::FighterControl()
 
 	// 入力・物理コライダーの取得
 	Input* input = m_owner->GetComponent<Input>();
-	PhysicsColliderSphere* pcs = m_owner->GetComponent<PhysicsColliderSphere>();
+	PhysicsCollider* pcs = m_owner->GetComponent<PhysicsCollider>();
 
 	// 自機の向きの取得
 	VECTOR forward = pcs->GetDirection(VGet(0.0f, 0.0f, -1.0f));
