@@ -8,6 +8,7 @@
 #include "../Component/ModelRenderer.h"
 #include "../Game/GameManager.h"
 
+#include<vector>
 #include <memory>
 
 /// <summary>
@@ -65,4 +66,7 @@ private:
     ModelRenderer::TextureMask m_fighterTexMaskBody = {};   // ボディ部分
     ModelRenderer::TextureMask m_fighterTexMaskCanopy = {}; // キャノピー部分
     ModelRenderer::TextureMask m_fighterTexMaskEmi = {};    // 発光部分
+
+    std::vector<ModelRenderer::TextureMask> m_enemyTexMaskBody = {};   // 
+    ModelRenderer::TextureMask m_enemyTexMaskEmi = {};    // 発光部分
 };

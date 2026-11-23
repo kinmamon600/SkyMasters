@@ -13,6 +13,7 @@
 #include "../Component/Input.h"
 #include "../Component/PhysicsColliderSphere.h"
 #include "../Component/PhysicsColliderBox.h"
+#include "../Component/PhysicsColliderCylinder.h"
 #include "../Component/Fighter/Fighter.h"
 #include "../Component/Fighter/Manual.h"
 #include "../Component/FIghter/ManualCamera.h"
@@ -67,26 +68,46 @@ bool GameScene::Load()
         GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
         0.0f };
 
+    int enemyTypeCount = m_enemyLoader.GetTypeCount();
+    m_enemyModel.resize(enemyTypeCount);
+    for (short i = 0; i < enemyTypeCount; i++)
+    {
+        std::string difEnemy = "../Texture/Enemy/Enemy_0/Enemy_" + std::to_string(i) + "_Diffuse.png";
+        int difEnemy_tx = LoadGraph(difEnemy.c_str());
+        std::string emiEnemy = "../Texture/Enemy/Enemy_0/Enemy_" + std::to_string(i) + "_Emissive.png";
+        int emiEnemy_tx = LoadGraph(emiEnemy.c_str());
+        m_enemyTexMaskBody = { difEnemy_tx,
+           GetColorF(0.4f, 0.4f, 0.4f, 1.0f),
+           GetColorF(0.8f, 0.8f, 0.8f, 1.0f),
+           GetColorF(0.1f, 0.1f, 0.1f, 1.0f),
+           GetColorF(0.8f, 0.8f, 0.8f, 1.0f),
+           64.0f };
+        m_enemyTexMaskEmi = { emiEnemy_tx,
+            GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
+            GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
+            GetColorF(1.0f, 1.0f, 1.0f, 1.0f),
+            GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
+            0.0f };
+    }
+
     // îÒìØä˙èIóπ
     SetUseASyncLoadFlag(FALSE);
 
+    m_fpID = p_gameManager->GetFighterPartsID();
     m_fighterLoader.LoadBody();
     m_fighterLoader.LoadWing();
     m_fighterLoader.LoadDiffuser();
     m_fighterLoader.LoadSpecialWeapon();
 
-    m_fpID = p_gameManager->GetFighterPartsID();
 
     m_enemyLoader.StatusLoad();
     m_enemyLoader.TransformLoad();
-    int enemyTypeCount = m_enemyLoader.GetTypeCount();
     m_enemyModel.resize(enemyTypeCount);
     for (short i = 0; i < enemyTypeCount; i++)
     {
-        std::string enemyModelHandle = "../3Dmodel/Enemy/Enemy_" + std::to_string(m_enemyLoader.m_enemyStatus[i].id)
-            + "/Enemy_" + std::to_string(m_enemyLoader.m_enemyStatus[i].id) + ".mv1";
+        std::string enemyModelHandle = "../3DModel/Enemy/Enemy_" + std::to_string(i) + "/Enemy_" + std::to_string(i) + ".mv1";
+
         m_enemyModel[i] = MV1LoadModel(enemyModelHandle.c_str());
-        printfDx("%d\n", m_enemyModel[i]);
     }
 
     return true;
@@ -106,6 +127,7 @@ void GameScene::Initialize()
     diffuserObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
     int enemyInstanceCount = m_enemyLoader.GetInstanceCount();
+    enemyObject.resize(enemyInstanceCount);
     for (short i = 0; i < enemyInstanceCount; i++)
     {
         enemyObject[i] = std::make_unique<Actor>(p_sceneManager->p_game);
@@ -127,9 +149,12 @@ void GameScene::Initialize()
     new PhysicsColliderSphere(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), 30, PhysicsCollider::Active, 1);
     for (short i = 0; i < enemyInstanceCount; i++)
     {
-        new PhysicsColliderSphere(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 30, PhysicsCollider::Active, 1);
+        new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 30,10, PhysicsCollider::Fixed, 1);
         ModelRenderer* enemyModel = new ModelRenderer(enemyObject[i].get());
-        enemyModel->SetModelHandle(m_enemyModel[i]);
+        enemyModel->SetModelHandle(m_enemyModel[m_enemyLoader.m_enemyTransform[i].enemyID]);
+        enemyModel->SetScale(VGet(0.1f,0.1f,0.1f));
+        enemyModel->AddTextureMask(m_enemyTexMaskBody);
+        enemyModel->AddTextureMask(m_enemyTexMaskEmi);
     }
     
     // ÉJÉÅÉâ

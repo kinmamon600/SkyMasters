@@ -130,11 +130,11 @@ bool EnemyLoader::TransformLoad()
 
 		// “GŽí—Þ”»•Ê
 		std::getline(trSS, tokenTr, ',');
-		short enemyID = StringToInt(tokenTr);
+		enemyTrans.enemyID = StringToInt(tokenTr);
 
 		// “GŒÂ‘Ì”»•Ê
 		std::getline(trSS, tokenTr, ',');
-		short instanceID = StringToInt(tokenTr);
+		enemyTrans.instanceID = StringToInt(tokenTr);
 
 		// PosX
 		std::getline(trSS, tokenTr, ',');
