@@ -14,11 +14,12 @@ class SceneManager;
 class InputManager;
 class ComponentManager;
 class GameManager;
+class SoundManager;
 
 class Game
 {
 public:
-    Game() : sceneManager(nullptr), p_inputManager(nullptr), p_componentManager(nullptr), mUpdatingActors(false) {}
+    Game() : sceneManager(nullptr), p_inputManager(nullptr), p_componentManager(nullptr),p_soundManager(nullptr), mUpdatingActors(false) {}
     ~Game();
 
     // ゲームの初期化
@@ -52,6 +53,9 @@ public:
     // コンポーネント管理クラスの取得
     ComponentManager* GetComponentManager() const;
 
+    // サウンド管理クラスの取得
+    SoundManager* GetSoundManager() const;
+
     // 存在するActorの動的配列
     std::vector<Actor*> mActors;
 
@@ -69,6 +73,9 @@ private:
 
     // コンポーネント管理クラス
     ComponentManager* p_componentManager;
+
+    // サウンド管理クラス
+    SoundManager* p_soundManager;
 
     // Actorを追加しようとしているか
     bool mUpdatingActors;

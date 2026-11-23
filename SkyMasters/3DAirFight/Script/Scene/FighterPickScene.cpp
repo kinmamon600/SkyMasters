@@ -10,14 +10,14 @@
 #include"../Component/BackgroundRenderer.h"
 #include"../Component/Transform.h"
 #include"../Component/ButtonManager/FighterPickButtonManager.h"
+#include"../Component/Sound.h"
 
 #include"../Loader/FighterDataLoader.h"
 #include"../Loader/FighterPartsID.h"
 
 #include<string>
 
-// 読み込み
-bool FighterPickScene::Load()
+bool FighterPickScene::PrepareLoadData()
 {
     m_loader.LoadBody();
     m_loader.LoadWing();
@@ -28,6 +28,19 @@ bool FighterPickScene::Load()
     bodyHandles.resize(dataNum);
     wingHandles.resize(dataNum);
     diffuserHandles.resize(dataNum);
+
+    return true;
+}
+
+// 読み込み
+bool FighterPickScene::Load()
+{
+    if (!PrepareLoadData()) { return false; }
+
+    short dataNum = m_loader.GetDataNum();
+
+    // 非同期開始
+    SetUseASyncLoadFlag(TRUE);
 
     // 機体のモデルを配列に
     for (int i = 0; i < dataNum; i++)
@@ -52,6 +65,9 @@ bool FighterPickScene::Load()
 
     pickUI = LoadGraph("../Sprites/FighterPick_UI.png");
     backgroundHandle = LoadGraph("../Sprites/FighterPick_Background.png");
+
+    // 非同期終了
+    SetUseASyncLoadFlag(FALSE);
 
 	return true;
 }
@@ -101,6 +117,7 @@ void FighterPickScene::Initialize()
     cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);
     buttonManagerObject = std::make_unique<Actor>(p_sceneManager->p_game);
     backgroundObject = std::make_unique<Actor>(p_sceneManager->p_game);
+    bgmObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
     // カメラ 
     new Camera(cameraObject.get());
@@ -113,10 +130,14 @@ void FighterPickScene::Initialize()
     Transform* buttonTr = new Transform(buttonManagerObject.get());
     buttonTr->SetPosition(VGet(Screen::Width / 4, Screen::Height / 2, 0.0f));
     buttonTr->SetScale(VGet(0.5f, 0.5f, 0.0f));
+    new Sound(buttonManagerObject.get());
     
     // 背景
     BackgroundRenderer* backComp = new BackgroundRenderer(backgroundObject.get());
     backComp->SetGrphHandle(backgroundHandle);
+
+    Sound* bgm = new Sound(bgmObject.get());
+    //bgm->PlayBGM(BGM::FighterPick);
 
 }
 
