@@ -8,18 +8,22 @@ class EnemyLoader : public CSVLoader
 public:
 	EnemyLoader() {};
 
-	bool Load(LoadType type) override;  //設計としてよくないので今後引数は使わないようにします
-
-private:
+	bool Load(LoadType type);// override;  //設計としてよくないので今後引数は使わないようにします
 
 	bool StatusLoad();
 
 	bool TransformLoad();
 
+	int GetTypeCount();
+	int GetInstanceCount();
+
+	std::vector<EnemyStatus> m_enemyStatus;
+	std::vector<EnemyTransform> m_enemyTransform;
+private:
+
+
 	//EnemyStatus GetStatus(short id);
 
 	//EnemyTransform GetTransform(short id);
 
-	std::vector<EnemyStatus> m_enemyStatus;
-	std::vector<EnemyTransform> m_enemyTrans;
 };

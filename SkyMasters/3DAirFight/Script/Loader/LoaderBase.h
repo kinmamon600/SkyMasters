@@ -20,7 +20,7 @@ public:
 
 	float StringToFloat(const std::string& value);
 
-	virtual bool Load(LoadType type) {}
+	//virtual bool Load(LoadType type) {}
 
 private:
 

@@ -22,7 +22,7 @@ int LoaderBase::StringToInt(const std::string& value)
 float LoaderBase::StringToFloat(const std::string& value)
 {
     try {
-        float numf = std::stoi(value);
+        float numf = std::stof(value);
         return numf;
     }
     catch (const std::invalid_argument& e) {
