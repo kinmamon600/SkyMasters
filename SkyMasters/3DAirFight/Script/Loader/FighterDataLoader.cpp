@@ -12,6 +12,7 @@ bool FighterDataLoader::LoadBody()
 
 	if (bodyFileHandle == 0)
 	{
+		FileRead_close(bodyFileHandle);
 		// 読み込み失敗
 		return false;
 	}
@@ -49,13 +50,48 @@ bool FighterDataLoader::LoadBody()
 		std::getline(bodySS, bodyToken, ',');
 		bodyData.attackPower = std::stoi(bodyToken);
 
+		//printfDx("%dパーツ目\n", bodyCount);
+		//printfDx("%d\n", bodyData.hp);
+		//printfDx("%d\n", bodyData.rotateSpeed);
+
+		// 残りのデータ取得
+		std::vector<std::string>bodyTransformTokens;
+
+		while (std::getline(bodySS, bodyToken, ','))
+		{
+			bodyTransformTokens.push_back(bodyToken);
+		}
+
+		for (short i = 0; i + 8 < bodyTransformTokens.size(); i += 9)
+		{
+			// Position
+			VECTOR position = VGet(
+				std::stof(bodyTransformTokens[i]),
+				std::stof(bodyTransformTokens[i + 1]),
+				std::stof(bodyTransformTokens[i + 2])
+			);
+
+			// Rotation
+			VECTOR rotation = VGet(
+				std::stof(bodyTransformTokens[i + 3]),
+				std::stof(bodyTransformTokens[i + 4]),
+				std::stof(bodyTransformTokens[i + 5])
+			);
+
+			// Scale
+			VECTOR scale = VGet(
+				std::stof(bodyTransformTokens[i + 6]),
+				std::stof(bodyTransformTokens[i + 7]),
+				std::stof(bodyTransformTokens[i + 8])
+			);
+
+			bodyData.position.push_back(position);
+			bodyData.rotation.push_back(rotation);
+			bodyData.scale.push_back(scale);
+		}
+
 		m_bodyData.push_back(bodyData);
 
-		//printfDx("ボディ\n何パーツ目か:%d\n", bodyCount);
-		//printfDx("体力:%d\n", bodyData.hp);
-		//printfDx("回転速度:%f\n", bodyData.rotateSpeed);
-		//printfDx("加速度:%d\n", bodyData.accele);
-		//printfDx("通常攻撃力:%d\n\n", bodyData.attackPower);
 	}
 
 	FileRead_close(bodyFileHandle);
@@ -70,6 +106,7 @@ bool FighterDataLoader::LoadWing()
 
 	if (wingfFileHandle == 0)
 	{
+		FileRead_close(wingfFileHandle);
 		// 読み込み失敗
 		return false;
 	}
@@ -103,12 +140,43 @@ bool FighterDataLoader::LoadWing()
 		std::getline(wingSS, wingToken, ',');
 		wingData.accele = std::stoi(wingToken);
 
-		m_wingData.push_back(wingData);
+		// 残りのデータ取得
+		std::vector<std::string>wingTransformTokens;
 
-		//printfDx("翼\n何パーツ目か:%d\n", wingCount);
-		//printfDx("体力:%d\n", wingData.hp);
-		//printfDx("回転速度:%f\n", wingData.rotateSpeed);
-		//printfDx("加速度:%d\n\n", wingData.accele);
+		while (std::getline(wingSS, wingToken, ','))
+		{
+			wingTransformTokens.push_back(wingToken);
+		}
+
+		for (short i = 0; i + 8 < wingTransformTokens.size(); i += 9)
+		{
+			// Position
+			VECTOR position = VGet(
+				std::stof(wingTransformTokens[i]),
+				std::stof(wingTransformTokens[i + 1]),
+				std::stof(wingTransformTokens[i + 2])
+			);
+
+			// Rotation
+			VECTOR rotation = VGet(
+				std::stof(wingTransformTokens[i + 3]),
+				std::stof(wingTransformTokens[i + 4]),
+				std::stof(wingTransformTokens[i + 5])
+			);
+
+			// Scale
+			VECTOR scale = VGet(
+				std::stof(wingTransformTokens[i + 6]),
+				std::stof(wingTransformTokens[i + 7]),
+				std::stof(wingTransformTokens[i + 8])
+			);
+
+			wingData.position.push_back(position);
+			wingData.rotation.push_back(rotation);
+			wingData.scale.push_back(scale);
+		}
+
+		m_wingData.push_back(wingData);
 	}
 
 	FileRead_close(wingfFileHandle);
@@ -123,6 +191,7 @@ bool FighterDataLoader::LoadDiffuser()
 
 	if (diffFileHandle == 0)
 	{
+		FileRead_close(diffFileHandle);
 		// 読み込み失敗
 		return false;
 	}
@@ -156,12 +225,43 @@ bool FighterDataLoader::LoadDiffuser()
 		std::getline(diffSS, diffToken, ',');
 		diffData.accele = std::stoi(diffToken);
 
-		m_diffuserData.push_back(diffData);
+		// 残りのデータ取得
+		std::vector<std::string>diffTransformTokens;
 
-		//printfDx("ディフューザー\n何パーツ目か:%d\n", diffCount);
-		//printfDx("体力:%d\n", diffData.hp);
-		//printfDx("回転速度:%f\n", diffData.rotateSpeed);
-		//printfDx("加速度:%d\n\n", diffData.accele);
+		while (std::getline(diffSS, diffToken, ','))
+		{
+			diffTransformTokens.push_back(diffToken);
+		}
+
+		for (short i = 0; i + 8 < diffTransformTokens.size(); i += 9)
+		{
+			// Position
+			VECTOR position = VGet(
+				std::stof(diffTransformTokens[i]),
+				std::stof(diffTransformTokens[i + 1]),
+				std::stof(diffTransformTokens[i + 2])
+			);
+
+			// Rotation
+			VECTOR rotation = VGet(
+				std::stof(diffTransformTokens[i + 3]),
+				std::stof(diffTransformTokens[i + 4]),
+				std::stof(diffTransformTokens[i + 5])
+			);
+
+			// Scale
+			VECTOR scale = VGet(
+				std::stof(diffTransformTokens[i + 6]),
+				std::stof(diffTransformTokens[i + 7]),
+				std::stof(diffTransformTokens[i + 8])
+			);
+
+			diffData.position.push_back(position);
+			diffData.rotation.push_back(rotation);
+			diffData.scale.push_back(scale);
+		}
+
+		m_diffuserData.push_back(diffData);
 	}
 
 	FileRead_close(diffFileHandle);
@@ -176,6 +276,7 @@ bool FighterDataLoader::LoadSpecialWeapon()
 
 	if (spwFileHandle == 0)
 	{
+		FileRead_close(spwFileHandle);
 		// 読み込み失敗
 		return false;
 	}
@@ -203,8 +304,8 @@ bool FighterDataLoader::LoadSpecialWeapon()
 
 		m_specialWeaponData.push_back(spwData);
 
-		printfDx("スペシャル武器\n何パーツ目か:%d\n", spwCount);
-		printfDx("体力:%d\n", spwData.specialAttack);
+		//printfDx("スペシャル武器\n何パーツ目か:%d\n", spwCount);
+		//printfDx("体力:%d\n", spwData.specialAttack);
 	}
 
 	FileRead_close(spwFileHandle);
