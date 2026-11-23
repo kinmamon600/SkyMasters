@@ -105,5 +105,6 @@
     <ClInclude Include="Script\Game\GameManager.h" />
     <ClInclude Include="Script\Actor\ActorLayer.h" />
     <ClInclude Include="Script\Behavior\Bullet.h" />
+    <ClInclude Include="Script\World\WorldSettings.h" />
   </ItemGroup>
 </Project>

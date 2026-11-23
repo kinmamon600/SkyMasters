@@ -1,9 +1,9 @@
 // ライブラリ・ヘッダ
-
 #include "DxLib.h"  // https://dxlib.xsrv.jp/dxfunc.html
 #include "SuperDxPhysics.h"
 
 #include "Screen/Screen.h"
+#include "World/WorldSettings.h"
 #include "Game.h"
 
 // メイン
@@ -14,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetWindowSize(Screen::Width, Screen::Height);
 	ChangeWindowMode(TRUE);			// フルスクリーン表示
 	SetMouseDispFlag(FALSE);		// マウスカーソル非表示
-	SetMainWindowText("SKY MASTES");// ウィンドウ名
+	SetMainWindowText("SKY MASTER");// ウィンドウ名
 
 	// ＤＸライブラリの初期化
 	if (DxLib_Init() < 0)
@@ -24,7 +24,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
 	// 物理世界の初期化
-	if (!SDP::PhysicsInit(VGet(100000.0f, 5000.0f, 100000.0f)))
+	if (!SDP::PhysicsInit(VGet(WorldSettings::PhysicsWorldSizeX, WorldSettings::PhysicsWorldSizeY, WorldSettings::PhysicsWorldSizeZ)))
 	{
 		// エラーが発生したらプログラム終了
 		return -1;
@@ -51,10 +51,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		// ゲームの更新
 		game->Update();
 
-		//SDP::RenderPhysicalObject();
+		// 物理オブジェクトの描画(デバッグ用)
+		SDP::RenderPhysicalObject();
 
-		ScreenFlip();	// ダブルバッファで画面表示
-		WaitTimer(16);	// 一定時間待つ
+		ScreenFlip();					// ダブルバッファで画面表示
+		WaitTimer(Screen::OneFrameTime_ms);// 一定時間待つ
 	}
 
 	// 物理世界の後始末

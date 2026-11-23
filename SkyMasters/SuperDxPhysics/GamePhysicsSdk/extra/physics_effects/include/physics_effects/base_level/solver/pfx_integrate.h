@@ -35,7 +35,7 @@ static SCE_PFX_FORCE_INLINE T pfxRungeKutta(const T &deriv,PfxFloat dt)
 	return (k0 + k1*2.0f + k2*2.0f + k3) / 6.0f;
 }
 
-#define SCE_PFX_MOTION_MASK_INTEGRATE ((1<<kPfxMotionTypeFixed)|(1<<kPfxMotionTypeTrigger))
+#define SCE_PFX_MOTION_MASK_INTEGRATE ((1<<kPfxMotionTypeFixed)/*|(1<<kPfxMotionTypeTrigger)*/)
 
 static SCE_PFX_FORCE_INLINE
 void pfxIntegrate(
@@ -69,7 +69,7 @@ void pfxIntegrate(
 	state.setOrientation(orientation);
 }
 
-#define SCE_PFX_MOTION_MASK_APPLYFORCE ((1<<kPfxMotionTypeFixed)|(1<<kPfxMotionTypeTrigger)|(1<<kPfxMotionTypeKeyframe))
+#define SCE_PFX_MOTION_MASK_APPLYFORCE ((1<<kPfxMotionTypeFixed)|/*(1<<kPfxMotionTypeTrigger)|*/(1<<kPfxMotionTypeKeyframe))
 
 static SCE_PFX_FORCE_INLINE
 void pfxApplyExternalForce(

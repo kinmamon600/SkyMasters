@@ -237,6 +237,7 @@
     <ClInclude Include="Script\Component\Transform.h" />
     <ClInclude Include="Script\Scene\TitleScene.h" />
     <ClInclude Include="Script\Screen\Screen.h" />
+    <ClInclude Include="Script\World\WorldSettings.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

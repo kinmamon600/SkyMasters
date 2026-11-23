@@ -57,9 +57,16 @@ void PhysicsCollider::SetLinerVelocity(const VECTOR& vec)
 	SDP::SetLinerVelocity(m_sdpID, vec);
 }
 
+// Šp‘¬“xİ’è
 void PhysicsCollider::SetAngularVelocity(const VECTOR& vec)
 {
 	SDP::SetAngularVelocity(m_sdpID, vec);
+}
+
+// ‰ñ“]ˆÚ“®
+float PhysicsCollider::MoveRotate(const VECTOR& rote, float time_step)
+{
+	return SDP::MoveRotate(m_sdpID, rote, time_step);
 }
 
 // ‘¬“xæ“¾

@@ -1,5 +1,6 @@
 // ライブラリ・ヘッダ
 #include <vector>
+#include <cmath>
 
 #include "SuperDxPhysics.h"
 
@@ -907,9 +908,9 @@ VECTOR SDP::GetPosition(unsigned int id)
 void SDP::SetRotate(unsigned int id, const VECTOR& rotate)
 {
 	// DxLibのVectorからGamePhysicsSDKのクオータニオンに変換
-	float rx = rotate.x * 0.5f * SCE_PFX_PI / 180.0f;
-	float ry = rotate.y * 0.5f * SCE_PFX_PI / 180.0f;
-	float rz = -rotate.z * 0.5f * SCE_PFX_PI / 180.0f;
+	float rx = -rotate.x * 0.5f * DX_PI / 180.0f;
+	float ry = -rotate.y * 0.5f * DX_PI / 180.0f;
+	float rz = rotate.z * 0.5f * DX_PI / 180.0f;
 
 	float cx = cosf(rx);
 	float sx = sinf(rx);
@@ -926,8 +927,67 @@ void SDP::SetRotate(unsigned int id, const VECTOR& rotate)
 	);
 
 	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
-	PfxRigidState& state = rb_world->getRigidState(id);
-	state.setOrientation(orientation);
+	PfxRigidState* state = &rb_world->getRigidState(id);
+	state->setOrientation(orientation);
+}
+
+// 物理オブジェクトの回転移動
+float SDP::MoveRotate(unsigned int id, const VECTOR& rotate, float time_step)
+{
+	PfxRigidBodyWorld* rb_world = &physicsGetWorld();
+	PfxRigidState* state = &rb_world->getRigidState(id);
+
+	// DxLibのVectorからGamePhysicsSDKのクオータニオンに変換
+	float rx = -rotate.x * 0.5f * DX_PI / 180.0f;
+	float ry = -rotate.y * 0.5f * DX_PI / 180.0f;
+	float rz = rotate.z * 0.5f * DX_PI / 180.0f;
+
+	float cx = cosf(rx);
+	float sx = sinf(rx);
+	float cy = cosf(ry);
+	float sy = sinf(ry);
+	float cz = cosf(rz);
+	float sz = sinf(rz);
+
+	PfxQuat rot(
+		sx * cy * cz - cx * sy * sz,
+		cx * sy * cz + sx * cy * sz,
+		cx * cy * sz - sx * sy * cz,
+		cx * cy * cz + sx * sy * sz
+	);
+
+	PfxQuat ori1 = state->getOrientation();
+	PfxQuat ori2 = rot;
+
+	if (dot(ori2, ori1) < 0.0f) {
+		ori2 = -rot;
+	}
+
+	PfxQuat dq = ori2 - ori1;
+
+	if (time_step > 0.0f)
+	{
+		dq = dq / time_step;
+	}
+
+	dq = dq * 2.0f * conj(ori1);
+	PfxVector3 omega = dq.getXYZ();
+
+	float size = std::sqrtf(omega.getX() * omega.getX() + omega.getY() * omega.getY() + omega.getZ() * omega.getZ());
+
+	// 誤差を丸める
+	if (size < 0.00001)
+	{
+		omega.setX(0.0f);
+		omega.setY(0.0f);
+		omega.setZ(0.0f);
+		state->setAngularVelocity(omega);
+		state->setOrientation(ori2);
+		return 0.0f;
+	}
+
+	state->setAngularVelocity(omega);
+	return size;
 }
 
 // 物理オブジェクトの回転取得
@@ -1003,9 +1063,9 @@ VECTOR SDP::GetRotate(unsigned int id)
 	}
 	
 	// ラジアン -> 度
-	rx *= 180.0f / DX_PI_F;
-	ry *= 180.0f / DX_PI_F;
-	rz *= 180.0f / DX_PI_F;
+	rx *= 180.0f / DX_PI;
+	ry *= 180.0f / DX_PI;
+	rz *= 180.0f / DX_PI;
 	
 	return VGet(rx, ry, rz);
 }

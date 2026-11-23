@@ -43,7 +43,12 @@ public:
 
 	// ‘¬“xİ’è
 	void SetLinerVelocity(const VECTOR& vec);
+
+	// Šp‘¬“xİ’è
 	void SetAngularVelocity(const VECTOR& vec);
+
+	// ‰ñ“]ˆÚ“®
+	float MoveRotate(const VECTOR& rote, float time_step);
 
 	// ‘¬“xæ“¾
 	VECTOR GetLinerVelocity();

@@ -127,6 +127,9 @@ namespace SDP {
 	// 物理オブジェクトの回転設定
 	void SetRotate(unsigned int id, const VECTOR& rotate);
 
+	// 物理オブジェクトの回転移動
+	float MoveRotate(unsigned int id, const VECTOR& rotate, float frame_step);
+
 	// 物理オブジェクトの回転取得
 	VECTOR GetRotate(unsigned int id);
 
