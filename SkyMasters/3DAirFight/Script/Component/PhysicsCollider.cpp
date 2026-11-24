@@ -14,8 +14,7 @@ PhysicsCollider::PhysicsCollider(Actor* owner)
 // デストラクタ
 PhysicsCollider::~PhysicsCollider()
 {
-	//RemoveComponentにコレ↓書くべきなのよね
-	//SDP::DestroyPhysicalObject(m_sdpID);
+	SDP::DestroyPhysicalObject(m_sdpID);
 }
 
 // 更新処理

@@ -14,6 +14,8 @@
 #include "../UIRenderer.h"
 #include "../ModelRenderer.h"
 #include "../Camera.h"
+#include "../Sound.h"
+#include "../../Actor/ActorLayer.h"
 
 #include "../../Loader/FighterDataLoader.h"
 #include "Manual.h"
@@ -50,6 +52,8 @@ Fighter::Fighter(Actor* owner, unsigned short pl_num, MATRIX mat, int beam, int 
 
 	Input* input = new Input(owner);
 	input->SetPlayerNum(static_cast<Input::PlayerNum>(m_playerNum - 1));
+
+	new Sound(owner);
 
 	new Manual(owner);
 	new Automatic(owner);
@@ -113,7 +117,7 @@ void Fighter::Update()
 		if (input->GetButtonDown(Input::ZR))
 		{
 			VECTOR direction = pcComp->GetDirection(VGet(0.0f, 0.0f, -1.0f));
-			Attack(VScale(direction, 20.0f), VScale(direction, 90000.0f));
+			Attack(VScale(direction, 10.0f), VScale(direction, 1100.0f));
 		}
 	}
 		break;
@@ -177,14 +181,15 @@ void Fighter::ChangeState(PlayerState state)
 void Fighter::Attack(VECTOR offset, VECTOR velocity)
 {
 	// アクター生成
-	Actor* obj = new Actor(m_owner->GetGame());
+	Actor* bullet = new Actor(m_owner->GetGame());
+	bullet->SetLayer(ActorLayer::PlayerBullet);
 
 	// 機体のトランスフォームと行列取得
 	Transform* fighter_tr = m_owner->GetComponent<Transform>();
 	MATRIX mat = fighter_tr->GetMatrix();
 
 	// トランスフォームのアタッチと設定
-	Transform* tr = new Transform(obj);
+	Transform* tr = new Transform(bullet);
 	tr->SetMatrix(mat);
 	tr->SetPosition(VAdd(fighter_tr->GetPosition(), offset));
 
@@ -193,11 +198,20 @@ void Fighter::Attack(VECTOR offset, VECTOR velocity)
 	//tr->SetRotation(bullet_rote);
 
 	// モデルのアタッチ
-	ModelRenderer* renderer = new ModelRenderer(obj);
+	ModelRenderer* renderer = new ModelRenderer(bullet);
 	renderer->SetModelHandle(m_beamModelHandle);
-	renderer->SetScale(VGet(0.02f, 0.02f, 0.02f));
-	renderer->SetEmissive(GetColorF(0.2f, 1.0f, 0.0f, 1.0f));
+	renderer->SetScale(VGet(0.03f, 0.03f, 0.08f));
+
+	renderer->SetDiffuse(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
+	renderer->SetSpecular(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
+	renderer->SetEmissive(GetColorF(1.0f, 0.0f, 1.0f, 1.0f));
+	renderer->SetAmbient(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
+	renderer->SetSpecularPower(0.0f);
 
 	// 弾ビヘイビアをアタッチ
-	new Bullet(obj, velocity);
+	new Bullet(bullet, velocity);
+
+	// 効果音再生
+	Sound* sound = m_owner->GetComponent<Sound>();
+	sound->PlaySE(SE::Fighter_Shot);
 }

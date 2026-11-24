@@ -32,6 +32,14 @@ void Game::Update()
 	//if (!UpdateInput()) { return; }
 	UpdateInput();
 
+	for (auto actor : mActors)
+	{
+		if (actor->GetState() == Actor::EDead)
+		{
+			delete actor;
+		}
+	}
+
 	// 保留状態のアクターを新規登録
 	for (auto pending : mPendingActors)
 	{
@@ -152,15 +160,6 @@ void Game::RemoveActorAll()
 {
 	// 全アクターの解放
 	// アクターの解放時に連鎖的にコンポーネントも解放される
-	//for (Actor* act : mActors)
-	//{
-	//	auto iter = std::find(mActors.begin(), mActors.end(), act);
-	//	if (iter != mActors.end())
-	//	{
-	//		mActors.erase(iter);
-	//		delete act;
-	//	}
-	//}
 	while (!mActors.empty())
 	{
 		Actor* act = mActors.back();

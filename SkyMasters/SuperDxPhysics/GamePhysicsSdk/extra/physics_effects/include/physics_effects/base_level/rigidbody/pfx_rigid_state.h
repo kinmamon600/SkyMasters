@@ -35,7 +35,7 @@ enum ePfxMotionType {
 
 #define SCE_PFX_MOTION_MASK_DYNAMIC(motion)   ((1<<(motion))&0x1a) // Active,OneWay
 #define SCE_PFX_MOTION_MASK_STATIC(motion)    ((1<<(motion))&0x85) // Fixed,Keyframe
-#define SCE_PFX_MOTION_MASK_CAN_SLEEP(motion) ((1<<(motion))&0x0e) // Can sleep
+#define SCE_PFX_MOTION_MASK_CAN_SLEEP(motion) ((1<<(motion))&0x1e) // Can sleep
 
 #define SCE_PFX_MOTION_MASK_SLEEPING 0x80 // Is sleeping
 #define SCE_PFX_MOTION_MASK_TYPE     0x7f // Motion Type

@@ -35,15 +35,15 @@ public:
 	// 飛行用パラメータ群
 	float m_maxSpeed = 500.0f;							// 最高速度
 	float m_defaultSpeed = 300.0f;						// 通常速度
-	float m_minSpeed = 50.0f;							// 最低速度
+	float m_minSpeed = 130.0f;							// 最低速度
 
 	float m_acceleration = 500.0f;						// 加速度
 	float m_deceleration = 500.0f;						// 減速度
 
 	const float m_pitchAngularVelocity = 1.2f;			// ピッチ角速度
-	const float m_pitchAngleMax = 45.0f;				// 最大ピッチ角
+	const float m_pitchAngleMax = 25.0f;				// 最大ピッチ角
 
-	const float m_yawAngularVelocity = 1.0f;			// ヨー角速度
+	const float m_yawAngularVelocity = 0.7f;			// ヨー角速度
 	const float m_yawSlopeAngleMax = 60.0f;				// ヨーの時どのくらい傾くか
 
 	const float m_rollAngularVelocityMax = 8.0f;		// 最大ロール角速度(ターン用)
