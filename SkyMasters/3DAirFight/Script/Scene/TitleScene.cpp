@@ -70,10 +70,11 @@ void TitleScene::Initialize()
 	titleUI->SetGrphHandle(titleHandle);
 	Transform* titleTr = new Transform(titleLogoObject.get());
 	titleTr->SetPosition(VGet(Screen::Width / 2, Screen::Height / 3 * 1, 0.0f));
+	titleTr->SetScale(VGet(1.5f, 1.5f, 0.0f));
 
 	// BGM
 	Sound* bgm = new Sound(bgmObject.get());
-	//bgm->PlayBGM(BGM::Title);
+	bgm->PlayBGM(BGM::Title);
 }
 
 // XV
@@ -88,12 +89,12 @@ void TitleScene::Execute()
 	switch (buttonComp->m_currentButton)
 	{
 	case TitleButtonManager::TitleButtonType::Start:
-		startTr->SetScale(VGet(0.2f, 0.2f, 0.0f));
-		endTr->SetScale(VGet(0.15f, 0.15f, 0.0f));
+		startTr->SetScale(VGet(0.25f, 0.25f, 0.0f));
+		endTr->SetScale(VGet(0.2f, 0.2f, 0.0f));
 		break;
 	case TitleButtonManager::TitleButtonType::End:
-		endTr->SetScale(VGet(0.2f, 0.2f, 0.0f));
-		startTr->SetScale(VGet(0.15f, 0.15f, 0.0f));
+		endTr->SetScale(VGet(0.25f, 0.25f, 0.0f));
+		startTr->SetScale(VGet(0.2f, 0.2f, 0.0f));
 		break;
 	default:
 		break;
