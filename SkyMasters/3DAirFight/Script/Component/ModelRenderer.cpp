@@ -55,18 +55,19 @@ void ModelRenderer::Draw()
 	double angleY = rote.y * DX_PI / 180.0;
 	double angleZ = rote.z * DX_PI / 180.0;
 
-	printfDx("Transform: %f\n", tr->GetScale().x);
-	printfDx("ModelScale: %f\n", m_modelScale);
+	//printfDx("Transform: %f\n", tr->GetScale().x);
+	//printfDx("ModelScale: %f\n", m_modelScale);
 
 	// モデルのスケールとトランスフォームのスケールを統合
 	scale = VScale(scale, m_modelScale);
 
-	printfDx("Result: %f\n", scale.x);
+	//printfDx("Result: %f\n", scale.x);
 
 	// モデルの座標・回転・拡縮をセット
 	MV1SetPosition(m_modelHandle, pos);
 	MV1SetRotationXYZ(m_modelHandle, VGet(angleX, angleY, angleZ));
 	MV1SetScale(m_modelHandle, scale);
+
 
 	// テクスチャマスクが無ければ一度描画して処理終了
 	if (m_textureMasks.size() < 1)
