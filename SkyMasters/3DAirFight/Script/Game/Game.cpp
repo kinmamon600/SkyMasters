@@ -6,6 +6,7 @@
 #include "../Input/InputManager.h"
 #include "SoundManager/SoundManager.h"
 #include "../Component/ComponentManager.h"
+#include "ObserverManager/ObserverManager.h"
 
 // デストラクタ
 Game::~Game()
@@ -22,6 +23,7 @@ void Game::Initialize()
 	p_componentManager = new ComponentManager{};
 	p_soundManager = new SoundManager{};
 	p_gameManager = new GameManager{};
+	p_observerManager = new ObserverManager{};
 }
 
 // ゲームの更新
@@ -105,6 +107,9 @@ void Game::Terminate()
 
 	delete sceneManager;
 	sceneManager = nullptr;
+
+	delete p_observerManager;
+	p_observerManager = nullptr;
 }
 
 // 新規アクターの追加
@@ -188,6 +193,12 @@ ComponentManager* Game::GetComponentManager() const
 SoundManager* Game::GetSoundManager() const
 {
 	return p_soundManager;
+}
+
+// 通知管理クラスの取得
+ObserverManager* Game::GetObserverManager() const
+{
+	return p_observerManager;
 }
 
 // 入力の更新

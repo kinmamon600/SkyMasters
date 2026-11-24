@@ -2,7 +2,21 @@
 #include "Behavior.h"
 #include "SuperDxPhysics.h"
 #include "PhysicsCollider.h"
+#include "../Game/Game.h"
 #include "Actor/Actor.h"
+#include "../Game/ObserverManager/ObserverManager.h"
+
+// コンストラクタ
+Behavior::Behavior(Actor* owner) : Component(owner, static_cast<int>(ComponentUpdateOrder::Behaviour))
+{
+	m_owner->GetGame()->GetObserverManager()->AddBehavior(this);
+}
+
+// デストラクタ
+Behavior::~Behavior()
+{
+	m_owner->GetGame()->GetObserverManager()->RemoveBehavior(this);
+}
 
 // コライダーがアタッチされている時、接触を判定する
 void Behavior::CheckContact(std::vector<Component*> p_physicsColliders)
@@ -60,4 +74,10 @@ void Behavior::CheckContact(std::vector<Component*> p_physicsColliders)
 			}
 		}
 	}
+}
+
+// 通知を送信する
+void Behavior::Notify(EventList event)
+{
+	m_owner->GetGame()->GetObserverManager()->Notify(event);
 }

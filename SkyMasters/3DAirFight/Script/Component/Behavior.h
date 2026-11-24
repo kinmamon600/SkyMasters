@@ -7,6 +7,7 @@
 #include <DxLib.h>
 #include "Component.h"
 #include "ComponentUpdateOrder.h"
+#include "../Game/ObserverManager/EventList.h"
 
 // 前方宣言
 class Actor;
@@ -19,18 +20,23 @@ class Behavior : public Component
 {
 public:
 	// コンストラクタ
-	Behavior(Actor* owner)
-		:Component(owner, static_cast<int>(ComponentUpdateOrder::Behaviour)) {};
+	Behavior(Actor* owner);
 
 	// デストラクタ
-	~Behavior() {};
+	~Behavior();
 
 	// コライダーがアタッチされている時、接触を判定する
 	void CheckContact(std::vector<Component*> p_physicsColliders);
 
+	// 通知を受け取る
+	virtual void OnNotify(EventList event) {};
+
 protected:
 	// コライダーがアタッチされている時、接触時に呼ばれる
 	virtual void IsContact(const Actor* other) {};
+
+	// 通知を送信する
+	void Notify(EventList event);
 
 private:
 

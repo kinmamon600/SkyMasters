@@ -27,9 +27,12 @@ public:
 	// “–‚½‚è”»’è
 	void IsContact(const Actor* other) override;
 
-private:
+protected:
 	// ’e‘¬
 	VECTOR m_velocity;
+
+private:
+
 };
 
 #endif

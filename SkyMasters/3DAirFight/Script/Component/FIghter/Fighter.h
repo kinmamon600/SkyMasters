@@ -29,6 +29,9 @@ public:
 	// 当たり判定
 	void IsContact(const Actor* other) override;
 
+	// 通知を受け取る
+	void OnNotify(EventList event) override;
+
 	// ステートの変更
 	void ChangeState(PlayerState state);
 
@@ -100,6 +103,12 @@ private:
 	// レティクル
 	Actor* p_myReticle;
 
+	// レティクルの距離
+	const float m_reticleDistance = 100.0f;
+
 	// 通常攻撃
 	void Attack(VECTOR offset, VECTOR velocity);
+
+	// レティクル位置の設定
+	void SetRericlePos();
 };

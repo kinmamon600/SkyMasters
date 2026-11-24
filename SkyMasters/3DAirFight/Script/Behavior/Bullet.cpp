@@ -8,6 +8,7 @@
 #include "../Component/PhysicsColliderSphere.h"
 #include "../Component/PhysicsColliderCylinder.h"
 #include "../Game/Game.h"
+#include "../Game/ObserverManager/EventList.h"
 
 // コンストラクタ
 Bullet::Bullet(Actor* owner, VECTOR velocity)
@@ -63,7 +64,7 @@ void Bullet::IsContact(const Actor* other)
 	// 地形に当たったら消去
 	if (other->GetLayer() == ActorLayer::Terrain)
 	{
-		printfDx("地形にヒット\n");
+		Notify(EventList::Count);
 		m_owner->SetState(Actor::EDead);
 		//m_owner->GetGame()->RemoveActor(m_owner);
 		//delete m_owner;

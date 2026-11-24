@@ -85,3 +85,15 @@ float Camera::GetFOV() const
 {
 	return m_fov;
 }
+
+// ワールド座標を画面座標に変換
+VECTOR Camera::ConvPos2Disp(VECTOR world_pos)
+{
+	// カメラ設定
+	SetDrawArea(m_dispArea_minX, m_dispArea_minY, m_dispArea_maxX, m_dispArea_maxY);
+	SetCameraScreenCenter(m_dispCenterX, m_dispCenterY);
+	SetCameraPositionAndTargetAndUpVec(m_position, m_target, m_up);
+
+	// 座標取得
+	return ConvWorldPosToScreenPos(world_pos);
+}
