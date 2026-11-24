@@ -137,7 +137,7 @@ void FighterPickScene::Initialize()
     backComp->SetGrphHandle(backgroundHandle);
 
     Sound* bgm = new Sound(bgmObject.get());
-    //bgm->PlayBGM(BGM::FighterPick);
+    bgm->PlayBGM(BGM::FighterPick);
 
 }
 
