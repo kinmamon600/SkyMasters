@@ -12,7 +12,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	// 画面モードの設定
 	SetGraphMode(Screen::Width, Screen::Height, 32, 60);
 	SetWindowSize(Screen::Width, Screen::Height);
-	ChangeWindowMode(FALSE);		// フルスクリーン表示
+	ChangeWindowMode(TRUE);		// フルスクリーン表示
 	SetMouseDispFlag(FALSE);		// マウスカーソル非表示
 	SetMainWindowText("SKY MASTER");// ウィンドウ名
 

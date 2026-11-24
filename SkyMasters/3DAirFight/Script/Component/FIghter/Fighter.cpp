@@ -65,7 +65,7 @@ Fighter::Fighter(Actor* owner, unsigned short pl_num, MATRIX mat, int beam, int 
 	// レティクルのアクター生成
 	p_myReticle = new Actor(owner->GetGame());
 	Transform* reticle_tr = new Transform(p_myReticle);
-	reticle_tr->SetScale(VGet(0.5f, 0.5f, 0.5f));
+	reticle_tr->SetScale(VGet(0.1f, 0.1f, 0.1f));
 	UIRenderer* reticleRenderer = new UIRenderer(p_myReticle);
 	reticleRenderer->SetGrphHandle(reticle);
 }
@@ -113,7 +113,7 @@ void Fighter::Update()
 		if (input->GetButtonDown(Input::ZR))
 		{
 			VECTOR direction = pcComp->GetDirection(VGet(0.0f, 0.0f, -1.0f));
-			Attack(VScale(direction, 500.0f), VScale(direction, 9000000.0f));
+			Attack(VScale(direction, 20.0f), VScale(direction, 90000.0f));
 		}
 	}
 		break;
@@ -195,7 +195,7 @@ void Fighter::Attack(VECTOR offset, VECTOR velocity)
 	// モデルのアタッチ
 	ModelRenderer* renderer = new ModelRenderer(obj);
 	renderer->SetModelHandle(m_beamModelHandle);
-	renderer->SetScale(VGet(0.1f, 0.1f, 0.1f));
+	renderer->SetScale(VGet(0.02f, 0.02f, 0.02f));
 	renderer->SetEmissive(GetColorF(0.2f, 1.0f, 0.0f, 1.0f));
 
 	// 弾ビヘイビアをアタッチ

@@ -30,6 +30,37 @@ void AutomaticCamera::TurnCamera(const Fighter* p_player_fighter, const Automati
 	default:
 		break;
 	}
+
+	// 注視点設定
+	unsigned int x = 0;
+	unsigned int y = 0;
+
+	Camera* camera = m_owner->GetComponent<Camera>();
+	camera->GetDispCenter(&x, &y);
+
+	if (x > p_player_fighter->m_dispCenter.x)
+	{
+		x -= p_player_fighter->m_cameraFixationSpeed;
+		if (x < p_player_fighter->m_dispCenter.x) { x = p_player_fighter->m_dispCenter.x; }
+	}
+	if (x < p_player_fighter->m_dispCenter.x)
+	{
+		x += p_player_fighter->m_cameraFixationSpeed;
+		if (x > p_player_fighter->m_dispCenter.x) { x = p_player_fighter->m_dispCenter.x; }
+	}
+
+	if (y > p_player_fighter->m_dispCenter.y)
+	{
+		y -= p_player_fighter->m_cameraFixationSpeed;
+		if (y < p_player_fighter->m_dispCenter.y) { y = p_player_fighter->m_dispCenter.y; }
+	}
+	if (y < p_player_fighter->m_dispCenter.y)
+	{
+		y += p_player_fighter->m_cameraFixationSpeed;
+		if (y > p_player_fighter->m_dispCenter.y) { y = p_player_fighter->m_dispCenter.y; }
+	}
+
+	camera->SetDispCenter(x, y);
 }
 
 // ニュートラル位置に戻す(マニュアル操作との繋ぎ)

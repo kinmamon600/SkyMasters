@@ -32,9 +32,6 @@ public:
 	// ステートの変更
 	void ChangeState(PlayerState state);
 
-	//	各部品のステータスの合計を求める
-	FighterStatus AddStatus(short bodyID,short wingID,short diffID,short spwID);
-
 	// 飛行用パラメータ群
 	float m_maxSpeed = 500.0f;							// 最高速度
 	float m_defaultSpeed = 300.0f;						// 通常速度
@@ -61,9 +58,9 @@ public:
 
 	VECTOR m_dispCenter = VGet(0.0f, 0.0f, 0.0f);		// 画面中心
 
-	const float m_cameraFixationOffset = 55.0f;			// 注視点のオフセット
+	const float m_cameraFixationOffset = 80.0f;			// 注視点のオフセット
 	const float m_cameraDefaultPitchAngle = 4.0f;		// ニュートラル時のカメラ傾き
-	const float m_cameraDistance = 120.0f;				// 注視点とカメラの間隔
+	const float m_cameraDistance = 140.0f;				// 注視点とカメラの間隔
 
 	const float m_cameraCenterAreaX = 40.0f;			// 画面上のカメラ移動範囲X
 	const float m_cameraCenterAreaY = 30.0f;			// 画面上のカメラ移動範囲Y
@@ -75,6 +72,7 @@ public:
 	const float m_cameraTurnDistanceY = 8.5f;			// Y方向の間隔補正値
 
 	const float m_cameraAutomaticSpeed = 300.0f;		// オートマチック制御時のカメラ移動速度
+	const float m_cameraFixationSpeed = 1.0f;			// オートマチック制御時の注視点移動速度
 
 	// 処理用の変数群
 	float m_currentSpeed = m_defaultSpeed;				// 前に進む速度 ブーストとかエアブレーキのときはコレを変更

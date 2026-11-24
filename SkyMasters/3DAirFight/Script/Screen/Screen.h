@@ -7,8 +7,8 @@
 class Screen
 {
 public:
-	static const int Width = 1920;	// 画面幅
-	static const int Height = 1080;	// 画面高さ
+	static const int Width = 1920 / 2;	// 画面幅
+	static const int Height = 1080 / 2;	// 画面高さ
 
 	// フレームレート
 	static const int FPS = 60;

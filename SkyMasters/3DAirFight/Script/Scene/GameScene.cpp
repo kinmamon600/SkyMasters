@@ -150,6 +150,11 @@ void GameScene::Initialize()
         mat.m[3][1] = WorldSettings::FloorHeight + 10.0f;
         mat.m[3][2] = 0;
         new Fighter(p_players[i], i + 1, mat, m_beamModelHandle, m_reticleImgHandle);
+
+        ModelRenderer* mr = p_players[i]->GetComponent<ModelRenderer>();
+        mr->AddTextureMask(m_fighterTexMaskBody);
+        mr->AddTextureMask(m_fighterTexMaskCanopy);
+        mr->AddTextureMask(m_fighterTexMaskEmi);
     }
 
     //playerObject->SetLayer(ActorLayer::Player);
