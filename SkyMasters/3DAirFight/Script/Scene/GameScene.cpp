@@ -163,7 +163,6 @@ void GameScene::Initialize()
     skyBoxObject = std::make_unique<Actor>(p_sceneManager->p_game);
     //cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);
     terrainObject = std::make_unique<Actor>(p_sceneManager->p_game);
-<<<<<<< HEAD
     //bodyObject = std::make_unique<Actor>(p_sceneManager->p_game);
     //wingObject = std::make_unique<Actor>(p_sceneManager->p_game);
     //diffuserObject = std::make_unique<Actor>(p_sceneManager->p_game);
@@ -174,12 +173,10 @@ void GameScene::Initialize()
     //reticleTr->SetScale(VGet(0.5f, 0.5f, 0.5f));
     //UIRenderer* reticleRenderer = new UIRenderer(reticleObject);
     //reticleRenderer->SetGrphHandle(m_reticleImgHandle);
-=======
     bodyObject = std::make_unique<Actor>(p_sceneManager->p_game);
     wingObject = std::make_unique<Actor>(p_sceneManager->p_game);
     diffuserObject = std::make_unique<Actor>(p_sceneManager->p_game);
     bgmObject = std::make_unique<Actor>(p_sceneManager->p_game);
->>>>>>> keigon/Sound
 
     int enemyInstanceCount = m_enemyLoader.GetInstanceCount();
     enemyObject.resize(enemyInstanceCount);
@@ -223,14 +220,12 @@ void GameScene::Initialize()
     //cameraComp->SetDispCenter(Screen::Width / 4, Screen::Height / 4);
     //cameraComp->SetPosition(VGet(0, 100, 400));
 
-<<<<<<< HEAD
     //ModelRenderer* bodyModel = new ModelRenderer(bodyObject.get());
     //bodyModel->SetModelHandle(m_bodyModel);
     //ModelRenderer* wingModel = new ModelRenderer(wingObject.get());
     //wingModel->SetModelHandle(m_wingModel);
     //ModelRenderer* diffuserModel = new ModelRenderer(diffuserObject.get());
     //diffuserModel->SetModelHandle(m_diffuserModel);
-=======
     // 機体
     ModelRenderer* bodyModel = new ModelRenderer(bodyObject.get());
     bodyModel->SetModelHandle(m_bodyModel);
@@ -241,7 +236,6 @@ void GameScene::Initialize()
     ModelRenderer* diffuserModel = new ModelRenderer(diffuserObject.get());
     diffuserModel->SetModelHandle(m_diffuserModel);
     diffuserModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
->>>>>>> keigon/Sound
     
     // プレイヤー
     //new PhysicsColliderBox(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(1.0f, 1.0f, 1.0f), PhysicsCollider::Active, 1);
@@ -267,15 +261,12 @@ void GameScene::Initialize()
     ModelRenderer* terrainModelComp = new ModelRenderer(terrainObject.get());
     terrainModelComp->SetModelHandle(planeModel);
     Transform* terrainTrComp = terrainObject->GetComponent<Transform>();
-<<<<<<< HEAD
     terrainTrComp->SetPosition(VGet(0.0f, WorldSettings::FloorHeight, 0.0f));
-=======
     terrainTrComp->SetPosition(VGet(0.0f, -1000.0f, 0.0f));
 
     // BGM
     Sound* bgm = new Sound(bgmObject.get());
     bgm->PlayBGM(BGM::Tutorial_Battle);
->>>>>>> keigon/Sound
 }
 
 // 更新
