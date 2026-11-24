@@ -32,7 +32,7 @@ public:
     // 更新
     void Update() override;
 
-    void SetScale(VECTOR scale);
+    void SetScale(float scale);
 
     // モデルハンドルのセット
     void SetModelHandle(int handle);
@@ -69,7 +69,7 @@ private:
     bool m_isVisible = true;
 
     // モデルの拡縮
-    VECTOR m_modelScale;
+    float m_modelScale;
 
     // マテリアルのディフューズカラー(拡散反射色)
     COLOR_F m_diffuse = GetColorF(0.8f, 0.8f, 0.8f, 1.0f);

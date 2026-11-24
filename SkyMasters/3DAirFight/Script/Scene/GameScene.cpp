@@ -63,7 +63,6 @@ bool GameScene::Load()
     std::string diffuserModel = "../3DModel/DiffuserParts" + std::to_string(m_fpID.diffuserID) + ".mv1";
     m_diffuserModel = MV1LoadModel(diffuserModel.c_str());
 
-    //playerModel = MV1LoadModel("../3DModel/testFighter.mv1");
     planeModel = MV1LoadModel("../3DModel/Plane.mv1");
     m_beamModelHandle = MV1LoadModel("../3DModel/Fighter_Bullet.mv1");
 
@@ -94,12 +93,11 @@ bool GameScene::Load()
         0.0f };
 
     int enemyTypeCount = m_enemyLoader.GetTypeCount();
-    //m_enemyModel.resize(enemyTypeCount);
     for (short i = 0; i < enemyTypeCount; i++)
     {
-        std::string difEnemy = "../Texture/Enemy/Enemy_0/Enemy_" + std::to_string(i) + "_Diffuse.png";
+        std::string difEnemy = "../Texture/Enemy/Enemy_" + std::to_string(i) + "/Enemy_" + std::to_string(i) + "_Diffuse.png";
         int difEnemy_tx = LoadGraph(difEnemy.c_str());
-        std::string emiEnemy = "../Texture/Enemy/Enemy_0/Enemy_" + std::to_string(i) + "_Emissive.png";
+        std::string emiEnemy = "../Texture/Enemy/Enemy_" + std::to_string(i) + "/Enemy_" + std::to_string(i) + "_Emissive.png";
         int emiEnemy_tx = LoadGraph(emiEnemy.c_str());
         m_enemyTexMaskBody[i] = {difEnemy_tx,
            GetColorF(0.4f, 0.4f, 0.4f, 1.0f),
@@ -124,9 +122,6 @@ bool GameScene::Load()
     m_fighterLoader.LoadDiffuser();
     m_fighterLoader.LoadSpecialWeapon();
 
-
-    //m_enemyLoader.StatusLoad();
-    //m_enemyLoader.TransformLoad();
     for (short i = 0; i < enemyTypeCount; i++)
     {
         std::string enemyModelHandle = "../3DModel/Enemy/Enemy_" + std::to_string(i) + "/Enemy_" + std::to_string(i) + ".mv1";
@@ -141,7 +136,6 @@ bool GameScene::Load()
 void GameScene::Initialize()
 {
     // 芥一の生成
-    //playerObject = std::make_unique<Actor>(p_sceneManager->p_game);
     Actor* p_players[4] = {};
     
     for (unsigned short i = 0; i < 4; ++i)
@@ -159,89 +153,41 @@ void GameScene::Initialize()
         mr->AddTextureMask(m_fighterTexMaskEmi);
     }
 
-    //playerObject->SetLayer(ActorLayer::Player);
     skyBoxObject = std::make_unique<Actor>(p_sceneManager->p_game);
-    //cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);
     terrainObject = std::make_unique<Actor>(p_sceneManager->p_game);
     terrainObject->SetLayer(ActorLayer::Terrain);
 
-    //bodyObject = std::make_unique<Actor>(p_sceneManager->p_game);
-    //wingObject = std::make_unique<Actor>(p_sceneManager->p_game);
-    //diffuserObject = std::make_unique<Actor>(p_sceneManager->p_game);
-
-    // レティクルの生成
-    //Actor* reticleObject = new Actor(p_sceneManager->p_game);
-    //Transform* reticleTr = new Transform(reticleObject);
-    //reticleTr->SetScale(VGet(0.5f, 0.5f, 0.5f));
-    //UIRenderer* reticleRenderer = new UIRenderer(reticleObject);
-    //reticleRenderer->SetGrphHandle(m_reticleImgHandle);
-
     bgmObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
+    // 敵の生成とTransformの設定
     int enemyInstanceCount = m_enemyLoader.GetInstanceCount();
     enemyObject.resize(enemyInstanceCount);
     for (short i = 0; i < enemyInstanceCount; i++)
     {
         enemyObject[i] = std::make_unique<Actor>(p_sceneManager->p_game);
         enemyObject[i]->SetLayer(ActorLayer::Enemy);
+
         Transform* enemyTr = new Transform(enemyObject[i].get());
         VECTOR pos = m_enemyLoader.m_enemyTransform[i].position;
         pos.y += WorldSettings::FloorHeight;
         enemyTr->SetPosition(pos);
         enemyTr->SetRotation(m_enemyLoader.m_enemyTransform[i].rotation);
         enemyTr->SetScale(m_enemyLoader.m_enemyTransform[i].scale);
-    }
 
-    // Transform
-    //Transform* fighterTr = new Transform(playerObject.get());
-    //fighterTr->SetPosition(VGet(0.0f, WorldSettings::FloorHeight + 100.0f, 0.0f));
-    //new Transform(bodyObject.get());
-    //new Transform(wingObject.get());
-    //new Transform(diffuserObject.get());
-    new Transform(terrainObject.get());
-    
-    // 物理
-    new PhysicsColliderBox(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(WorldSettings::WorldRadius, 1.0f, WorldSettings::WorldRadius), PhysicsCollider::Fixed, 0);
-    //new PhysicsColliderSphere(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), 0.3f, PhysicsCollider::Active, 1);
+        new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 1, 1, PhysicsCollider::Fixed, 1);
 
-    for (short i = 0; i < enemyInstanceCount; i++)
-    {
-        new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 30,10, PhysicsCollider::Fixed, 1);
         ModelRenderer* enemyModel = new ModelRenderer(enemyObject[i].get());
         enemyModel->SetModelHandle(m_enemyModel[m_enemyLoader.m_enemyTransform[i].enemyID]);
         enemyModel->AddTextureMask(m_enemyTexMaskBody[m_enemyLoader.m_enemyTransform[i].enemyID]);
         enemyModel->AddTextureMask(m_enemyTexMaskEmi[m_enemyLoader.m_enemyTransform[i].enemyID]);
     }
-    
-    // カメラ
-    //new ManualCamera(cameraObject.get());
-    //new AutomaticCamera(cameraObject.get());
-    //Camera* cameraComp = new Camera(cameraObject.get());
-    //cameraComp->SetDispArea(0, 0, Screen::Width / 2, Screen::Height / 2);
-    //cameraComp->SetDispCenter(Screen::Width / 4, Screen::Height / 4);
-    //cameraComp->SetPosition(VGet(0, 100, 400));
 
-    //ModelRenderer* bodyModel = new ModelRenderer(bodyObject.get());
-    //bodyModel->SetModelHandle(m_bodyModel);
-    //ModelRenderer* wingModel = new ModelRenderer(wingObject.get());
-    //wingModel->SetModelHandle(m_wingModel);
-    //ModelRenderer* diffuserModel = new ModelRenderer(diffuserObject.get());
-    //diffuserModel->SetModelHandle(m_diffuserModel);
+    // Transform
+    new Transform(terrainObject.get());
     
-    // プレイヤー
-    //new PhysicsColliderBox(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(1.0f, 1.0f, 1.0f), PhysicsCollider::Active, 1);
-    //new Input(playerObject.get());
-    //new ModelRenderer(playerObject.get());
-    //new Fighter(playerObject.get(), 1, MGetIdent(), m_beamModelHandle, m_reticleImgHandle);
-    //new Manual(playerObject.get());
-    //new Automatic(playerObject.get());
-    //ModelRenderer* modelComp = new ModelRenderer(playerObject.get());
-    //modelComp->SetModelHandle(playerModel);
-    
-    // 機体のテクスチャー
-    //modelComp->AddTextureMask(m_fighterTexMaskBody);
-    //modelComp->AddTextureMask(m_fighterTexMaskCanopy);
-    //modelComp->AddTextureMask(m_fighterTexMaskEmi);
+    // 物理
+    new PhysicsColliderBox(terrainObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(WorldSettings::WorldRadius, 1.0f, WorldSettings::WorldRadius), PhysicsCollider::Fixed, 0);
+    //new PhysicsColliderSphere(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), 0.3f, PhysicsCollider::Active, 1);
     
     // スカイボックス
     SkyboxRenderer* skyComp = new SkyboxRenderer(skyBoxObject.get());
@@ -262,10 +208,7 @@ void GameScene::Initialize()
 // 更新
 void GameScene::Execute()
 {
-    //PhysicsColliderSphere* pcbComp = playerObject->GetComponent<PhysicsColliderSphere>();
-    //pcbComp->GetDirection(VGet(0, 0, -1));
-    //VECTOR vec = SDP::GetDirection(0, VGet(0, 0, -1));
-    //printfDx("%f, %f, %f\n", vec.x, vec.y, vec.z);
+
 }
 
 // 終了

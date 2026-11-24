@@ -192,6 +192,7 @@ void Fighter::Attack(VECTOR offset, VECTOR velocity)
 	Transform* tr = new Transform(bullet);
 	tr->SetMatrix(mat);
 	tr->SetPosition(VAdd(fighter_tr->GetPosition(), offset));
+	tr->SetScale(VGet(3.0f, 3.0f, 8.0f));
 
 	VECTOR fighter_rote = fighter_tr->GetRotation();
 	VECTOR bullet_rote = VGet(fighter_rote.x, fighter_rote.y, fighter_rote.z);
@@ -200,7 +201,6 @@ void Fighter::Attack(VECTOR offset, VECTOR velocity)
 	// モデルのアタッチ
 	ModelRenderer* renderer = new ModelRenderer(bullet);
 	renderer->SetModelHandle(m_beamModelHandle);
-	renderer->SetScale(VGet(0.03f, 0.03f, 0.08f));
 
 	renderer->SetDiffuse(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
 	renderer->SetSpecular(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));

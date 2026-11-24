@@ -7,7 +7,7 @@
 // コンストラクタ
 ModelRenderer::ModelRenderer(Actor* owner) : Component(owner, static_cast<int>(ComponentUpdateOrder::ModelRenderer))
 {
-	m_modelScale = VGet(WorldSettings::WorldScale, WorldSettings::WorldScale, WorldSettings::WorldScale);
+	m_modelScale = WorldSettings::WorldScale;
 }
 
 // デストラクタ
@@ -25,7 +25,7 @@ void ModelRenderer::Update()
 	}
 }
 
-void ModelRenderer::SetScale(VECTOR scale)
+void ModelRenderer::SetScale(float scale)
 {
 	m_modelScale = scale;
 }
@@ -55,10 +55,13 @@ void ModelRenderer::Draw()
 	double angleY = rote.y * DX_PI / 180.0;
 	double angleZ = rote.z * DX_PI / 180.0;
 
+	printfDx("Transform: %f\n", tr->GetScale().x);
+	printfDx("ModelScale: %f\n", m_modelScale);
+
 	// モデルのスケールとトランスフォームのスケールを統合
-	scale.x *= m_modelScale.x;
-	scale.y *= m_modelScale.y;
-	scale.z *= m_modelScale.z;
+	scale = VScale(scale, m_modelScale);
+
+	printfDx("Result: %f\n", scale.x);
 
 	// モデルの座標・回転・拡縮をセット
 	MV1SetPosition(m_modelHandle, pos);

@@ -47,6 +47,11 @@ private:
 	//VECTOR m_rotation = VGet(0.0f, 0.0f, 0.0f);
 	//VECTOR m_scale = VGet(1.0f, 1.0f, 1.0f);
 
+	// Transform
+	VECTOR m_position;
+	VECTOR m_rotation;
+	VECTOR m_scale;
+
 	// çsóÒ
 	MATRIX m_matrix = MGetIdent();
 
