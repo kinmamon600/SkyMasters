@@ -11,6 +11,9 @@ class FighterPickScene : public SceneBase
 public:
 	FighterPickScene(SceneManager* sceneManager, GameManager* gameManager) : SceneBase(sceneManager,gameManager){};
 
+    // ƒ[ƒh‚Ì€”õ
+    bool PrepareLoadData();
+
     // “Ç‚İ‚İ
     bool Load() override;
 
@@ -30,6 +33,7 @@ private:
     std::vector<std::unique_ptr<Actor>>  bodyObject;
     std::vector<std::unique_ptr<Actor>>  wingObject;
     std::vector<std::unique_ptr<Actor>>  diffuserObject;
+    std::unique_ptr<Actor> bgmObject;
 
     std::vector<int> bodyHandles;
     std::vector<int> wingHandles;

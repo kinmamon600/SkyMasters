@@ -2,20 +2,29 @@
 #include"SceneManager.h"
 #include"../Screen/Screen.h"
 #include"../Game/Game.h"
+#include "../Game/SoundManager/SoundLilst.h"
 #include"../Component/ButtonManager/TitleButtonManager.h"
 #include"../Component/Input.h"
 #include"../Component/Camera.h"
 #include"../Component/UIRenderer.h"
 #include"../Component/Transform.h"
 #include"../Component/BackgroundRenderer.h"
+#include"../Component/Sound.h"
 
 
 // 読み込み
 bool TitleScene::Load()
 {
+	// 非同期開始
+	SetUseASyncLoadFlag(TRUE);
+
 	startHandle = LoadGraph("../Sprites/Button_START.png");
 	endHandle = LoadGraph("../Sprites/Button_END.png");
 	backgroundHandle = LoadGraph("../Sprites/Title_Background.png");
+	titleHandle = LoadGraph("../Sprites/Title.png");
+
+	// 非同期終了
+	SetUseASyncLoadFlag(FALSE);
 
 	return true;
 }
@@ -24,15 +33,18 @@ bool TitleScene::Load()
 void TitleScene::Initialize()
 {
 	// 芥一の生成
-	startButtonObject = std::make_unique<Actor>(p_sceneManager->p_game);
-	endButtonObject = std::make_unique<Actor>(p_sceneManager->p_game);
-	buttonManagerObject = std::make_unique<Actor>(p_sceneManager->p_game);
-	cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);
-	backgroundObject = std::make_unique<Actor>(p_sceneManager->p_game);
+	startButtonObject = std::make_unique<Actor>(p_sceneManager->p_game);		// スタートボタン
+	endButtonObject = std::make_unique<Actor>(p_sceneManager->p_game);			// エンドボタン
+	buttonManagerObject = std::make_unique<Actor>(p_sceneManager->p_game);		// ボタンマネージャー
+	cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);				// カメラ
+	backgroundObject = std::make_unique<Actor>(p_sceneManager->p_game);			// 背景
+	titleLogoObject = std::make_unique<Actor>(p_sceneManager->p_game);			// タイトルロゴ
+	bgmObject = std::make_unique<Actor>(p_sceneManager->p_game);				// BGM
 
 	// ボタンマネージャー
 	new TitleButtonManager(buttonManagerObject.get(),this);
 	new Input(buttonManagerObject.get());
+	new Sound(buttonManagerObject.get());
 
 	// カメラ
 	new Camera(cameraObject.get());
@@ -52,6 +64,16 @@ void TitleScene::Initialize()
 	// 背景
 	BackgroundRenderer* backComp = new BackgroundRenderer(backgroundObject.get());
 	backComp->SetGrphHandle(backgroundHandle);
+
+	// タイトルロゴ
+	UIRenderer* titleUI = new UIRenderer(titleLogoObject.get());
+	titleUI->SetGrphHandle(titleHandle);
+	Transform* titleTr = new Transform(titleLogoObject.get());
+	titleTr->SetPosition(VGet(Screen::Width / 2, Screen::Height / 3 * 1, 0.0f));
+
+	// BGM
+	Sound* bgm = new Sound(bgmObject.get());
+	//bgm->PlayBGM(BGM::Title);
 }
 
 // 更新

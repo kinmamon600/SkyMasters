@@ -4,6 +4,7 @@
 #include "../Actor/Actor.h"
 #include "../Scene/SceneManager.h"
 #include "../Input/InputManager.h"
+#include "SoundManager/SoundManager.h"
 #include "../Component/ComponentManager.h"
 
 // デストラクタ
@@ -19,6 +20,7 @@ void Game::Initialize()
 	sceneManager = new SceneManager(this);
 	p_inputManager = new InputManager{};
 	p_componentManager = new ComponentManager{};
+	p_soundManager = new SoundManager{};
 	p_gameManager = new GameManager{};
 }
 
@@ -89,6 +91,9 @@ void Game::Terminate()
 
 	delete p_inputManager;
 	p_inputManager = nullptr;
+
+	delete p_soundManager;
+	p_soundManager = nullptr;
 
 	delete sceneManager;
 	sceneManager = nullptr;
@@ -179,6 +184,11 @@ InputManager* Game::GetInputManager() const
 ComponentManager* Game::GetComponentManager() const
 {
 	return p_componentManager;
+}
+
+SoundManager* Game::GetSoundManager() const
+{
+	return p_soundManager;
 }
 
 // 入力の更新
