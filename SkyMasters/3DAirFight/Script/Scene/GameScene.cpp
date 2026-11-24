@@ -163,11 +163,8 @@ void GameScene::Initialize()
     skyBoxObject = std::make_unique<Actor>(p_sceneManager->p_game);
     //cameraObject = std::make_unique<Actor>(p_sceneManager->p_game);
     terrainObject = std::make_unique<Actor>(p_sceneManager->p_game);
-<<<<<<< HEAD
     terrainObject->SetLayer(ActorLayer::Terrain);
 
-=======
->>>>>>> main
     //bodyObject = std::make_unique<Actor>(p_sceneManager->p_game);
     //wingObject = std::make_unique<Actor>(p_sceneManager->p_game);
     //diffuserObject = std::make_unique<Actor>(p_sceneManager->p_game);
@@ -178,13 +175,7 @@ void GameScene::Initialize()
     //reticleTr->SetScale(VGet(0.5f, 0.5f, 0.5f));
     //UIRenderer* reticleRenderer = new UIRenderer(reticleObject);
     //reticleRenderer->SetGrphHandle(m_reticleImgHandle);
-<<<<<<< HEAD
 
-=======
-    bodyObject = std::make_unique<Actor>(p_sceneManager->p_game);
-    wingObject = std::make_unique<Actor>(p_sceneManager->p_game);
-    diffuserObject = std::make_unique<Actor>(p_sceneManager->p_game);
->>>>>>> main
     bgmObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
     int enemyInstanceCount = m_enemyLoader.GetInstanceCount();
@@ -236,19 +227,6 @@ void GameScene::Initialize()
     //wingModel->SetModelHandle(m_wingModel);
     //ModelRenderer* diffuserModel = new ModelRenderer(diffuserObject.get());
     //diffuserModel->SetModelHandle(m_diffuserModel);
-<<<<<<< HEAD
-=======
-    // 機体
-    ModelRenderer* bodyModel = new ModelRenderer(bodyObject.get());
-    bodyModel->SetModelHandle(m_bodyModel);
-    bodyModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
-    ModelRenderer* wingModel = new ModelRenderer(wingObject.get());
-    wingModel->SetModelHandle(m_wingModel);
-    wingModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
-    ModelRenderer* diffuserModel = new ModelRenderer(diffuserObject.get());
-    diffuserModel->SetModelHandle(m_diffuserModel);
-    diffuserModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
->>>>>>> main
     
     // プレイヤー
     //new PhysicsColliderBox(playerObject.get(), VGet(0.0f, 0.0f, 0.0f), VGet(1.0f, 1.0f, 1.0f), PhysicsCollider::Active, 1);
@@ -275,10 +253,6 @@ void GameScene::Initialize()
     terrainModelComp->SetModelHandle(planeModel);
     Transform* terrainTrComp = terrainObject->GetComponent<Transform>();
     terrainTrComp->SetPosition(VGet(0.0f, WorldSettings::FloorHeight, 0.0f));
-<<<<<<< HEAD
-=======
-    terrainTrComp->SetPosition(VGet(0.0f, -1000.0f, 0.0f));
->>>>>>> main
 
     // BGM
     Sound* bgm = new Sound(bgmObject.get());
