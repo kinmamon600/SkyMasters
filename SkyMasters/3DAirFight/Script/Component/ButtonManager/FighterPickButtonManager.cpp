@@ -3,6 +3,8 @@
 #include"../Input.h"
 #include"../UIRenderer.h"
 #include"../Transform.h"
+#include"../Sound.h"
+#include"../../Game/SoundManager/SoundLilst.h"
 
 // コンストラクタ
 FighterPickButtonManager::FighterPickButtonManager(Actor* owner,
@@ -25,10 +27,13 @@ void FighterPickButtonManager::Update()
 {
 	Input* inComp = m_owner->GetComponent<Input>();
 	Transform* tr = m_owner->GetComponent<Transform>();
+	Sound* slidSE = m_owner->GetComponent<Sound>();
 
 	// 上入力
 	if (inComp->GetButtonDown(Input::Button::UP) /* || inComp->GetAnalog(Input::Analog::LX) > 0*/)
 	{
+		slidSE->PlaySE(SE::Pick_Slide);
+
 		switch (pickParts)
 		{
 		case Body:
@@ -55,6 +60,8 @@ void FighterPickButtonManager::Update()
 	// 下入力
 	if (inComp->GetButtonDown(Input::Button::DOWN) /* || inComp->GetAnalog(Input::Analog::LX) < 0*/)
 	{
+		slidSE->PlaySE(SE::Pick_Slide);
+
 		switch (pickParts)
 		{
 		case Body:
@@ -81,6 +88,8 @@ void FighterPickButtonManager::Update()
 	// 決定
 	if (inComp->GetButtonDown(Input::Button::EAST))
 	{
+		slidSE->PlaySE(SE::OK_Button);
+
 		pickParts++;
 
 		if (pickParts == partsNum)
@@ -110,6 +119,8 @@ void FighterPickButtonManager::Update()
 	// キャンセル
 	if (inComp->GetButtonDown(Input::Button::SOUTH))
 	{
+		slidSE->PlaySE(SE::Cancel_Button);
+
 		pickParts--;
 
 		pickParts = (pickParts + partsNum) % partsNum;

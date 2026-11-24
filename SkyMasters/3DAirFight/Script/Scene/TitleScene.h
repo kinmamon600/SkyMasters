@@ -21,13 +21,17 @@ public:
     SceneType Terminate() override;
 
 private:
-    std::unique_ptr<Actor> startButtonObject;
-    std::unique_ptr<Actor> endButtonObject;
-    std::unique_ptr<Actor> buttonManagerObject;
-    std::unique_ptr<Actor> cameraObject;
-    std::unique_ptr<Actor> backgroundObject;
+    std::unique_ptr<Actor> startButtonObject;      // スタートボタン
+    std::unique_ptr<Actor> endButtonObject;        // エンドボタン
+    std::unique_ptr<Actor> buttonManagerObject;    // ボタンマネージャー
+    std::unique_ptr<Actor> cameraObject;           // カメラ
+    std::unique_ptr<Actor> backgroundObject;       // 背景
+    std::unique_ptr<Actor> titleLogoObject;        // タイトルロゴ
+    std::unique_ptr<Actor> bgmObject;              // BGM
 
-    int startHandle = -1;
-    int endHandle = -1;
-    int backgroundHandle = -1;
+    // 画像ハンドル
+    int startHandle = -1;        // スタートボタン
+    int endHandle = -1;          // エンドボタン
+    int backgroundHandle = -1;   // 背景
+    int titleHandle = -1;        // タイトルロゴ
 };

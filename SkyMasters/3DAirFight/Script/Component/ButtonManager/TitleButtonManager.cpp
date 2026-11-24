@@ -1,5 +1,6 @@
 #include"TitleButtonManager.h"
 #include"../Input.h"
+#include "../Sound.h"
 #include"../../Scene/SceneBase.h"
 
 void TitleButtonManager::Update()
@@ -28,10 +29,18 @@ void TitleButtonManager::Update()
 		switch (m_currentButton)
 		{
 		case TitleButtonManager::TitleButtonType::Start:
+		{
+			Sound* startSE = m_owner->GetComponent<Sound>();
+			startSE->PlaySE(SE::OK_Button);
 			sb->RequestSceneChange();
+		}
 			break;
 		case TitleButtonManager::TitleButtonType::End:
+		{
+			Sound* endSE = m_owner->GetComponent<Sound>();
+			endSE->PlaySE(SE::Cancel_Button);
 			sb->RequestSceneChange();
+		}
 			break;
 		default:
 			break;

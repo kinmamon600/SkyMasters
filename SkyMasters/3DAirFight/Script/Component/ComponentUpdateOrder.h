@@ -10,6 +10,7 @@ enum class ComponentUpdateOrder
 	Input,
 	Transform,
 	Behaviour,
+	Sound,
 
 	// •`‰æˆ—
 	Camera,
