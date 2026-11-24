@@ -39,6 +39,7 @@ private:
     std::unique_ptr<Actor> skyBoxObject;
     std::unique_ptr<Actor> cameraObject;
     std::unique_ptr<Actor> terrainObject;
+    std::unique_ptr<Actor> bgmObject;
     std::unique_ptr<Actor> bodyObject;
     std::unique_ptr<Actor> wingObject;
     std::unique_ptr<Actor> diffuserObject;

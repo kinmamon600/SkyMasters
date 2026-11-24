@@ -19,6 +19,8 @@
 #include "../Component/FIghter/ManualCamera.h"
 #include "../Component/FIghter/Automatic.h"
 #include "../Component/FIghter/AutomaticCamera.h"
+#include "../Component/Sound.h"
+#include "../Game/SoundManager/SoundLilst.h"
 #include "../Actor/ActorLayer.h"
 
 #include "../Loader/FighterDataLoader.h"
@@ -143,6 +145,7 @@ void GameScene::Initialize()
     bodyObject = std::make_unique<Actor>(p_sceneManager->p_game);
     wingObject = std::make_unique<Actor>(p_sceneManager->p_game);
     diffuserObject = std::make_unique<Actor>(p_sceneManager->p_game);
+    bgmObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
     int enemyInstanceCount = m_enemyLoader.GetInstanceCount();
     enemyObject.resize(enemyInstanceCount);
@@ -183,6 +186,7 @@ void GameScene::Initialize()
     cameraComp->SetDispCenter(1920 / 4, 1080 / 4);
     cameraComp->SetPosition(VGet(0, 100, 400));
 
+    // ã@ëÃ
     ModelRenderer* bodyModel = new ModelRenderer(bodyObject.get());
     bodyModel->SetModelHandle(m_bodyModel);
     bodyModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
@@ -220,6 +224,10 @@ void GameScene::Initialize()
     terrainModelComp->SetScale(VGet(0.1f, 1.0f, 0.1f));
     Transform* terrainTrComp = terrainObject->GetComponent<Transform>();
     terrainTrComp->SetPosition(VGet(0.0f, -1000.0f, 0.0f));
+
+    // BGM
+    Sound* bgm = new Sound(bgmObject.get());
+    bgm->PlayBGM(BGM::Tutorial_Battle);
 }
 
 // çXêV
