@@ -11,7 +11,7 @@
 #include "../Game/ObserverManager/EventList.h"
 
 // コンストラクタ
-Bullet::Bullet(Actor* owner, VECTOR velocity)
+Bullet::Bullet(Actor* owner, VECTOR velocity, float acceleration)
 	:Behavior(owner)
 {
 	// 弾速設定
@@ -19,6 +19,7 @@ Bullet::Bullet(Actor* owner, VECTOR velocity)
 	//m_speed = speed;
 	//m_velocity = VScale(velocity, 1.0f / Screen::FPS);
 	m_velocity = VScale(velocity, 1.0f / Screen::FPS);
+	m_acceleration = acceleration / Screen::FPS;
 
 	//ePfxMotionType::kPfxMotionTypeTrigger
 	// コライダーのアタッチと設定
@@ -53,6 +54,12 @@ void Bullet::Update()
 	if (abs(pos.y) >= WorldSettings::WorldLength)
 	{
 		m_owner->SetState(Actor::EDead);
+	}
+
+	if (VSize(m_velocity) < m_maxSpeed)
+	{
+		VECTOR vec = VScale(VNorm(m_velocity), m_acceleration);
+		m_velocity = VAdd(m_velocity, vec);
 	}
 
 	tr->SetPosition(VAdd(pos, m_velocity));

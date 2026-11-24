@@ -97,13 +97,21 @@ void Fighter::Update()
 		PhysicsCollider* pcComp = m_owner->GetComponent<PhysicsCollider>();
 		manuCameraComp->SetCamera(this, trComp, pcComp, ctrl_value.x, ctrl_value.y, 60.0f);
 
-		//VECTOR pos = trComp->GetPosition();
-		//pos.y = 0.0f;
-		//
-		//if (VSize(pos) > WorldSettings::WorldRadius)
-		//{
-		//	printfDx("エリア外\n\n");
-		//}
+		// エリア判定
+		VECTOR pos = trComp->GetPosition();
+
+		float xz_size = std::sqrt(pos.x * pos.x + pos.z * pos.z);
+
+		if (xz_size >= WorldSettings::WorldRadius * 0.9f)
+		{
+			m_automaticDirection = (pos.y < (WorldSettings::WorldLength - WorldSettings::FloorHeight) + WorldSettings::FloorHeight)? 1 : -1;
+			m_currentState = Fighter::PlayerState::Automatic;
+		}
+
+		if (abs(pos.y) >= WorldSettings::WorldLength)
+		{
+			
+		}
 
 		// 別ステートへの遷移分岐
 		Input* input = m_owner->GetComponent<Input>();
@@ -212,7 +220,7 @@ void Fighter::Attack(VECTOR offset, VECTOR velocity)
 	renderer->SetSpecularPower(0.0f);
 
 	// 弾ビヘイビアをアタッチ
-	new Bullet(bullet, velocity);
+	new Bullet(bullet, velocity, 200.0f);
 
 	// 効果音再生
 	Sound* sound = m_owner->GetComponent<Sound>();

@@ -16,7 +16,7 @@ public:
 	~Transform() {}
 
 	// 行列の取得
-	const MATRIX& GetMatrix() const;
+	MATRIX GetMatrix() const;
 
 	// 行列のセット
 	void SetMatrix(const MATRIX mat);

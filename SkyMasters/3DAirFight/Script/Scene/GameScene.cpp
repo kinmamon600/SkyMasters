@@ -190,6 +190,8 @@ void GameScene::Initialize()
         enemyTr->SetPosition(pos);
         enemyTr->SetRotation(m_enemyLoader.m_enemyTransform[i].rotation);
         enemyTr->SetScale(m_enemyLoader.m_enemyTransform[i].scale);
+
+        printfDx("%f, %f, %f\n", enemyTr->GetScale().x, enemyTr->GetScale().y, enemyTr->GetScale().z);
     }
 
     // Transform
