@@ -35,15 +35,15 @@ public:
     SceneType Terminate() override;
 
 private:
-    std::unique_ptr<Actor> playerObject;
+    //std::unique_ptr<Actor> playerObject;
     std::unique_ptr<Actor> skyBoxObject;
-    std::unique_ptr<Actor> cameraObject;
+    //std::unique_ptr<Actor> cameraObject;
     std::unique_ptr<Actor> terrainObject;
     std::unique_ptr<Actor> bgmObject;
-    std::unique_ptr<Actor> bodyObject;
-    std::unique_ptr<Actor> wingObject;
-    std::unique_ptr<Actor> diffuserObject;
-    std::vector<std::unique_ptr<Actor>> enemyObject;
+    //std::unique_ptr<Actor> bodyObject;
+    //std::unique_ptr<Actor> wingObject;
+    //std::unique_ptr<Actor> diffuserObject;
+    //std::vector<std::unique_ptr<Actor>> enemyObject;
 
 
     FighterDataLoader m_fighterLoader;

@@ -27,7 +27,7 @@ public:
 	void Update() override;
 
 	// “–‚½‚è”»’è
-	void IsContact(const Actor* other) override;
+	void IsContact(Actor* other) override;
 
 	// ’Ê’m‚ðŽó‚¯Žæ‚é
 	void OnNotify(EventList event) override;

@@ -183,7 +183,7 @@ void Fighter::Update()
 }
 
 // “–‚½‚è”»’è
-void Fighter::IsContact(const Actor* other)
+void Fighter::IsContact(Actor* other)
 {
 	//printfDx("ƒqƒbƒgI\n");
 }

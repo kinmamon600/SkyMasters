@@ -51,6 +51,9 @@
     <ClCompile Include="Script\Component\Sound.cpp" />
     <ClCompile Include="Script\Game\ObserverManager\ObserverManager.cpp" />
     <ClCompile Include="Script\Behavior\FightObserver.cpp" />
+    <ClCompile Include="Script\Behavior\Enemy\Cannnon.cpp" />
+    <ClCompile Include="Script\Behavior\Enemy\EnemyBase.cpp" />
+    <ClCompile Include="Script\Behavior\Detector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SuperDxPhysics\AddFiles\pfx_high_level_include.h" />
@@ -116,5 +119,8 @@
     <ClInclude Include="Script\Game\ObserverManager\ObserverManager.h" />
     <ClInclude Include="Script\Game\ObserverManager\EventList.h" />
     <ClInclude Include="Script\Behavior\FightObserver.h" />
+    <ClInclude Include="Script\Behavior\Enemy\Cannon.h" />
+    <ClInclude Include="Script\Behavior\Enemy\EnemyBase.h" />
+    <ClInclude Include="Script\Behavior\Detector.h" />
   </ItemGroup>
 </Project>

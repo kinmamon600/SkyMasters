@@ -23,7 +23,7 @@ public:
 	Behavior(Actor* owner);
 
 	// デストラクタ
-	~Behavior();
+	virtual ~Behavior();
 
 	// コライダーがアタッチされている時、接触を判定する
 	void CheckContact(std::vector<Component*> p_physicsColliders);
@@ -33,7 +33,7 @@ public:
 
 protected:
 	// コライダーがアタッチされている時、接触時に呼ばれる
-	virtual void IsContact(const Actor* other) {};
+	virtual void IsContact(Actor* other) {};
 
 	// 通知を送信する
 	void Notify(EventList event);

@@ -56,7 +56,7 @@ void Bullet::Update()
 		m_owner->SetState(Actor::EDead);
 	}
 
-	if (VSize(m_velocity) < m_maxSpeed)
+	if (m_acceleration > 0.0f && VSize(m_velocity) < m_maxSpeed)
 	{
 		VECTOR vec = VScale(VNorm(m_velocity), m_acceleration);
 		m_velocity = VAdd(m_velocity, vec);
@@ -66,12 +66,11 @@ void Bullet::Update()
 }
 
 // “–‚½‚è”»’è
-void Bullet::IsContact(const Actor* other)
+void Bullet::IsContact(Actor* other)
 {
 	// ’nŒ`‚É“–‚½‚Á‚½‚çÁ‹Ž
 	if (other->GetLayer() == ActorLayer::Terrain)
 	{
-		Notify(EventList::Count);
 		m_owner->SetState(Actor::EDead);
 		//m_owner->GetGame()->RemoveActor(m_owner);
 		//delete m_owner;
