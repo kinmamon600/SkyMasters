@@ -140,6 +140,8 @@
     <ClCompile Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.cpp" />
     <ClCompile Include="Script\Actor\Actor.cpp" />
     <ClCompile Include="Script\Behavior\Bullet.cpp" />
+    <ClCompile Include="Script\Behavior\Enemy\Cannnon.cpp" />
+    <ClCompile Include="Script\Behavior\Enemy\EnemyBase.cpp" />
     <ClCompile Include="Script\Behavior\FightObserver.cpp" />
     <ClCompile Include="Script\Component\BackgroundRenderer.cpp" />
     <ClCompile Include="Script\Component\Behavior.cpp" />
@@ -193,6 +195,8 @@
     <ClInclude Include="..\SuperDxPhysics\AddFiles\SuperDxPhysics.h" />
     <ClInclude Include="Script\Actor\ActorLayer.h" />
     <ClInclude Include="Script\Behavior\Bullet.h" />
+    <ClInclude Include="Script\Behavior\Enemy\Cannon.h" />
+    <ClInclude Include="Script\Behavior\Enemy\EnemyBase.h" />
     <ClInclude Include="Script\Behavior\FightObserver.h" />
     <ClInclude Include="Script\Component\BackgroundRenderer.h" />
     <ClInclude Include="Script\Component\Behavior.h" />

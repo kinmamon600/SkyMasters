@@ -158,8 +158,6 @@ void GameScene::Initialize()
     terrainObject = std::make_unique<Actor>(p_sceneManager->p_game);
     terrainObject->SetLayer(ActorLayer::Terrain);
 
-<<<<<<< HEAD
-=======
     for (int i = 0; i < 5; ++i)
     {
         for (int j = 0; j < 5; ++j)
@@ -190,54 +188,37 @@ void GameScene::Initialize()
     //UIRenderer* reticleRenderer = new UIRenderer(reticleObject);
     //reticleRenderer->SetGrphHandle(m_reticleImgHandle);
 
->>>>>>> main
     bgmObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
     // ìGÇÃê∂ê¨Ç∆TransformÇÃê›íË
     int enemyInstanceCount = m_enemyLoader.GetInstanceCount();
-    enemyObject.resize(enemyInstanceCount);
     for (short i = 0; i < enemyInstanceCount; i++)
     {
-        enemyObject[i] = std::make_unique<Actor>(p_sceneManager->p_game);
-        enemyObject[i]->SetLayer(ActorLayer::Enemy);
+        Actor* enemyObject;
 
-        Transform* enemyTr = new Transform(enemyObject[i].get());
+        enemyObject = new Actor(p_sceneManager->p_game);
+        enemyObject->SetLayer(ActorLayer::Enemy);
+
+        Transform* enemyTr = new Transform(enemyObject);
         VECTOR pos = m_enemyLoader.m_enemyTransform[i].position;
         pos.y += WorldSettings::FloorHeight;
         enemyTr->SetPosition(pos);
         enemyTr->SetRotation(m_enemyLoader.m_enemyTransform[i].rotation);
-<<<<<<< HEAD
-        enemyTr->SetScale(m_enemyLoader.m_enemyTransform[i].scale);
-<<<<<<< HEAD
-=======
-=======
-        //enemyTr->SetScale(m_enemyLoader.m_enemyTransform[i].scale);
->>>>>>> main
 
-        //printfDx("%f, %f, %f\n", enemyTr->GetScale().x, enemyTr->GetScale().y, enemyTr->GetScale().z);
-    }
->>>>>>> main
-
-        new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 1, 1, PhysicsCollider::Fixed, 1);
-
-<<<<<<< HEAD
-=======
-    for (short i = 0; i < enemyInstanceCount; i++)
-    {
->>>>>>> main
-        ModelRenderer* enemyModel = new ModelRenderer(enemyObject[i].get());
+        ModelRenderer* enemyModel = new ModelRenderer(enemyObject);
         enemyModel->SetModelHandle(m_enemyModel[m_enemyLoader.m_enemyTransform[i].enemyID]);
         enemyModel->AddTextureMask(m_enemyTexMaskBody[m_enemyLoader.m_enemyTransform[i].enemyID]);
         enemyModel->AddTextureMask(m_enemyTexMaskEmi[m_enemyLoader.m_enemyTransform[i].enemyID]);
 
-        if (m_enemyLoader.m_enemyTransform[i].enemyID == 0)
+        switch (m_enemyLoader.m_enemyTransform[i].enemyID)
         {
+        case 0:
             //new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 300, 100, PhysicsCollider::Fixed, 1);
-        }
-        else
-        {
-            new PhysicsColliderSphere(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 30, PhysicsCollider::Fixed, 1);
-            enemyModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
+        case 1:
+            new PhysicsColliderSphere(enemyObject, VGet(0.0f, 0.0f, 0.0f), 30, PhysicsCollider::Fixed, 1);
+            enemyModel->SetScale(0.1f);
+        default:
+            break;
         }
     }
 
