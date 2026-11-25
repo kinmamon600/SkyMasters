@@ -111,6 +111,7 @@ bool GameScene::Load()
             GetColorF(1.0f, 1.0f, 1.0f, 1.0f),
             GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
             0.0f };
+        printfDx("%d, %d\n", difEnemy_tx, emiEnemy_tx);
     }
 
     // 非同期終了
@@ -157,6 +158,39 @@ void GameScene::Initialize()
     terrainObject = std::make_unique<Actor>(p_sceneManager->p_game);
     terrainObject->SetLayer(ActorLayer::Terrain);
 
+<<<<<<< HEAD
+=======
+    for (int i = 0; i < 5; ++i)
+    {
+        for (int j = 0; j < 5; ++j)
+        {
+            if (i == 2 && j == 2)
+            {
+                continue;
+            }
+
+            Actor* act = new Actor(p_sceneManager->p_game);
+            Transform* tr = new Transform(act);
+
+            tr->SetPosition(VGet((float)((i - 2) * 8000), WorldSettings::FloorHeight, (float)((j - 2) * 8000)));
+
+            ModelRenderer* renderer = new ModelRenderer(act);
+            renderer->SetModelHandle(planeModel);
+        }
+    }
+
+    //bodyObject = std::make_unique<Actor>(p_sceneManager->p_game);
+    //wingObject = std::make_unique<Actor>(p_sceneManager->p_game);
+    //diffuserObject = std::make_unique<Actor>(p_sceneManager->p_game);
+
+    // レティクルの生成
+    //Actor* reticleObject = new Actor(p_sceneManager->p_game);
+    //Transform* reticleTr = new Transform(reticleObject);
+    //reticleTr->SetScale(VGet(0.5f, 0.5f, 0.5f));
+    //UIRenderer* reticleRenderer = new UIRenderer(reticleObject);
+    //reticleRenderer->SetGrphHandle(m_reticleImgHandle);
+
+>>>>>>> main
     bgmObject = std::make_unique<Actor>(p_sceneManager->p_game);
 
     // 敵の生成とTransformの設定
@@ -172,20 +206,39 @@ void GameScene::Initialize()
         pos.y += WorldSettings::FloorHeight;
         enemyTr->SetPosition(pos);
         enemyTr->SetRotation(m_enemyLoader.m_enemyTransform[i].rotation);
+<<<<<<< HEAD
         enemyTr->SetScale(m_enemyLoader.m_enemyTransform[i].scale);
 <<<<<<< HEAD
 =======
+=======
+        //enemyTr->SetScale(m_enemyLoader.m_enemyTransform[i].scale);
+>>>>>>> main
 
-        printfDx("%f, %f, %f\n", enemyTr->GetScale().x, enemyTr->GetScale().y, enemyTr->GetScale().z);
+        //printfDx("%f, %f, %f\n", enemyTr->GetScale().x, enemyTr->GetScale().y, enemyTr->GetScale().z);
     }
 >>>>>>> main
 
         new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 1, 1, PhysicsCollider::Fixed, 1);
 
+<<<<<<< HEAD
+=======
+    for (short i = 0; i < enemyInstanceCount; i++)
+    {
+>>>>>>> main
         ModelRenderer* enemyModel = new ModelRenderer(enemyObject[i].get());
         enemyModel->SetModelHandle(m_enemyModel[m_enemyLoader.m_enemyTransform[i].enemyID]);
         enemyModel->AddTextureMask(m_enemyTexMaskBody[m_enemyLoader.m_enemyTransform[i].enemyID]);
         enemyModel->AddTextureMask(m_enemyTexMaskEmi[m_enemyLoader.m_enemyTransform[i].enemyID]);
+
+        if (m_enemyLoader.m_enemyTransform[i].enemyID == 0)
+        {
+            //new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 300, 100, PhysicsCollider::Fixed, 1);
+        }
+        else
+        {
+            new PhysicsColliderSphere(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 30, PhysicsCollider::Fixed, 1);
+            enemyModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
+        }
     }
 
     // Transform

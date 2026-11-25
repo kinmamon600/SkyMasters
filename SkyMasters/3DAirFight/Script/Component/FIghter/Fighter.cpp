@@ -67,11 +67,17 @@ Fighter::Fighter(Actor* owner, unsigned short pl_num, MATRIX mat, int beam, int 
 	new AutomaticCamera(p_myCamera);
 
 	// レティクルのアクター生成
-	p_myReticle = new Actor(owner->GetGame());
-	Transform* reticle_tr = new Transform(p_myReticle);
-	reticle_tr->SetScale(VGet(0.1f, 0.1f, 0.1f));
-	UIRenderer* reticleRenderer = new UIRenderer(p_myReticle);
-	reticleRenderer->SetGrphHandle(reticle);
+	p_myReticle1 = new Actor(owner->GetGame());
+	Transform* reticle_tr1 = new Transform(p_myReticle1);
+	reticle_tr1->SetScale(VGet(0.1f, 0.1f, 0.1f));
+	UIRenderer* reticleRenderer1 = new UIRenderer(p_myReticle1);
+	reticleRenderer1->SetGrphHandle(reticle);
+
+	p_myReticle2 = new Actor(owner->GetGame());
+	Transform* reticle_tr2 = new Transform(p_myReticle2);
+	reticle_tr2->SetScale(VGet(0.05f, 0.05f, 0.05f));
+	UIRenderer* reticleRenderer2 = new UIRenderer(p_myReticle2);
+	reticleRenderer2->SetGrphHandle(reticle);
 }
 
 // 初期化
@@ -104,13 +110,25 @@ void Fighter::Update()
 
 		if (xz_size >= WorldSettings::WorldRadius * 0.9f)
 		{
-			m_automaticDirection = (pos.y < (WorldSettings::WorldLength - WorldSettings::FloorHeight) + WorldSettings::FloorHeight)? 1 : -1;
+			float height_center = (WorldSettings::WorldLength - WorldSettings::FloorHeight) + WorldSettings::FloorHeight;
+
+			if (pos.y < height_center)
+			{
+				m_automaticDirection = 1;
+			}
+			else
+			{
+				m_automaticDirection = -1;
+			}
+
+			//m_automaticDirection = (pos.y < height_center) ? 1 : -1;
+			printfDx("%d\n", m_automaticDirection);
 			m_currentState = Fighter::PlayerState::Automatic;
 		}
 
 		if (abs(pos.y) >= WorldSettings::WorldLength)
 		{
-			
+			printfDx("エリア外だっ\n");
 		}
 
 		// 別ステートへの遷移分岐
@@ -179,7 +197,7 @@ void Fighter::IsContact(const Actor* other)
 // 通知を受け取る
 void Fighter::OnNotify(EventList event)
 {
-	printfDx("お便りが届いたヨ\n");
+	//printfDx("お便りが届いたヨ\n");
 }
 
 // ステートの変更
@@ -230,33 +248,47 @@ void Fighter::Attack(VECTOR offset, VECTOR velocity)
 // レティクル位置の設定
 void Fighter::SetRericlePos()
 {
-	UIRenderer* renderer = p_myReticle->GetComponent<UIRenderer>();
+	UIRenderer* renderer1 = p_myReticle1->GetComponent<UIRenderer>();
+	UIRenderer* renderer2 = p_myReticle2->GetComponent<UIRenderer>();
 
 	switch (m_currentState)
 	{
 	case Fighter::PlayerState::Automatic:
 	case Fighter::PlayerState::Dead:
-		renderer->SetIsVisible(false);
+		renderer1->SetIsVisible(false);
+		renderer2->SetIsVisible(false);
 		return;
 		break;
 	default:
 		break;
 	}
 
-	renderer->SetIsVisible(true);
+	renderer1->SetIsVisible(true);
+	renderer2->SetIsVisible(false);
 
 	Camera* camera = p_myCamera->GetComponent<Camera>();
 	Transform* fighter_tr = m_owner->GetComponent<Transform>();
 	PhysicsCollider* pc = m_owner->GetComponent<PhysicsCollider>();
 
-	VECTOR pos = camera->ConvPos2Disp(VAdd(fighter_tr->GetPosition(), VScale(pc->GetDirection(VGet(0.0f, 0.0f, -1.0f)), m_reticleDistance)));
+	VECTOR pos1 = camera->ConvPos2Disp(VAdd(fighter_tr->GetPosition(), VScale(pc->GetDirection(VGet(0.0f, 0.0f, -1.0f)), m_reticleDistance)));
+	VECTOR pos2 = camera->ConvPos2Disp(VAdd(fighter_tr->GetPosition(), VScale(pc->GetDirection(VGet(0.0f, 0.0f, -1.0f)), m_reticleDistance * 2.0f)));
 	
-	// 範囲外の時更新しない
-	if (pos.z < 0.0f || pos.z > 1.0f)
+	// 範囲外の時ひとまず原点に
+	if (pos1.z < 0.0f || pos1.z > 1.0f)
 	{
-		return;
+		pos1.x = 0.0f;
+		pos1.y = 0.0f;
 	}
 
-	Transform* reticle_tr = p_myReticle->GetComponent<Transform>();
-	reticle_tr->SetPosition(VGet(pos.x, pos.y, 0.0f));
+	if (pos2.z < 0.0f || pos2.z > 1.0f)
+	{
+		pos2.x = 0.0f;
+		pos2.y = 0.0f;
+	}
+
+	Transform* reticle_tr1 = p_myReticle1->GetComponent<Transform>();
+	reticle_tr1->SetPosition(VGet(pos1.x, pos1.y, 0.0f));
+
+	Transform* reticle_tr2 = p_myReticle2->GetComponent<Transform>();
+	reticle_tr2->SetPosition(VGet(pos2.x, pos2.y, 0.0f));
 }
