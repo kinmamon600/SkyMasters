@@ -101,7 +101,8 @@ private:
 	Actor* p_myCamera;
 
 	// レティクル
-	Actor* p_myReticle;
+	Actor* p_myReticle1;
+	Actor* p_myReticle2;
 
 	// レティクルの距離
 	const float m_reticleDistance = 100.0f;

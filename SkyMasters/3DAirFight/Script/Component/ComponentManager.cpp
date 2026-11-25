@@ -140,7 +140,7 @@ void ComponentManager::Update()
 			}
 
 			// 物理オブジェクトの描画(デバッグ用)
-			//SDP::RenderPhysicalObject();
+			SDP::RenderPhysicalObject();
 
 			// 描画範囲初期化
 			SetDrawArea(0, 0, Screen::Width, Screen::Height);

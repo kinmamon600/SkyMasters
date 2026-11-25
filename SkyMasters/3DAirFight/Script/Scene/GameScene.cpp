@@ -97,9 +97,9 @@ bool GameScene::Load()
     //m_enemyModel.resize(enemyTypeCount);
     for (short i = 0; i < enemyTypeCount; i++)
     {
-        std::string difEnemy = "../Texture/Enemy/Enemy_0/Enemy_" + std::to_string(i) + "_Diffuse.png";
+        std::string difEnemy = "../Texture/Enemy/Enemy_" + std::to_string(i) + "/Enemy_" + std::to_string(i) + "_Diffuse.png";
         int difEnemy_tx = LoadGraph(difEnemy.c_str());
-        std::string emiEnemy = "../Texture/Enemy/Enemy_0/Enemy_" + std::to_string(i) + "_Emissive.png";
+        std::string emiEnemy = "../Texture/Enemy/Enemy_" + std::to_string(i) + "/Enemy_" + std::to_string(i) + "_Emissive.png";
         int emiEnemy_tx = LoadGraph(emiEnemy.c_str());
         m_enemyTexMaskBody[i] = {difEnemy_tx,
            GetColorF(0.4f, 0.4f, 0.4f, 1.0f),
@@ -113,6 +113,7 @@ bool GameScene::Load()
             GetColorF(1.0f, 1.0f, 1.0f, 1.0f),
             GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
             0.0f };
+        printfDx("%d, %d\n", difEnemy_tx, emiEnemy_tx);
     }
 
     // îÒìØä˙èIóπ
@@ -165,6 +166,25 @@ void GameScene::Initialize()
     terrainObject = std::make_unique<Actor>(p_sceneManager->p_game);
     terrainObject->SetLayer(ActorLayer::Terrain);
 
+    for (int i = 0; i < 5; ++i)
+    {
+        for (int j = 0; j < 5; ++j)
+        {
+            if (i == 2 && j == 2)
+            {
+                continue;
+            }
+
+            Actor* act = new Actor(p_sceneManager->p_game);
+            Transform* tr = new Transform(act);
+
+            tr->SetPosition(VGet((float)((i - 2) * 8000), WorldSettings::FloorHeight, (float)((j - 2) * 8000)));
+
+            ModelRenderer* renderer = new ModelRenderer(act);
+            renderer->SetModelHandle(planeModel);
+        }
+    }
+
     //bodyObject = std::make_unique<Actor>(p_sceneManager->p_game);
     //wingObject = std::make_unique<Actor>(p_sceneManager->p_game);
     //diffuserObject = std::make_unique<Actor>(p_sceneManager->p_game);
@@ -189,9 +209,9 @@ void GameScene::Initialize()
         pos.y += WorldSettings::FloorHeight;
         enemyTr->SetPosition(pos);
         enemyTr->SetRotation(m_enemyLoader.m_enemyTransform[i].rotation);
-        enemyTr->SetScale(m_enemyLoader.m_enemyTransform[i].scale);
+        //enemyTr->SetScale(m_enemyLoader.m_enemyTransform[i].scale);
 
-        printfDx("%f, %f, %f\n", enemyTr->GetScale().x, enemyTr->GetScale().y, enemyTr->GetScale().z);
+        //printfDx("%f, %f, %f\n", enemyTr->GetScale().x, enemyTr->GetScale().y, enemyTr->GetScale().z);
     }
 
     // Transform
@@ -208,11 +228,20 @@ void GameScene::Initialize()
 
     for (short i = 0; i < enemyInstanceCount; i++)
     {
-        new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 30,10, PhysicsCollider::Fixed, 1);
         ModelRenderer* enemyModel = new ModelRenderer(enemyObject[i].get());
         enemyModel->SetModelHandle(m_enemyModel[m_enemyLoader.m_enemyTransform[i].enemyID]);
         enemyModel->AddTextureMask(m_enemyTexMaskBody[m_enemyLoader.m_enemyTransform[i].enemyID]);
         enemyModel->AddTextureMask(m_enemyTexMaskEmi[m_enemyLoader.m_enemyTransform[i].enemyID]);
+
+        if (m_enemyLoader.m_enemyTransform[i].enemyID == 0)
+        {
+            //new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 300, 100, PhysicsCollider::Fixed, 1);
+        }
+        else
+        {
+            new PhysicsColliderSphere(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 30, PhysicsCollider::Fixed, 1);
+            enemyModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
+        }
     }
     
     // ÉJÉÅÉâ
