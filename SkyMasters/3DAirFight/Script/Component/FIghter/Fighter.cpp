@@ -108,9 +108,10 @@ void Fighter::Update()
 
 		float xz_size = std::sqrt(pos.x * pos.x + pos.z * pos.z);
 
+		// XZ方向にエリア外なら自動的にターン
 		if (xz_size >= WorldSettings::WorldRadius * 0.9f)
 		{
-			float height_center = (WorldSettings::WorldLength - WorldSettings::FloorHeight) + WorldSettings::FloorHeight;
+			float height_center = (WorldSettings::WorldLength - WorldSettings::FloorHeight) / 2.0f + WorldSettings::FloorHeight;
 
 			if (pos.y < height_center)
 			{
@@ -121,14 +122,7 @@ void Fighter::Update()
 				m_automaticDirection = -1;
 			}
 
-			//m_automaticDirection = (pos.y < height_center) ? 1 : -1;
-			printfDx("%d\n", m_automaticDirection);
 			m_currentState = Fighter::PlayerState::Automatic;
-		}
-
-		if (abs(pos.y) >= WorldSettings::WorldLength)
-		{
-			printfDx("エリア外だっ\n");
 		}
 
 		// 別ステートへの遷移分岐

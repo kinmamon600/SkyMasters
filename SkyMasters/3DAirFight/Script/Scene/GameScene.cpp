@@ -150,7 +150,7 @@ void GameScene::Initialize()
         p_players[i] = new Actor(p_sceneManager->p_game);
         MATRIX mat = MGetIdent();
         mat.m[3][0] = (float)(20 * i);
-        mat.m[3][1] = WorldSettings::FloorHeight + 40.0f;
+        mat.m[3][1] = WorldSettings::FloorHeight + 150.0f;
         mat.m[3][2] = 0;
         new Fighter(p_players[i], i + 1, mat, m_beamModelHandle, m_reticleImgHandle);
 

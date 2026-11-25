@@ -11,14 +11,14 @@ public:
 	static constexpr float WorldRadius = 4000.0f;
 
 	// ¢ŠE(“›)‚Ì‚‚³
-	static constexpr float WorldLength = 300.0f;
+	static constexpr float WorldLength = 500.0f;
 
 	// °‚Ì‚‚³
-	static constexpr float FloorHeight = -100.0f;
+	static constexpr float FloorHeight = -300.0f;
 
 	// •¨—¢ŠE‚Ì‘å‚«‚³
 	static constexpr float PhysicsWorldSizeX = 5000.0f;
-	static constexpr float PhysicsWorldSizeY = 3000.0f;
+	static constexpr float PhysicsWorldSizeY = 1500.0f;
 	static constexpr float PhysicsWorldSizeZ = 5000.0f;
 
 	// ¢ŠE‚ÌƒXƒP[ƒŠƒ“ƒO”{—¦

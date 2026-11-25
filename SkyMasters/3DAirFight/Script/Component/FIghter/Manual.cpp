@@ -8,7 +8,9 @@
 #include "../../Actor/Actor.h"
 #include "../Input.h"
 #include "../../Input/ControllerInput.h"
+#include "../Transform.h"
 #include "../PhysicsCollider.h"
+#include "../../World/WorldSettings.h"
 
 VECTOR Manual::FighterControl()
 {
@@ -16,11 +18,53 @@ VECTOR Manual::FighterControl()
 	float result_x = 0.0f;
 	float result_y = 0.0f;
 
+	// 入力の取得
+	Input* input = m_owner->GetComponent<Input>();
+	float input_x = (float)(input->GetAnalog(Input::LX));
+	float input_y = (float)(input->GetAnalog(Input::LY));
+
+	Transform* tr = m_owner->GetComponent<Transform>();
+	VECTOR pos = tr->GetPosition();
+
+	// エリア判定
+	float area_height05 = WorldSettings::WorldLength * 0.1f;
+	float area_height10 = WorldSettings::WorldLength * 0.2f;
+	// 天井付近
+	if (pos.y >= WorldSettings::WorldLength)
+	{
+		if (input_y > 0.0f)
+		{
+			input_y = 0.0f;
+		}
+	}
+	else if (pos.y > WorldSettings::WorldLength - area_height05)
+	{
+		if (input_y > 0.0f)
+		{
+			input_y *= (WorldSettings::WorldLength - pos.y) / area_height05;
+		}
+	}
+
+	// 地面付近
+	if (pos.y <= WorldSettings::FloorHeight + area_height10)
+	{
+		if (input_y < 0.0f)
+		{
+			input_y = 0.0f;
+		}
+	}
+	else if (pos.y < WorldSettings::FloorHeight + area_height10)
+	{
+		if (input_y < 0.0f)
+		{
+			input_y *= -(WorldSettings::FloorHeight + area_height10 - pos.y) / area_height05;
+		}
+	}
+
 	// 自機制御コンポーネント取得
 	Fighter* fighter = m_owner->GetComponent<Fighter>();
 
-	// 入力・物理コライダーの取得
-	Input* input = m_owner->GetComponent<Input>();
+	// 物理コライダーの取得
 	PhysicsCollider* pcs = m_owner->GetComponent<PhysicsCollider>();
 
 	// 自機の向きの取得
@@ -39,15 +83,15 @@ VECTOR Manual::FighterControl()
 	
 	// ピッチの角速度設定
 	float pitch_dot = VDot(VGet(0.0f, 1.0f, 0.0f), forward);
-	float pitch_target = (1.0f - std::abs(pitch_dot)) * (fighter->m_pitchAngleMax / 180.0f * DX_PI) * (float)(input->GetAnalog(Input::LY)) / ANALOG_INPUT_MAX;
+	float pitch_target = (1.0f - std::abs(pitch_dot)) * (fighter->m_pitchAngleMax / 180.0f * DX_PI) * input_y / ANALOG_INPUT_MAX;
 	pitch = (pitch_dot - pitch_target) * (90.0f / fighter->m_pitchAngleMax) * fighter->m_pitchAngularVelocity;
 	result_y = pitch_dot * (90.0f / fighter->m_pitchAngleMax);
 
 	// ヨーの角速度設定
-	yaw = -(float)(input->GetAnalog(Input::LX)) / ANALOG_INPUT_MAX * fighter->m_yawAngularVelocity;
+	yaw = -input_x / ANALOG_INPUT_MAX * fighter->m_yawAngularVelocity;
 	
 	// ヨーの傾き設定
-	target_yawslopeangle = -(float)(input->GetAnalog(Input::LX)) / ANALOG_INPUT_MAX * fighter->m_yawSlopeAngleMax;
+	target_yawslopeangle = -input_x / ANALOG_INPUT_MAX * fighter->m_yawSlopeAngleMax;
 	
 	if (target_yawslopeangle > fighter->m_yawSlopeAngle)
 	{
