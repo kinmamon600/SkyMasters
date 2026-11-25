@@ -173,6 +173,12 @@ void GameScene::Initialize()
         enemyTr->SetPosition(pos);
         enemyTr->SetRotation(m_enemyLoader.m_enemyTransform[i].rotation);
         enemyTr->SetScale(m_enemyLoader.m_enemyTransform[i].scale);
+<<<<<<< HEAD
+=======
+
+        printfDx("%f, %f, %f\n", enemyTr->GetScale().x, enemyTr->GetScale().y, enemyTr->GetScale().z);
+    }
+>>>>>>> main
 
         new PhysicsColliderCylinder(enemyObject[i].get(), VGet(0.0f, 0.0f, 0.0f), 1, 1, PhysicsCollider::Fixed, 1);
 

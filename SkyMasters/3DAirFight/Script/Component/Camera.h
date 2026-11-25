@@ -59,6 +59,9 @@ public:
 	// 視野角の取得
 	float GetFOV() const;
 
+	// ワールド座標を画面座標に変換
+	VECTOR ConvPos2Disp(VECTOR world_pos);
+
 private:
 	// カメラの座標
 	VECTOR m_position = VGet(0.0f, 0.0f, 0.0f);

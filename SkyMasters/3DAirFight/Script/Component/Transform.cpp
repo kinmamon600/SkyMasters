@@ -6,7 +6,7 @@
 #include "Actor/Actor.h"
 
 // çsóÒÇÃéÊìæ
-const MATRIX& Transform::GetMatrix() const
+MATRIX Transform::GetMatrix() const
 {
 	return m_matrix;
 }
@@ -93,11 +93,11 @@ VECTOR Transform::GetScale() const
 		sqrtf(m_matrix.m[0][0] * m_matrix.m[0][0] +
 			m_matrix.m[0][1] * m_matrix.m[0][1] +
 			m_matrix.m[0][2] * m_matrix.m[0][2]),
-
+	
 		sqrtf(m_matrix.m[1][0] * m_matrix.m[1][0] +
 			m_matrix.m[1][1] * m_matrix.m[1][1] +
 			m_matrix.m[1][2] * m_matrix.m[1][2]),
-
+	
 		sqrtf(m_matrix.m[2][0] * m_matrix.m[2][0] +
 			m_matrix.m[2][1] * m_matrix.m[2][1] +
 			m_matrix.m[2][2] * m_matrix.m[2][2])
@@ -120,6 +120,7 @@ MATRIX Transform::CreateTransformMatrix(const VECTOR& position, const VECTOR& ro
 
 	// äeçsóÒÇçÏê¨
 	MATRIX scale_mat = MGetScale(VGet(scale.x, scale.y, scale.z));
+<<<<<<< HEAD
 	MATRIX rotation_mat;
 	CreateRotationXYZMatrix(&rotation_mat, rad.x, rad.y, rad.z);
 	
@@ -250,13 +251,19 @@ MATRIX Transform::CreateTransformMatrix(const VECTOR& position, const VECTOR& ro
 	
 	MATRIX rotation_mat;
 	CreateRotationXYZMatrix(&rotation_mat, rad.x, rad.y, rad.z);
+=======
+>>>>>>> main
 
-	MATRIX translation_mat;
-	CreateTranslationMatrix(&translation_mat, position.x, position.y, position.z);
+	MATRIX matX = MGetRotX(rad.x);
+	MATRIX matY = MGetRotY(rad.y);
+	MATRIX matZ = MGetRotZ(rad.z);
+	MATRIX rotation_mat = MMult(MMult(matX, matY), matZ);
+
+	MATRIX translation_mat = MGetTranslate(position);
 
 	// S Å® R Å® T ÇÃèáÇ≈çáê¨
 	MATRIX result = MMult(MMult(scale_mat, rotation_mat), translation_mat);
-
+	
 	return result;
 }
 */

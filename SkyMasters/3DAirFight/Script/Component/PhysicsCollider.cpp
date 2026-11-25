@@ -26,9 +26,17 @@ void PhysicsCollider::Update()
 	// トランスフォームを更新
 	if (owner_tr != nullptr)
 	{
-		//owner_tr->SetPosition(SDP::GetPosition(m_sdpID));
-		//owner_tr->SetRotation(SDP::GetRotate(m_sdpID));
-		owner_tr->SetMatrix(SDP::GetMatrix(m_sdpID));
+		MATRIX mat = SDP::GetMatrix(m_sdpID);
+
+		float rotX = 0.0f, rotY = 0.0f, rotZ = 0.0f;
+
+		GetMatrixXYZRotation(&mat, &rotX, &rotY, &rotZ);
+		rotX = (rotX * 180.0f) / DX_PI;
+		rotY = (rotY * 180.0f) / DX_PI;
+		rotZ = (rotZ * 180.0f) / DX_PI;
+
+		owner_tr->SetPosition(VGet(mat.m[3][0], mat.m[3][1], mat.m[3][2]));
+		owner_tr->SetRotation(VGet(rotX, rotY, rotZ));
 	}
 }
 

@@ -97,13 +97,21 @@ void Fighter::Update()
 		PhysicsCollider* pcComp = m_owner->GetComponent<PhysicsCollider>();
 		manuCameraComp->SetCamera(this, trComp, pcComp, ctrl_value.x, ctrl_value.y, 60.0f);
 
-		//VECTOR pos = trComp->GetPosition();
-		//pos.y = 0.0f;
-		//
-		//if (VSize(pos) > WorldSettings::WorldRadius)
-		//{
-		//	printfDx("エリア外\n\n");
-		//}
+		// エリア判定
+		VECTOR pos = trComp->GetPosition();
+
+		float xz_size = std::sqrt(pos.x * pos.x + pos.z * pos.z);
+
+		if (xz_size >= WorldSettings::WorldRadius * 0.9f)
+		{
+			m_automaticDirection = (pos.y < (WorldSettings::WorldLength - WorldSettings::FloorHeight) + WorldSettings::FloorHeight)? 1 : -1;
+			m_currentState = Fighter::PlayerState::Automatic;
+		}
+
+		if (abs(pos.y) >= WorldSettings::WorldLength)
+		{
+			
+		}
 
 		// 別ステートへの遷移分岐
 		Input* input = m_owner->GetComponent<Input>();
@@ -148,15 +156,12 @@ void Fighter::Update()
 		break;
 	case Fighter::PlayerState::Dead:
 		break;
+	default:
+		break;
 	}
 
-	// レティクルの描画
-	Camera* cam = p_myCamera->GetComponent<Camera>();
-	Transform* reticleTr = p_myReticle->GetComponent<Transform>();
-	unsigned int x = 0;
-	unsigned int y = 0;
-	cam->GetDispCenter(&x, &y);
-	reticleTr->SetPosition(VGet(x, y, 0.0f));
+	// レティクルの設定
+	SetRericlePos();
 
 	//printfDx("Speed:%f\n", m_currentSpeed);
 
@@ -169,6 +174,12 @@ void Fighter::Update()
 void Fighter::IsContact(const Actor* other)
 {
 	//printfDx("ヒット！\n");
+}
+
+// 通知を受け取る
+void Fighter::OnNotify(EventList event)
+{
+	printfDx("お便りが届いたヨ\n");
 }
 
 // ステートの変更
@@ -204,14 +215,48 @@ void Fighter::Attack(VECTOR offset, VECTOR velocity)
 
 	renderer->SetDiffuse(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
 	renderer->SetSpecular(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
-	renderer->SetEmissive(GetColorF(1.0f, 0.0f, 1.0f, 1.0f));
+	renderer->SetEmissive(GetColorF(1.0f, 1.0f, 0.0f, 1.0f));
 	renderer->SetAmbient(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
 	renderer->SetSpecularPower(0.0f);
 
 	// 弾ビヘイビアをアタッチ
-	new Bullet(bullet, velocity);
+	new Bullet(bullet, velocity, 200.0f);
 
 	// 効果音再生
 	Sound* sound = m_owner->GetComponent<Sound>();
 	sound->PlaySE(SE::Fighter_Shot);
+}
+
+// レティクル位置の設定
+void Fighter::SetRericlePos()
+{
+	UIRenderer* renderer = p_myReticle->GetComponent<UIRenderer>();
+
+	switch (m_currentState)
+	{
+	case Fighter::PlayerState::Automatic:
+	case Fighter::PlayerState::Dead:
+		renderer->SetIsVisible(false);
+		return;
+		break;
+	default:
+		break;
+	}
+
+	renderer->SetIsVisible(true);
+
+	Camera* camera = p_myCamera->GetComponent<Camera>();
+	Transform* fighter_tr = m_owner->GetComponent<Transform>();
+	PhysicsCollider* pc = m_owner->GetComponent<PhysicsCollider>();
+
+	VECTOR pos = camera->ConvPos2Disp(VAdd(fighter_tr->GetPosition(), VScale(pc->GetDirection(VGet(0.0f, 0.0f, -1.0f)), m_reticleDistance)));
+	
+	// 範囲外の時更新しない
+	if (pos.z < 0.0f || pos.z > 1.0f)
+	{
+		return;
+	}
+
+	Transform* reticle_tr = p_myReticle->GetComponent<Transform>();
+	reticle_tr->SetPosition(VGet(pos.x, pos.y, 0.0f));
 }

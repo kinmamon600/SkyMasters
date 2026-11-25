@@ -15,11 +15,15 @@ class InputManager;
 class ComponentManager;
 class GameManager;
 class SoundManager;
+class ObserverManager;
 
+/// <summary>
+/// ゲームそのもの
+/// </summary>
 class Game
 {
 public:
-    Game() : sceneManager(nullptr), p_inputManager(nullptr), p_componentManager(nullptr),p_soundManager(nullptr), mUpdatingActors(false) {}
+    Game(){}
     ~Game();
 
     // ゲームの初期化
@@ -56,26 +60,32 @@ public:
     // サウンド管理クラスの取得
     SoundManager* GetSoundManager() const;
 
+    // 通知管理クラスの取得
+    ObserverManager* GetObserverManager() const;
+
     // 存在するActorの動的配列
     std::vector<Actor*> mActors;
 
     // 保留中のActorの動的配列
     std::vector<Actor*> mPendingActors;
 
-    GameManager* p_gameManager;
+    GameManager* p_gameManager = nullptr;
 
 private:
     // シーン管理クラス
-    SceneManager* sceneManager;
+    SceneManager* sceneManager = nullptr;
 
     // 入力管理クラス
-    InputManager* p_inputManager;
+    InputManager* p_inputManager = nullptr;
 
     // コンポーネント管理クラス
-    ComponentManager* p_componentManager;
+    ComponentManager* p_componentManager = nullptr;
 
     // サウンド管理クラス
-    SoundManager* p_soundManager;
+    SoundManager* p_soundManager = nullptr;
+
+    // 通知管理クラス
+    ObserverManager* p_observerManager = nullptr;
 
     // Actorを追加しようとしているか
     bool mUpdatingActors;
