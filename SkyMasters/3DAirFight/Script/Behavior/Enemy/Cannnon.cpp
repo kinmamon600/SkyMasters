@@ -8,6 +8,7 @@
 #include "../../Component/Transform.h"
 #include "../Bullet.h"
 #include "../../Component/ModelRenderer.h"
+#include "../../Component/PhysicsCollider.h"
 
 // コンストラクタ
 Cannon::Cannon(Actor* owner, int hp, int atk, int bullet)
@@ -70,24 +71,33 @@ void Cannon::Attack(Actor* target)
 	// 座標とベクトルの取得
 	VECTOR my_pos = my_tr->GetPosition();
 	VECTOR shoot_vec = VNorm(VSub(target_tr->GetPosition(), my_pos));
-	shoot_vec = VScale(shoot_vec, m_projectileSpeed);
 
-	// 弾の生成
-	Actor* bullet = new Actor(m_owner->GetGame());
-	bullet->SetLayer(ActorLayer::EnemyBullet);
+	// 内積を使って正面の判断
+	PhysicsCollider* pcComp = m_owner->GetComponent<PhysicsCollider>();
+	VECTOR up_vec = pcComp->GetDirection(VGet(0.0f, 1.0f, 0.0f));
 
-	Transform* bullet_tr = new Transform(bullet);
-	bullet_tr->SetPosition(my_pos);
+	float dot = VDot(shoot_vec, up_vec);
+	if (dot > 0)
+	{
+		shoot_vec = VScale(shoot_vec, m_projectileSpeed);
 
-	ModelRenderer* bullet_renderer = new ModelRenderer(bullet);
-	bullet_renderer->SetModelHandle(m_bulletModelhandle);
-	bullet_renderer->SetScale(VGet(0.03f, 0.03f, 0.08f));
+		// 弾の生成
+		Actor* bullet = new Actor(m_owner->GetGame());
+		bullet->SetLayer(ActorLayer::EnemyBullet);
 
-	bullet_renderer->SetDiffuse(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
-	bullet_renderer->SetSpecular(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
-	bullet_renderer->SetEmissive(GetColorF(0.0f, 0.0f, 1.0f, 1.0f));
-	bullet_renderer->SetAmbient(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
-	bullet_renderer->SetSpecularPower(0.0f);
+		Transform* bullet_tr = new Transform(bullet);
+		bullet_tr->SetPosition(my_pos);
 
-	new Bullet(bullet, shoot_vec, 0.0f);
+		ModelRenderer* bullet_renderer = new ModelRenderer(bullet);
+		bullet_renderer->SetModelHandle(m_bulletModelhandle);
+		bullet_renderer->SetScale(VGet(0.03f, 0.03f, 0.08f));
+
+		bullet_renderer->SetDiffuse(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
+		bullet_renderer->SetSpecular(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
+		bullet_renderer->SetEmissive(GetColorF(0.0f, 0.0f, 1.0f, 1.0f));
+		bullet_renderer->SetAmbient(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
+		bullet_renderer->SetSpecularPower(0.0f);
+
+		new Bullet(bullet, shoot_vec, 0.0f);
+	}
 }
