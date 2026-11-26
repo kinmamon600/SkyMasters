@@ -90,11 +90,11 @@ void Cannon::Attack(Actor* target)
 
 		ModelRenderer* bullet_renderer = new ModelRenderer(bullet);
 		bullet_renderer->SetModelHandle(m_bulletModelhandle);
-		bullet_renderer->SetScale(VGet(0.03f, 0.03f, 0.08f));
+		bullet_renderer->SetScale(VGet(0.1f, 0.1f, 0.1f));
 
 		bullet_renderer->SetDiffuse(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
 		bullet_renderer->SetSpecular(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
-		bullet_renderer->SetEmissive(GetColorF(0.0f, 0.0f, 1.0f, 1.0f));
+		bullet_renderer->SetEmissive(GetColorF(1.0f, 0.0f, 0.0f, 1.0f));
 		bullet_renderer->SetAmbient(GetColorF(0.0f, 0.0f, 0.0f, 1.0f));
 		bullet_renderer->SetSpecularPower(0.0f);
 
