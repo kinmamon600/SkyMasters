@@ -53,6 +53,11 @@ void Game::Update()
 	SceneStep current_step = sceneManager->GetSceneStep();
     sceneManager->Update();
 
+	if (current_step == SceneStep::Terminate)
+	{
+		p_componentManager->ClearComponents();
+	}
+
 	// ロード・初期化・シーン終了時はコンポーネント・アクターを更新しない
 	if (current_step != SceneStep::Execute)
 	{

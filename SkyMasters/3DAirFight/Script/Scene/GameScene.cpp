@@ -207,6 +207,7 @@ void GameScene::Initialize()
 
     // 敵の生成
     int enemyInstanceCount = m_enemyLoader.GetInstanceCount();
+    int deadEnemy = 0;
     for (short i = 0; i < enemyInstanceCount; i++)
     {
         Actor* enemy_obj = new Actor(p_sceneManager->p_game);
@@ -228,12 +229,14 @@ void GameScene::Initialize()
         {
         case 0:
             //new PhysicsColliderCylinder(enemy_obj, VGet(0.0f, 0.0f, 0.0f), 300, 100, PhysicsCollider::Fixed, 1);
+            deadEnemy++;
             break;
 
         case 1:
             enemyModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
             new PhysicsColliderSphere(enemy_obj, VGet(0.0f, 0.0f, 0.0f), 30, PhysicsCollider::Fixed, 1);
             new Cannon(enemy_obj, 200, 20, m_enemyBulletModelHandle);
+            new Sound(enemy_obj);
             break;
 
         default:
@@ -243,7 +246,7 @@ void GameScene::Initialize()
 
     // オブザーバの生成
     Actor* observer = new Actor(p_sceneManager->p_game);
-    new FightObserver(observer, 4, 1, this);
+    new FightObserver(observer, 4, enemyInstanceCount - deadEnemy, this);
 }
 
 // 更新

@@ -32,6 +32,9 @@ public:
 	// アクターは関係なくコンポーネントの更新順にのっとって更新
 	void Update();
 
+	// 可変長配列をすべて空に
+	void ClearComponents();
+
 private:
 	// 追加保留中のコンポーネント
 	std::vector<Component*> p_PendingComponents;

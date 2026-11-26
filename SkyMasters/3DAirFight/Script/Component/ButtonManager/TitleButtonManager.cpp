@@ -6,10 +6,13 @@
 void TitleButtonManager::Update()
 {
 	Input* inComp = m_owner->GetComponent<Input>();
+	Sound* se = m_owner->GetComponent<Sound>();
 
 	// ‰E“ü—Í
 	if (inComp->GetButtonDown(Input::Button::RIGHT) /* || inComp->GetAnalog(Input::Analog::LX) > 0*/)
 	{
+		se->PlaySE(SE::Pick_Slide);
+
 		m_currentButton++;
 
 		m_currentButton = (m_currentButton + TitleButtonType::Count) % TitleButtonType::Count;
@@ -18,6 +21,8 @@ void TitleButtonManager::Update()
 	// ¶“ü—Í
 	if (inComp->GetButtonDown(Input::Button::LEFT) /* || inComp->GetAnalog(Input::Analog::LX) < 0*/)
 	{
+		se->PlaySE(SE::Pick_Slide);
+
 		m_currentButton--;
 
 		m_currentButton = (m_currentButton + TitleButtonType::Count) % TitleButtonType::Count;
@@ -30,15 +35,13 @@ void TitleButtonManager::Update()
 		{
 		case TitleButtonManager::TitleButtonType::Start:
 		{
-			Sound* startSE = m_owner->GetComponent<Sound>();
-			startSE->PlaySE(SE::OK_Button);
+			se->PlaySE(SE::OK_Button);
 			sb->RequestSceneChange();
 		}
 			break;
 		case TitleButtonManager::TitleButtonType::End:
 		{
-			Sound* endSE = m_owner->GetComponent<Sound>();
-			endSE->PlaySE(SE::Cancel_Button);
+			se->PlaySE(SE::Cancel_Button);
 			sb->RequestSceneChange();
 		}
 			break;

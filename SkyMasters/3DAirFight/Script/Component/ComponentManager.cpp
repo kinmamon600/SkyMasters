@@ -150,3 +150,11 @@ void ComponentManager::Update()
 		}
 	}
 }
+
+// ‰Â•Ï’·”z—ñ‚ð‚·‚×‚Ä‹ó‚É
+void ComponentManager::ClearComponents()
+{
+	p_physicsColliderComponents.clear();
+	p_processComponents.clear();
+	p_renderComponents.clear();
+}

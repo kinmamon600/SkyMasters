@@ -9,17 +9,17 @@
 #include "../Bullet.h"
 #include "../../Component/ModelRenderer.h"
 #include "../../Component/PhysicsCollider.h"
+#include "../../Component/Sound.h"
 
 // コンストラクタ
 Cannon::Cannon(Actor* owner, int hp, int atk, int bullet)
 	:EnemyBase(owner, hp, atk) 
 {
 	// 検知判定の生成
-	//Actor* detector = new Actor(owner->GetGame());
-	p_detector = std::make_unique<Actor>(owner->GetGame());
+	p_detector = new Actor(owner->GetGame());
 	Transform* tr = owner->GetComponent<Transform>();
-	new Detector(p_detector.get(), tr->GetPosition(), m_detectionRadius, ActorLayer::Player,
-		[this](Actor* p_player) {this->DetectPlayer(p_player); });
+	new Detector(p_detector, tr->GetPosition(), m_detectionRadius, ActorLayer::Player,
+		[this](Actor* p_player) {this->DetectPlayer(p_player); },this);
 
 	// 弾のモデルハンドルの設定
 	m_bulletModelhandle = bullet;
@@ -31,7 +31,12 @@ Cannon::Cannon(Actor* owner, int hp, int atk, int bullet)
 // デストラクタ
 Cannon::~Cannon()
 {
+	Detector* detector = p_detector->GetComponent<Detector>();
 
+	if (detector != nullptr)
+	{
+		detector->KillParent();
+	}
 }
 
 // 更新処理
@@ -99,5 +104,8 @@ void Cannon::Attack(Actor* target)
 		bullet_renderer->SetSpecularPower(0.0f);
 
 		new Bullet(bullet, shoot_vec, 0.0f);
+
+		Sound* se = m_owner->GetComponent<Sound>();
+		se->PlaySE(SE::Fighter_Shot);
 	}
 }
