@@ -17,6 +17,7 @@ SoundManager::SoundManager()
     m_seHandles[static_cast<int>(SE::Cancel_Button)] = LoadSoundMem("../Sound/SE/Cancel_Button.wav");
     m_seHandles[static_cast<int>(SE::Pick_Slide)] = LoadSoundMem("../Sound/SE/Pick_Slide.wav");
     m_seHandles[static_cast<int>(SE::Fighter_Shot)] = LoadSoundMem("../Sound/SE/Fighter_Shot.wav");
+    m_seHandles[static_cast<int>(SE::Explosion)] = LoadSoundMem("../Sound/SE/Explosion.wav");
     m_seHandles[static_cast<int>(SE::Enemy_Explosion)] = LoadSoundMem("../Sound/SE/Enemy_Explosion.wav");
 
 }

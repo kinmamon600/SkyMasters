@@ -19,6 +19,8 @@ enum class SE
 
 	Fighter_Shot,		// 自機の発射
 
+	Explosion,
+
 	Enemy_Explosion,	// 敵撃破時の爆発
 
 	SE_Count,			// SEの数
