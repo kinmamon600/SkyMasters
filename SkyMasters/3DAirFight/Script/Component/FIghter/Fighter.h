@@ -112,4 +112,7 @@ private:
 
 	// レティクル位置の設定
 	void SetRericlePos();
+
+	// ターンの向きを取得
+	short GetTurnDirection(float y);
 };

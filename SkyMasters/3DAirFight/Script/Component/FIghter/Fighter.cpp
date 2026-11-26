@@ -111,25 +111,18 @@ void Fighter::Update()
 		// XZ方向にエリア外なら自動的にターン
 		if (xz_size >= WorldSettings::WorldRadius * 0.9f)
 		{
-			float height_center = (WorldSettings::WorldLength - WorldSettings::FloorHeight) / 2.0f + WorldSettings::FloorHeight;
-
-			if (pos.y < height_center)
-			{
-				m_automaticDirection = 1;
-			}
-			else
-			{
-				m_automaticDirection = -1;
-			}
+			m_automaticDirection = GetTurnDirection(pos.y);
 
 			m_currentState = Fighter::PlayerState::Automatic;
 		}
 
 		// 別ステートへの遷移分岐
+		// ターン
 		Input* input = m_owner->GetComponent<Input>();
 		if (input->GetButtonDown(Input::L))
 		{
-			m_automaticDirection = input->GetAnalog(Input::LY);
+			//m_automaticDirection = input->GetAnalog(Input::LY);
+			m_automaticDirection = GetTurnDirection(pos.y);
 			m_currentState = Fighter::PlayerState::Automatic;
 		}
 
@@ -138,6 +131,8 @@ void Fighter::Update()
 		{
 			VECTOR direction = pcComp->GetDirection(VGet(0.0f, 0.0f, -1.0f));
 			Attack(VScale(direction, 10.0f), VScale(direction, 1100.0f));
+
+			manuCameraComp->ShakingCamera();
 		}
 	}
 		break;
@@ -285,4 +280,19 @@ void Fighter::SetRericlePos()
 
 	Transform* reticle_tr2 = p_myReticle2->GetComponent<Transform>();
 	reticle_tr2->SetPosition(VGet(pos2.x, pos2.y, 0.0f));
+}
+
+// ターンの向きを取得
+short Fighter::GetTurnDirection(float y)
+{
+	float height_center = (WorldSettings::WorldLength - WorldSettings::FloorHeight) / 2.0f + WorldSettings::FloorHeight;
+
+	if (y < height_center)
+	{
+		return 1;
+	}
+	else
+	{
+		return -1;
+	}
 }

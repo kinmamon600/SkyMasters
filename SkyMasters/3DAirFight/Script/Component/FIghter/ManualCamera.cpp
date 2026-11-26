@@ -48,5 +48,31 @@ void ManualCamera::SetCamera(const Fighter* p_player_fighter, const Transform* p
 
 	camera->SetPosition(camera_pos);
 
-	camera->SetDispCenter((p_player_fighter->m_dispCenter.x) + (int)((x_value) * p_player_fighter->m_cameraCenterAreaX), (p_player_fighter->m_dispCenter.y) + (int)((y_value) * p_player_fighter->m_cameraCenterAreaY));
+	// ƒJƒƒ‰‚Ì—h‚êİ’è
+	if (m_shakingStep == 0)
+	{
+		m_shakingX = 0;
+		m_shakingY = 0;
+	}
+	else
+	{
+		--m_shakingStep;
+		m_shakingX /= -2;
+		m_shakingY /= -2;
+	}
+
+	camera->SetDispCenter((p_player_fighter->m_dispCenter.x) + (int)((x_value) * p_player_fighter->m_cameraCenterAreaX) + m_shakingX, (p_player_fighter->m_dispCenter.y) + (int)((y_value) * p_player_fighter->m_cameraCenterAreaY) + m_shakingY);
+}
+
+// ƒJƒƒ‰‚ğ—h‚ç‚·
+void ManualCamera::ShakingCamera()
+{
+	m_shakingStep = m_shakingFrame;
+
+	// —h‚ê‚ÌƒxƒNƒgƒ‹‚ğ¶¬
+	m_shakingX = GetRand(1000);
+	m_shakingY = GetRand(1000);
+	float size = std::sqrtf((float)(m_shakingX * m_shakingX + m_shakingY * m_shakingY));
+	m_shakingX = (short)(((float)m_shakingX / size) * (float)m_shakingPower);
+	m_shakingY = (short)(((float)m_shakingY / size) * (float)m_shakingPower);
 }
