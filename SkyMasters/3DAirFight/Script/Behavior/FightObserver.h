@@ -6,6 +6,7 @@
 
 // 前方宣言
 class Actor;
+class SceneBase;
 
 /// <summary>
 /// 戦闘を監視するクラス
@@ -14,8 +15,8 @@ class FightObserver : public Behavior
 {
 public:
 	// コンストラクタ
-	FightObserver(Actor* owner, unsigned short players_num, unsigned short defeat_enemies)
-		: Behavior(owner), m_playersNum(players_num), m_alivePlayersNum(players_num), m_defeatEnemiesNum(defeat_enemies) {};
+	FightObserver(Actor* owner, unsigned short players_num, unsigned short defeat_enemies, SceneBase* scene)
+		: Behavior(owner), m_playersNum(players_num), m_alivePlayersNum(players_num), m_defeatEnemiesNum(defeat_enemies), p_scene(scene) {};
 
 	// デストラクタ
 	~FightObserver() {};
@@ -35,6 +36,9 @@ private:
 
 	// 倒した敵の数
 	unsigned short m_defeatedEnemiesNum = 0;
+
+	// 現在シーン
+	SceneBase* p_scene;
 };
 
 #endif

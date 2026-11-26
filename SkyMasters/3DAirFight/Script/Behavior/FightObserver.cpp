@@ -1,5 +1,6 @@
 // ライブラリ・ヘッダ
 #include "FightObserver.h"
+#include "../Scene/SceneBase.h"
 
 // 通知を受け取る
 void FightObserver::OnNotify(EventList event)
@@ -14,6 +15,7 @@ void FightObserver::OnNotify(EventList event)
 		if (m_alivePlayersNum == 0)
 		{
 			printfDx("ゲームオーバー\n");
+			p_scene->RequestSceneChange();
 		}
 		break;
 
@@ -24,6 +26,7 @@ void FightObserver::OnNotify(EventList event)
 		if (m_defeatedEnemiesNum == m_defeatEnemiesNum)
 		{
 			printfDx("クリア！\n");
+			p_scene->RequestSceneChange();
 		}
 		break;
 

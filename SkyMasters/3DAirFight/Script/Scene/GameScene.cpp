@@ -253,5 +253,5 @@ void GameScene::Execute()
 SceneType GameScene::Terminate()
 {
     // ‰¼
-    return SceneType::Exit;
+    return SceneType::TitleScene;
 }
