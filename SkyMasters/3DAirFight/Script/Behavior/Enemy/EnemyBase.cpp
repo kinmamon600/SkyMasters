@@ -1,5 +1,6 @@
 // ライブラリ・ヘッダ
 #include "EnemyBase.h"
+#include "../../Component/Sound.h"
 
 // コンストラクタ
 EnemyBase::EnemyBase(Actor* owner,int hp,int atk)
@@ -33,6 +34,9 @@ void EnemyBase::IsContact(Actor* other)
 		if (m_hp <= 0)
 		{
 			m_owner->SetState(Actor::EDead);
+
+			Sound* se = m_owner->GetComponent<Sound>();
+			se->PlaySE(SE::Enemy_Explosion);
 		}
 	}
 }

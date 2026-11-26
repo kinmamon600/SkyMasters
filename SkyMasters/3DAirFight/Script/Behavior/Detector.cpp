@@ -5,7 +5,7 @@
 #include "../Component/PhysicsColliderSphere.h"
 
 // コンストラクタ
-Detector::Detector(Actor* owner, const VECTOR pos, float radius, ActorLayer target, std::function<void(Actor*)> func, Actor* parent)
+Detector::Detector(Actor* owner, const VECTOR pos, float radius, ActorLayer target, std::function<void(Actor*)> func, Component* parent)
 	: Behavior(owner)
 {
 	// トランスフォームのアタッチ
@@ -25,18 +25,23 @@ Detector::Detector(Actor* owner, const VECTOR pos, float radius, ActorLayer targ
 	m_parent = parent;
 }
 
+void Detector::KillParent()
+{
+	m_parent = nullptr;
+}
+
 // コライダーがアタッチされている時、接触時に呼ばれる
 void Detector::IsContact(Actor* other)
 {
+	if (m_parent == nullptr)
+	{
+		m_owner->SetState(Actor::State::EDead);
+		return;
+	}
+
 	// 指定されたレイヤーと一致したら関数実行
 	if (other->GetLayer() == m_targetLayer)
 	{
-		if (m_parent != nullptr)
-		{
-			m_owner->SetState(Actor::State::EDead);
-			return;
-		}
-	
-		p_func(other);
+			p_func(other);
 	}
 }
