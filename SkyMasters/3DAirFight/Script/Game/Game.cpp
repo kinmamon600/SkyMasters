@@ -27,8 +27,13 @@ void Game::Initialize()
 }
 
 // ゲームの更新
-void Game::Update()
+bool Game::Update()
 {
+	if (sceneManager->GetSceneType() == SceneType::Exit)
+	{
+		return false;
+	}
+
 	// 入力の更新
 	// falseが返ってきたとき(コントローラが減った時等)は以降の処理を行わない
 	//if (!UpdateInput()) { return; }
@@ -59,19 +64,19 @@ void Game::Update()
 	}
 
 	// ロード・初期化・シーン終了時はコンポーネント・アクターを更新しない
-	if (current_step != SceneStep::Execute)
+	if (current_step == SceneStep::Execute)
 	{
-		return;
+		// コンポーネントの更新
+		p_componentManager->Update();
+
+		// アクターの更新
+		for (Actor* act : mActors)
+		{
+			act->Update();
+		}
 	}
 
-	// コンポーネントの更新
-	p_componentManager->Update();
-
-	// アクターの更新
-	for (Actor* act : mActors)
-	{
-		act->Update();
-	}
+	return true;
 }
 
 // ゲームの終了

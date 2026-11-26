@@ -107,6 +107,9 @@ private:
 	// ƒŒƒeƒBƒNƒ‹‚Ì‹——£
 	const float m_reticleDistance = 100.0f;
 
+	// €‚ñ‚Å‚¢‚é‚©
+	bool m_dead = false;
+
 	// ’ÊíUŒ‚
 	void Attack(VECTOR offset, VECTOR velocity);
 

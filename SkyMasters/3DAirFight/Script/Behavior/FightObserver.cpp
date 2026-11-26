@@ -14,7 +14,7 @@ void FightObserver::OnNotify(EventList event)
 		// 全機撃墜されたらゲームオーバー
 		if (m_alivePlayersNum == 0)
 		{
-			printfDx("ゲームオーバー\n");
+			//printfDx("ゲームオーバー\n");
 			p_scene->RequestSceneChange();
 		}
 		break;
@@ -25,7 +25,7 @@ void FightObserver::OnNotify(EventList event)
 		// 全機撃墜でクリア
 		if (m_defeatedEnemiesNum == m_defeatEnemiesNum)
 		{
-			printfDx("クリア！\n");
+			//printfDx("クリア！\n");
 			p_scene->RequestSceneChange();
 		}
 		break;

@@ -186,7 +186,7 @@ void Fighter::IsContact(Actor* other)
 	}
 
 	// “G’e‚É“–‚½‚Á‚½‚Æ‚«
-	if (other->GetLayer() == ActorLayer::EnemyBullet)
+	else if (other->GetLayer() == ActorLayer::EnemyBullet)
 	{
 		if (m_currentState == Fighter::PlayerState::Manual)
 		{
@@ -327,6 +327,9 @@ short Fighter::GetTurnDirection(float y)
 // Ž€‚Ê
 void Fighter::Dead()
 {
+	if (m_dead) { return; }
+	m_dead = true;
+
 	// Ž©g‚ðÁ‹Ž
 	m_owner->SetState(Actor::State::EDead);
 	
@@ -336,7 +339,7 @@ void Fighter::Dead()
 
 	// Œø‰Ê‰¹Ä¶
 	Sound* sound = m_owner->GetComponent<Sound>();
-	sound->PlaySE(SE::Enemy_Explosion);
+	sound->PlaySE(SE::Explosion);
 
 	// ’Ê’m
 	Notify(EventList::FighterDead);

@@ -30,7 +30,7 @@ public:
     void Initialize();
 
     // ゲームの更新
-    void Update();
+    bool Update();
 
     // ゲームの終了
     // アクターやコンポーネントのメモリを解放する

@@ -43,13 +43,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetCameraNearFar(10.0f, 110000.0f);
 
 	// メインループ
-	while (ProcessMessage() != -1 && CheckHitKey(KEY_INPUT_ESCAPE) != 1)
+	while (ProcessMessage() != -1/* && CheckHitKey(KEY_INPUT_ESCAPE) != 1*/)
 	{
 		// 画面クリア
 		DxLib::ClearDrawScreen();
 		
 		// ゲームの更新
-		game->Update();
+		if (!game->Update())
+		{
+			break;
+		}
 
 		ScreenFlip();					// ダブルバッファで画面表示
 		WaitTimer(Screen::OneFrameTime_ms);// 一定時間待つ

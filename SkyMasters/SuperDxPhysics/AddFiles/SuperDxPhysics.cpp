@@ -1029,16 +1029,19 @@ VECTOR SDP::GetRotate(unsigned int id)
 	
 	// オブジェクトが無い、描画しない設定の時は描画しない
 	if (rb_world->isRemovedRigidBody(id)) { return VGet(0.0f, 0.0f, 0.0f); }
+
+#if _DEBUG
 	if (!g_renderFlags[id]) { return VGet(0.0f, 0.0f, 0.0f); }
+
+	// マテリアルの設定
+	SetMaterialParam(g_physicsObjectMaterial[id]);
+#endif
 	
 	const PfxRigidState& state = rb_world->getRigidState(id);
 	const PfxCollidable& coll = rb_world->getCollidable(id);
 	
 	PfxTransform3 rbT(state.getOrientation(), state.getPosition());
-	
-	// マテリアルの設定
-	SetMaterialParam(g_physicsObjectMaterial[id]);
-	
+
 	PfxShapeIterator itrShape(coll);
 	
 	const PfxShape& shape = *itrShape;

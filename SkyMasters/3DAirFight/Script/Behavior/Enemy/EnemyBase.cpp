@@ -36,7 +36,7 @@ void EnemyBase::IsContact(Actor* other)
 			m_owner->SetState(Actor::EDead);
 
 			Sound* se = m_owner->GetComponent<Sound>();
-			se->PlaySE(SE::Enemy_Explosion);
+			se->PlaySE(SE::Explosion);
 		}
 	}
 }

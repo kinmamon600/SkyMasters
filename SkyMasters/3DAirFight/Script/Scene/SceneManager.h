@@ -30,6 +30,9 @@ public:
 	// 現在の処理段階の取得
 	SceneStep GetSceneStep() const;
 
+	// 現在のシーンタイプの取得
+	SceneType GetSceneType() const;
+
 	// Lodingクルクルの描画
 	void DrawLoading();
 
