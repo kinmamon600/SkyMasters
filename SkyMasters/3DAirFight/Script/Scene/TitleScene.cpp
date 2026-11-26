@@ -109,7 +109,8 @@ SceneType TitleScene::Terminate()
 	switch (buttonComp->m_currentButton)
 	{
 	case TitleButtonManager::TitleButtonType::Start:
-		return SceneType::FighterPickScene;
+		//return SceneType::FighterPickScene;
+		return SceneType::GameScene;
 		break;
 	case TitleButtonManager::TitleButtonType::End:
 		return SceneType::Exit;

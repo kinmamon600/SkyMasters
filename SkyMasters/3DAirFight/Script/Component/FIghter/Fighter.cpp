@@ -8,7 +8,7 @@
 #include "Fighter.h"
 #include "../Transform.h"
 #include "../Input.h"
-//#include "../PhysicsColliderSphere.h"
+#include "../PhysicsColliderSphere.h"
 //#include "../PhysicsColliderBox.h"
 #include "../PhysicsColliderCylinder.h"
 #include "../UIRenderer.h"
@@ -45,7 +45,8 @@ Fighter::Fighter(Actor* owner, unsigned short pl_num, MATRIX mat, int beam, int 
 	Transform* tr = new Transform(owner);
 	tr->SetMatrix(mat);
 
-	new PhysicsColliderCylinder(owner, VGet(0.0f, 0.0f, 0.0f), 2.0f, 0.5f, PhysicsCollider::Active, 1.0f);
+	//new PhysicsColliderCylinder(owner, VGet(0.0f, 0.0f, 0.0f), 2.0f, 0.5f, PhysicsCollider::Active, 1.0f);
+	new PhysicsColliderSphere(owner, VGet(0.0f, 0.0f, 0.0f), 2.0f, PhysicsCollider::Active, 1.0f);
 
 	ModelRenderer* model_renderer = new ModelRenderer(owner);
 	model_renderer->SetModelHandle(MV1LoadModel("../3DModel/testFighter.mv1"));
@@ -131,8 +132,6 @@ void Fighter::Update()
 		{
 			VECTOR direction = pcComp->GetDirection(VGet(0.0f, 0.0f, -1.0f));
 			Attack(VScale(direction, 10.0f), VScale(direction, 1100.0f));
-
-			manuCameraComp->ShakingCamera();
 		}
 	}
 		break;
@@ -180,7 +179,35 @@ void Fighter::Update()
 // “–‚½‚è”»’è
 void Fighter::IsContact(Actor* other)
 {
-	//printfDx("ƒqƒbƒgI\n");
+	// “G‚»‚Ì‚à‚Ì‚É“–‚½‚Á‚½‚Æ‚«
+	if (other->GetLayer() == ActorLayer::Enemy)
+	{
+		Dead();
+	}
+
+	// “G’e‚É“–‚½‚Á‚½‚Æ‚«
+	if (other->GetLayer() == ActorLayer::EnemyBullet)
+	{
+		if (m_currentState == Fighter::PlayerState::Manual)
+		{
+			// HP‚ðŒ¸‚ç‚·
+			m_hp -= 50;
+
+			if (m_hp < 1)
+			{
+				Dead();
+			}
+			else
+			{
+				// ƒJƒƒ‰‚ð—h‚ç‚·
+				ManualCamera* manuCameraComp = p_myCamera->GetComponent<ManualCamera>();
+				manuCameraComp->ShakingCamera();
+			}
+
+			// “G’e‚ðÁ‚·
+			other->SetState(Actor::State::EDead);
+		}
+	}
 }
 
 // ’Ê’m‚ðŽó‚¯Žæ‚é
@@ -295,4 +322,22 @@ short Fighter::GetTurnDirection(float y)
 	{
 		return -1;
 	}
+}
+
+// Ž€‚Ê
+void Fighter::Dead()
+{
+	// Ž©g‚ðÁ‹Ž
+	m_owner->SetState(Actor::State::EDead);
+	
+	// ƒŒƒeƒBƒNƒ‹‚ðÁ‹Ž
+	p_myReticle1->SetState(Actor::State::EDead);
+	p_myReticle2->SetState(Actor::State::EDead);
+
+	// Œø‰Ê‰¹Ä¶
+	Sound* sound = m_owner->GetComponent<Sound>();
+	sound->PlaySE(SE::Enemy_Explosion);
+
+	// ’Ê’m
+	Notify(EventList::FighterDead);
 }

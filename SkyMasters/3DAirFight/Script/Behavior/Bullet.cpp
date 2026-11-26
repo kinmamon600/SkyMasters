@@ -23,7 +23,7 @@ Bullet::Bullet(Actor* owner, VECTOR velocity, float acceleration)
 
 	//ePfxMotionType::kPfxMotionTypeTrigger
 	// コライダーのアタッチと設定
-	new PhysicsColliderSphere(owner, VGet(0.0f, 0.0f, 0.0f), 2.5f, PhysicsCollider::Trigger, 1.0f);
+	new PhysicsColliderSphere(owner, VGet(0.0f, 0.0f, 0.0f), 3.0f, PhysicsCollider::Trigger, 1.0f);
 	//new PhysicsColliderCylinder(owner, VGet(0.0f, 0.0f, 0.0f), 10.0f, 1.2f, PhysicsCollider::Trigger, 1.0f);
 	//printfDx("アタッチされたよ\n");
 }

@@ -36,7 +36,7 @@ private:
 	short m_shakingY = 0;
 
 	// カメラの揺れの強さ
-	const short m_shakingPower = 15;
+	const short m_shakingPower = 60;
 
 	// カメラの揺れるフレーム数
 	const short m_shakingFrame = 2;

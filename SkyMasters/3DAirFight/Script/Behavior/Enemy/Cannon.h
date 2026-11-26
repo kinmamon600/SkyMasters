@@ -39,7 +39,7 @@ private:
 	float m_countStartTime;
 
 	// ’e‘¬
-	float m_projectileSpeed = 600.0f;
+	float m_projectileSpeed = 800.0f;
 
 	// ’e‚Ìƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹
 	int m_bulletModelhandle;

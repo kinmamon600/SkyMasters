@@ -115,4 +115,7 @@ private:
 
 	// ƒ^[ƒ“‚ÌŒü‚«‚ğæ“¾
 	short GetTurnDirection(float y);
+
+	// €‚Ê
+	void Dead();
 };
