@@ -30,7 +30,7 @@ private:
 	float m_detectionRadius = 1000.0f;
 
 	// 自身のディテクター
-	std::unique_ptr<Actor> p_detector;
+	Actor* p_detector;
 
 	// クールタイム
 	float m_ct = 0.5f;

@@ -13,7 +13,7 @@ class Detector : public Behavior
 {
 public:
 	// コンストラクタ
-	Detector(Actor* owner, const VECTOR pos, float radius, ActorLayer target, std::function<void(Actor*)> func);
+	Detector(Actor* owner, const VECTOR pos, float radius, ActorLayer target, std::function<void(Actor*)> func, Actor* parent);
 
 	// デストラクタ
 	~Detector() {};
@@ -21,6 +21,8 @@ public:
 private:
 	// 検知対象のレイヤー
 	ActorLayer m_targetLayer;
+
+	Actor* m_parent;
 
 	// 検知時に呼び出される関数のポインタ
 	std::function<void(Actor*)> p_func;
