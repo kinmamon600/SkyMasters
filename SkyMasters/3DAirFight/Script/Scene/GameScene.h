@@ -60,7 +60,8 @@ private:
     int m_diffuserModel = -1;
     int playerModel = -1;
     int planeModel = -1;
-    int m_beamModelHandle = -1;     // ビームのモデルハンドル
+    int m_beamModelHandle = -1;         // ビームのモデルハンドル
+    int m_enemyBulletModelHandle = -1;  // 敵弾のモデルハンドル
     std::vector<int> m_enemyModel;
 
     // スカイボックスハンドル

@@ -24,6 +24,7 @@
 #include "../Component/Sound.h"
 #include "../Game/SoundManager/SoundLilst.h"
 #include "../Actor/ActorLayer.h"
+#include "../Behavior/FightObserver.h"
 
 #include "../Loader/FighterDataLoader.h"
 
@@ -66,6 +67,8 @@ bool GameScene::Load()
     //playerModel = MV1LoadModel("../3DModel/testFighter.mv1");
     planeModel = MV1LoadModel("../3DModel/Plane.mv1");
     m_beamModelHandle = MV1LoadModel("../3DModel/Fighter_Bullet.mv1");
+
+    m_enemyBulletModelHandle = MV1LoadModel("../3DModel/Enemy/Bullet/EnemyBullet_0.mv1");
 
     skyHandel = MV1LoadModel("../3DModel/SkyBox/SkyBox.mv1");
     skyTx = LoadGraph("../3DModel/SkyBox/SkyTx.png");
@@ -113,7 +116,6 @@ bool GameScene::Load()
             GetColorF(1.0f, 1.0f, 1.0f, 1.0f),
             GetColorF(0.0f, 0.0f, 0.0f, 1.0f),
             0.0f };
-        printfDx("%d, %d\n", difEnemy_tx, emiEnemy_tx);
     }
 
     // 非同期終了
@@ -231,13 +233,17 @@ void GameScene::Initialize()
         case 1:
             enemyModel->SetScale(VGet(0.1f, 0.1f, 0.1f));
             new PhysicsColliderSphere(enemy_obj, VGet(0.0f, 0.0f, 0.0f), 30, PhysicsCollider::Fixed, 1);
-            new Cannon(enemy_obj, 200, 20, m_beamModelHandle);
+            new Cannon(enemy_obj, 200, 20, m_enemyBulletModelHandle);
             break;
 
         default:
             break;
         }
     }
+
+    // オブザーバの生成
+    Actor* observer = new Actor(p_sceneManager->p_game);
+    new FightObserver(observer, 4, 1, this);
 }
 
 // 更新
